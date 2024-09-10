@@ -87,17 +87,17 @@
     };
   };
   
-  environment.shells = with pkgs; [ zsh ];
+  #environment.shells = with pkgs; [ zsh ];
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
 
-  environment.sessionVariables = {
-    EDITOR = "nvim";
-  };
+  #environment.sessionVariables = {
+  #  EDITOR = "nvim";
+  #};
 
-  programs.bash.shellAliases = {
-    vim = "nvim";
-  };
+  #programs.bash.shellAliases = {
+  #  vim = "nvim";
+  #};
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

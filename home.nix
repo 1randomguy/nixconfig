@@ -1,6 +1,11 @@
 { config, pkgs, ... }:
 
 {
+  imports =
+    [ # Include the results of the hardware scan.
+      ./sh.nix
+    ];
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "bene";
@@ -67,9 +72,6 @@
   #
   #  /etc/profiles/per-user/bene/etc/profile.d/hm-session-vars.sh
   #
-  home.sessionVariables = {
-    # EDITOR = "emacs";
-  };
 
   programs.git = {
     enable = true;
@@ -78,34 +80,9 @@
     extraConfig = {
       init.defaultBranch = "main";
       credential.helper = "oauth";
-      #"${
-      #    pkgs.git.override { withLibsecret = true; }
-      #  }/bin/git-credential-libsecret";
     };
   };
 
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
-
-    history = {
-      size = 10000;
-    };
-
-    initExtra = ''
-      [[ ! -f  ${./p10k.zsh} ]] || source ${./p10k.zsh}
-    '';
-
-    zplug = {
-      enable = true;
-      plugins = [
-        { name = "zsh-users/zsh-autosuggestions"; }
-        { name = "romkatv/powerlevel10k"; tags = [ as:theme ]; }
-      ];
-    };
-  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
