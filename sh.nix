@@ -14,9 +14,8 @@
       size = 10000;
     };
 
-    initExtra = ''
+    initExtraFirst = ''
       [[ ! -f  ${./p10k.zsh} ]] || source ${./p10k.zsh}
-      autoload -U compinit && compinit
     '';
 
     zplug = {
