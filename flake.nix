@@ -1,6 +1,5 @@
 {
-
-  description = "Flake No.1";
+  description = "locker flockig";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
@@ -10,40 +9,32 @@
   };
 
   outputs = inputs @ { self, nixpkgs, home-manager, ... }:
-    #nixvim-flake.inputs.nixpkgs.follows = "nixpkgs";
     let
       lib = nixpkgs.lib;
       system = "x86_64-linux";
       pkgs = import nixpkgs { 
         inherit system;
         config.allowUnfree = true;
-        # config.permittedInsecurePackages = [
-        #   "electron-27.3.11"
-        # ];
-      };
-
-    in {
-    nixosConfigurations = {
-      nixosX220 = lib.nixosSystem {
-        specialArgs = {
-          inherit system inputs;
-        };
-        modules = [ 
-          ./sysconf/x220/configuration.nix
-          #{
-          #  environment.systemPackages = [
-          #    inputs.nixvim.packages.${system}.default
-          #  ];
-          #}
+        config.permittedInsecurePackages = [
+          "electron-27.3.11"
         ];
       };
-    };
-    homeConfigurations = {
-      bene = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [ ./homeconf/home.nix ];
+    in {
+      nixosConfigurations = {
+        nixosX220 = lib.nixosSystem {
+          specialArgs = {
+            inherit system inputs pkgs;
+          };
+          modules = [ 
+            ./sysconf/x220/configuration.nix
+          ];
+        };
+      };
+      homeConfigurations = {
+        bene = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [ ./homeconf/home.nix ];
+        };
       };
     };
-  };
-
 }

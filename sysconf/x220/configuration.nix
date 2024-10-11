@@ -8,8 +8,10 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../image-editing.nix
-      # ../notetaking.nix
+      ../common.nix
+      ../productivity.nix
+      ../fonts.nix
+      # ../image-editing.nix
     ];
 
   boot.loader.systemd-boot.enable = true;
@@ -59,39 +61,14 @@
     description = "Benedikt von Blomberg";
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-      firefox
-      neofetch
-      libreoffice
-    ];
   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    lf
-    alacritty
-    wget
-    zsh
-    git-credential-oauth
-    inputs.nixvim.packages.${system}.default
-  ];
+  #environment.systemPackages = with pkgs; [];
 
-  fonts = {
-    packages = with pkgs; [
-      jetbrains-mono 
-      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-    ];
-    fontconfig = {
-      defaultFonts = {
-        monospace = [ "JetBrainsMono" ];
-      };
-    };
-  };
   
   #environment.shells = with pkgs; [ zsh ];
-  users.defaultUserShell = pkgs.zsh;
-  programs.zsh.enable = true;
 
   #environment.sessionVariables = {
   #  EDITOR = "nvim";
@@ -144,6 +121,5 @@
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "24.05"; # Did you read the comment?
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
 
