@@ -8,6 +8,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../image-editing.nix
+      # ../notetaking.nix
     ];
 
   boot.loader.systemd-boot.enable = true;
