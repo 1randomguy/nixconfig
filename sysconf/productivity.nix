@@ -5,5 +5,7 @@
     logseq
     todoist-electron
     libreoffice
+    pdfarranger
+    anki
   ];
 }

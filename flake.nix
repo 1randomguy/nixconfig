@@ -25,9 +25,7 @@
           specialArgs = {
             inherit system inputs pkgs;
           };
-          modules = [ 
-            ./sysconf/x220/configuration.nix
-          ];
+          modules = [ ./sysconf/x220/configuration.nix ];
         };
       };
       homeConfigurations = {

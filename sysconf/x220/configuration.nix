@@ -11,6 +11,8 @@
       ../common.nix
       ../productivity.nix
       ../fonts.nix
+      ../socials-work.nix
+      ../socials-private.nix
       # ../image-editing.nix
     ];
 
