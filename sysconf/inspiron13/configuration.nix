@@ -13,6 +13,7 @@
       ../fonts.nix
       # ../socials-work.nix
       ../socials-private.nix
+      ../dev.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
