@@ -27,6 +27,12 @@
           };
           modules = [ ./sysconf/x220/configuration.nix ];
         };
+        inspiron13 = lib.nixosSystem {
+          specialArgs = {
+            inherit system inputs pkgs;
+          };
+          modules = [ ./sysconf/inspiron13/configuration.nix ];
+        };
       };
       homeConfigurations = {
         bene = home-manager.lib.homeManagerConfiguration {
