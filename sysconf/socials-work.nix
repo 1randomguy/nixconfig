@@ -3,6 +3,6 @@
 {
   users.users.bene.packages = with pkgs; [
     zoom-us
-    teams
+    teams-for-linux
   ];
 }
