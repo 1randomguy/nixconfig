@@ -8,7 +8,8 @@
     inputs.nixvim.packages.${system}.default
     neofetch
     wget
-    alacritty
+    kitty
+    ranger
   ];
   users.users.bene.packages = with pkgs; [
     spotify
