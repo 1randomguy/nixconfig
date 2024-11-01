@@ -9,22 +9,43 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
+    shellAliases = {
+      ll = "ls -l";
+    };
 
     history = {
       size = 10000;
     };
 
     initExtraFirst = ''
+      if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
+        source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
+      fi
       [[ ! -f  ${./p10k.zsh} ]] || source ${./p10k.zsh}
     '';
 
-    zplug = {
+    initExtra = ''
+      bindkey "''${key[Up]}" up-line-or-search
+      bindkey "''${key[Down]}" down-line-or-search
+    '';
+
+    #promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+    plugins = [
+      {
+        name = "powerlevel10k";
+        src = pkgs.zsh-powerlevel10k;
+        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+      }
+      {
+        name = "you-should-use";
+        src = pkgs.zsh-you-should-use;
+        file = "share/zsh/plugins/you-should-use/you-should-use.plugin.zsh";
+      }
+    ];
+
+    oh-my-zsh = {
       enable = true;
-      plugins = [
-        { name = "zsh-users/zsh-autosuggestions"; }
-        { name = "zsh-users/zsh-completions"; }
-        { name = "romkatv/powerlevel10k"; tags = [ as:theme ]; }
-      ];
+      plugins = [ "git" "sudo" "colored-man-pages" "extract" ]; #"zsh-interactive-cd" needs fzf 
     };
   };
 }
