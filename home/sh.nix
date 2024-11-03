@@ -3,6 +3,17 @@
   home.sessionVariables = {
     EDITOR = "nvim";
   };
+
+  programs.git = {
+    enable = true;
+    userName = "Benedikt von Blomberg";
+    userEmail = "github@bvb.anonaddy.com";
+    extraConfig = {
+      init.defaultBranch = "main";
+      credential.helper = "oauth";
+    };
+  };
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -21,7 +32,7 @@
       if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
         source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
       fi
-      [[ ! -f  ${./p10k.zsh} ]] || source ${./p10k.zsh}
+      [[ ! -f  ${./config/shell/p10k.zsh} ]] || source ${./config/shell/p10k.zsh}
     '';
 
     initExtra = ''

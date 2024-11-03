@@ -2,8 +2,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
-      ./sh.nix
+    [ 
+      ../../home/sh.nix
     ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -73,15 +73,6 @@
   #  /etc/profiles/per-user/bene/etc/profile.d/hm-session-vars.sh
   #
 
-  programs.git = {
-    enable = true;
-    userName = "Benedikt von Blomberg";
-    userEmail = "github@bvb.anonaddy.com";
-    extraConfig = {
-      init.defaultBranch = "main";
-      credential.helper = "oauth";
-    };
-  };
 
 
   # Let Home Manager install and manage itself.

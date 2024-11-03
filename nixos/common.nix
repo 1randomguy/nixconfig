@@ -10,6 +10,7 @@
     wget
     kitty
     ranger
+    tmux
   ];
   users.users.bene.packages = with pkgs; [
     spotify

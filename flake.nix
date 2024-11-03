@@ -31,7 +31,14 @@
           specialArgs = {
             inherit system inputs pkgs;
           };
-          modules = [ ./sysconf/inspiron13/configuration.nix ];
+          modules = [
+            ./hosts/inspiron13/configuration.nix
+	          home-manager.nixosModules.home-manager
+	          {
+	            home-manager.useGlobalPkgs = true;
+	            home-manager.users.bene = import ./hosts/inspiron13/home.nix;
+	          }
+	        ];
         };
       };
       homeConfigurations = {

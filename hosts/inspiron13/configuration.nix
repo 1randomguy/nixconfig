@@ -8,12 +8,12 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../common.nix
-      ../productivity.nix
-      ../fonts.nix
+      ../../nixos/common.nix
+      ../../nixos/productivity.nix
+      ../../nixos/fonts.nix
       # ../socials-work.nix
-      ../socials-private.nix
-      ../dev.nix
+      ../../nixos/socials-private.nix
+      ../../nixos/dev.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
