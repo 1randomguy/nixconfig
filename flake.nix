@@ -36,16 +36,19 @@
 	          home-manager.nixosModules.home-manager
 	          {
 	            home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
 	            home-manager.users.bene = import ./hosts/inspiron13/home.nix;
+              home-manager.extraSpecialArgs = {
+                inherit inputs;
+              };
 	          }
 	        ];
         };
       };
-      homeConfigurations = {
-        bene = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations.bene = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = [ ./homeconf/home.nix ];
-        };
+          extraSpecialArgs = { inherit inputs; };
+          modules = [ ./hosts/wsl ];
       };
     };
 }

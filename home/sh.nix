@@ -13,6 +13,15 @@
       credential.helper = "oauth";
     };
   };
+  home.packages = with pkgs; [
+    git
+    git-credential-oauth
+    inputs.nixvim.packages.${system}.default
+    neofetch
+    wget
+    ranger
+    tmux
+  ];
 
   programs.zsh = {
     enable = true;

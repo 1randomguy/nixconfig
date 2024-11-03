@@ -2,15 +2,8 @@
 
 {
   environment.systemPackages = with pkgs; [
-    git
-    gitg
-    git-credential-oauth
-    inputs.nixvim.packages.${system}.default
-    neofetch
-    wget
     kitty
-    ranger
-    tmux
+    gitg
   ];
   users.users.bene.packages = with pkgs; [
     spotify
