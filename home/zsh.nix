@@ -1,27 +1,9 @@
 { config, pkgs, inputs, ... }:
+
 {
   home.sessionVariables = {
     EDITOR = "nvim";
   };
-
-  programs.git = {
-    enable = true;
-    userName = "Benedikt von Blomberg";
-    userEmail = "github@bvb.anonaddy.com";
-    extraConfig = {
-      init.defaultBranch = "main";
-      credential.helper = "oauth";
-    };
-  };
-  home.packages = with pkgs; [
-    git
-    git-credential-oauth
-    inputs.nixvim.packages.${system}.default
-    neofetch
-    wget
-    ranger
-    tmux
-  ];
 
   programs.zsh = {
     enable = true;
@@ -49,7 +31,6 @@
       bindkey "''${key[Down]}" down-line-or-search
     '';
 
-    #promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
     plugins = [
       {
         name = "powerlevel10k";
