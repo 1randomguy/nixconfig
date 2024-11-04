@@ -48,5 +48,10 @@
           extraSpecialArgs = { inherit inputs; };
           modules = [ ./hosts/wsl ];
       };
+      homeConfigurations.wsl = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = { inherit inputs; };
+          modules = [ ./hosts/wsl/home.nix ];
+      };
     };
 }
