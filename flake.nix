@@ -20,34 +20,39 @@
         ];
       };
     in {
-      nixosConfigurations = {
-        nixosX220 = lib.nixosSystem {
-          specialArgs = {
-            inherit system inputs pkgs;
-          };
-          modules = [ ./sysconf/x220/configuration.nix ];
+      # Thinkpad X220
+      nixosConfigurations.nixosX220 = lib.nixosSystem {
+        specialArgs = {
+          inherit system inputs pkgs;
         };
-        inspiron13 = lib.nixosSystem {
-          specialArgs = {
-            inherit system inputs pkgs;
-          };
-          modules = [
-            ./hosts/inspiron13/configuration.nix
-	          home-manager.nixosModules.home-manager
-	          {
-              home-manager.extraSpecialArgs = { inherit inputs; };
-	            home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-	            home-manager.users.bene = import ./hosts/inspiron13/home.nix;
-	          }
-	        ];
+        modules = [
+          ./hosts/x220/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.extraSpecialArgs = { inherit inputs; };
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.bene = import ./hosts/x220/home.nix;
+          }
+        ];
+      };
+      # Dell Inspiron 13
+      nixosConfigurations.inspiron13 = lib.nixosSystem {
+        specialArgs = {
+          inherit system inputs pkgs;
         };
+        modules = [
+          ./hosts/inspiron13/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.extraSpecialArgs = { inherit inputs; };
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.bene = import ./hosts/inspiron13/home.nix;
+          }
+        ];
       };
-      homeConfigurations.bene = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          extraSpecialArgs = { inherit inputs; };
-          modules = [ ./hosts/wsl ];
-      };
+      # WSL
       homeConfigurations.wsl = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = { inherit inputs; };

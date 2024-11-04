@@ -8,12 +8,11 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../common.nix
-      ../productivity.nix
-      ../fonts.nix
-      ../socials-work.nix
-      ../socials-private.nix
-      ../dev.nix
+      ../../nixos/common.nix
+      ../../nixos/productivity.nix
+      ../../nixos/fonts.nix
+      ../../nixos/socials-work.nix
+      ../../nixos/socials-private.nix
       # ../image-editing.nix
     ];
 
