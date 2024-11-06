@@ -58,5 +58,11 @@
           extraSpecialArgs = { inherit inputs; };
           modules = [ ./hosts/wsl/home.nix ];
       };
+      # WSL-work
+      homeConfigurations.bene = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = { inherit inputs; };
+          modules = [ ./hosts/wsl-work/home.nix ];
+      };
     };
 }
