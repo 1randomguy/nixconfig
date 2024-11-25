@@ -13,11 +13,11 @@
         "firefox.desktop"
         "spotify.desktop"
         "org.gnome.Nautilus.desktop"
+        "kitty.desktop"
         "obsidian.desktop"
         "anki.desktop"
         "signal-desktop.desktop"
         "discord.desktop"
-        "kitty.desktop"
       ];
     };
     "org/gnome/desktop/background" = {
