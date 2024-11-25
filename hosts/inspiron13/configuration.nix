@@ -12,6 +12,7 @@
       ../../nixos/fonts.nix
       # ../socials-work.nix
       ../../nixos/socials-private.nix
+      ../../nixos/gnome.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -39,20 +40,13 @@
   # };
   console.keyMap = "de";
 
-  services.xserver = {
-    enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
-    xkb.layout = "de";
-    xkb.options = "eurosign:e,caps:escape";
-  };
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  # services.printing.enable = true;
 
   # Enable sound.
   # hardware.pulseaudio.enable = true;
