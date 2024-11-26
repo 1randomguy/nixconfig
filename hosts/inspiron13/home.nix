@@ -7,7 +7,7 @@
       ../../home/dev-tools.nix
       ../../home/shell-tools.nix
       ../../home/productivity.nix
-      ../../home/gnome-config.nix
+      ./gnome-config.nix
     ];
 
   # Home Manager needs a bit of information about you and the paths it should
