@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ lib, pkgs, inputs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -18,6 +18,25 @@
     extraConfig = {
       init.defaultBranch = "main";
       credential.helper = "oauth";
+    };
+  };
+
+  programs.kitty = lib.mkForce {
+    enable = true;
+    font = {
+      name = "JetBrainsMono";
+      size = 14;
+    };
+    # settings = {
+    #   #conf;
+    # };
+  };
+
+  programs.ranger = {
+    enable = true;
+    settings = {
+      preview_images = true;
+      preview_images_method = "kitty";
     };
   };
 }
