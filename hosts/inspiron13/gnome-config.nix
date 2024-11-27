@@ -1,6 +1,11 @@
-{...}:
+{pkgs, ...}:
 
 {
+  #Extensions:
+  home.packages = with pkgs.gnomeExtensions; [
+    blur-my-shell
+  ];
+
   dconf.settings = {
     "org/gnome/mutter" = {
       edge-tiling = true;
@@ -8,6 +13,14 @@
     "org/gnome/desktop/interface" = {
       enable-hot-corners = false;
     };
+    "org/gnome/mutter" = {
+      dynamic-workspaces = true;
+    };
+
+    "org/gnome/desktop/background" = {
+        "picture-uri" = "/home/bene/.dotfiles/assets/wallpapers/XE038441.jpg";
+    };
+
     "org/gnome/shell" = {
       favorite-apps = [
         "firefox.desktop"
@@ -19,9 +32,17 @@
         "signal-desktop.desktop"
         "discord.desktop"
       ];
+      disable-user-extensions = false;
+
+      # `gnome-extensions list` for a list
+      enabled-extensions = [
+        pkgs.gnomeExtensions.blur-my-shell.extensionUuid
+      ];
     };
-    "org/gnome/desktop/background" = {
-        "picture-uri" = "/home/bene/.dotfiles/assets/wallpapers/XE038441.jpg";
+
+    "org/gnome/shell/extensions/blur-my-shell/panel" = {
+      blur = false;
     };
+
   };
 }
