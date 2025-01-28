@@ -12,7 +12,12 @@
 
   programs.tmux = {
     enable = true;
-    extraConfig = "set -g mouse on";
+    clock24 = true;
+    mouse = true;
+    terminal = "tmux-256color";
+    extraConfig = ''
+      set -as terminal-overrides ",xterm*:Tc"
+    '';
   };
 
   programs.git = {
