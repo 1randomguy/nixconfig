@@ -3,6 +3,7 @@
 {
   imports =
     [ 
+      ../../home/common.nix
       ../../home/zsh.nix
       ../../home/dev-tools.nix
       ../../home/shell-tools.nix
