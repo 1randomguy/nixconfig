@@ -4,6 +4,7 @@
   imports =
     [ 
       ../../home/zsh.nix
+      ../../home/zsh-nixos-addons.nix
       ../../home/dev-tools.nix
       ../../home/shell-tools.nix
       ../../home/productivity.nix

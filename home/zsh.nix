@@ -26,11 +26,6 @@
       [[ ! -f  ${./config/shell/p10k.zsh} ]] || source ${./config/shell/p10k.zsh}
     '';
 
-    initExtra = ''
-      bindkey "''${key[Up]}" up-line-or-search
-      bindkey "''${key[Down]}" down-line-or-search
-    '';
-
     plugins = [
       {
         name = "powerlevel10k";
