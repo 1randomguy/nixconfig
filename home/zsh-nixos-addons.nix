@@ -1,4 +1,5 @@
-{}:
+{...}:
+
 {
   programs.zsh.initExtra = ''
     bindkey "''${key[Up]}" up-line-or-search
