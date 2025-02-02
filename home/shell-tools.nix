@@ -27,6 +27,7 @@
     extraConfig = {
       init.defaultBranch = "main";
       credential.helper = "oauth";
+      pull.rebase = true;
     };
   };
 
