@@ -27,7 +27,10 @@
     userEmail = "github@bvb.anonaddy.com";
     extraConfig = {
       init.defaultBranch = "main";
-      credential.helper = "oauth";
+      credential.helper = [
+        "cache --timeout 21600"
+        "oauth"
+      ];
       pull.rebase = true;
     };
   };
