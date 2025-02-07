@@ -8,6 +8,7 @@
     neofetch
     wget
     ranger
+    zk
   ];
 
   programs.tmux = {
