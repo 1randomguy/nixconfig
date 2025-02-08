@@ -9,5 +9,6 @@
     anki
     nextcloud-client
     obsidian
+    blanket
   ];
 }
