@@ -42,9 +42,6 @@
       name = "JetBrainsMono";
       size = 14;
     };
-    # settings = {
-    #   #conf;
-    # };
   };
 
   programs.ranger = {
