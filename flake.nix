@@ -23,9 +23,13 @@
       # Thinkpad X220
       nixosConfigurations.nixosX220 = lib.nixosSystem {
         specialArgs = {
-          inherit system inputs pkgs;
+          inherit system inputs;
         };
         modules = [
+          { 
+          imports = [ nixpkgs.nixosModules.readOnlyPkgs ];
+          nixpkgs.pkgs = pkgs; 
+          }
           ./hosts/x220/configuration.nix
           home-manager.nixosModules.home-manager
           {
@@ -39,9 +43,13 @@
       # Dell Inspiron 13
       nixosConfigurations.inspiron13 = lib.nixosSystem {
         specialArgs = {
-          inherit system inputs pkgs;
+          inherit system inputs;
         };
         modules = [
+          { 
+          imports = [ nixpkgs.nixosModules.readOnlyPkgs ];
+          nixpkgs.pkgs = pkgs; 
+          }
           ./hosts/inspiron13/configuration.nix
           home-manager.nixosModules.home-manager
           {
