@@ -9,6 +9,7 @@
     wget
     ranger
     zk
+    fzf
   ];
 
   programs.tmux = {
