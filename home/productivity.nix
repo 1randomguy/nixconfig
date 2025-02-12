@@ -10,5 +10,7 @@
     nextcloud-client
     obsidian
     blanket
+    texlive.combined.scheme-full
+    texworks
   ];
 }
