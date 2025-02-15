@@ -307,11 +307,11 @@
         "nixvim": "nixvim_2"
       },
       "locked": {
-        "lastModified": 1739202180,
-        "narHash": "sha256-TcIcaipsIZ275uHXq1LqprNkazfnIv3Aln+vtgBYo+k=",
+        "lastModified": 1739621834,
+        "narHash": "sha256-zH3Yi9WA8w/5W3krq6mUFVgLwbVguFbs2tkOItWWJMY=",
         "owner": "1randomguy",
         "repo": "nixvim",
-        "rev": "d59e3942f64a64a7517e4341b409143d90248f8d",
+        "rev": "f328aa53c8c28243c54af5fd93044347af7896d4",
         "type": "github"
       },
       "original": {
