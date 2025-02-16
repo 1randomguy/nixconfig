@@ -7,6 +7,10 @@
   ];
 
   dconf.settings = {
+    "org/gnome/desktop/wm/keybindings" = {
+      close = ["<Super>q"];
+    };
+
     "org/gnome/mutter" = {
       edge-tiling = true;
     };
