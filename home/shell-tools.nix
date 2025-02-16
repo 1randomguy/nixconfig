@@ -16,6 +16,7 @@
     enable = true;
     clock24 = true;
     mouse = true;
+    shortcut = "s";
     terminal = "tmux-256color";
     extraConfig = ''
       set -as terminal-overrides ",xterm*:Tc"
