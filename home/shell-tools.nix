@@ -10,6 +10,8 @@
     ranger
     zk
     fzf
+    ghostty
+    wezterm
   ];
 
   programs.tmux = {
