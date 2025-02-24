@@ -19,6 +19,7 @@
     clock24 = true;
     mouse = true;
     #historyLimit = 5000;
+    sensibleOnTop = true;
     shortcut = "s";
     terminal = "tmux-256color";
     extraConfig = ''
@@ -27,27 +28,8 @@
       set -gq allow-passthrough on
       set -g visual-activity off
     '';
-    #   
-    #   set -g status-position bottom
-    #   set -g status-justify left
-    #   set -g status-style 'fg=blue'
-
-    #   set -g status-left ""
-    #   set -g status-left-length 10
-
-    #   set -g status-right-style 'fg=yellow bg=black'
-    #   set -g status-right '%Y-%m-%d %H:%M '
-    #   set -g status-right-length 50
-    #   
-    #   setw -g window-status-current-style 'fg=black bg=blue'
-    #   setw -g window-status-current-format ' #I #W #F '
-
-    #   setw -g window-status-style 'fg=blue bg=black'
-    #   setw -g window-status-format ' #I #[fg=white]#W #[fg=yellow]#F 
-    # '';
     plugins = with pkgs; [
       tmuxPlugins.tmux-fzf
-      tmuxPlugins.sensible
       tmuxPlugins.catppuccin
     ];
   };
