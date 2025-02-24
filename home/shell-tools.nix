@@ -10,6 +10,7 @@
     ranger
     zk
     fzf
+    wl-clipboard
     ghostty
     wezterm
   ];
