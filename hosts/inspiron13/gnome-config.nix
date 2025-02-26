@@ -9,16 +9,17 @@
   dconf.settings = {
     "org/gnome/desktop/wm/keybindings" = {
       close = ["<Super>q"];
+      screenshot = ["<Shift><Super>s"];
     };
 
     "org/gnome/mutter" = {
       edge-tiling = true;
+      dynamic-workspaces = true;
     };
+
     "org/gnome/desktop/interface" = {
       enable-hot-corners = false;
-    };
-    "org/gnome/mutter" = {
-      dynamic-workspaces = true;
+      show-battery-percentage = true;
     };
 
     "org/gnome/desktop/background" = {
@@ -31,7 +32,6 @@
         "spotify.desktop"
         "org.gnome.Nautilus.desktop"
         "kitty.desktop"
-        "obsidian.desktop"
         "anki.desktop"
         "signal-desktop.desktop"
         "discord.desktop"
