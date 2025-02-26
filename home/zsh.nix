@@ -42,7 +42,7 @@
 
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "sudo" "colored-man-pages" "extract" "tmux"]; #"zsh-interactive-cd" needs fzf 
+      plugins = [ "git" "sudo" "colored-man-pages" "extract" "tmux" "zsh-interactive-cd"]; #"zsh-interactive-cd" needs fzf 
     };
   };
 }
