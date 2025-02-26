@@ -55,6 +55,7 @@
       name = "JetBrainsMono";
       size = 14;
     };
+    themeFile = "Catppuccin-Mocha";
   };
 
   programs.ranger = {
