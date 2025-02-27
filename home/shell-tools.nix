@@ -56,6 +56,9 @@
       size = 14;
     };
     themeFile = "Catppuccin-Mocha";
+    settings = {
+      wayland_titlebar_color = "background";
+    };
   };
 
   programs.ranger = {
