@@ -11,5 +11,6 @@
     blanket
     texlive.combined.scheme-full
     texworks
+    openconnect_openssl
   ];
 }
