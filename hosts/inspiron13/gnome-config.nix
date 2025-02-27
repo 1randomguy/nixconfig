@@ -12,7 +12,7 @@
     genericName = "Terminal emulator";
     exec = "kitty";
     categories = [ "System" "TerminalEmulator" ];
-    icon = "../../assets/icons/whiskers.svg";
+    icon = "/home/bene/.dotfiles/assets/icons/whiskers.svg";
     startupNotify = true;
     comment = "Fast, feature-rich, GPU based terminal";
   };
