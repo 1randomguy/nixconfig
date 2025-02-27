@@ -11,6 +11,8 @@
     blanket
     texlive.combined.scheme-full
     texworks
-    openconnect_openssl
+    openconnect
+    networkmanager-openconnect
+    networkmanagerapplet
   ];
 }
