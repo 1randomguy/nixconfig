@@ -24,7 +24,7 @@
         source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
       fi
       [[ ! -f  ${./config/shell/p10k.zsh} ]] || source ${./config/shell/p10k.zsh}
-      ZSH_TMUX_AUTOSTART=true
+      ZSH_TMUX_AUTOSTART=false
     '';
 
     plugins = [

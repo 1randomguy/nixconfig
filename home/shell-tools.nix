@@ -12,7 +12,6 @@
     fzf
     wl-clipboard
     ghostty
-    wezterm
   ];
 
   programs.tmux = {
