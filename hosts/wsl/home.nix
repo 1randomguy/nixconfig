@@ -5,9 +5,9 @@
     [ 
       ../../home/common.nix
       ../../home/non-nixos.nix
-      ../../home/zsh.nix
       ../../home/dev-tools.nix
-      ../../home/shell-tools.nix
+      ../../home/shell/zsh.nix
+      ../../home/shell/shell-tools.nix
     ];
 
   # Home Manager needs a bit of information about you and the paths it should

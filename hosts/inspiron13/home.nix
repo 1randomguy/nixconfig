@@ -3,11 +3,12 @@
 {
   imports =
     [ 
-      ../../home/zsh.nix
-      ../../home/zsh-nixos-addons.nix
+      ../../home/shell/zsh.nix
+      ../../home/shell/zsh-nixos-addons.nix
+      ../../home/shell/shell-tools.nix
       ../../home/dev-tools.nix
-      ../../home/shell-tools.nix
       ../../home/productivity.nix
+      ../../home/pen-apps.nix
       ./gnome-config.nix
     ];
 
