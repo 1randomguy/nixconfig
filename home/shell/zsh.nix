@@ -23,7 +23,7 @@
       if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
         source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
       fi
-      [[ ! -f  ${./config/p10k.zsh} ]] || source ${./config/shell/p10k.zsh}
+      [[ ! -f  ${./config/p10k.zsh} ]] || source ${./config/p10k.zsh}
       ZSH_TMUX_AUTOSTART=false
     '';
 
