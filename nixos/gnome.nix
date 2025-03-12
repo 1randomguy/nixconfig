@@ -5,8 +5,6 @@
     enable = true;
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
-    xkb.layout = "de";
-    xkb.options = "eurosign:e,caps:escape";
     excludePackages = with pkgs; [
       xterm
     ];
@@ -25,6 +23,8 @@
   programs.dconf.enable = true;
 
   # keyboard
+  services.xserver.xkb.layout = "de";
+  services.xserver.xkb.options = "eurosign:e,caps:escape";
   i18n.inputMethod = {
     enabled = "ibus";
     ibus.engines = with pkgs.ibus-engines; [ anthy ];

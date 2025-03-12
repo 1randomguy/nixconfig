@@ -7,10 +7,10 @@
     inputs.nixvim.packages.${system}.default
     neofetch
     wget
-    ranger
     zk
     fzf
     wl-clipboard
+    pistol
   ];
 
   programs.tmux = {
@@ -65,5 +65,13 @@
       preview_images = true;
       preview_images_method = "kitty";
     };
+  };
+
+  programs.lf = {
+    enable = true;
+    extraConfig = ''
+    set previewer ${./config/lf_previewer.sh}
+    set cleaner ${./config/lf_cleaner.sh}
+    '';
   };
 }
