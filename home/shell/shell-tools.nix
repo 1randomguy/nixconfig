@@ -11,7 +11,6 @@
     zk
     fzf
     wl-clipboard
-    ghostty
   ];
 
   programs.tmux = {

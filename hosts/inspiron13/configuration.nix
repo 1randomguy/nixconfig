@@ -10,8 +10,6 @@
       ./hardware-configuration.nix
       ../../nixos/common.nix
       ../../nixos/fonts.nix
-      # ../socials-work.nix
-      ../../nixos/socials-private.nix
       ../../nixos/gnome.nix
     ];
 

@@ -1,10 +1,10 @@
 {pkgs, ...}:
 
 {
-  users.users.bene.packages = with pkgs; [
-    todoist-electron
+  home.packages = with pkgs; [
     libreoffice
     pdfarranger
     anki
+    blanket
   ];
 }

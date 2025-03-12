@@ -1,7 +1,7 @@
 {pkgs, ...}:
 
 {
-  users.users.bene.packages = with pkgs; [
+  home.packages = with pkgs; [
     discord
     signal-desktop
   ];
