@@ -5,7 +5,7 @@
     [ 
       ../../home/common.nix
       ../../home/non-nixos.nix
-      ../../home/dev-tools.nix
+      ../../home/devel/rust.nix
       ../../home/shell/zsh.nix
       ../../home/shell/shell-tools.nix
     ];

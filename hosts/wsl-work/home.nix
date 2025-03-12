@@ -5,10 +5,9 @@
     [ 
       ../../home/common.nix
       ../../home/non-nixos.nix
-      ../../home/dev-tools.nix
+      ../../home/devel/work-stack.nix
       ../../home/shell/zsh.nix
       ../../home/shell/shell-tools.nix
-      ../../home/work-stack.nix
     ];
 
   # Home Manager needs a bit of information about you and the paths it should
