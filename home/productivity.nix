@@ -11,6 +11,7 @@
     blanket
     texlive.combined.scheme-full
     texworks
+    zathura
     openconnect
     networkmanager-openconnect
     networkmanagerapplet
