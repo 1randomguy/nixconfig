@@ -12,6 +12,7 @@
     texlive.combined.scheme-full
     texworks
     zathura
+    mupdf
     openconnect
     networkmanager-openconnect
     networkmanagerapplet
