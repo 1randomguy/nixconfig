@@ -8,7 +8,7 @@
       ../../home/shell/shell-tools.nix
       ../../home/dev-tools.nix
       ../../home/productivity.nix
-      ../../home/pen-apps.nix
+      ../../home/touch-apps.nix
       ./gnome-config.nix
     ];
 
