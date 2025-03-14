@@ -12,7 +12,7 @@
     genericName = "Terminal emulator";
     exec = "kitty";
     categories = [ "System" "TerminalEmulator" ];
-    icon = "/home/bene/.dotfiles/assets/icons/whiskers.svg";
+    icon = "/home/bene/nixconfig/assets/icons/whiskers.svg";
     startupNotify = true;
     comment = "Fast, feature-rich, GPU based terminal";
   };
@@ -34,7 +34,7 @@
     };
 
     "org/gnome/desktop/background" = {
-        "picture-uri" = "/home/bene/.dotfiles/assets/wallpapers/XE038441.jpg";
+        "picture-uri" = "/home/bene/nixconfig/assets/wallpapers/594530.jpg";
     };
 
     "org/gnome/shell" = {
