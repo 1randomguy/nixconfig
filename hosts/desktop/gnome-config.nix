@@ -39,7 +39,7 @@
 
     "org/gnome/shell" = {
       favorite-apps = [
-        "floorp.desktop"
+        "brave.desktop"
         "spotify.desktop"
         "org.gnome.Nautilus.desktop"
         "kitty.desktop"

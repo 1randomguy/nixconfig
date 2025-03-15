@@ -3,6 +3,6 @@
 {
   home.packages = with pkgs; [
     firefox
-    floorp
+    brave
   ];
 }
