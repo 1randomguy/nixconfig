@@ -20,7 +20,10 @@
   dconf.settings = {
     "org/gnome/desktop/wm/keybindings" = {
       close = ["<Super>q"];
-      screenshot = ["<Shift><Super>s"];
+    };
+
+    "org/gnome/shell/keybindings" = {
+      show-screenshot-ui = ["<Shift><Super>s"];
     };
 
     "org/gnome/mutter" = {
