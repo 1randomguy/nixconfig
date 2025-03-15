@@ -29,8 +29,6 @@
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
-  hardware.enableRedistributableFirmware = true;
-  hardware.firmware = [pkgs.wireless-regdb];
     
   networking.hostName = "desktop"; # Define your hostname.
   # Pick only one of the below networking options.
