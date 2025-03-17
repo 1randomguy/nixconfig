@@ -16,7 +16,7 @@
       ../../home/apps/music.nix
       ../../home/apps/nextcloud.nix
       ../../home/apps/socials-private.nix
-      ../../home/apps/image-editing.nix
+      ../../home/apps/hobby/image-editing.nix
       ./gnome-config.nix
     ];
 
