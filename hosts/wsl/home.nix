@@ -6,8 +6,7 @@
       ../../home/common.nix
       ../../home/non-nixos.nix
       ../../home/devel/rust.nix
-      ../../home/shell/zsh.nix
-      ../../home/shell/shell-tools.nix
+      ../../home/shell/full-wsl.nix
     ];
 
   # Home Manager needs a bit of information about you and the paths it should

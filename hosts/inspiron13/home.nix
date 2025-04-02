@@ -4,19 +4,16 @@
   imports =
     [ 
       ../../home/common.nix
-      ../../home/shell/zsh.nix
-      ../../home/shell/zsh-nixos-addons.nix
-      ../../home/shell/shell-tools.nix
+      ../../home/shell/full-nixos.nix
       ../../home/devel/base.nix
       ../../home/devel/rust.nix
+      ../../home/apps/base.nix
+      ../../home/apps/nextcloud.nix
+      ../../home/apps/socials-private.nix
       ../../home/apps/productivity/base.nix
       ../../home/apps/productivity/latex.nix
       ../../home/apps/productivity/uni-vpn.nix
       ../../home/apps/productivity/touch-apps.nix
-      ../../home/apps/web.nix
-      ../../home/apps/music.nix
-      ../../home/apps/nextcloud.nix
-      ../../home/apps/socials-private.nix
       ./gnome-config.nix
     ];
 
