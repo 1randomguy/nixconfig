@@ -24,7 +24,7 @@
 
   # keyboard
   services.xserver.xkb.layout = "de";
-  services.xserver.xkb.options = "eurosign:e,caps:escape";
+  #services.xserver.xkb.options = "eurosign:e,caps:escape";
   i18n.inputMethod = {
     enabled = "ibus";
     ibus.engines = with pkgs.ibus-engines; [ anthy ];
@@ -43,7 +43,7 @@
       settings = {
         # The main layer, if you choose to declare it in Nix
         main = {
-          capslock = "overload(control, esc)"; # you might need to also enclose the key in quotes if it contains non-alphabetical symbols
+          capslock = "overload(control, capslock)"; # you might need to also enclose the key in quotes if it contains non-alphabetical symbols
         };
         otherlayer = {};
       };
