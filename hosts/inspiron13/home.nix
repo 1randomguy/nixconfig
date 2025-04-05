@@ -7,6 +7,7 @@
       ../../home/shell/full-nixos.nix
       ../../home/devel/base.nix
       ../../home/devel/rust.nix
+      ../../home/devel/python.nix
       ../../home/apps/base.nix
       ../../home/apps/nextcloud.nix
       ../../home/apps/socials-private.nix
