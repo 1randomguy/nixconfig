@@ -23,7 +23,8 @@
   programs.dconf.enable = true;
 
   # keyboard
-  services.xserver.xkb.layout = "de";
+  services.xserver.xkb.layout = "us";
+  services.xserver.xkb.variant = "altgr-int";
   #services.xserver.xkb.options = "eurosign:e,caps:escape";
   i18n.inputMethod = {
     enabled = "ibus";
