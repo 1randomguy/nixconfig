@@ -3,6 +3,7 @@
 {
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
+  programs.firejail.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.gc = {
