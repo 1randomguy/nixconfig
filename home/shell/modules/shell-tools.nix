@@ -5,6 +5,7 @@
     git
     git-credential-oauth
     inputs.nixvim.packages.${system}.default
+    python312Packages.pylatexenc
     neofetch
     wget
     zk
