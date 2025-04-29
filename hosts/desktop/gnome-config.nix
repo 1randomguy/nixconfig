@@ -44,10 +44,10 @@
     "org/gnome/shell" = {
       favorite-apps = [
         "brave-browser.desktop"
-        "spotify.desktop"
-        "org.gnome.Nautilus.desktop"
         "kitty.desktop"
+        "org.gnome.Nautilus.desktop"
         "anki.desktop"
+        "spotify.desktop"
         "signal-desktop.desktop"
         "discord.desktop"
       ];
