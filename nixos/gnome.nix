@@ -14,6 +14,7 @@
     epiphany
     gnome-characters
     gnome-font-viewer
+    gnome-software
     simple-scan
     yelp # help viewer
     gnome-weather
