@@ -20,6 +20,7 @@
   dconf.settings = {
     "org/gnome/desktop/wm/keybindings" = {
       close = ["<Super>q"];
+      toggle-fullscreen = ["F11"];
     };
 
     "org/gnome/shell/keybindings" = {
