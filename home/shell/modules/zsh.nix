@@ -19,16 +19,13 @@
       size = 10000;
     };
 
-    programs.zsh.promptInit = ''
-      ${pkgs.any-nix-shell}/bin/any-nix-shell zsh --info-right | source /dev/stdin
-    '';
-
     initContent = lib.mkBefore ''
       if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
         source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
       fi
       [[ ! -f  ${./config/p10k.zsh} ]] || source ${./config/p10k.zsh}
       ZSH_TMUX_AUTOSTART=false
+      ${pkgs.any-nix-shell}/bin/any-nix-shell zsh --info-right | source /dev/stdin
     '';
 
     plugins = [
