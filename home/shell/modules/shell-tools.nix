@@ -11,8 +11,7 @@
     zk
     fzf
     wl-clipboard
-    # for lf preview
-    pistol
+    any-nix-shell
   ];
 
   programs.tmux = {
