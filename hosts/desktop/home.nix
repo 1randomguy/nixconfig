@@ -12,7 +12,6 @@
       ../../home/apps/socials-private.nix
       ../../home/apps/hobby/image-editing.nix
       ../../home/apps/hobby/books.nix
-      ../../home/apps/hobby/games.nix
       ../../home/apps/productivity/base.nix
       ../../home/apps/productivity/latex.nix
       ../../home/apps/productivity/uni-vpn.nix

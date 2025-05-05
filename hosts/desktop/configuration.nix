@@ -12,6 +12,7 @@
       ../../nixos/fonts.nix
       ../../nixos/gnome.nix
       ../../nixos/virtualization.nix
+      ../../nixos/games.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
