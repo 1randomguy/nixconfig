@@ -44,7 +44,7 @@
 
     "org/gnome/shell" = {
       favorite-apps = [
-        "brave-browser.desktop"
+        "zen.desktop"
         "kitty.desktop"
         "org.gnome.Nautilus.desktop"
         "anki.desktop"
