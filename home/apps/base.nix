@@ -15,5 +15,6 @@
     pdfarranger
     # studying
     anki
+    antimicrox
   ];
 }
