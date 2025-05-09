@@ -49,7 +49,7 @@
                     };
                     "band2" = {
                         "frequency" = 160.0;
-                        "gain" = -3.0;
+                        "gain" = -1.0;
                         "mode" = "RLC (BT)";
                         "mute" = false;
                         "q" = 0.55;
@@ -89,7 +89,7 @@
                     };
                     "band6" = {
                         "frequency" = 5400.0;
-                        "gain" = -7.0;
+                        "gain" = -6.0;
                         "mode" = "RLC (BT)";
                         "mute" = false;
                         "q" = 3.5;
@@ -99,7 +99,7 @@
                     };
                     "band7" = {
                         "frequency" = 11000.0;
-                        "gain" = -4.0;
+                        "gain" = -3.0;
                         "mode" = "RLC (BT)";
                         "mute" = false;
                         "q" = 0.71;
@@ -134,7 +134,7 @@
                     };
                     "band2" = {
                         "frequency" = 160.0;
-                        "gain" = -3.0;
+                        "gain" = -1.0;
                         "mode" = "RLC (BT)";
                         "mute" = false;
                         "q" = 0.55;
@@ -174,7 +174,7 @@
                     };
                     "band6" = {
                         "frequency" = 5400.0;
-                        "gain" = -7.0;
+                        "gain" = -6.0;
                         "mode" = "RLC (BT)";
                         "mute" = false;
                         "q" = 3.5;
@@ -184,7 +184,7 @@
                     };
                     "band7" = {
                         "frequency" = 11000.0;
-                        "gain" = -4.0;
+                        "gain" = -3.0;
                         "mode" = "RLC (BT)";
                         "mute" = false;
                         "q" = 0.71;
