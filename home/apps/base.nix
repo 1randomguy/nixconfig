@@ -7,6 +7,7 @@
     brave
     inputs.zen-browser.packages.${pkgs.system}.default
     # music listening
+    quodlibet
     spotify
     # image viewing, basic editing
     gthumb
