@@ -17,5 +17,7 @@
     # studying
     anki
     antimicrox
+    # system tools
+    resources
   ];
 }

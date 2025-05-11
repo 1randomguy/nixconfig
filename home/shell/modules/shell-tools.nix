@@ -12,6 +12,7 @@
     fzf
     wl-clipboard
     any-nix-shell
+    just
   ];
 
   programs.tmux = {
