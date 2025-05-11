@@ -1,5 +1,19 @@
 #!/usr/bin/env just --justfile
+rebuild := if shell('uname -a | grep NixOS') != "" {
+  "sudo nixos-rebuild switch --flake ."
+} else { 
+  "home-manager switch --flake ."
+}
 
-update-os:
-  nix flake update && sudo nixos-rebuild switch --flake . && git commit -am "update"
+update:
+  nix flake update
+  {{rebuild}}
+  git add flake.lock
+  git commit -m "update"
+
+update-nvim:
+  nix flake update nixvim
+  {{rebuild}}
+  git add flake.lock
+  git commit -m "update nixvim"
 
