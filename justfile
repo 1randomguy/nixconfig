@@ -6,14 +6,20 @@ rebuild := if shell('uname -a | grep NixOS') != "" {
 }
 
 update:
+  git pull
+  {{rebuild}}
+
+upgrade:
+  git pull
   nix flake update
   {{rebuild}}
   git add flake.lock
-  git commit -m "update"
+  git commit -m "upgrade"
 
-update-nvim:
+upgrade-nixvim:
+  git pull
   nix flake update nixvim
   {{rebuild}}
   git add flake.lock
-  git commit -m "update nixvim"
+  git commit -m "upgrade nixvim"
 
