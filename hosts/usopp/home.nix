@@ -4,7 +4,7 @@
   imports =
     [ 
       ../../home/common.nix
-      ../../home/shell/full-nixos.nix
+      ../../home/shell/basic-nixos.nix
     ];
 
   # Home Manager needs a bit of information about you and the paths it should

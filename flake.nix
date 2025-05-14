@@ -83,7 +83,7 @@
         ];
       };
       # Main Homeserver
-      nixosConfigurations.nixos = lib.nixosSystem {
+      nixosConfigurations.usopp = lib.nixosSystem {
         specialArgs = {
           inherit system inputs;
         };
