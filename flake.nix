@@ -82,6 +82,26 @@
           }
         ];
       };
+      # Main Homeserver
+      nixosConfigurations.nixos = lib.nixosSystem {
+        specialArgs = {
+          inherit system inputs;
+        };
+        modules = [
+          { 
+          imports = [ nixpkgs.nixosModules.readOnlyPkgs ];
+          nixpkgs.pkgs = pkgs; 
+          }
+          ./hosts/usopp/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.extraSpecialArgs = { inherit inputs; };
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.usopp = import ./hosts/usopp/home.nix;
+          }
+        ];
+      };
       # WSL
       homeConfigurations.wsl = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
