@@ -5,6 +5,9 @@ rebuild := if shell('uname -a | grep NixOS') != "" {
   "home-manager switch --flake ."
 }
 
+rebuild:
+  {{rebuild}}
+
 update:
   git pull
   {{rebuild}}
