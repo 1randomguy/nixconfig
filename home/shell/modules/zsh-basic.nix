@@ -11,17 +11,9 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
-    shellAliases = {
-      ll = "ls -l";
-    };
-
     history = {
       size = 10000;
     };
-
-    initContent = lib.mkBefore ''
-      ZSH_TMUX_AUTOSTART=false
-    '';
 
     plugins = [
       {

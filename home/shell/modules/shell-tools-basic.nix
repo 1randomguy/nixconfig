@@ -19,12 +19,6 @@
     #historyLimit = 5000;
     sensibleOnTop = true;
     terminal = "tmux-256color";
-    extraConfig = ''
-      set -as terminal-overrides ",xterm*:Tc"
-
-      set -gq allow-passthrough on
-      set -g visual-activity off
-    '';
     plugins = with pkgs; [
       tmuxPlugins.tmux-fzf
     ];
