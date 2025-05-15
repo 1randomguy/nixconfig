@@ -12,6 +12,7 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
+  boot.supportedFilesystems = [ "ntfs" ];
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/6f9c9fdc-c342-4e5f-a3a3-55dc57b75db1";
@@ -27,6 +28,12 @@
   swapDevices =
     [ { device = "/dev/disk/by-uuid/eccf837f-aab5-4302-b352-2160fdaae23d"; }
     ];
+
+  fileSystems."/home/usopp/data" = 
+    { device = "/dev/disk/by-uuid/1888541B454557DE";
+      fsType = "ntfs-3g";
+      options = [ "rw" "uid=1000"];
+    };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
