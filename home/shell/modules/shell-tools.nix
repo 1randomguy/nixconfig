@@ -61,6 +61,20 @@
     };
   };
 
+  programs.ghostty = {
+    enable = true;
+    enableZshIntegration = true;
+    settings = {
+      theme = "catppuccin-mocha";
+      font-size = 14;
+      font-family = "JetBrainsMono";
+      # keybind = [
+      #   "ctrl+h=goto_split:left"
+      #     "ctrl+l=goto_split:right"
+      # ];
+    };
+  };
+
   programs.ranger = {
     enable = true;
     settings = {
