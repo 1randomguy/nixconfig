@@ -27,6 +27,8 @@
 
   swapDevices =
     [ { device = "/dev/disk/by-uuid/eccf837f-aab5-4302-b352-2160fdaae23d"; }
+    { device = "/swapfile"; size = 16 * 1024; # 16GB
+              }
     ];
 
   fileSystems."/home/usopp/data" = 

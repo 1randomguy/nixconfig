@@ -10,7 +10,7 @@
       ./hardware-configuration.nix
       ../../nixos/common.nix
       ./modules/smb.nix
-      ./modules/immich.nix
+      #./modules/immich.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
