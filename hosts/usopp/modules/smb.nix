@@ -33,14 +33,34 @@
     };
   };
 
+  networking.extraHosts = ''
+    127.0.0.1 usopp.local
+  '';
+  system.nssModules = with pkgs; [ avahi ];
   services.avahi = {
-    publish.enable = true;
-    publish.userServices = true;
+    enable = true;
+    publish = {
+      enable = true;
+      userServices = true;
+      workstation = true;  # Publishes machine as a "workstation"
+    };
     # ^^ Needed to allow samba to automatically register mDNS records (without the need for an `extraServiceFile`
     nssmdns4 = true;
     # ^^ Not one hundred percent sure if this is needed- if it aint broke, don't fix it
-enable = true;
     openFirewall = true;
+    extraServiceFiles = {
+      smb = ''
+        <?xml version="1.0" standalone='no'?><!--*-nxml-*-->
+        <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
+        <service-group>
+          <name replace-wildcards="yes">%h</name>
+          <service>
+            <type>_smb._tcp</type>
+            <port>445</port>
+          </service>
+        </service-group>
+      '';
+    };
   };
 
   services.samba-wsdd = {
