@@ -1,7 +1,7 @@
 {pkgs, ...}:
 {
   services.samba = {
-    package = pkgs.samba4Full;
+    #package = pkgs.sambaFull;
     enable = true;
 
     securityType = "user";
