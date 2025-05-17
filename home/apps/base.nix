@@ -11,6 +11,7 @@
     spotify
     # image viewing, basic editing
     gthumb
+    vlc
     # document editing
     libreoffice
     pdfarranger
