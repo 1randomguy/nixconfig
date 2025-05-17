@@ -31,6 +31,8 @@
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.production;
   };
+
+  hardware.opengl.enable = true;
     
   networking.hostName = "desktop"; # Define your hostname.
   # Pick only one of the below networking options.
