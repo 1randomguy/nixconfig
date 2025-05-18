@@ -45,7 +45,7 @@
       workstation = true;  # Publishes machine as a "workstation"
     };
     # ^^ Needed to allow samba to automatically register mDNS records (without the need for an `extraServiceFile`
-    #nssmdns4 = true;
+    nssmdns4 = true;
     # ^^ Not one hundred percent sure if this is needed- if it aint broke, don't fix it
     openFirewall = true;
     extraServiceFiles = {
@@ -61,6 +61,11 @@
         </service-group>
       '';
     };
+    extraConfig = ''
+      [server]
+      use-ipv4=yes
+      use-ipv6=no
+    '';
   };
 
   services.samba-wsdd = {
