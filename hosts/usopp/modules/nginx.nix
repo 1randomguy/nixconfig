@@ -1,6 +1,9 @@
 {config, ...}: 
 {
-  services.nginx.enable = true;
+  services.nginx = {
+    enable = true;
+  };
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
   # services.nginx.virtualHosts.localhost = {
   #   enableACME = true;
   #   forceSSL = true;
