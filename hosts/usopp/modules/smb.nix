@@ -21,7 +21,7 @@
         "map to guest" = "bad user";
       };
       "private" = {
-        "path" = "/home/usopp/data";
+        "path" = "/data";
         "browseable" = "yes";
         "read only" = "no";
         "guest ok" = "no";
@@ -34,7 +34,7 @@
   };
 
   networking.extraHosts = ''
-    127.0.0.1 usopp.local
+  127.0.0.1 usopp.local
   '';
   system.nssModules = with pkgs; [ avahi ];
   services.avahi = {

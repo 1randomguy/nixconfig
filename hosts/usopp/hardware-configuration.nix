@@ -31,7 +31,7 @@
               }
     ];
 
-  fileSystems."/home/usopp/data" = 
+  fileSystems."/data" = 
     { device = "/dev/disk/by-uuid/1888541B454557DE";
       fsType = "ntfs-3g";
       options = [ "rw" "uid=1000"];
