@@ -5,8 +5,6 @@
   };
   networking.firewall.allowedTCPPorts = [ 80 443 ];
   services.nginx.virtualHosts.localhost = {
-    enableACME = true;
-    forceSSL = true;
     locations."/immich" = {
       proxyPass = "http://[::1]:${toString config.services.immich.port}";
       proxyWebsockets = true;
