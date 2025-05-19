@@ -11,7 +11,7 @@
       ../../nixos/common.nix
       ./modules/smb.nix
       ./modules/nginx.nix
-      #./modules/immich.nix
+      ./modules/immich.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
