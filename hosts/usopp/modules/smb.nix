@@ -33,9 +33,6 @@
     };
   };
 
-  networking.extraHosts = ''
-  127.0.0.1 usopp.local
-  '';
   system.nssModules = with pkgs; [ avahi ];
   services.avahi = {
     enable = true;
@@ -76,7 +73,4 @@
   environment.systemPackages = with pkgs; [
     cifs-utils
   ];
-
-  networking.firewall.enable = true;
-  networking.firewall.allowPing = true;
 }

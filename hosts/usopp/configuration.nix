@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../nixos/common.nix
+      ./modules/networking.nix
       ./modules/smb.nix
       ./modules/nginx.nix
       ./modules/immich.nix
