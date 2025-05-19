@@ -34,7 +34,7 @@
   fileSystems."/data" = 
     { device = "/dev/disk/by-uuid/1888541B454557DE";
       fsType = "ntfs-3g";
-      options = [ "rw" "uid=1000"];
+      options = [ "rw" "uid=1000" "gid=media" ];
     };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
