@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
       ../../nixos/common.nix
       ./modules/smb.nix
+      ./modules/nginx.nix
       #./modules/immich.nix
     ];
 
