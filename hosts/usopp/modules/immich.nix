@@ -4,6 +4,9 @@
   # You may want to restrict this by using something like `[ "/dev/dri/renderD128" ]`
   services.immich.accelerationDevices = null;
 
-  users.users.immich.extraGroups = [ "video" "render" ];
+  users.users.immich = {
+    isSystemUser = true;
+    extraGroups = [ "video" "render" ];
+  };
 
 }
