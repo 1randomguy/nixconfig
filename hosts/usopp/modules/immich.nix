@@ -6,7 +6,9 @@
     # `null` will give access to all devices.
     # You may want to restrict this by using something like `[ "/dev/dri/renderD128" ]`
     accelerationDevices = null;
-    mediaLocation = "/data/Pictures";
+    environment = {
+      UPLOAD_LOCATION = "/data/immich_uploads";
+    };
   };
 
   users.users.immich = {
