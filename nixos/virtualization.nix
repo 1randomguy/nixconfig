@@ -7,7 +7,9 @@
   virtualisation.virtualbox.host.addNetworkInterface = false;
 
   users.extraGroups.vboxusers.members = [ "bene" ];
-  virtualisation.waydroid.enable = true;
+  #virtualisation.waydroid.enable = true;
+
+  virtualisation.docker.enable = true;
 
   environment.systemPackages = with pkgs; [
     wineWowPackages.stable
