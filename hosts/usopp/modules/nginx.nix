@@ -5,7 +5,7 @@
   };
   networking.firewall.allowedTCPPorts = [ 80 443 ];
   services.nginx.virtualHosts.localhost = {
-    locations."/immich" = {
+    locations."/" = {
       proxyPass = "http://[::1]:${toString config.services.immich.port}";
       proxyWebsockets = true;
       recommendedProxySettings = true;
@@ -17,12 +17,12 @@
       '';
     };
   };
-  services.nginx.virtualHosts.localhost = {
-    locations."/" = {
-      return = "200 '<html><body>It works</body></html>'";
-      extraConfig = ''
-        default_type text/html;
-      '';
-    };
-  };
+  #services.nginx.virtualHosts.localhost = {
+  #  locations."/" = {
+  #    return = "200 '<html><body>It works</body></html>'";
+  #    extraConfig = ''
+  #      default_type text/html;
+  #    '';
+  #  };
+  #};
 }
