@@ -52,6 +52,7 @@
     wget
     git
     powerstat
+    powertop
     htop
   ];
 
