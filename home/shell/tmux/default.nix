@@ -1,4 +1,4 @@
-{ lib, pkgs, inputs, ... }:
+{ lib, pkgs, config, ... }:
 with lib;
 let
   cfg = config.shell.tmux;
