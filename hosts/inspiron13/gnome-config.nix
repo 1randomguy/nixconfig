@@ -6,17 +6,6 @@
     blur-my-shell
   ];
 
-  xdg.desktopEntries.kitty = {
-    type = "Application";
-    name = "kitty";
-    genericName = "Terminal emulator";
-    exec = "kitty";
-    categories = [ "System" "TerminalEmulator" ];
-    icon = "/home/bene/.dotfiles/assets/icons/whiskers.svg";
-    startupNotify = true;
-    comment = "Fast, feature-rich, GPU based terminal";
-  };
-
   dconf.settings = {
     "org/gnome/desktop/wm/keybindings" = {
       close = ["<Super>q"];
@@ -38,7 +27,7 @@
     };
 
     "org/gnome/desktop/background" = {
-        "picture-uri" = "/home/bene/.dotfiles/assets/wallpapers/XE038441.jpg";
+        "picture-uri" = "file:///home/bene/nixconfig/assets/wallpapers/XE038441.jpg";
     };
 
     "org/gnome/shell" = {
