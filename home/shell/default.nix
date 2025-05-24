@@ -1,4 +1,4 @@
-{ lib, config, inputs, ... }:
+{ lib, config, inputs, pkgs, ... }:
 with lib;
 let
   cfg = config.shell;
@@ -8,7 +8,9 @@ in {
     ./zsh
     ./ghostty
   ];
-  options.services.shell = {
+
+  ## OPTIONS
+  options.shell = {
     #enable = mkEnableOption "all about that shell";
     shelltools = mkOption {
       type = types.bool;
@@ -22,7 +24,7 @@ in {
     };
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf cfg.shelltools {
     home.packages = with pkgs; [
       git
       git-credential-oauth
