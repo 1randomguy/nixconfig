@@ -9,8 +9,6 @@
     neofetch
     wget
     zk
-    fzf
-    wl-clipboard
     any-nix-shell
     just
   ];
@@ -46,32 +44,6 @@
         "oauth"
       ];
       pull.rebase = true;
-    };
-  };
-
-  programs.kitty = lib.mkForce {
-    enable = true;
-    font = {
-      name = "JetBrainsMono";
-      size = 14;
-    };
-    themeFile = "Catppuccin-Mocha";
-    settings = {
-      wayland_titlebar_color = "background";
-    };
-  };
-
-  programs.ghostty = {
-    enable = true;
-    enableZshIntegration = true;
-    settings = {
-      theme = "catppuccin-mocha";
-      font-size = 14;
-      font-family = "JetBrainsMono";
-      # keybind = [
-      #   "ctrl+h=goto_split:left"
-      #     "ctrl+l=goto_split:right"
-      # ];
     };
   };
 

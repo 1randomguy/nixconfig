@@ -1,6 +1,7 @@
 { pkgs, lib, config, ... }:
 with lib;
 let 
+  sh = config.shell;
   cfg = config.shell.zsh;
   p10k_shellconf = if cfg.p10k
   then
@@ -22,17 +23,16 @@ in
       default = true;
       description = "Whether to enable powerlevel10k prompt";
     };
-    nixos = mkOption {
-      type = types.bool;
-      default = true;
-      description = "Whether to enable some keyboard shortcuts that only seem to work inside of nixos, not in wsl";
-    };
   };
 
   config = mkIf cfg.enable {
     home.sessionVariables = {
       EDITOR = "nvim";
     };
+
+    home.packages = mkIf cfg.p10k [
+      pkgs.any-nix-shell
+    ];
 
     programs.zsh = {
       enable = true;
@@ -44,7 +44,7 @@ in
         size = 10000;
       };
 
-      initExtra = mkIf cfg.nixos ''
+      initExtra = mkIf sh.nixos ''
         bindkey "''${key[Up]}" up-line-or-search
         bindkey "''${key[Down]}" down-line-or-search
       '';
