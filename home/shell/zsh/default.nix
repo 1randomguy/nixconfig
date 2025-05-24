@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 with lib;
 let 
   cfg = config.shell.zsh;
@@ -18,11 +18,17 @@ in
   options.shell.zsh = {
     enable = mkEnableOption "zsh";
     p10k = mkOption {
-      type = types.boolean;
+      type = types.bool;
       default = true;
       description = "Whether to enable powerlevel10k prompt";
     };
+    nixos = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Whether to enable some keyboard shortcuts that only seem to work inside of nixos, not in wsl";
+    };
   };
+
   config = mkIf cfg.enable {
     home.sessionVariables = {
       EDITOR = "nvim";
@@ -37,6 +43,11 @@ in
       history = {
         size = 10000;
       };
+
+      initExtra = mkIf cfg.nixos ''
+        bindkey "''${key[Up]}" up-line-or-search
+        bindkey "''${key[Down]}" down-line-or-search
+      '';
 
       plugins = [
         ( if cfg.p10k then 

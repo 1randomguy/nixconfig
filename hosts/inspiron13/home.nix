@@ -4,7 +4,7 @@
   imports =
     [ 
       ../../home/common.nix
-      ../../home/shell/full-nixos.nix
+      ../../home/shell
       ../../home/devel/base.nix
       ../../home/devel/rust.nix
       ../../home/devel/python.nix
@@ -18,6 +18,11 @@
       ./gnome-config.nix
     ];
 
+  shell = {
+    zsh = {
+      enable = true;
+    };
+  };
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "bene";

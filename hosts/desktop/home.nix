@@ -4,7 +4,7 @@
   imports =
     [ 
       ../../home/common.nix
-      ../../home/shell/full-nixos.nix
+      ../../home/shell
       ../../home/devel/base.nix
       ../../home/devel/rust.nix
       ../../home/apps/base.nix
@@ -17,6 +17,12 @@
       ../../home/apps/productivity/uni-vpn.nix
       ./gnome-config.nix
     ];
+
+  shell.zsh = {
+    enable = true;
+    p10k = true;
+    nixos = true;
+  };
 
   services.easyeffects = {
     enable = true;

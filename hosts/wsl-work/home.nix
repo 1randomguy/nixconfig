@@ -6,9 +6,15 @@
       ../../home/common.nix
       ../../home/non-nixos.nix
       ../../home/devel/work-stack.nix
-      ../../home/shell/full-wsl.nix
+      ../../home/shell
     ];
 
+  shell = {
+    zsh = {
+      enable = true;
+      nixos = false;
+    };
+  };
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "bene";

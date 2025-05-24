@@ -4,8 +4,15 @@
   imports =
     [ 
       ../../home/common.nix
-      ../../home/shell/basic-nixos.nix
+      ../../home/shell
     ];
+
+  shell = {
+    zsh = {
+      enable = true;
+      p10k = false;
+    };
+  };
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
