@@ -49,7 +49,7 @@ in
         bindkey "''${key[Down]}" down-line-or-search
       '';
 
-      plugins = [
+      plugins = builtins.filter(x: x != null) [
         ( if cfg.p10k then 
           {
             name = "powerlevel10k";
