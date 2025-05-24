@@ -18,10 +18,13 @@
       ./gnome-config.nix
     ];
 
-  shell.zsh = {
-    enable = true;
-    p10k = true;
-    nixos = true;
+  shell = {
+    zsh = {
+      enable = true;
+      p10k = true;
+    };
+    ghostty.enable = true;
+    tmux.enable = true;
   };
 
   services.easyeffects = {

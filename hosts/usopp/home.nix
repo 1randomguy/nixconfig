@@ -12,6 +12,10 @@
       enable = true;
       p10k = false;
     };
+    tmux = {
+      enable = true;
+      full = false;
+    };
   };
 
   # Home Manager needs a bit of information about you and the paths it should

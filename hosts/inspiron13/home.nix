@@ -19,9 +19,9 @@
     ];
 
   shell = {
-    zsh = {
-      enable = true;
-    };
+    zsh.enable = true;
+    tmux.enable = true;
+    ghostty.enable = true;
   };
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
