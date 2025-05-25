@@ -36,6 +36,7 @@ in {
       neofetch
       htop
       file
+      nix-prefetch-scripts
     ];
 
     programs.git = {
