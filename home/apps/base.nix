@@ -20,5 +20,6 @@
     antimicrox
     # system tools
     resources
+    ausweisapp
   ];
 }
