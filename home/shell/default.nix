@@ -35,6 +35,7 @@ in {
       wget
       neofetch
       htop
+      file
     ];
 
     programs.git = {
