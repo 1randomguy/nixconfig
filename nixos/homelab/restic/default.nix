@@ -93,7 +93,7 @@ in
                 OnCalendar = "Mon..Sat *-*-* 05:00:00";
                 Persistent = true;
               };
-              repository = "rest:http://localhost:8000/appdata-local-${config.networking.hostName}";
+              repository = "rest:http://localhost:8000/appdata-local-${config.networking.hostName}"; # TODO: Why? Also: focus on local first!
               initialize = true;
               passwordFile = cfg.passwordFile;
               pruneOpts = [
