@@ -45,7 +45,7 @@ in {
       userEmail = "github@bvb.anonaddy.com";
       extraConfig = {
         init.defaultBranch = "main";
-        credential.helper = [
+        credential.helper = builtins.filter (x: x != null) [
           "cache --timeout 21600"
           (if cfg.nixos then "oauth" else null)
         ];
