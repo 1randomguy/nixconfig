@@ -23,6 +23,11 @@ in {
       default = true;
       description = "Whether to enable some keyboard shortcuts that only seem to work inside of nixos, not in wsl";
     };
+    remote = mkOption {
+      type = types.bool;
+      default = false;
+      description = "System only accessed remotely via ssh";
+    };
   };
 
   config = mkIf cfg.shelltools {
@@ -44,9 +49,9 @@ in {
       userEmail = "github@bvb.anonaddy.com";
       extraConfig = {
         init.defaultBranch = "main";
-        credential.helper = builtins.filter (x: x != null) [
+        credential.helper = [
           "cache --timeout 21600"
-          (if cfg.nixos then "oauth" else null)
+          (mkIf (!cfg.remote) "oauth")
         ];
         pull.rebase = true;
       };

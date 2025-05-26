@@ -49,14 +49,12 @@ in
         bindkey "''${key[Down]}" down-line-or-search
       '';
 
-      plugins = builtins.filter(x: x != null) [
-        ( if cfg.p10k then 
-          {
-            name = "powerlevel10k";
-            src = pkgs.zsh-powerlevel10k;
-            file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-          }
-        else null )
+      plugins = [
+        ( mkIf cfg.p10k {
+          name = "powerlevel10k";
+          src = pkgs.zsh-powerlevel10k;
+          file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+        })
         {
           name = "you-should-use";
           src = pkgs.zsh-you-should-use;
