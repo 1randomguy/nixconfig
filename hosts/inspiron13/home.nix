@@ -15,7 +15,7 @@
       ../../home/apps/productivity/latex.nix
       ../../home/apps/productivity/uni-vpn.nix
       ../../home/apps/productivity/touch-apps.nix
-      ./gnome-config.nix
+      ../../home/gnome
     ];
 
   shell = {
@@ -24,6 +24,12 @@
     ghostty.enable = true;
     zk.enable = true;
   };
+
+  gnome_customizations = {
+    enable = true;
+    wallpaper = "file:///home/bene/nixconfig/assets/wallpapers/XE038441.jpg";
+  };
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "bene";

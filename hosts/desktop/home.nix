@@ -15,7 +15,7 @@
       ../../home/apps/productivity/base.nix
       ../../home/apps/productivity/latex.nix
       ../../home/apps/productivity/uni-vpn.nix
-      ./gnome-config.nix
+      ../../home/gnome
     ];
 
   shell = {
@@ -26,6 +26,11 @@
     ghostty.enable = true;
     tmux.enable = true;
     zk.enable = true;
+  };
+
+  gnome_customizations = {
+    enable = true;
+    wallpaper = "/home/bene/nixconfig/assets/wallpapers/594530.jpg";
   };
 
   services.easyeffects = {
