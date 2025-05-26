@@ -25,6 +25,7 @@
     };
     ghostty.enable = true;
     tmux.enable = true;
+    zk.enable = true;
   };
 
   services.easyeffects = {

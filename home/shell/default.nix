@@ -29,8 +29,6 @@ in {
       git
       git-credential-oauth
       inputs.nixvim.packages.${system}.default
-      zk
-      python312Packages.pylatexenc
       just
       wget
       neofetch

@@ -22,6 +22,7 @@
     zsh.enable = true;
     tmux.enable = true;
     ghostty.enable = true;
+    zk.enable = true;
   };
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
