@@ -8,10 +8,10 @@
     ];
 
   shell = {
+    remote = true;
     zsh = {
       enable = true;
       p10k = false;
-      remote = true;
     };
     tmux = {
       enable = true;
