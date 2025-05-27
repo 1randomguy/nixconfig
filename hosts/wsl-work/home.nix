@@ -5,7 +5,7 @@
     [ 
       ../../home/common.nix
       ../../home/non-nixos.nix
-      ../../home/devel/work-stack.nix
+      #../../home/devel/work-stack.nix
       ../../home/shell
     ];
 
