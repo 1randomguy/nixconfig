@@ -16,6 +16,7 @@ in {
     #Extensions:
     home.packages = with pkgs.gnomeExtensions; [
       blur-my-shell
+      pip-on-top
     ];
 
     dconf.settings = {
@@ -58,6 +59,7 @@ in {
         # `gnome-extensions list` for a list
         enabled-extensions = [
           pkgs.gnomeExtensions.blur-my-shell.extensionUuid
+          pkgs.gnomeExtensions.pip-on-top.extensionUuid
         ];
       };
 
