@@ -36,19 +36,24 @@
     GLFW_IM_MODULE = "ibus";
     IBUS_ENABLE_SYNC_MODE = "1";
   };
+
   services.keyd = {
     enable = true;
     keyboards = {
     # The name is just the name of the configuration file, it does not really matter
     default = {
-      ids = [ "*" ]; # what goes into the [id] section, here we select all keyboards
-      # Everything but the ID section:
+      ids = [ 
+        "0001:0001:a31694d4" # only the laptop keyboard (find uuid with `sudo keyd -m`)
+      ]; 
       settings = {
         # The main layer, if you choose to declare it in Nix
         main = {
-          capslock = "overload(control, capslock)"; # you might need to also enclose the key in quotes if it contains non-alphabetical symbols
+          capslock = "layer(control)"; # you might need to also enclose the key in quotes if it contains non-alphabetical symbols
+          insert = "layer(otherlayer)";
         };
-        otherlayer = {};
+        otherlayer = {
+          capslock = "capslock";
+        };
       };
       extraConfig = ''
         # put here any extra-config, e.g. you can copy/paste here directly a configuration, just remove the ids part
