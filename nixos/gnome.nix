@@ -22,6 +22,10 @@
     gnome-contacts
   ];
   programs.dconf.enable = true;
+  programs.kdeconnect = {
+    enable = true;
+    package = pkgs.gnomeExtensions.gsconnect;
+  };
 
   # keyboard
   services.xserver.xkb.layout = "us";
