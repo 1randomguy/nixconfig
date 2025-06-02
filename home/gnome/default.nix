@@ -17,6 +17,7 @@ in {
     home.packages = with pkgs.gnomeExtensions; [
       blur-my-shell
       pip-on-top
+      gsconnect
     ];
 
     dconf.settings = {
@@ -57,9 +58,10 @@ in {
         disable-user-extensions = false;
 
         # `gnome-extensions list` for a list
-        enabled-extensions = [
-          pkgs.gnomeExtensions.blur-my-shell.extensionUuid
-          pkgs.gnomeExtensions.pip-on-top.extensionUuid
+        enabled-extensions = with pkgs.gnomeExtensions; [
+          blur-my-shell.extensionUuid
+          pip-on-top.extensionUuid
+          gsconnect.extensionUuid
         ];
       };
 
