@@ -24,6 +24,10 @@ in {
       "org/gnome/desktop/wm/keybindings" = {
         close = ["<Super>q"];
         toggle-fullscreen = ["F11"];
+        move-to-workspace-left = ["<Shift><Alt>h"];
+        move-to-workspace-right = ["<Shift><Alt>l"];
+        switch-to-workspace-left = ["<Alt>h"];
+        switch-to-workspace-right = ["<Alt>l"];
       };
 
       "org/gnome/shell/keybindings" = {
