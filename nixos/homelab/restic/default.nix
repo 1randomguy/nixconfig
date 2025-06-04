@@ -46,7 +46,7 @@ in
     };
     local.targetDir = mkOption {
       description = "Target path for local Restic backups";
-      default = "${hl.mounts.merged}/Backups/Restic";
+      #default = "${hl.mounts.merged}/Backups/Restic";
       type = types.path;
     };
   };
