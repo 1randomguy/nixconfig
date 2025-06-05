@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{ config, inputs, pkgs, ... }:
 
 {
   imports =
@@ -53,6 +53,7 @@
     git
     powertop
     htop
+    inputs.agenix.packages."${system}".default
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
