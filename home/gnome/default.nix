@@ -56,7 +56,7 @@ in {
             "org.gnome.Nautilus.desktop"
             "anki.desktop"
             "spotify.desktop"
-            "signal-desktop.desktop"
+            "signal.desktop"
             "discord.desktop"
         ];
         disable-user-extensions = false;
