@@ -45,6 +45,26 @@
         "type": "github"
       }
     },
+    "disko": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1749200714,
+        "narHash": "sha256-W8KiJIrVwmf43JOPbbTu5lzq+cmdtRqaNbOsZigjioY=",
+        "owner": "nix-community",
+        "repo": "disko",
+        "rev": "17d08c65c241b1d65b3ddf79e3fac1ddc870b0f6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "disko",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": "nixpkgs-lib"
@@ -306,6 +326,7 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "disko": "disko",
         "home-manager": "home-manager_2",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
