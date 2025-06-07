@@ -1,20 +1,18 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
-{ config, inputs, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./disk-config.nix
       ../../nixos/common.nix
-      ./modules/networking.nix
-      ./modules/smb.nix
-      ./modules/nginx.nix
-      ./modules/immich.nix
-      ./modules/adguard.nix
+      ../../nixos/homelab
     ];
+
+  homelab = {
+    enable = true;
+    baseDomain = "shimagumo.party";
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -38,11 +36,13 @@
   users.groups.media = {};
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.usopp = {
+  users.users.bene = {
     isNormalUser = true;
     extraGroups = [ "wheel" "media" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-      tree
+    hashedPassword = "$y$j9T$N5EIjQO22iiuXI5EMl8vg0$6OoYpdXTPkiVI20iXzuPt2dF8o3pQmrwPEEdn2ILZP."; #make hash with mkpasswd
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILeR2HYD8+GXorP8MMI1MtvosGcY3x60056X/S8Sba7r bene" #desktop
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGlNygbiGHOUNarDMe/RkT9sYSLakSswo/IWF2c0O5oR bene" #inspi
     ];
   };
 
@@ -68,14 +68,14 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+    };
+  };
   services.vnstat.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
