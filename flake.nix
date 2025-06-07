@@ -8,9 +8,13 @@
     nixvim.url = "github:1randomguy/nixvim";
     zen-browser.url = "github:youwen5/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, ... }:
+  outputs = inputs @ { self, nixpkgs, home-manager, disko, ... }:
     let
       lib = nixpkgs.lib;
       system = "x86_64-linux";
@@ -93,6 +97,7 @@
           nixpkgs.pkgs = pkgs; 
           }
           ./hosts/usopp/configuration.nix
+          disko.nixosModules.disko
           home-manager.nixosModules.home-manager
           {
             home-manager.extraSpecialArgs = { inherit inputs; };
