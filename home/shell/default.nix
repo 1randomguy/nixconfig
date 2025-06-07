@@ -7,6 +7,7 @@ in {
     ./tmux
     ./zsh
     ./ghostty
+    ./zk
   ];
 
   ## OPTIONS
@@ -22,6 +23,11 @@ in {
       default = true;
       description = "Whether to enable some keyboard shortcuts that only seem to work inside of nixos, not in wsl";
     };
+    remote = mkOption {
+      type = types.bool;
+      default = false;
+      description = "System only accessed remotely via ssh";
+    };
   };
 
   config = mkIf cfg.shelltools {
@@ -29,13 +35,12 @@ in {
       git
       git-credential-oauth
       inputs.nixvim.packages.${system}.default
-      zk
-      python312Packages.pylatexenc
       just
       wget
       neofetch
       htop
       file
+      nix-prefetch-scripts
     ];
 
     programs.git = {
@@ -46,7 +51,7 @@ in {
         init.defaultBranch = "main";
         credential.helper = [
           "cache --timeout 21600"
-          (if cfg.nixos then "oauth" else null)
+          (mkIf (!cfg.remote) "oauth")
         ];
         pull.rebase = true;
       };

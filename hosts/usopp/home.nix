@@ -8,6 +8,7 @@
     ];
 
   shell = {
+    remote = true;
     zsh = {
       enable = true;
       p10k = false;

@@ -8,21 +8,34 @@
       ../../home/devel/base.nix
       ../../home/devel/rust.nix
       ../../home/devel/python.nix
-      ../../home/apps/base.nix
       ../../home/apps/nextcloud.nix
       ../../home/apps/socials-private.nix
-      ../../home/apps/productivity/base.nix
-      ../../home/apps/productivity/latex.nix
-      ../../home/apps/productivity/uni-vpn.nix
-      ../../home/apps/productivity/touch-apps.nix
-      ./gnome-config.nix
+      ../../home/apps
+      ../../home/gnome
     ];
+
+  apps = {
+    enable = true;
+    latex.enable = false;
+    uni_vpn.enable = true;
+    touch_apps.enable = true;
+    music = {
+      enable = true;
+    };
+  };
 
   shell = {
     zsh.enable = true;
     tmux.enable = true;
     ghostty.enable = true;
+    zk.enable = true;
   };
+
+  gnome_customizations = {
+    enable = true;
+    wallpaper = "file:///home/bene/nixconfig/assets/wallpapers/XE030006.JPG";
+  };
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "bene";
@@ -36,17 +49,6 @@
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
   home.stateVersion = "24.05"; # Please read the comment before changing.
-
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
-  home.packages = with pkgs; [
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
-  ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

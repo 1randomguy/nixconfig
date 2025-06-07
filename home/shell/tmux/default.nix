@@ -28,9 +28,9 @@ in
         set -gq allow-passthrough on
         set -g visual-activity off
       '';
-      plugins = with pkgs; builtins.filter (x: x != null) [
+      plugins = with pkgs; [
         tmuxPlugins.tmux-fzf
-        (if cfg.full then tmuxPlugins.catppuccin else null)
+        (mkIf cfg.full tmuxPlugins.catppuccin)
       ];
     };
   };

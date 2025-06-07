@@ -44,27 +44,32 @@ in
         size = 10000;
       };
 
-      initExtra = mkIf sh.nixos ''
-        bindkey "''${key[Up]}" up-line-or-search
-        bindkey "''${key[Down]}" down-line-or-search
-      '';
+      initContent = mkMerge [ 
+        ( mkIf sh.nixos ( mkOrder 1000 ''
+          bindkey "''${key[Up]}" up-line-or-search
+          bindkey "''${key[Down]}" down-line-or-search
+        ''))
+        ( mkIf cfg.p10k ( mkBefore ''
+            if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
+              source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
+            fi
+            [[ ! -f  ${./config/p10k.zsh} ]] || source ${./config/p10k.zsh}
+            ${pkgs.any-nix-shell}/bin/any-nix-shell zsh --info-right | source /dev/stdin
+        ''))
+      ];
 
-      plugins = builtins.filter(x: x != null) [
-        ( if cfg.p10k then 
-          {
-            name = "powerlevel10k";
-            src = pkgs.zsh-powerlevel10k;
-            file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-          }
-        else null )
+      plugins = [
+        ( mkIf cfg.p10k {
+          name = "powerlevel10k";
+          src = pkgs.zsh-powerlevel10k;
+          file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+        })
         {
           name = "you-should-use";
           src = pkgs.zsh-you-should-use;
           file = "share/zsh/plugins/you-should-use/you-should-use.plugin.zsh";
         }
       ];
-
-      initContent = mkBefore p10k_shellconf;
 
       oh-my-zsh = {
         enable = true;
