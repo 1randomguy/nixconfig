@@ -1,8 +1,4 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports =
@@ -10,11 +6,13 @@
       ./hardware-configuration.nix
       ./disk-config.nix
       ../../nixos/common.nix
-      ./modules/networking.nix
-      ./modules/smb.nix
-      ./modules/nginx.nix
       ../../nixos/homelab
     ];
+
+  homelab = {
+    enable = true;
+    baseDomain = "shimagumo.party";
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -46,9 +44,6 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILeR2HYD8+GXorP8MMI1MtvosGcY3x60056X/S8Sba7r bene" #desktop
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGlNygbiGHOUNarDMe/RkT9sYSLakSswo/IWF2c0O5oR bene" #inspi
     ];
-    packages = with pkgs; [
-      tree
-    ];
   };
 
   # List packages installed in system profile. To search, run:
@@ -59,6 +54,7 @@
     git
     powertop
     htop
+    inputs.agenix.packages."${system}".default
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
