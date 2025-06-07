@@ -13,6 +13,7 @@
       ./modules/smb.nix
       ./modules/nginx.nix
       ./modules/immich.nix
+      ./modules/adguard.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
