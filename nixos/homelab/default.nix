@@ -47,13 +47,15 @@ in
         group = cfg.group;
         extraGroups = [ "video" "render" "media" ];
       };
-      networking.firewall.enable = true;
-      networking.firewall.allowPing = true;
     };
 
-    age.secrets.porkbun = {
-      file = ../../../secrets/porkbun.age;
-    };
+    networking.firewall.enable = true;
+    networking.firewall.allowPing = true;
+
+    #age.secrets.porkbun = {
+    #  file = ../../../secrets/porkbun.age;
+    #};
+
     services.nginx = {
       enable = true;
       recommendedProxySettings = true;
@@ -66,7 +68,7 @@ in
       defaults.email = "bblomberg123@gmail.com";
       certs."shimagumo.party" = {
         dnsProvider = "porkbun";
-        environmentFile = config.age.secrets.porkbun.path;
+        #environmentFile = config.age.secrets.porkbun.path;
       };
     };
     #services.nginx.virtualHosts.localhost = {
