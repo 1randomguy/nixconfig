@@ -110,7 +110,7 @@
             home-manager.extraSpecialArgs = { inherit inputs; };
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.usopp = import ./hosts/usopp/home.nix;
+            home-manager.users.bene = import ./hosts/usopp/home.nix;
           }
         ];
       };
