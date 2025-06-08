@@ -4,6 +4,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./hardware-addons.nix
       ./disk-config.nix
       ../../nixos/common.nix
       ../../nixos/homelab
