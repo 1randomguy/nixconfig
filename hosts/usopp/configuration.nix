@@ -13,6 +13,9 @@
   homelab = {
     enable = true;
     baseDomain = "shimagumo.party";
+    services = {
+      immich.enable = true;
+    };
   };
 
   # Use the systemd-boot EFI boot loader.
