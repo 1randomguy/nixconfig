@@ -17,10 +17,10 @@ in
       immich_dir = "/var/lib/immich";
     in
     mkIf cfg.enable {
-      cfg.backupDirs = mkForce [
-        "${immich_dir}/library"
-        "${immich_dir}/backups"
-      ];
+      #cfg.backupDirs = mkForce [
+      #  "${immich_dir}/library"
+      #  "${immich_dir}/backups"
+      #];
       services.immich = {
         enable = true;
         port = 2283;
