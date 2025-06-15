@@ -41,6 +41,7 @@ in {
       htop
       file
       nix-prefetch-scripts
+      fzf
     ];
 
     programs.git = {

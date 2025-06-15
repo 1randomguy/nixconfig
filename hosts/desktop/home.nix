@@ -5,8 +5,6 @@
     [ 
       ../../home/common.nix
       ../../home/shell
-      ../../home/devel/base.nix
-      ../../home/devel/rust.nix
       ../../home/apps/nextcloud.nix
       ../../home/apps/socials-private.nix
       ../../home/gnome
@@ -21,6 +19,9 @@
     music = {
       enable = true;
       eq = true;
+    };
+    devel = {
+      enable = true;
     };
   };
 

@@ -5,7 +5,6 @@
     [ 
       ../../home/common.nix
       ../../home/non-nixos.nix
-      ../../home/devel/rust.nix
       ../../home/shell
     ];
 

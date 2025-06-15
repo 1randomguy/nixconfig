@@ -5,9 +5,6 @@
     [ 
       ../../home/common.nix
       ../../home/shell
-      ../../home/devel/base.nix
-      ../../home/devel/rust.nix
-      ../../home/devel/python.nix
       ../../home/apps/nextcloud.nix
       ../../home/apps/socials-private.nix
       ../../home/apps
@@ -20,6 +17,9 @@
     uni_vpn.enable = true;
     touch_apps.enable = true;
     music = {
+      enable = true;
+    };
+    devel = {
       enable = true;
     };
   };

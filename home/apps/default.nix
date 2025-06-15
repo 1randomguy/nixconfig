@@ -10,6 +10,7 @@ in
     ./music
     ./touch-apps
     ./uni-vpn
+    ./devel
   ];
   options.apps = {
     enable = mkEnableOption "Install graphical apps on this system";
