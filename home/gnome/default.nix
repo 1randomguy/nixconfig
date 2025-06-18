@@ -47,6 +47,10 @@ in {
 
       "org/gnome/desktop/background" = {
         "picture-uri" = cfg.wallpaper;
+        "picture-uri-dark" = cfg.wallpaper;
+      };
+      "org/gnome/desktop/screensaver" = {
+        "picture-uri" = cfg.wallpaper;
       };
 
       "org/gnome/shell" = {
