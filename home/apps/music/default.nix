@@ -14,7 +14,7 @@ in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       # music listening
-      quodlibet
+      #quodlibet
       spotify
     ];
     services.easyeffects = mkIf cfg.eq {
