@@ -20,7 +20,7 @@ in
 # Router knows best, i.e. stop returning 127.0.0.1 for DNS calls for self
       "--no-etc-hosts"
     ];
-    mutableSettings = true;
+    mutableSettings = false;
     settings = {
       # users = [{
       #   name = "admin";
@@ -71,8 +71,8 @@ in
   };
   services.nginx.virtualHosts."adguard.${hl.baseDomain}" = {
     enableACME = true;
-    addSSL = true;
-    #forceSSL = true;
+    acmeRoot = null;
+    forceSSL = true;
     locations."/" = {
       proxyPass = "http://[::1]:${toString config.services.adguardhome.port}";
       proxyWebsockets = true;
