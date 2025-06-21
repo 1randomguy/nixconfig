@@ -10,6 +10,7 @@ in
     backupDirs = mkOption {
       type = listOf types.str;
       description = "The directories to backup";
+      default = [ "var/lib/immich" ];
     };
   };
   config = 
