@@ -8,7 +8,7 @@ in
     ./immich
     ./adguard
     #./smb
-    #./restic
+    ./restic
   ];
 
   options.homelab = {
