@@ -8,7 +8,7 @@ in
   options.homelab.services.immich = {
     enable = mkEnableOption "Immich Picture Server";
     backupDirs = mkOption {
-      type = listOf types.str;
+      type = types.listOf types.str;
       description = "The directories to backup";
       default = [ "var/lib/immich" ];
     };
