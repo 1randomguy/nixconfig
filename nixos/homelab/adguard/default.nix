@@ -77,6 +77,12 @@ in
       proxyPass = "http://[::1]:${toString config.services.adguardhome.port}";
       proxyWebsockets = true;
       recommendedProxySettings = true;
+      extraConfig = ''
+        # Only allow local network access
+        allow 192.168.178.0/24;  # My home network
+        allow 127.0.0.1;         # Localhost
+        deny all;                # Block everything else (internet)
+      '';
     };
   };
 }
