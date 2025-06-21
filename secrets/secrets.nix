@@ -3,4 +3,5 @@ let
 in
 {
   "porkbun.age".publicKeys = [ usopp_server ];
+  "restic.age".publicKeys = [ usopp_server ];
 }
