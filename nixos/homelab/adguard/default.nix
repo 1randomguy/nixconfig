@@ -79,8 +79,16 @@ in
       recommendedProxySettings = true;
       extraConfig = ''
         # Only allow local network access
+
+        # IPv4
         allow 192.168.178.0/24;  # My home network
         allow 127.0.0.1;         # Localhost
+
+        # IPv6
+        allow ::/128;            # Localhost
+        allow fc00::/7;          # ULA
+        allow fe80::/10;         # Link-local
+
         deny all;                # Block everything else (internet)
       '';
     };
