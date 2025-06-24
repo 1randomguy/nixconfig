@@ -8,12 +8,17 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../nixos/desktop
       ../../nixos/common.nix
       ../../nixos/fonts.nix
       ../../nixos/gnome.nix
       ../../nixos/virtualization.nix
       ../../nixos/games.nix
     ];
+
+  desktop.nfs_mount = {
+    enable = true;
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;

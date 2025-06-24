@@ -1,0 +1,30 @@
+{lib, config, pkgs, ...}:
+with lib;
+let
+  cfg = config.desktop.nfs_mount;
+in
+{
+  options.desktop.nfs_mount = {
+    enable = mkEnableOption "NFS mount";
+    directory = mkOption {
+      type = types.str;
+      description = "the diretory that the share will be mounted in";
+      default = "/mnt/shared";
+    };
+    user = mkOption {
+      type = types.str;
+      description = "User that the share will belong to on the pc";
+      default = "bene";
+    };
+    group = mkOption {
+      type = types.str;
+      description = "User that the share will belong to on the pc";
+      default = "bene";
+    };
+  };
+  config = mkIf cfg.enable {
+    systemd.tmpfiles.rules = [
+      "d ${cfg.directory} 0770 ${cfg.user} ${cfg.group} - -"
+    ];
+  };
+}
