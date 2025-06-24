@@ -46,11 +46,7 @@ in
             answer = "192.168.178.57";
           }
           {
-            domain = "*.shimagumo.party";
-            answer = "192.168.178.57";
-          }
-          {
-            domain = "shimagumo.party";
+            domain = "usopp.shimagumo.party";
             answer = "192.168.178.57";
           }
           {
