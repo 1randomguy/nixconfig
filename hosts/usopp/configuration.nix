@@ -20,6 +20,10 @@
         local.enable = true;
         local.targetDir = "/data/restic";
       };
+      nfs = {
+        enable = true;
+        directory = "/data";
+      };
     };
   };
 

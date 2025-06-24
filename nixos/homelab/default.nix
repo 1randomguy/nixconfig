@@ -7,7 +7,8 @@ in
   imports = [
     ./immich
     ./adguard
-    #./smb
+    ./smb
+    ./nfs
     ./restic
   ];
 
