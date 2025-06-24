@@ -38,7 +38,7 @@ in
     in
     mkIf (cfg.enable && backupDirs != [ ]) {
       age.secrets.restic = {
-        file = ../../secrets/restic.age;
+        file = ../../../secrets/restic.age;
       };
       systemd.tmpfiles.rules = lists.optionals cfg.local.enable [
         "d ${cfg.local.targetDir} 0770 ${hl.user} ${hl.group} - -"
