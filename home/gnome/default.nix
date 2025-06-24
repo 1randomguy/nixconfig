@@ -18,6 +18,7 @@ in {
       blur-my-shell
       pip-on-top
       gsconnect
+      caffeine
     ];
 
     dconf.settings = {
@@ -70,6 +71,7 @@ in {
           blur-my-shell.extensionUuid
           pip-on-top.extensionUuid
           gsconnect.extensionUuid
+          caffeine.extensionUuid
         ];
       };
 
