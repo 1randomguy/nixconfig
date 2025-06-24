@@ -18,7 +18,7 @@ in
       "d /export/data 0770 ${hl.user} ${hl.group} - -"
     ];
     fileSystems."/export/data" = {
-      device = directory;
+      device = cfg.directory;
       options = [ "bind" ];
     };
     services.nfs.server = {
