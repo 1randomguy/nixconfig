@@ -18,6 +18,7 @@
 
   desktop.nfs_mount = {
     enable = true;
+    directory = "/home/bene/data";
   };
 
   # Use the systemd-boot EFI boot loader.

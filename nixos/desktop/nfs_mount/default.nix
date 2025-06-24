@@ -19,12 +19,18 @@ in
     group = mkOption {
       type = types.str;
       description = "User that the share will belong to on the pc";
-      default = "bene";
+      default = "users";
     };
   };
   config = mkIf cfg.enable {
-    systemd.tmpfiles.rules = [
-      "d ${cfg.directory} 0770 ${cfg.user} ${cfg.group} - -"
-    ];
+    #systemd.tmpfiles.rules = [
+    #  "d ${cfg.directory} 0770 ${cfg.user} ${cfg.group} - -"
+    #];
+    boot.supportedFilesystems = [ "nfs" ];
+    fileSystems."${cfg.directory}" = {
+      device = "192.168.178.57:/export/data";
+      fsType = "nfs";
+      #options = [ "vers=4" "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" "user" ];
+    };
   };
 }
