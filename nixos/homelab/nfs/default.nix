@@ -36,7 +36,7 @@ in
       '';
     };
 
-    hl.services.restic.backupDirs = [ cfg.directory ];
+    homelab.services.restic.backupDirs = [ cfg.directory ];
 
     networking.firewall = {
       allowedTCPPorts = [ 111 2049 4000 4001 4002 20048 ];

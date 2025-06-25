@@ -30,7 +30,7 @@ in
         extraGroups = [ "video" "render" "media" ];
       };
 
-      hl.services.restic.backupDirs = [ immich_dir ];
+      homelab.services.restic.backupDirs = [ immich_dir ];
 
       services.nginx.virtualHosts."immich.shimagumo.party" = {
         enableACME = true;
