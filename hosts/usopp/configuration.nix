@@ -22,7 +22,7 @@
       };
       nfs = {
         enable = true;
-        directory = "/data";
+        directory = "/public";
       };
     };
   };
