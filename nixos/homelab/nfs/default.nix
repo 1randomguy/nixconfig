@@ -1,4 +1,4 @@
-{lib, config, pkgs, ...}:
+{lib, config, ...}:
 with lib;
 let
   cfg = config.homelab.services.nfs;
@@ -17,10 +17,12 @@ in
     systemd.tmpfiles.rules = [
       "d /export/data 0770 ${hl.user} ${hl.group} - -"
     ];
+
     fileSystems."/export/data" = {
       device = cfg.directory;
       options = [ "bind" ];
     };
+
     services.nfs.server = {
       enable = true;
       # fixed rpc.statd port; for firewall
@@ -33,6 +35,9 @@ in
         /export/data   192.168.178.0/24(rw,insecure,sync,nohide,no_subtree_check)
       '';
     };
+
+    hl.services.restic.backupDirs = [ cfg.directory ];
+
     networking.firewall = {
       allowedTCPPorts = [ 111 2049 4000 4001 4002 20048 ];
       allowedUDPPorts = [ 111 2049 4000 4001 4002 20048 ];

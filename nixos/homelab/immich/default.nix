@@ -7,21 +7,12 @@ in
 {
   options.homelab.services.immich = {
     enable = mkEnableOption "Immich Picture Server";
-    backupDirs = mkOption {
-      type = types.listOf types.str;
-      description = "The directories to backup";
-      default = [ "var/lib/immich" ];
-    };
   };
   config = 
     let
       immich_dir = "/var/lib/immich";
     in
     mkIf cfg.enable {
-      #cfg.backupDirs = mkForce [
-      #  "${immich_dir}/library"
-      #  "${immich_dir}/backups"
-      #];
       services.immich = {
         enable = true;
         port = 2283;
@@ -33,10 +24,13 @@ in
           #DB_SKIP_MIGRATIONS = "true"; # NOTE: tmp for migration
         };
       };
+
       users.users.immich = {
         isSystemUser = true;
         extraGroups = [ "video" "render" "media" ];
       };
+
+      hl.services.restic.backupDirs = [ immich_dir ];
 
       services.nginx.virtualHosts."immich.shimagumo.party" = {
         enableACME = true;
