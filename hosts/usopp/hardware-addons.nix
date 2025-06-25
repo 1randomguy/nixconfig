@@ -2,9 +2,8 @@
 {
   boot.supportedFilesystems = [ "ntfs" ];
   fileSystems."/data" = { 
-    device = "/dev/disk/by-uuid/1888541B454557DE";
-    fsType = "ntfs-3g";
-    options = [ "rw" "uid=1000" "gid=media" "umask=000" ];
+    device = "/dev/disk/by-uuid/a6b4a1b9-1a9b-47d4-b07a-e9fd9d25fe0a";
+    fsType = "ext4";
   };
 
   hardware.graphics = {
