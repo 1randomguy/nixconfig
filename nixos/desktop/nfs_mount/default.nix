@@ -27,10 +27,29 @@ in
     #  "d ${cfg.directory} 0770 ${cfg.user} ${cfg.group} - -"
     #];
     boot.supportedFilesystems = [ "nfs" ];
-    fileSystems."${cfg.directory}" = {
-      device = "192.168.178.57:/export/data";
-      fsType = "nfs";
-      #options = [ "vers=4" "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" "user" ];
-    };
+    #fileSystems."${cfg.directory}" = {
+    #  device = "192.168.178.57:/export/data";
+    #  fsType = "nfs";
+    #  #options = [ "x-systemd.automount" "noauto" ];
+    #  #options = [ "vers=4" "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" "user" ];
+    #};
+     services.rpcbind.enable = true; # needed for NFS
+
+    systemd.mounts = [{
+      type = "nfs";
+      mountConfig = {
+        Options = "noatime";
+      };
+      what = "192.168.178.57:/export/data";
+      where = cfg.directory;
+    }];
+
+    systemd.automounts = [{
+      wantedBy = [ "multi-user.target" ];
+      automountConfig = {
+        TimeoutIdleSec = "600";
+      };
+      where = cfg.directory;
+    }];
   };
 }
