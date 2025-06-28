@@ -38,10 +38,14 @@ in
     systemd.mounts = [{
       type = "nfs";
       mountConfig = {
-        Options = "noatime";
+        Options = "noatime,rsize=8192,wsize=8192,hard,intr,noauto"; #maybe soft with timeo and retrans instead?
+        TimeoutSec = "10";
       };
       what = "192.168.178.57:/export/data";
       where = cfg.directory;
+      wantedBy = [ "multi-user.target" ];
+      after = [ "network-online.target" ];
+      wants = [ "network-online.target" ];
     }];
 
     systemd.automounts = [{
