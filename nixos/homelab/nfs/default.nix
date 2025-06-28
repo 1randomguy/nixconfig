@@ -15,7 +15,7 @@ in
   };
   config = mkIf cfg.enable {
     systemd.tmpfiles.rules = [
-      "d /export/data 0770 ${hl.user} ${hl.group} - -"
+      "d /export/data 0770 bene users - -"
     ];
 
     fileSystems."/export/data" = {
