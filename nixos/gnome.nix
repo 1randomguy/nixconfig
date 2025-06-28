@@ -47,8 +47,7 @@
     # The name is just the name of the configuration file, it does not really matter
     default = {
       ids = [ 
-        "0001:0001:a31694d4" # only the laptop keyboard (find uuid with `sudo keyd -m`)
-        "0001:0001:6fdb6495"
+        "0001:0001" # only the laptop keyboard (find uuid with `sudo keyd -m`)
       ]; 
       settings = {
         # The main layer, if you choose to declare it in Nix
