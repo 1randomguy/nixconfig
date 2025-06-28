@@ -8,10 +8,16 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../nixos/desktop
       ../../nixos/common.nix
       ../../nixos/fonts.nix
       ../../nixos/gnome.nix
     ];
+
+  desktop.nfs_mount = {
+    enable = true;
+    directory = "/home/bene/data";
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
