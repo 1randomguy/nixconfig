@@ -30,8 +30,7 @@ in
         default_redirection_url = "https://${hl.baseDomain}";
     
         server = {
-          host = "127.0.0.1";
-          port = 9091;
+          #address = "tcp://127.0.0.1:9091";
         };
     
         log = {
