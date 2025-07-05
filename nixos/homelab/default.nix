@@ -55,6 +55,7 @@ in
     ./smb
     ./nfs
     ./restic
+    ./authelia
   ];
 
   options.homelab = {
