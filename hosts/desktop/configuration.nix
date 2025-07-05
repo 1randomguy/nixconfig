@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{ config, inputs, pkgs, ... }:
 
 {
   imports =
@@ -48,6 +48,9 @@
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
+  environment.systemPackages = with pkgs; [
+    inputs.agenix.packages."${system}".default
+  ];
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
