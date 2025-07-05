@@ -62,7 +62,7 @@ in
           name = "authelia_session";
           expiration = "12h";
           inactivity = "45m";
-          remember_me_duration = "1M";
+          remember_me = "1M";
           domain = "${hl.baseDomain}";
           redis.host = "/run/redis-authelia-main/redis.sock";
         };
