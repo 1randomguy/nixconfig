@@ -35,8 +35,8 @@ in
       services.nginx.virtualHosts."immich.shimagumo.party" = {
         enableACME = true;
         acmeRoot = null;
-        #addSSL = true;
         forceSSL = true;
+
         locations."/" = {
           proxyPass = "http://[::1]:${toString config.services.immich.port}";
           proxyWebsockets = true;

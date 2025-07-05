@@ -30,17 +30,6 @@ in
     };
   };
   config =
-    let
-      extractServiceBackupDirs = services: lib.flatten (
-        lib.mapAttrsToList (
-          _name: service:
-            if (service ? enable && service.enable && service ? backupDirs)
-            then service.backupDirs
-            else []
-        ) services
-      );
-      #backupDirs = extractServiceBackupDirs hl.services;
-    in
     mkIf (cfg.enable && cfg.backupDirs != [ ]) {
       age.secrets.restic = {
         file = ../../../secrets/restic.age;
