@@ -6,4 +6,7 @@ in
 {
   "porkbun.age".publicKeys = [ usopp_server usopp_bene_user desktop_bene_user ];
   "restic.age".publicKeys = [ usopp_server usopp_bene_user desktop_bene_user ];
+  "authelia_jwt_secret.age".publicKeys = [ usopp_server usopp_bene_user desktop_bene_user ];
+  "authelia_storage_encryption.age".publicKeys = [ usopp_server usopp_bene_user desktop_bene_user ];
+  "authelia_session_secret.age".publicKeys = [ usopp_server usopp_bene_user desktop_bene_user ];
 }
