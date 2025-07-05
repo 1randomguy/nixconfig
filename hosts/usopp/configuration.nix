@@ -15,6 +15,7 @@
     baseDomain = "shimagumo.party";
     services = {
       immich.enable = true;
+      authelia.enable = true;
       restic = {
         enable = true;
         local.enable = true;
