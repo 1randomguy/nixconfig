@@ -22,9 +22,9 @@ in
     services.authelia.instances.main = {
       enable = true;
       secrets = {
-        jwtSecretFile = "${pkgs.writeText "jwtSecretFile" "supersecretkey"}";
-        storageEncryptionKeyFile = "${pkgs.writeText "storageEncryptionKeyFile" "supersecretkey"}";
-        sessionSecretFile = "${pkgs.writeText "sessionSecretFile" "supersecretkey"}";
+        jwtSecretFile = config.age.secrets.authelia_jwt_secret.path;
+        storageEncryptionKeyFile = config.age.secrets.authelia_storage_encryption.path;
+        sessionSecretFile = config.age.secrets.authelia_session_secret.path;
       };
       settings = {
         default_redirection_url = "https://${hl.baseDomain}";
