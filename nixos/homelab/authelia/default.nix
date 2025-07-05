@@ -12,12 +12,18 @@ in
   config = mkIf cfg.enable {
     age.secrets.authelia_jwt_secret = {
       file = ../../../secrets/authelia_jwt_secret.age;
+      owner = "authelia-main";
+      group = "authelia-main";
     };
     age.secrets.authelia_storage_encryption = {
       file = ../../../secrets/authelia_storage_encryption.age;
+      owner = "authelia-main";
+      group = "authelia-main";
     };
     age.secrets.authelia_session_secret = {
       file = ../../../secrets/authelia_session_secret.age;
+      owner = "authelia-main";
+      group = "authelia-main";
     };
     services.authelia.instances.main = {
       enable = true;
