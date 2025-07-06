@@ -33,10 +33,9 @@ in
         sessionSecretFile = config.age.secrets.authelia_session_secret.path;
       };
       settings = {
-        default_redirection_url = "https://${hl.baseDomain}";
     
         server = {
-          #address = "tcp://127.0.0.1:9091";
+          address = "tcp://127.0.0.1:9091";
         };
     
         log = {
@@ -58,7 +57,7 @@ in
               policy = "bypass";
             }
             {
-              domain = ["*.${hl.baseDomain}"];
+              domain = ["test.${hl.baseDomain}"];
               policy = "one_factor"; # other option: "two_factor"
             }
           ];
@@ -69,7 +68,13 @@ in
           expiration = "12h";
           inactivity = "45m";
           remember_me = "1M";
-          domain = "${hl.baseDomain}";
+          cookies = [
+            {
+              domain = "${hl.baseDomain}";
+              authelia_url = "https://auth.${hl.baseDomain}";
+              default_redirection_url = "https://${hl.baseDomain}";
+            }
+          ];
           redis.host = "/run/redis-authelia-main/redis.sock";
         };
     
@@ -108,6 +113,42 @@ in
       locations."/" = {
         proxyPass = "http://127.0.0.1:9091";
         proxyWebsockets = true;
+        extraConfig = ''
+          # Essential proxy headers for Authelia
+          proxy_set_header Host $host;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_set_header X-Forwarded-Host $http_host;
+          proxy_set_header X-Forwarded-Uri $request_uri;
+          proxy_set_header X-Forwarded-Ssl on;
+          
+          # Handle redirects properly
+          proxy_redirect http:// $scheme://;
+          proxy_redirect http://127.0.0.1:9091/ $scheme://$http_host/;
+          
+          # WebSocket support
+          # proxy_http_version 1.1;
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection $connection_upgrade;
+          
+          # Buffer settings
+          proxy_buffering off;
+          proxy_buffer_size 4k;
+          proxy_buffers 64 4k;
+          proxy_busy_buffers_size 8k;
+          
+          # Timeout settings
+          proxy_read_timeout 86400s;
+          proxy_send_timeout 86400s;
+          
+          # Don't cache auth responses
+          proxy_cache_bypass $cookie_session;
+          proxy_no_cache $cookie_session;
+          
+          # Security headers passthrough
+          proxy_pass_header Server;
+        '';
       };
     };
   };
