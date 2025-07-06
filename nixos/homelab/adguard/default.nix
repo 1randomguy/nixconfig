@@ -50,6 +50,14 @@ in
             answer = "192.168.178.57";
           }
           {
+            domain = "auth.shimagumo.party";
+            answer = "192.168.178.57";
+          }
+          {
+            domain = "test.shimagumo.party";
+            answer = "192.168.178.57";
+          }
+          {
             domain = "fritz.box";
             answer = "192.168.178.1";
           }
