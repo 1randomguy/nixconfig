@@ -57,7 +57,12 @@ in
               policy = "bypass";
             }
             {
-              domain = ["test.${hl.baseDomain}"];
+              domain = ["adguard.${hl.baseDomain}"];
+              policy = "one_factor"; # other option: "two_factor"
+              subject = ["group:admins"];
+            }
+            {
+              domain = ["immich.${hl.baseDomain}"];
               policy = "one_factor"; # other option: "two_factor"
             }
           ];

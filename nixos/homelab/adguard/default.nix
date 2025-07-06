@@ -77,6 +77,8 @@ in
     enableACME = true;
     acmeRoot = null;
     forceSSL = true;
+    enableAuthelia = true;
+
     locations."/" = {
       proxyPass = "http://[::1]:${toString config.services.adguardhome.port}";
       proxyWebsockets = true;
