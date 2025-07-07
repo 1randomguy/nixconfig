@@ -85,6 +85,7 @@ in
     ./nfs
     ./restic
     ./authelia
+    ./ddclient
   ];
 
   options.homelab = {

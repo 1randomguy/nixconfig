@@ -16,6 +16,7 @@
     services = {
       immich.enable = true;
       authelia.enable = true;
+      ddclient.enable = true;
       restic = {
         enable = true;
         local.enable = true;
