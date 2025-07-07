@@ -105,7 +105,7 @@ in
         notifier = {
           disable_startup_check = false;
           filesystem = {
-            filename = "/var/lib/notification.txt";
+            filename = "/var/lib/authelia-main/notification.txt";
           };
         };
       };
