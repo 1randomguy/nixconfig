@@ -105,7 +105,7 @@ in
         notifier = {
           disable_startup_check = false;
           filesystem = {
-            filename = "/public/notification.txt";
+            filename = "/var/lib/notification.txt";
           };
         };
       };
