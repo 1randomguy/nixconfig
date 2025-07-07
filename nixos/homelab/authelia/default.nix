@@ -25,6 +25,8 @@ in
       owner = "authelia-main";
       group = "authelia-main";
     };
+    homelab.services.restic.backupDirs = [ "/var/lib/authelia-main" ];
+
     services.authelia.instances.main = {
       enable = true;
       secrets = {
@@ -47,6 +49,11 @@ in
           file = {
             path = "/var/lib/authelia-main/users_database.yml";
           };
+        };
+
+        totp = {
+          disable = false;
+          issuer = "Shimagumo";
         };
     
         access_control = {
@@ -98,7 +105,7 @@ in
         notifier = {
           disable_startup_check = false;
           filesystem = {
-            filename = "/var/lib/authelia-main/notification.txt";
+            filename = "/data/notification.txt";
           };
         };
       };
