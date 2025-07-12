@@ -10,7 +10,7 @@ in
   "authelia_jwt_secret.age".publicKeys = all;
   "authelia_storage_encryption.age".publicKeys = all;
   "authelia_session_secret.age".publicKeys = all;
-  "ddclient_config.age".publicKeys = all;
   "authelia_jwks.age".publicKeys = all;
   "authelia_hmac_secret.age".publicKeys = all;
+  "ddclient_config.age".publicKeys = all;
 }

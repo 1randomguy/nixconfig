@@ -25,6 +25,16 @@ in
       owner = "authelia-main";
       group = "authelia-main";
     };
+    age.secrets.authelia_jwks.path = {
+      file = ../../../secrets/authelia_jwks.age;
+      owner = "authelia-main";
+      group = "authelia-main";
+    };
+    age.secrets.authelia_hmac_secret.path = {
+      file = ../../../secrets/authelia_hmac_secret.age;
+      owner = "authelia-main";
+      group = "authelia-main";
+    };
     homelab.services.restic.backupDirs = [ "/var/lib/authelia-main" ];
 
     services.authelia.instances.main = {
