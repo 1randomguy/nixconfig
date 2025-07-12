@@ -57,7 +57,7 @@ in {
 
       "org/gnome/shell" = {
         favorite-apps = [
-            "zen.desktop"
+            "firefox.desktop"
             "com.mitchellh.ghostty.desktop"
             "org.gnome.Nautilus.desktop"
             "anki.desktop"
