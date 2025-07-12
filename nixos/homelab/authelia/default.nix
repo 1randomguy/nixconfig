@@ -33,6 +33,8 @@ in
         jwtSecretFile = config.age.secrets.authelia_jwt_secret.path;
         storageEncryptionKeyFile = config.age.secrets.authelia_storage_encryption.path;
         sessionSecretFile = config.age.secrets.authelia_session_secret.path;
+        oidcIssuerPrivateKeyFile = config.age.secrets.authelia_jwks.path;
+        oidcHmacSecretFile = config.age.secrets.authelia_hmac_secret.path;
       };
       settings = {
     
@@ -113,6 +115,18 @@ in
             filename = "/var/lib/authelia-main/notification.txt";
           };
         };
+
+        identity_providers.oidc.clients = [ 
+          {
+            client_name = "immich";
+            client_id = "Y0Jh7X6m5IdNKEtCJKzKWyeAftze0K0fnyowcZc6a41zHYpOFm3qCdDX.heMFwEbmyhWJBik";
+            authorization_policy = "one_factor";
+            client_secret = "$pbkdf2-sha512$310000$ey9KSCbGPAdAFap69OTt/A$1OrCIaele2TwjSrLKqbRGa7xLxkKOpCdS7Xa1J7YWZOTeEKpvCK5BMBbG41nQHs552oQwJXyZL8Gtzcntee.og";
+            redirect_uris = [ "https://immich.${hl.baseDomain}/auth/login" "https://immich.${hl.baseDomain}/user-settings" "app.immich:///oauth-callback" ];
+            scopes = [ "openid" "profile" "email" ];
+            userinfo_signed_response_alg = "none";
+          }
+        ];
       };
     };
     services.redis.servers.authelia-main = {
