@@ -168,7 +168,7 @@ in
         add_header X-Content-Type-Options nosniff;
 
         # This might create errors
-        proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
+        #proxy_cookie_path / "/; secure; HttpOnly; SameSite=lax";
       '';
     };
     networking.firewall.allowedTCPPorts = [ 80 443 ];
