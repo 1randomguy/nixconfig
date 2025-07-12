@@ -25,12 +25,12 @@ in
       owner = "authelia-main";
       group = "authelia-main";
     };
-    age.secrets.authelia_jwks.path = {
+    age.secrets.authelia_jwks = {
       file = ../../../secrets/authelia_jwks.age;
       owner = "authelia-main";
       group = "authelia-main";
     };
-    age.secrets.authelia_hmac_secret.path = {
+    age.secrets.authelia_hmac_secret = {
       file = ../../../secrets/authelia_hmac_secret.age;
       owner = "authelia-main";
       group = "authelia-main";
