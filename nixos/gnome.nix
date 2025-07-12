@@ -1,14 +1,8 @@
 {pkgs, ...}:
 
 {
-  services.xserver = {
-    enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
-    excludePackages = with pkgs; [
-      xterm
-    ];
-  };
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
   environment.gnome.excludePackages = with pkgs; [
     gnome-tour
     epiphany
@@ -30,7 +24,6 @@
   # keyboard
   services.xserver.xkb.layout = "us";
   services.xserver.xkb.variant = "altgr-intl";
-  #services.xserver.xkb.options = "eurosign:e,caps:escape";
   i18n.inputMethod = {
     enable = true;
     type = "ibus";
