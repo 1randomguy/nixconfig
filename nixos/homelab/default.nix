@@ -226,7 +226,7 @@ in
       enableAuthelia = true;
 
       locations."/" = {
-        proxyPass = "http://[::1]:${config.services.homepage-dashboard.listenPort}";
+        proxyPass = "http://[::1]:${toString config.services.homepage-dashboard.listenPort}";
         proxyWebsockets = true;
         recommendedProxySettings = true;
       };
