@@ -187,17 +187,49 @@ in
       # };
     };
 
-    #services.nginx.virtualHosts."test.${cfg.baseDomain}" = {
-    #  enableACME = true;
-    #  forceSSL = true;
-    #  acmeRoot = null;
-    #  enableAuthelia = true;
+    services.homepage-dashboard = {
+      enable = true;
+      environmentFile = builtins.toFile "homepage.env" "HOMEPAGE_ALLOWED_HOSTS=${cfg.baseDomain}";
+      services = [
+        {
+          "Personal" = [
+            {
+              "Immich" = {
+                description = "Personal photos and videos";
+                href = "https://immich.${cfg.baseDomain}";
+                icon = "immich.svg";
+              };
+            }
+          ];
+          "Misc." = [
+            {
+              "Authelia" = {
+                description = "Authentication portal for the homelab";
+                href = "https://auth.${cfg.baseDomain}";
+                icon = "authelia.svg";
+              };
+              "AdGuard Home" = {
+                description = "Network-wide ad blocker";
+                href  = "https://adguard.${cfg.baseDomain}";
+                icon = "adguard-home.svg";
+              };
+            }
+          ];
+        }
+      ];
+    };
 
-    #  locations."/" = {
-    #    proxyPass = "http://[::1]:3000";
-    #    proxyWebsockets = true;
-    #    recommendedProxySettings = true;
-    #  };
-    #};
+    services.nginx.virtualHosts."${cfg.baseDomain}" = {
+      enableACME = true;
+      forceSSL = true;
+      acmeRoot = null;
+      enableAuthelia = true;
+
+      locations."/" = {
+        proxyPass = "http://[::1]:${config.services.homepage-dashboard.listenPort}";
+        proxyWebsockets = true;
+        recommendedProxySettings = true;
+      };
+    };
   };
 }
