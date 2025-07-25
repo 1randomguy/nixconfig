@@ -210,7 +210,7 @@ in
               };
               "AdGuard Home" = {
                 description = "Network-wide ad blocker";
-                href  = "https://adguard.${cfg.baseDomain}";
+                href = "https://adguard.${cfg.baseDomain}";
                 icon = "adguard-home.svg";
               };
             }
@@ -226,7 +226,7 @@ in
       enableAuthelia = true;
 
       locations."/" = {
-        proxyPass = "http://[::1]:${toString config.services.homepage-dashboard.listenPort}";
+        proxyPass = "http://localhost:${toString config.services.homepage-dashboard.listenPort}";
         proxyWebsockets = true;
         recommendedProxySettings = true;
       };

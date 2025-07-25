@@ -54,7 +54,7 @@ in
             answer = "192.168.178.57";
           }
           {
-            domain = "test.shimagumo.party";
+            domain = "shimagumo.party";
             answer = "192.168.178.57";
           }
           {
