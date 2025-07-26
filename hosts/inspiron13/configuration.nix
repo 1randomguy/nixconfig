@@ -12,6 +12,7 @@
       ../../nixos/common.nix
       ../../nixos/fonts.nix
       ../../nixos/gnome.nix
+      ../../nixos/games.nix
     ];
 
   desktop.nfs_mount = {
