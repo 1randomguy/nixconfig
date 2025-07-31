@@ -1,10 +1,10 @@
 {lib, config, pkgs, ...}:
 with lib;
 let
-  cfg = config.desktop.nfs_mount;
+  cfg = config.workstation.nfs_mount;
 in
 {
-  options.desktop.nfs_mount = {
+  options.workstation.nfs_mount = {
     enable = mkEnableOption "NFS mount";
     directory = mkOption {
       type = types.str;
@@ -26,14 +26,14 @@ in
     #systemd.tmpfiles.rules = [
     #  "d ${cfg.directory} 0770 ${cfg.user} ${cfg.group} - -"
     #];
-    boot.supportedFilesystems = [ "nfs" ];
     #fileSystems."${cfg.directory}" = {
     #  device = "192.168.178.57:/export/data";
     #  fsType = "nfs";
     #  #options = [ "x-systemd.automount" "noauto" ];
     #  #options = [ "vers=4" "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" "user" ];
     #};
-     services.rpcbind.enable = true; # needed for NFS
+    boot.supportedFilesystems = [ "nfs" ];
+    services.rpcbind.enable = true; # needed for NFS
 
     systemd.mounts = [{
       type = "nfs";
