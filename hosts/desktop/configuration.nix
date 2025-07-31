@@ -14,7 +14,7 @@
   workstation = {
     enable = true;
     gnome.enable = true;
-    nfs_mount = {
+    nfs-mount = {
       enable = true;
       directory = "/home/bene/data";
     };

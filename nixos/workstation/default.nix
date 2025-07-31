@@ -5,7 +5,7 @@ let
 in
 {
   imports = [
-    ./nfs_mount
+    ./nfs-mount
     ./games
     ./gnome
     ./virtualization

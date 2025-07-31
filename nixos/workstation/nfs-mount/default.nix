@@ -1,10 +1,10 @@
 {lib, config, pkgs, ...}:
 with lib;
 let
-  cfg = config.workstation.nfs_mount;
+  cfg = config.workstation.nfs-mount;
 in
 {
-  options.workstation.nfs_mount = {
+  options.workstation.nfs-mount = {
     enable = mkEnableOption "NFS mount";
     directory = mkOption {
       type = types.str;
