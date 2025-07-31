@@ -14,6 +14,7 @@
     enable = true;
     baseDomain = "shimagumo.party";
     services = {
+      adguardhome.enable = true;
       immich.enable = true;
       authelia.enable = true;
       ddclient.enable = true;
