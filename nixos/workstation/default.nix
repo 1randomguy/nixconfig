@@ -1,4 +1,4 @@
-{lib, config, ...}:
+{lib, config, pkgs, ...}:
 with lib;
 let
   cfg = config.workstation;
@@ -6,6 +6,9 @@ in
 {
   imports = [
     ./nfs_mount
+    ./games
+    ./gnome
+    ./virtualization
   ];
 
   options.workstation = {
@@ -13,5 +16,19 @@ in
   };
 
   config = mkIf cfg.enable {
+    fonts = {
+      packages = with pkgs; [
+        jetbrains-mono 
+        nerd-fonts.jetbrains-mono
+        noto-fonts-cjk-serif
+        noto-fonts-color-emoji
+      ];
+      fontconfig = {
+        defaultFonts = {
+          monospace = [ "JetBrainsMono" ];
+          emoji = [ "Noto Color Emoji" ];
+        };
+      };
+    };
   };
 }

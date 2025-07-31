@@ -8,16 +8,20 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../../nixos/desktop
-      ../../nixos/common.nix
-      ../../nixos/fonts.nix
-      ../../nixos/gnome.nix
-      ../../nixos/games.nix
+      ../../nixos
     ];
 
-  desktop.nfs_mount = {
+  workstation = {
     enable = true;
-    directory = "/home/bene/data";
+    gnome.enable = true;
+    nfs_mount = {
+      enable = true;
+      directory = "/home/bene/data";
+    };
+    games = {
+      enable = true;
+      steam.enable = true;
+    };
   };
 
   # Use the systemd-boot EFI boot loader.

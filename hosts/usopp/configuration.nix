@@ -6,8 +6,7 @@
       ./hardware-configuration.nix
       ./hardware-addons.nix
       ./disk-config.nix
-      ../../nixos/common.nix
-      ../../nixos/homelab
+      ../../nixos
     ];
 
   homelab = {
