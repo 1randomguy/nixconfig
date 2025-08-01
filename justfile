@@ -1,12 +1,16 @@
 #!/usr/bin/env just --justfile
-rebuild := if shell('uname -a | grep NixOS') != "" {
-  "sudo nixos-rebuild switch --flake ."
-} else { 
-  "home-manager switch --flake ."
-}
+rebuild := "sudo nixos-rebuild switch --flake ." 
+#if shell('uname -a | grep NixOS') != "" {
+#  "sudo nixos-rebuild switch --flake ."
+#} else { 
+#  "home-manager switch --flake ."
+#}
 
 rebuild:
-  {{rebuild}}
+  sudo nixos-rebuild switch --flake .
+
+rebuild-hm:
+  home-manager switch --flake .
 
 update:
   git pull
