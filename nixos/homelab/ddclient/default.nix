@@ -12,8 +12,11 @@ in
   config = mkIf cfg.enable {
     services.ddclient = {
       enable = true;
+      verbose = true;
       interval = "5m";
-      configFile = config.age.secrets.ddclient_config.path;
+      protocol = "porkbun";
+      domains = [ "*.shimagumo.party" ];
+      secretsFile = config.age.secrets.ddclient_config.path;
     };
 
     age.secrets.ddclient_config = {
