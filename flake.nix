@@ -116,6 +116,26 @@
           }
         ];
       };
+      # Work Laptop
+      nixosConfigurations.worklaptop = lib.nixosSystem {
+        specialArgs = {
+          inherit system inputs;
+        };
+        modules = [
+          { 
+          imports = [ nixpkgs.nixosModules.readOnlyPkgs ];
+          nixpkgs.pkgs = pkgs; 
+          }
+          ./hosts/work-laptop/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.extraSpecialArgs = { inherit inputs; };
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.bene = import ./hosts/work-laptop/home.nix;
+          }
+        ];
+      };
       # WSL
       homeConfigurations.wsl = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
