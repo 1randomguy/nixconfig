@@ -74,7 +74,7 @@
   users.users.bene = {
     description = "Benedikt von Blomberg";
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "docker"] ; # Enable ‘sudo’ for the user.
   };
 
   # Some programs need SUID wrappers, can be configured further or are
