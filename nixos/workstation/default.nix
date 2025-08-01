@@ -9,6 +9,7 @@ in
     ./games
     ./gnome
     ./virtualization
+    ./work
   ];
 
   options.workstation = {
