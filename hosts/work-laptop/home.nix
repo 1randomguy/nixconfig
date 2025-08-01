@@ -30,7 +30,7 @@
 
   gnome_customizations = {
     enable = true;
-    wallpaper = "file:///home/bene/nixconfig/assets/wallpapers/XE030006.JPG";
+    wallpaper = "file:///home/bene/Desktop/ray-zhuang-pe4o4-dnRVE-unsplash.jpg";
   };
 
   # Home Manager needs a bit of information about you and the paths it should
