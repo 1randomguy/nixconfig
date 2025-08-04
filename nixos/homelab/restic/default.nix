@@ -81,6 +81,7 @@ in
                 exclude = [
                 ];
                 paths = cfg.backupDirs;
+              };
           };
       };
     };
