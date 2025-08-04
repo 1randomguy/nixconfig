@@ -34,6 +34,9 @@ in
       age.secrets.restic = {
         file = ../../../secrets/restic.age;
       };
+      age.secrets.backblazeb2 = {
+        file = ../../../secrets/backblazeb2.age;
+      };
       systemd.tmpfiles.rules = lists.optionals cfg.local.enable [
         "d ${cfg.local.targetDir} 0770 ${hl.user} ${hl.group} - -"
       ];
@@ -60,38 +63,24 @@ in
             };
           }
           // attrsets.optionalAttrs cfg.s3.enable {
-            #appdata-s3 =
-            #  let
-            #    backupFolder = "appdata-${config.networking.hostName}";
-            #  in
-            #  {
-            #    timerConfig = {
-            #      OnCalendar = "Sun *-*-* 05:00:00";
-            #      Persistent = true;
-            #    };
-            #    environmentFile = cfg.s3.environmentFile;
-            #    repository = "s3:${cfg.s3.url}/${backupFolder}";
-            #    initialize = true;
-            #    passwordFile = cfg.passwordFile;
-            #    pruneOpts = [
-            #      "--keep-last 3"
-            #    ];
-            #    exclude = [
-            #    ];
-            #    paths = [
-            #      "/tmp/appdata-s3-${config.networking.hostName}.tar"
-            #    ];
-            #    backupPrepareCommand =
-            #      let
-            #        restic = "${pkgs.restic}/bin/restic -r '${config.services.restic.backups.appdata-s3.repository}' -p ${cfg.passwordFile}";
-            #      in
-            #      ''
-            #        ${restic} stats || ${restic} init
-            #        ${pkgs.restic}/bin/restic forget --prune --no-cache --keep-last 3
-            #        ${pkgs.gnutar}/bin/tar -cf /tmp/appdata-s3-${config.networking.hostName}.tar ${backupDirs}
-            #        ${restic} unlock
-            #      '';
-            #};
+            appdata-s3 =
+              {
+                timerConfig = {
+                  OnCalendar = "Sun *-*-* 05:00:00";
+                  Persistent = true;
+                };
+                environmentFile = config.age.secrets.backblazeb2.path;
+                repository = "s3:s3.eu-central-003.backblazeb2.com/3YLELy";
+                initialize = true;
+                passwordFile = config.age.secrets.restic.path;
+                pruneOpts = [
+                  "--keep-daily 2"
+                  "--keep-weekly 3"
+                  "--keep-monthly 9"
+                ];
+                exclude = [
+                ];
+                paths = cfg.backupDirs;
           };
       };
     };

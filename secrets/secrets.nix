@@ -16,5 +16,6 @@ in
   "authelia_jwks.age".publicKeys = private;
   "authelia_hmac_secret.age".publicKeys = private;
   "ddclient_config.age".publicKeys = private;
+  "backblazeb2.age".publicKeys = private;
   "wireguard_work.age".publicKeys = worklaptop_both;
 }
