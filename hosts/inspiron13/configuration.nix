@@ -24,6 +24,8 @@
     };
   };
 
+  networking.wg-quick.interfaces.wg0.configFile = "/home/bene/wireguard/wg_config.conf";
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
