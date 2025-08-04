@@ -10,7 +10,7 @@ in
 
   config = mkIf cfg.enable {
     age.secrets.work_wireguard_sk = {
-      file = ../../../secrets/wireguard_work.secret;
+      file = ../../../secrets/wireguard_work.age;
     };
     networking.firewall = {
       allowedUDPPorts = [ 52020 ];
@@ -18,12 +18,12 @@ in
     networking.wireguard.interfaces.wg0 = {
       listenPort = 52020;
 
-      ips = [ "<IP>/32" ];
+      ips = [ "192.168.2.183/32" ];
       privateKeyFile = config.age.secrets.work_wireguard_sk.path;
       peers = [
         {
           publicKey = "Z87+fvuCrO0W/EPwNubTq8BXHb72ahwFIBzCqH9Xex8=";
-          allowedIPs = [ "192.168.2.1/24" ];
+          allowedIPs = [ "192.168.2.0/24" ];
           endpoint = "vpn-sanctuary.germanywestcentral.cloudapp.azure.com:52020";
           #persistentKeepalive = 25;
         }
