@@ -64,6 +64,7 @@
           nixpkgs.pkgs = pkgs; 
           }
           ./hosts/inspiron13/configuration.nix
+          agenix.nixosModules.default
           home-manager.nixosModules.home-manager
           {
             home-manager.extraSpecialArgs = { inherit inputs; };
