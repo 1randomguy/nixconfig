@@ -27,6 +27,10 @@
         enable = true;
         directory = "/public";
       };
+      seafile = {
+        enable = true;
+        directory = "/public";
+      };
     };
   };
 
