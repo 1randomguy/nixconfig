@@ -86,6 +86,7 @@ in
     ./restic
     ./authelia
     ./ddclient
+    ./seafile
   ];
 
   options.homelab = {
