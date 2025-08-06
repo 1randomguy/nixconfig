@@ -49,6 +49,8 @@ in
       default = {
         ids = [ 
           "0001:0001" # only the laptop keyboard (find uuid with `sudo keyd -m`)
+          "17ef:608d" # Lenovo LiteOn
+          "17ef:6099"
         ]; 
         settings = {
           # The main layer, if you choose to declare it in Nix
