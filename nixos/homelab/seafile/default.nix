@@ -19,8 +19,8 @@ in
       adminEmail = "bblomberg123@gmail.com";
       initialAdminPassword = "changeme1234!";
 
-      dataDir = cfg.directory;
-      ccnetSettings.General.SERVICE_URL = "files.${hl.baseDomain}";
+      #dataDir = cfg.directory;
+      ccnetSettings.General.SERVICE_URL = "seafile.${hl.baseDomain}";
 
       gc.enable = true;
 
@@ -32,7 +32,7 @@ in
       };
     };
 
-    services.nginx.virtualHosts."files.${hl.baseDomain}" = {
+    services.nginx.virtualHosts."seafile.${hl.baseDomain}" = {
       enableACME = true;
       acmeRoot = null;
       forceSSL = true;
