@@ -21,6 +21,7 @@
         enable = true;
         local.enable = true;
         local.targetDir = "/data/restic";
+        s3.enable = true;
       };
       nfs = {
         enable = true;

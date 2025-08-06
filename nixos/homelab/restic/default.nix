@@ -14,11 +14,6 @@ in
       description = "The directories to backup";
       default = [];
     };
-    s3.enable = mkOption {
-      description = "Enable S3 backups for application state directories";
-      default = false;
-      type = types.bool;
-    };
     local.enable = mkOption {
       description = "Enable local backups for application state directories";
       default = false;
@@ -27,6 +22,11 @@ in
     local.targetDir = mkOption {
       description = "Target path for local Restic backups";
       type = types.path;
+    };
+    s3.enable = mkOption {
+      description = "Enable S3 backups for application state directories";
+      default = false;
+      type = types.bool;
     };
   };
   config =
@@ -66,7 +66,8 @@ in
             appdata-s3 =
               {
                 timerConfig = {
-                  OnCalendar = "Sun *-*-* 05:00:00";
+                  #OnCalendar = "Sun *-*-* 05:00:00";
+                  OnCalendar = "*-*-* 20:00:00";
                   Persistent = true;
                 };
                 environmentFile = config.age.secrets.backblazeb2.path;
