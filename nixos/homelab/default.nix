@@ -179,6 +179,7 @@ in
       defaults = {
         email = "bblomberg123@gmail.com";
         dnsProvider = "porkbun";
+        dnsResolver = "1.1.1.1:53";
         environmentFile = config.age.secrets.porkbun.path;
       };
 
