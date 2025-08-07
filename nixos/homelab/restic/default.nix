@@ -67,7 +67,7 @@ in
               {
                 timerConfig = {
                   #OnCalendar = "Sun *-*-* 05:00:00";
-                  OnCalendar = "*-*-* 20:00:00";
+                  OnCalendar = "*-*-* 05:00:00";
                   Persistent = true;
                 };
                 environmentFile = config.age.secrets.backblazeb2.path;
