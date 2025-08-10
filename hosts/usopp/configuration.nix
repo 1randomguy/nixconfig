@@ -95,6 +95,7 @@
       KbdInteractiveAuthentication = false;
     };
   };
+  programs.mosh.enable = true;
   services.vnstat.enable = true;
 
   # Copy the NixOS configuration file and link it from the resulting system
