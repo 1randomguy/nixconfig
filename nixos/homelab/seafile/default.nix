@@ -20,7 +20,7 @@ in
       initialAdminPassword = "changeme1234!";
 
       #dataDir = cfg.directory;
-      ccnetSettings.General.SERVICE_URL = "seafile.${hl.baseDomain}";
+      ccnetSettings.General.SERVICE_URL = "https://seafile.${hl.baseDomain}";
 
       gc.enable = true;
 
