@@ -42,6 +42,7 @@ in {
       file
       nix-prefetch-scripts
       fzf
+      mosh
     ];
 
     programs.git = {
