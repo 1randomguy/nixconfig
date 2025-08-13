@@ -20,7 +20,7 @@ in
       # web
       firefox
       brave
-      inputs.zen-browser.packages.${pkgs.system}.default
+      #inputs.zen-browser.packages.${pkgs.system}.default
       # image viewing, basic editing
       gthumb
       vlc
