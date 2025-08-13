@@ -30,6 +30,12 @@ in
         extraGroups = [ "video" "render" "media" ];
       };
 
+      services.immich-public-proxy = {
+        enable = true;
+        port = 3000;
+        immichUrl = "http://[::1]:${toString config.services.immich.port}";
+      };
+
       homelab.services.restic.backupDirs = [ immich_dir ];
 
       services.nginx.virtualHosts."immich.shimagumo.party" = {
@@ -53,6 +59,35 @@ in
           proxyWebsockets = true;
           recommendedProxySettings = true;
           extraConfig = ''
+            client_max_body_size 50000M;
+            proxy_read_timeout   600s;
+            proxy_send_timeout   600s;
+            send_timeout         600s;
+          '';
+        };
+      };
+      services.nginx.virtualHosts."share.immich.shimagumo.party" = {
+        enableACME = true;
+        acmeRoot = null;
+        #forceSSL = true;
+
+        #extraConfig = ''
+        #  # Set headers
+        #  proxy_set_header Host              $host;
+        #  proxy_set_header X-Real-IP         $remote_addr;
+        #  proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+
+        #  # Something here broke the app
+        #  #proxy_set_header X-Forwarded-Proto $scheme;
+        #  #proxy_redirect off;
+        #'';
+
+        locations."/" = {
+          proxyPass = "http://[::1]:${toString config.services.immich-public-proxy.port}";
+          #proxyWebsockets = true;
+          recommendedProxySettings = true;
+          extraConfig = ''
+            add_header X-publicBaseUrl "share.immich.shimagumo.party";
             client_max_body_size 50000M;
             proxy_read_timeout   600s;
             proxy_send_timeout   600s;
