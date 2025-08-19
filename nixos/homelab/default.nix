@@ -133,6 +133,8 @@ in
     networking.firewall.enable = true;
     networking.firewall.allowPing = true;
 
+    virtualisation.docker.enable = true;
+
     age.secrets.porkbun = {
       file = ../../secrets/porkbun.age;
     };
