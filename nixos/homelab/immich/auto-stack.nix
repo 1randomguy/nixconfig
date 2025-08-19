@@ -1,6 +1,6 @@
 {lib, config, ...}:
 let
-  cfg = config.homelab.immich.auto-stack;
+  cfg = config.homelab.services.immich.auto-stack;
   hl = config.homelab;
 in
 {
