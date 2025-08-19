@@ -7,6 +7,7 @@ in
 {
   imports = [
     ./public-proxy.nix
+    ./auto-stack.nix
   ];
 
   options.homelab.services.immich = {
@@ -29,7 +30,7 @@ in
 
       users.users.immich = {
         isSystemUser = true;
-        extraGroups = [ "video" "render" "media" ];
+        extraGroups = [ "video" "render" "media" "docker" ];
       };
 
       homelab.services.restic.backupDirs = [ "/var/lib/immich" ];
