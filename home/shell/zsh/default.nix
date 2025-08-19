@@ -3,17 +3,6 @@ with lib;
 let 
   sh = config.shell;
   cfg = config.shell.zsh;
-  p10k_shellconf = if cfg.p10k
-  then
-    ''
-        if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
-          source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
-        fi
-        [[ ! -f  ${./config/p10k.zsh} ]] || source ${./config/p10k.zsh}
-        ${pkgs.any-nix-shell}/bin/any-nix-shell zsh --info-right | source /dev/stdin
-    ''
-  else
-    "";
 in
 {
   options.shell.zsh = {
