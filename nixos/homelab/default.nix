@@ -86,7 +86,6 @@ in
     ./restic
     ./authelia
     ./ddclient
-    ./seafile
     ./nextcloud
   ];
 
