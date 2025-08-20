@@ -27,10 +27,6 @@
         enable = true;
         directory = "/public";
       };
-      seafile = {
-        enable = false;
-        directory = "/public";
-      };
       nextcloud.enable = true;
     };
   };
