@@ -87,6 +87,7 @@ in
     ./authelia
     ./ddclient
     ./seafile
+    ./nextcloud
   ];
 
   options.homelab = {

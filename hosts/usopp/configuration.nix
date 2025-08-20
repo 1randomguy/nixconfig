@@ -28,9 +28,10 @@
         directory = "/public";
       };
       seafile = {
-        enable = true;
+        enable = false;
         directory = "/public";
       };
+      nextcloud.enable = true;
     };
   };
 
