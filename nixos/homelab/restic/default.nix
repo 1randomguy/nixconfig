@@ -54,8 +54,8 @@ in
               passwordFile = config.age.secrets.restic.path;
               pruneOpts = [
                 "--keep-daily 3"
-                "--keep-weekly 3"
-                "--keep-monthly 2"
+                "--keep-weekly 4"
+                "--keep-monthly 6"
               ];
               exclude = [
               ];
@@ -66,7 +66,7 @@ in
             appdata-s3 =
               {
                 timerConfig = {
-                  #OnCalendar = "Sun *-*-* 05:00:00";
+                  #OnCalendar = "Sun *-*-* 06:00:00";
                   OnCalendar = "*-*-* 05:00:00";
                   Persistent = true;
                 };
@@ -76,8 +76,8 @@ in
                 passwordFile = config.age.secrets.restic.path;
                 pruneOpts = [
                   "--keep-daily 2"
-                  "--keep-weekly 3"
-                  "--keep-monthly 9"
+                  "--keep-weekly 2"
+                  "--keep-monthly 2"
                 ];
                 exclude = [
                 ];
