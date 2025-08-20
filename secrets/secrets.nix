@@ -18,5 +18,7 @@ in
   "ddclient_config.age".publicKeys = private;
   "backblazeb2.age".publicKeys = private;
   "auto_stacker_env.age".publicKeys = private;
+  "nextcloud_admin_password.age".publicKeys = private;
+
   "wireguard_work.age".publicKeys = worklaptop_both;
 }
