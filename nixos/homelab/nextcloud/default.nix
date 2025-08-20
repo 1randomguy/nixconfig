@@ -53,7 +53,6 @@ in
       enable = true;
       package = pkgs.nextcloud31;
       https = true;
-      enableBrokenCiphersForSSE = false;
 
       hostName = "cloud.${hl.baseDomain}";
       #secretFile = config.age.secrets.nextcloud_secrets.path;
