@@ -72,7 +72,7 @@ in
         # TODO: Authelia OIDC
         allow_user_to_change_display_name = false;
         lost_password_link = "disabled";
-        oidc_login_provider_url = "https://auth.example.com";
+        oidc_login_provider_url = "https://auth.${hl.baseDomain}";
         oidc_login_client_id = "nextcloud";
         oidc_login_client_secret = "insecure_secret";
         oidc_login_auto_redirect = false;
@@ -118,6 +118,7 @@ in
         oidc = pkgs.fetchNextcloudApp rec {
           url = "https://github.com/pulsejet/nextcloud-oidc-login/releases/download/v3.2.2/oidc_login.tar.gz";
           sha256 = "18kxpbnpqizzqj78wl5qxi1v3s44vb3dzb7zrsp1mprww6w2mdj4";
+          license = "no";
         };
       };
     };
