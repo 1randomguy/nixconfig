@@ -60,6 +60,10 @@ in
               answer = "192.168.178.57";
             }
             {
+              domain = "cloud.shimagumo.party";
+              answer = "192.168.178.57";
+            }
+            {
               domain = "shimagumo.party";
               answer = "192.168.178.57";
             }
