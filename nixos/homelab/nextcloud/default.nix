@@ -32,7 +32,7 @@ in
     # this file. 
     age.secrets = {
       nextcloud_admin_password = {
-        file = ../../secrets/nextcloud_admin_password.age;
+        file = ../../../secrets/nextcloud_admin_password.age;
         owner = "nextcloud";
         group = "nextcloud";
       };
