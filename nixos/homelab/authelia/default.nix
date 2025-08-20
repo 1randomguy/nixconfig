@@ -140,6 +140,15 @@ in
             scopes = [ "openid" "profile" "email" ];
             userinfo_signed_response_alg = "none";
           }
+          {
+            client_name = "nextcloud";
+            client_id = "Almkdw6nFOnuVxDW0SiMsO7RQetCVjJSobtnM.gDnSjvp~Dv2RsRKvPHxg~VOyE9lpY0Jwgz";
+            authorization_policy = "one_factor";
+            client_secret = "$pbkdf2-sha512$310000$FVEI7Ol..OWJkTFJ2VFe7Q$6JGrmm8UnAAa.YPBcRTOftzrAcE9jdkiq3ZTfFTBRSmc/iDNRwqjnfGTUBi8U9Tw6oYt21Ui9kH2PP20/pGhCw";
+            redirect_uris = [ "https://cloud.${hl.baseDomain}/apps/oidc_login/oidc" ];
+            scopes = [ "openid" "profile" "email" "groups" ];
+            userinfo_signed_response_alg = "none";
+          }
         ];
       };
     };

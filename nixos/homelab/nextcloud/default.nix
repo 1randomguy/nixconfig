@@ -36,16 +36,6 @@ in
         owner = "nextcloud";
         group = "nextcloud";
       };
-      #nextcloud_db_password = {
-      #  file = ../../secrets/x;
-      #  owner = "nextcloud";
-      #  group = "nextcloud";
-      #};
-      #nextcloud_secrets = {
-      #  file = ../../secrets/x;
-      #  owner = "nextcloud";
-      #  group = "nextcloud";
-      #};
     };
 
     # Set up Nextcloud.
@@ -70,10 +60,6 @@ in
 
       config = {
         dbtype = "pgsql";
-        #dbname = "nextcloud";
-        #dbhost = "localhost";
-        #dbpassFile = config.age.secrets.nextcloud_db_password;
-
 
         adminuser = "admin";
         adminpassFile = config.age.secrets.nextcloud_admin_password.path;
@@ -83,13 +69,39 @@ in
         maintenance_window_start = 2; # 02:00
         default_phone_region = "de";
         filelocking.enabled = true;
-
-        #redis = {
-        #  host = config.services.redis.servers.nextcloud.bind;
-        #  port = config.services.redis.servers.nextcloud.port;
-        #  dbindex = 0;
-        #  timeout = 1.5;
-        #};
+        # TODO: Authelia OIDC
+        allow_user_to_change_display_name = false;
+        lost_password_link = "disabled";
+        oidc_login_provider_url = "https://auth.example.com";
+        oidc_login_client_id = "nextcloud";
+        oidc_login_client_secret = "insecure_secret";
+        oidc_login_auto_redirect = false;
+        oidc_login_end_session_redirect = false;
+        oidc_login_button_text = "Log in with Authelia";
+        oidc_login_hide_password_form = false;
+        oidc_login_use_id_token = false;
+        oidc_login_attributes = {
+            id = "preferred_username";
+            name = "name";
+            mail = "email";
+            groups = "groups";
+            is_admin = "is_nextcloud_admin";
+        };
+        oidc_login_default_group = "oidc";
+        oidc_login_use_external_storage = false;
+        oidc_login_scope = "openid profile email groups nextcloud_userinfo";
+        oidc_login_proxy_ldap = false;
+        oidc_login_disable_registration = true;
+        oidc_login_redir_fallback = false;
+        oidc_login_tls_verify = true;
+        oidc_create_groups = false;
+        oidc_login_webdav_enabled = false;
+        oidc_login_password_authentication = false;
+        oidc_login_public_key_caching_time = 86400;
+        oidc_login_min_time_between_jwks_requests = 10;
+        oidc_login_well_known_caching_time = 86400;
+        oidc_login_update_avatar = false;
+        oidc_login_code_challenge_method = "S256";
       };
 
       caching = {
@@ -103,16 +115,12 @@ in
         # List of apps we want to install and are already packaged in
         # https://github.com/NixOS/nixpkgs/blob/master/pkgs/servers/nextcloud/packages/nextcloud-apps.json
         inherit calendar contacts mail notes tasks;
+        oidc = pkgs.fetchNextcloudApp rec {
+          url = "https://github.com/pulsejet/nextcloud-oidc-login/releases/download/v3.2.2/oidc_login.tar.gz";
+          sha256 = "18kxpbnpqizzqj78wl5qxi1v3s44vb3dzb7zrsp1mprww6w2mdj4";
+        };
       };
     };
-
-    # Set up Redis because the admin page was complaining about it.
-    # https://discourse.nixos.org/t/nextlcoud-with-redis-distributed-cashing-and-file-locking/25321/3
-    #services.redis.servers.nextcloud = {
-    #  enable = true;
-    #  bind = "::1";
-    #  port = 6379;
-    #};
 
     # Setup Nginx because we have multiple services on this server.
     services.nginx.virtualHosts."cloud.${hl.baseDomain}" = {
