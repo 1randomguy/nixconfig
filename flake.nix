@@ -30,7 +30,7 @@
         config.allowUnfree = true;
         config.permittedInsecurePackages = [
           #"electron-27.3.11"
-          "libsoup-2.74.3"
+          #"libsoup-2.74.3"
         ];
       };
     in {
