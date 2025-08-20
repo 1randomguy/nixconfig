@@ -76,7 +76,7 @@ in
 
 
         adminuser = "admin";
-        adminpassFile = config.age.secrets.nextcloud_admin_password;
+        adminpassFile = config.age.secrets.nextcloud_admin_password.path;
       };
 
       settings = {
