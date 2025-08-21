@@ -36,6 +36,11 @@ in
         owner = "nextcloud";
         group = "nextcloud";
       };
+      nextcloud_secrets = {
+        file = ../../../secrets/nextcloud_secrets.age;
+        owner = "nextcloud";
+        group = "nextcloud";
+      };
     };
 
     # Set up Nextcloud.
@@ -45,7 +50,6 @@ in
       https = true;
 
       hostName = "cloud.${hl.baseDomain}";
-      #secretFile = config.age.secrets.nextcloud_secrets.path;
 
       phpOptions."opcache.interned_strings_buffer" = "13";
 
@@ -65,6 +69,7 @@ in
         adminpassFile = config.age.secrets.nextcloud_admin_password.path;
       };
 
+      secretFile = config.age.secrets.nextcloud_secrets.path;
       settings = {
         maintenance_window_start = 2; # 02:00
         default_phone_region = "de";
@@ -73,8 +78,7 @@ in
         allow_user_to_change_display_name = false;
         lost_password_link = "disabled";
         oidc_login_provider_url = "https://auth.${hl.baseDomain}";
-        oidc_login_client_id = "nextcloud";
-        oidc_login_client_secret = "insecure_secret";
+        oidc_login_client_id = "Almkdw6nFOnuVxDW0SiMsO7RQetCVjJSobtnM.gDnSjvp~Dv2RsRKvPHxg~VOyE9lpY0Jwgz";
         oidc_login_auto_redirect = false;
         oidc_login_end_session_redirect = false;
         oidc_login_button_text = "Log in with Authelia";
@@ -91,7 +95,7 @@ in
         oidc_login_use_external_storage = false;
         oidc_login_scope = "openid profile email groups nextcloud_userinfo";
         oidc_login_proxy_ldap = false;
-        oidc_login_disable_registration = true;
+        oidc_login_disable_registration = fales;
         oidc_login_redir_fallback = false;
         oidc_login_tls_verify = true;
         oidc_create_groups = false;
@@ -115,9 +119,9 @@ in
         # List of apps we want to install and are already packaged in
         # https://github.com/NixOS/nixpkgs/blob/master/pkgs/servers/nextcloud/packages/nextcloud-apps.json
         inherit calendar contacts mail notes tasks;
-        oidc = pkgs.fetchNextcloudApp rec {
+        oidc_login = pkgs.fetchNextcloudApp {
           url = "https://github.com/pulsejet/nextcloud-oidc-login/releases/download/v3.2.2/oidc_login.tar.gz";
-          sha256 = "18kxpbnpqizzqj78wl5qxi1v3s44vb3dzb7zrsp1mprww6w2mdj4";
+          sha256 = "sha256-RLYquOE83xquzv+s38bahOixQ+y4UI6OxP9HfO26faI=";
           license = "agpl3Plus";
         };
       };
