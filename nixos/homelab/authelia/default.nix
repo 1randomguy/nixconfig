@@ -47,7 +47,6 @@ in
         oidcHmacSecretFile = config.age.secrets.authelia_hmac_secret.path;
       };
       settings = {
-    
         server = {
           address = "tcp://127.0.0.1:9091";
         };
@@ -130,26 +129,46 @@ in
           };
         };
 
-        identity_providers.oidc.clients = [ 
-          {
-            client_name = "immich";
-            client_id = "Y0Jh7X6m5IdNKEtCJKzKWyeAftze0K0fnyowcZc6a41zHYpOFm3qCdDX.heMFwEbmyhWJBik";
-            authorization_policy = "one_factor";
-            client_secret = "$pbkdf2-sha512$310000$ey9KSCbGPAdAFap69OTt/A$1OrCIaele2TwjSrLKqbRGa7xLxkKOpCdS7Xa1J7YWZOTeEKpvCK5BMBbG41nQHs552oQwJXyZL8Gtzcntee.og";
-            redirect_uris = [ "https://immich.${hl.baseDomain}/auth/login" "https://immich.${hl.baseDomain}/user-settings" "app.immich:///oauth-callback" ];
-            scopes = [ "openid" "profile" "email" ];
-            userinfo_signed_response_alg = "none";
-          }
-          {
-            client_name = "nextcloud";
-            client_id = "Almkdw6nFOnuVxDW0SiMsO7RQetCVjJSobtnM.gDnSjvp~Dv2RsRKvPHxg~VOyE9lpY0Jwgz";
-            authorization_policy = "one_factor";
-            client_secret = "$pbkdf2-sha512$310000$FVEI7Ol..OWJkTFJ2VFe7Q$6JGrmm8UnAAa.YPBcRTOftzrAcE9jdkiq3ZTfFTBRSmc/iDNRwqjnfGTUBi8U9Tw6oYt21Ui9kH2PP20/pGhCw";
-            redirect_uris = [ "https://cloud.${hl.baseDomain}/apps/oidc_login/oidc" ];
-            scopes = [ "openid" "profile" "email" "groups" ];
-            userinfo_signed_response_alg = "none";
-          }
-        ];
+        definitions.user_attributes = {
+            is_nextcloud_admin = {
+              ## Expression to evaluate admin privilege for Nextcloud.
+              expression = "'nextcloud-admins' in groups";
+            };
+        };
+
+        identity_providers.oidc = {
+          claims_policies.nextcloud_userinfo = {
+              custom_claims.is_nextcloud_admin = {};
+          };
+          
+          scopes.nextcloud_userinfo = {
+              claims = [ "is_nextcloud_admin" ];
+          };
+
+          clients = [ 
+            {
+              client_name = "immich";
+              client_id = "Y0Jh7X6m5IdNKEtCJKzKWyeAftze0K0fnyowcZc6a41zHYpOFm3qCdDX.heMFwEbmyhWJBik";
+              authorization_policy = "one_factor";
+              client_secret = "$pbkdf2-sha512$310000$ey9KSCbGPAdAFap69OTt/A$1OrCIaele2TwjSrLKqbRGa7xLxkKOpCdS7Xa1J7YWZOTeEKpvCK5BMBbG41nQHs552oQwJXyZL8Gtzcntee.og";
+              redirect_uris = [ "https://immich.${hl.baseDomain}/auth/login" "https://immich.${hl.baseDomain}/user-settings" "app.immich:///oauth-callback" ];
+              scopes = [ "openid" "profile" "email" ];
+              userinfo_signed_response_alg = "none";
+            }
+            {
+              client_name = "nextcloud";
+              client_id = "Almkdw6nFOnuVxDW0SiMsO7RQetCVjJSobtnM.gDnSjvp~Dv2RsRKvPHxg~VOyE9lpY0Jwgz";
+              authorization_policy = "one_factor";
+              client_secret = "$pbkdf2-sha512$310000$FVEI7Ol..OWJkTFJ2VFe7Q$6JGrmm8UnAAa.YPBcRTOftzrAcE9jdkiq3ZTfFTBRSmc/iDNRwqjnfGTUBi8U9Tw6oYt21Ui9kH2PP20/pGhCw";
+              redirect_uris = [ "https://cloud.${hl.baseDomain}/apps/oidc_login/oidc" ];
+              scopes = [ "openid" "profile" "email" "groups" "nextcloud_userinfo" ];
+              userinfo_signed_response_alg = "none";
+              response_types = "code";
+              grant_types = [ "authorization_code" ];
+              claims_policy = "nextcloud_userinfo";
+            }
+          ];
+        };
       };
     };
     services.redis.servers.authelia-main = {
