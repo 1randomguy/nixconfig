@@ -119,6 +119,7 @@ in
         # List of apps we want to install and are already packaged in
         # https://github.com/NixOS/nixpkgs/blob/master/pkgs/servers/nextcloud/packages/nextcloud-apps.json
         inherit calendar contacts mail notes tasks;
+        # custom apps ref: https://github.com/helsinki-systems/nc4nix/blob/main/31.json
         oidc_login = pkgs.fetchNextcloudApp {
           url = "https://github.com/pulsejet/nextcloud-oidc-login/releases/download/v3.2.2/oidc_login.tar.gz";
           sha256 = "sha256-RLYquOE83xquzv+s38bahOixQ+y4UI6OxP9HfO26faI=";
