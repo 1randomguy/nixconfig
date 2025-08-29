@@ -26,7 +26,7 @@ in
       location = "/var/backup/postgresql";
     };
 
-    homelab.services.restic.backupDirs = [ "/var/lib/nextcloud" "/var/backups/postgresql" ];
+    homelab.services.restic.backupDirs = [ "/var/lib/nextcloud" "/var/backup/postgresql" ];
 
     # Set up secrets. This is a sops-nix file checked in at the same folder as
     # this file. 
