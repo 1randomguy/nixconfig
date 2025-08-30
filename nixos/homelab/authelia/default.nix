@@ -166,6 +166,7 @@ in
               response_types = "code";
               grant_types = [ "authorization_code" ];
               claims_policy = "nextcloud_userinfo";
+              consent_mode = "implicit";
             }
           ];
         };
