@@ -51,7 +51,7 @@ in
     };
 
     # Path-based activation to rebuild on changes
-    systemd.paths.zola-blog-watch = lib.mkIf cfg.buildOnChange {
+    systemd.paths.zola-blog-watch = {
       wantedBy = [ "multi-user.target" ];
       pathConfig = {
         PathModified = cfg.sourceDir;
