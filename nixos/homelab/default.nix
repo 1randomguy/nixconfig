@@ -87,6 +87,7 @@ in
     ./authelia
     ./ddclient
     ./nextcloud
+    ./zola
   ];
 
   options.homelab = {
