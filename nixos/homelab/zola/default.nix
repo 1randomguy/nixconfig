@@ -4,7 +4,7 @@ let
   hl = config.homelab;
 in
 {
-  options.services.zola = {
+  options.homelab.services.zola = {
     mkEnable = lib.mkEnableOption "Zola static site generator & server";
     sourceDir = lib.mkOption {
       type = lib.types.path;
