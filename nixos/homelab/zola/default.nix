@@ -22,12 +22,10 @@ in
     # Create user for the blog service
     users.users.zola-blog = {
       isSystemUser = true;
-      group = cfg.user;
+      group = "zola-blog";
       home = cfg.outputDir;
       createHome = false;
     };
-
-    users.groups.zola-blog = {};
 
     # backup the blog source
     homelab.services.restic.backupDirs = [ cfg.sourceDir ];
