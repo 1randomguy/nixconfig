@@ -27,6 +27,8 @@ in
       createHome = false;
     };
 
+    users.groups.zola-blog = {};
+
     # backup the blog source
     homelab.services.restic.backupDirs = [ cfg.sourceDir ];
 
