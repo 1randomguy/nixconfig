@@ -11,6 +11,11 @@ in
       description = "Path to your blog source directory";
       example = "/home/user/blog";
     };
+    sourceOwner = lib.mkOption {
+      type = lib.types.str;
+      description = "User that owns your blog source directory";
+      example = "user";
+    };
     outputDir = lib.mkOption {
       type = lib.types.path;
       default = "/var/lib/zola-blog";
@@ -40,7 +45,8 @@ in
 
       serviceConfig = {
         Type = "oneshot";
-        User = "zola-blog";
+        User = cfg.sourceOwner;
+        Group = "zola-blog";
         WorkingDirectory = cfg.sourceDir;
         ExecStart = "${pkgs.zola}/bin/zola build --output-dir ${cfg.outputDir}";
         RemainAfterExit = true;

@@ -30,7 +30,8 @@
       nextcloud.enable = true;
       zola = {
         enable = true;
-        sourceDir = "/home/zola-blog/blog";
+        sourceOwner = "bene";
+        sourceDir = "/home/bene/blog";
       };
     };
   };
