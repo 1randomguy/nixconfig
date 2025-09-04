@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   imports =
@@ -28,6 +28,10 @@
         directory = "/public";
       };
       nextcloud.enable = true;
+      zola = {
+        enable = true;
+        sourceDir = "/home/bene/blog";
+      };
     };
   };
 
