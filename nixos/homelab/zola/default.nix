@@ -24,16 +24,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    # Create user for the blog service
-    users.users.zola-blog = {
-      isSystemUser = true;
-      group = "zola-blog";
-      home = cfg.outputDir;
-      createHome = true;
-    };
-
-    users.groups.zola-blog = {};
-
     # backup the blog source
     homelab.services.restic.backupDirs = [ cfg.sourceDir ];
 
@@ -46,9 +36,8 @@ in
       serviceConfig = {
         Type = "oneshot";
         User = cfg.sourceOwner;
-        Group = "zola-blog";
         WorkingDirectory = cfg.sourceDir;
-        ExecStart = "${pkgs.zola}/bin/zola build --output-dir ${cfg.outputDir}";
+        ExecStart = "${pkgs.zola}/bin/zola build --output-dir ${cfg.outputDir} --force";
         RemainAfterExit = true;
       };
 
@@ -81,7 +70,7 @@ in
 
     # Ensure the output directory has correct permissions
     systemd.tmpfiles.rules = [
-      "d ${cfg.outputDir} 0755 zola-blog zola-blog -"
+      "d ${cfg.outputDir} 0755 ${cfg.sourceOwner} nginx -"
     ];
   };
 }
