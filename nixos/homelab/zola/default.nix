@@ -29,6 +29,9 @@ in
 
     users.groups.zola-blog = {};
 
+    # backup the blog source
+    homelab.services.restic.backupDirs = [ cfg.sourceDir ];
+
     # Systemd service to build the blog
     systemd.services.zola-blog-build = {
       description = "Build Zola blog";
