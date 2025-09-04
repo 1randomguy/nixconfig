@@ -5,7 +5,7 @@ let
 in
 {
   options.homelab.services.zola = {
-    mkEnable = lib.mkEnableOption "Zola static site generator & server";
+    enable = lib.mkEnableOption "Zola static site generator & server";
     sourceDir = lib.mkOption {
       type = lib.types.path;
       description = "Path to your blog source directory";
