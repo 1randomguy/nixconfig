@@ -24,7 +24,7 @@ in
       isSystemUser = true;
       group = "zola-blog";
       home = cfg.outputDir;
-      createHome = false;
+      createHome = true;
     };
 
     users.groups.zola-blog = {};
