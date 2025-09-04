@@ -40,7 +40,7 @@ in
 
       serviceConfig = {
         Type = "oneshot";
-        User = cfg.user;
+        User = "zola-blog";
         WorkingDirectory = cfg.sourceDir;
         ExecStart = "${pkgs.zola}/bin/zola build --output-dir ${cfg.outputDir}";
         RemainAfterExit = true;
@@ -75,7 +75,7 @@ in
 
     # Ensure the output directory has correct permissions
     systemd.tmpfiles.rules = [
-      "d ${cfg.outputDir} 0755 ${cfg.user} ${cfg.user} -"
+      "d ${cfg.outputDir} 0755 zola-blog zola-blog -"
     ];
   };
 }
