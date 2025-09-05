@@ -52,7 +52,7 @@ in
       
       script = ''
         find ${cfg.sourceDir} -type f \( -name "*.md" -o -name "*.toml" -o -name "*.html" \) | \
-        ${pkgs.entr}/bin/entr -r ${pkgs.zola}/bin/zola build --output-dir ${cfg.outputDir}/www --force
+        ${pkgs.entr}/bin/entr -n -r ${pkgs.zola}/bin/zola build --output-dir ${cfg.outputDir}/www --force
       '';
       
       path = [ pkgs.entr pkgs.findutils pkgs.zola ];
