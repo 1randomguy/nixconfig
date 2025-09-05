@@ -27,7 +27,7 @@ in
     # backup the blog source
     homelab.services.restic.backupDirs = [ cfg.sourceDir ];
 
-    # Entr-based activation to rebuild on changes
+    # watchexec-based activation of rebuild on any source changes
     systemd.services.zola-blog-server = {
       description = "Watch for blog changes and rebuild";
       wantedBy = [ "multi-user.target" ];
@@ -51,28 +51,11 @@ in
       };
       
       script = ''
-        find ${cfg.sourceDir} -type f \( -name "*.md" -o -name "*.toml" -o -name "*.html" \) | \
-        ${pkgs.entr}/bin/entr -n -r ${pkgs.zola}/bin/zola build --output-dir ${cfg.outputDir}/www --force
+        ${pkgs.watchexec}/bin/watchexec --watch ${cfg.sourceDir} --exts md,toml,html --recursive -- \
+        ${pkgs.zola}/bin/zola build --output-dir ${cfg.outputDir}/www --force
       '';
       
-      path = [ pkgs.entr pkgs.findutils pkgs.zola ];
-    };
-
-    systemd.services.zola-blog-server-restart = {
-      description = "Restart entr service on new/deleted files";
-      serviceConfig = {
-        Type = "oneshot";
-        ExecStart = "/run/current-system/sw/bin/systemctl restart zola-blog-server.service";
-      };
-    };
-
-    # Path-based activation to restart service on new/deleted files
-    systemd.paths.zola-blog-watch = {
-      wantedBy = [ "multi-user.target" ];
-      pathConfig = {
-        PathModified = cfg.sourceDir;
-        Unit = "zola-blog-server-restart.service";
-      };
+      path = [ pkgs.watchexec pkgs.zola ];
     };
 
     # Nginx configuration
