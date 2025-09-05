@@ -39,15 +39,15 @@ in
         WorkingDirectory = cfg.sourceDir;
         Restart = "always";
         RestartSec = 5;
-        ## Security restrictions
-        #NoNewPrivileges = true;
-        #PrivateTmp = true;
+        # Security restrictions
+        NoNewPrivileges = true;
+        PrivateTmp = true;
         #ProtectSystem = "strict";
         #ProtectHome = true;
         #ReadOnlyPaths = [ cfg.sourceDir ];
         #ReadWritePaths = [ cfg.outputDir ];
-        ## Network restrictions (zola build doesn't need network)
-        #PrivateNetwork = true;
+        # Network restrictions (zola build doesn't need network)
+        PrivateNetwork = true;
       };
       
       script = ''
