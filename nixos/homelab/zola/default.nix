@@ -51,7 +51,7 @@ in
       };
       
       script = ''
-        ${pkgs.watchexec}/bin/watchexec --watch ${cfg.sourceDir} --exts md,toml,html --recursive -- \
+        ${pkgs.watchexec}/bin/watchexec --watch ${cfg.sourceDir} --exts md,toml,html -- \
         ${pkgs.zola}/bin/zola build --output-dir ${cfg.outputDir}/www --force
       '';
       
