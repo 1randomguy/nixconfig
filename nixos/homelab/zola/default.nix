@@ -27,31 +27,35 @@ in
     # backup the blog source
     homelab.services.restic.backupDirs = [ cfg.sourceDir ];
 
-    # Systemd service to build the blog
-    systemd.services.zola-blog-build = {
-      description = "Build Zola blog";
+    # Path-based activation to rebuild on changes
+    systemd.paths.zola-blog-watch = {
+      description = "Watch for blog changes and rebuild";
       wantedBy = [ "multi-user.target" ];
       after = [ "network.target" ];
 
       serviceConfig = {
-        Type = "oneshot";
+        Type = "simple";
         User = cfg.sourceOwner;
         WorkingDirectory = cfg.sourceDir;
-        ExecStart = "${pkgs.zola}/bin/zola build --output-dir ${cfg.outputDir}/www --force";
-        RemainAfterExit = true;
+        Restart = "always";
+        RestartSec = 5;
+        # Security restrictions
+        NoNewPrivileges = true;
+        PrivateTmp = true;
+        ProtectSystem = "strict";
+        ProtectHome = true;
+        ReadOnlyPaths = [ cfg.sourceDir ];
+        ReadWritePaths = [ cfg.outputDir ];
+        # Network restrictions (zola build doesn't need network)
+        PrivateNetwork = true;
       };
-
-      # Rebuild when source directory changes
-      path = [ pkgs.zola ];
-    };
-
-    # Path-based activation to rebuild on changes
-    systemd.paths.zola-blog-watch = {
-      wantedBy = [ "multi-user.target" ];
-      pathConfig = {
-        PathModified = cfg.sourceDir;
-        Unit = "zola-blog-build.service";
-      };
+      
+      script = ''
+        find ${cfg.sourceDir} -type f \( -name "*.md" -o -name "*.toml" -o -name "*.html" \) | \
+        ${pkgs.entr}/bin/entr -r ${pkgs.zola}/bin/zola build --output-dir ${cfg.outputDir}/www --force
+      '';
+      
+      path = [ pkgs.entr pkgs.findutils pkgs.zola ];
     };
 
     # Nginx configuration
