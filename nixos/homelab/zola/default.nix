@@ -27,7 +27,7 @@ in
     # backup the blog source
     homelab.services.restic.backupDirs = [ cfg.sourceDir ];
 
-    # Path-based activation to rebuild on changes
+    # Entr-based activation to rebuild on changes
     systemd.services.zola-blog-watch = {
       description = "Watch for blog changes and rebuild";
       wantedBy = [ "multi-user.target" ];
@@ -56,6 +56,15 @@ in
       '';
       
       path = [ pkgs.entr pkgs.findutils pkgs.zola ];
+    };
+
+    # Path-based activation to rebuild on changes
+    systemd.paths.zola-blog-path-watch = {
+      wantedBy = [ "multi-user.target" ];
+      pathConfig = {
+        PathModified = cfg.sourceDir;
+        Unit = "zola-blog-watch.service";
+      };
     };
 
     # Nginx configuration
