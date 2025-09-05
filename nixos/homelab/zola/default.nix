@@ -28,7 +28,7 @@ in
     homelab.services.restic.backupDirs = [ cfg.sourceDir ];
 
     # Entr-based activation to rebuild on changes
-    systemd.services.zola-blog-watch = {
+    systemd.services.zola-blog-server = {
       description = "Watch for blog changes and rebuild";
       wantedBy = [ "multi-user.target" ];
       after = [ "network.target" ];
@@ -58,12 +58,20 @@ in
       path = [ pkgs.entr pkgs.findutils pkgs.zola ];
     };
 
-    # Path-based activation to rebuild on changes
-    systemd.paths.zola-blog-path-watch = {
+    systemd.services.zola-blog-server-restart = {
+      description = "Restart entr service on new/deleted files";
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = "/run/current-system/sw/bin/systemctl restart zola-blog-server.service";
+      };
+    };
+
+    # Path-based activation to restart service on new/deleted files
+    systemd.paths.zola-blog-watch = {
       wantedBy = [ "multi-user.target" ];
       pathConfig = {
         PathModified = cfg.sourceDir;
-        Unit = "zola-blog-watch.service";
+        Unit = "zola-blog-server-restart.service";
       };
     };
 
