@@ -28,7 +28,7 @@ in
     homelab.services.restic.backupDirs = [ cfg.sourceDir ];
 
     # Path-based activation to rebuild on changes
-    systemd.paths.zola-blog-watch = {
+    systemd.services.zola-blog-watch = {
       description = "Watch for blog changes and rebuild";
       wantedBy = [ "multi-user.target" ];
       after = [ "network.target" ];
