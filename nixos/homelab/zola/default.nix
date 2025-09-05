@@ -16,10 +16,10 @@ in
       description = "User that owns your blog source directory";
       example = "user";
     };
-    outputDir = lib.mkOption {
-      type = lib.types.path;
-      default = "/var/lib/zola-blog";
-      description = "Directory where built site will be stored";
+    port = lib.mkOption {
+      type = lib.types.int;
+      default = 8080;
+      description = "Port for the Zola server";
     };
   };
 
@@ -27,30 +27,18 @@ in
     # backup the blog source
     homelab.services.restic.backupDirs = [ cfg.sourceDir ];
 
-    # Systemd service to build the blog
-    systemd.services.zola-blog-build = {
+    # Systemd service to serve the blog
+    systemd.services.zola-blog = {
       description = "Build Zola blog";
       wantedBy = [ "multi-user.target" ];
       after = [ "network.target" ];
 
       serviceConfig = {
-        Type = "oneshot";
+        Type = "exec";
         User = cfg.sourceOwner;
         WorkingDirectory = cfg.sourceDir;
-        ExecStart = "${pkgs.zola}/bin/zola build --output-dir ${cfg.outputDir} --force";
-        RemainAfterExit = true;
-      };
-
-      # Rebuild when source directory changes
-      path = [ pkgs.zola ];
-    };
-
-    # Path-based activation to rebuild on changes
-    systemd.paths.zola-blog-watch = {
-      wantedBy = [ "multi-user.target" ];
-      pathConfig = {
-        PathModified = cfg.sourceDir;
-        Unit = "zola-blog-build.service";
+        ExecStart = "${pkgs.zola}/bin/zola serve --interface 127.0.0.1 --port ${toString cfg.port}";
+        Restart = "always";
       };
     };
 
@@ -60,17 +48,9 @@ in
       acmeRoot = null;
       forceSSL = true;
 
-      root = cfg.outputDir;
-      
       locations."/" = {
-        index = "index.html";
-        tryFiles = "$uri $uri/ =404";
+        proxyPass = "http://127.0.0.1:${toString cfg.port}";
       };
     };
-
-    # Ensure the output directory has correct permissions
-    systemd.tmpfiles.rules = [
-      "d ${cfg.outputDir} 0755 ${cfg.sourceOwner} nginx -"
-    ];
   };
 }
