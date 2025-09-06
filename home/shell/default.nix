@@ -8,6 +8,7 @@ in {
     ./zsh
     ./ghostty
     ./zk
+    ./nvf
   ];
 
   ## OPTIONS
