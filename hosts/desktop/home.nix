@@ -6,8 +6,6 @@
       inputs.nvf.homeManagerModules.default
       ../../home/common.nix
       ../../home/shell
-      ../../home/apps/nextcloud.nix
-      ../../home/apps/socials-private.nix
       ../../home/gnome
       ../../home/apps
     ];
@@ -24,6 +22,7 @@
     devel = {
       enable = true;
     };
+    socials.enable = true;
   };
 
   shell = {
@@ -34,6 +33,7 @@
     ghostty.enable = true;
     tmux.enable = true;
     zk.enable = true;
+    nvf.enable = true;
   };
 
   gnome_customizations = {

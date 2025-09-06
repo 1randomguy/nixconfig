@@ -5,8 +5,6 @@
     [ 
       ../../home/common.nix
       ../../home/shell
-      ../../home/apps/nextcloud.nix
-      ../../home/apps/socials-private.nix
       ../../home/apps
       ../../home/gnome
     ];
@@ -16,6 +14,7 @@
     latex.enable = false;
     uni_vpn.enable = true;
     touch_apps.enable = true;
+    socials.enable = true;
     music = {
       enable = true;
     };

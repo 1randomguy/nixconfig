@@ -7,7 +7,6 @@
       ../../home/shell
       ../../home/apps
       ../../home/gnome
-      ../../home/apps/nextcloud.nix
     ];
 
   apps = {
