@@ -11,6 +11,7 @@ in
     ./touch-apps
     ./uni-vpn
     ./devel
+    ./socials
   ];
   options.apps = {
     enable = mkEnableOption "Install graphical apps on this system";
@@ -20,7 +21,6 @@ in
       # web
       firefox
       brave
-      #inputs.zen-browser.packages.${pkgs.system}.default
       # image viewing, basic editing
       gthumb
       vlc
@@ -35,6 +35,7 @@ in
       # other
       ausweisapp
       foliate
+      nextcloud-client
     ];
   };
 }
