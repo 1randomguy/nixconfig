@@ -3,7 +3,6 @@
 {
   imports =
     [ 
-      inputs.nvf.homeManagerModules.default
       ../../home/common.nix
       ../../home/shell
       ../../home/gnome

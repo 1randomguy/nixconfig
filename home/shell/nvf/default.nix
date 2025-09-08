@@ -1,8 +1,12 @@
-{ config, pkgs, lib, ... }:
+{ inputs, config, pkgs, lib, ... }:
 let
   cfg = config.shell.nvf;
 in
 {
+  imports = [
+      inputs.nvf.homeManagerModules.default
+  ];
+
   options.shell.nvf = {
     enable = lib.mkEnableOption "my neovim config";
   };
