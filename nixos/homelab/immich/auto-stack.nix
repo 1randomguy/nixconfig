@@ -34,6 +34,7 @@ in
         User = "immich";
         ExecStart = "${pkgs.docker}/bin/docker run --rm --env-file=${config.age.secrets.auto-stacker-env.path} mattdavis90/immich-stacker";
       };
+      path = [ pkgs.watchexec pkgs.zola ];
     };
 
     age.secrets."auto-stacker-env".file = ../../../secrets/auto_stacker_env.age; 
