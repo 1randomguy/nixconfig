@@ -158,25 +158,25 @@ in
             # Window resizing
             {
               mode = "n";
-              key = "<A-h>";  # Alt+h
+              key = "<C-A-h>";  # Alt+h
               action = "<C-w><";
               desc = "Decrease window width";
             }
             {
               mode = "n";
-              key = "<A-l>";  # Alt+l
+              key = "<C-A-l>";  # Alt+l
               action = "<C-w>>";
               desc = "Increase window width";
             }
             {
               mode = "n";
-              key = "<A-j>";  # Alt+j
+              key = "<C-A-j>";  # Alt+j
               action = "<C-w>-";
               desc = "Decrease window height";
             }
             {
               mode = "n";
-              key = "<A-k>";  # Alt+k
+              key = "<C-A-k>";  # Alt+k
               action = "<C-w>+";
               desc = "Increase window height";
             }
