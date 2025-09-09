@@ -14,7 +14,10 @@
     baseDomain = "shimagumo.party";
     services = {
       adguardhome.enable = true;
-      immich.enable = true;
+      immich = {
+        enable = true;
+        auto-stack.enable = true;
+      };
       authelia.enable = true;
       ddclient.enable = true;
       restic = {
