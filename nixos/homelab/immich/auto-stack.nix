@@ -15,15 +15,6 @@ in
   config = lib.mkIf (cfg.enable && hl.services.immich.enable) {
     virtualisation.docker.enable = true;
 
-    users = {
-      groups.autostack = { };
-      users.autostack = {
-        isSystemUser = true;
-        group = "autostack";
-        extraGroups = [ "docker" ];
-      };
-    };
-
     systemd.timers."immich-auto-stacker" = {
       wantedBy = [ "timers.target" ];
       timerConfig = {
@@ -39,7 +30,6 @@ in
       after = [ "docker.service" ];
       requires = [ "docker.service" ];
 
-      user = "autostack";
       serviceConfig = {
         Type = "oneshot";
         User = "immich";
@@ -50,7 +40,7 @@ in
 
     age.secrets."auto-stacker-env" = {
       file = ../../../secrets/auto_stacker_env.age; 
-      owner = "autostack";
+      owner = "immich";
     };
   };
 }
