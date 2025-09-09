@@ -26,6 +26,7 @@
     tmux.enable = true;
     ghostty.enable = true;
     zk.enable = true;
+    nvf.enable = true;
   };
 
   gnome_customizations = {

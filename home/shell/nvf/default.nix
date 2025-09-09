@@ -42,6 +42,19 @@ in
 
           mini = {
             surround.enable = true;
+            bufremove.enable = true;
+          };
+
+          ui = {
+            illuminate.enable = true;
+          };
+
+          notes.todo-comments = {
+            enable = true;
+            mappings = {
+              quickFix = "<leader>tdq";
+              telescope = "<leader>tds";
+            };
           };
 
           options = {
@@ -81,6 +94,10 @@ in
             python.enable = true;
             ts.enable = true;
             clang.enable = true;
+            yaml = {
+              enable = true; # somehow weird
+              treesitter.enable = false;
+            };
           };
 
           lsp = {
@@ -169,10 +186,16 @@ in
               key = "<leader>n";
               desc = "stop highlighting";
             }
+            # Plugins
             {
               mode = "n";
               action = "<cmd>UndotreeToggle<CR>";
               key = "<leader>ut";
+            }
+            {
+              mode = "n";
+              action = "<cmd>lua MiniBufremove.delete()<CR>";
+              key = "<leader>bd";
             }
             # Exit Terminal
             { 
