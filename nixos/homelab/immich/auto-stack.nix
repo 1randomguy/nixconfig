@@ -50,7 +50,7 @@ in
 
     age.secrets."auto-stacker-env" = {
       file = ../../../secrets/auto_stacker_env.age; 
-      owner = "autostack"
+      owner = "autostack";
     };
   };
 }
