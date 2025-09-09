@@ -35,7 +35,7 @@ in {
     home.packages = with pkgs; [
       git
       git-credential-oauth
-      inputs.nixvim.packages.${system}.default
+      #inputs.nixvim.packages.${system}.default
       just
       wget
       neofetch
