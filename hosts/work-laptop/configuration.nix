@@ -21,6 +21,10 @@
       docker.enable = true;
       wine.enable = false;
     };
+    games = {
+      enable = true;
+      steam.enable = true;
+    };
   };
 
   # Use the systemd-boot EFI boot loader.
