@@ -30,6 +30,11 @@ in
             style = "mocha";
           };
 
+          clipboard = {
+            enable = true;
+            providers.wl-copy.enable = true;
+          };
+
           statusline.lualine.enable = true;
 
           utility.yazi-nvim = {
