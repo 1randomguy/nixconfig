@@ -35,6 +35,20 @@ in
             providers.wl-copy.enable = true;
           };
 
+          utility.images = {
+            image-nvim = {
+              enable = true;
+              setupOpts = {
+                backend = "kitty";
+                integrations.markdown = {
+                  enable = true;
+                  onlyRenderAtCursor = true;
+                };
+              };
+            };
+            img-clip.enable = true;
+          };
+
           statusline.lualine.enable = true;
 
           utility.yazi-nvim = {
@@ -113,7 +127,7 @@ in
           utility.motion.flash-nvim = {
             enable = true;
             mappings.jump = "<leader>s";
-            mappings.treesitter = "<leader>S";
+            mappings.treesitter = "S";
           };
 
           utility.undotree.enable = true;
