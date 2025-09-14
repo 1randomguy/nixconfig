@@ -9,7 +9,6 @@ in
     ./latex
     ./music
     ./touch-apps
-    ./uni-vpn
     ./devel
     ./socials
   ];

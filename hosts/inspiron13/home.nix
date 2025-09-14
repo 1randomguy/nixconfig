@@ -12,7 +12,6 @@
   apps = {
     enable = true;
     latex.enable = false;
-    uni_vpn.enable = true;
     touch_apps.enable = true;
     socials.enable = true;
     music = {

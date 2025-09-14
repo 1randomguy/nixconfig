@@ -1,17 +1,18 @@
 {lib, config, pkgs, ...}:
 with lib;
 let
-  cfg = config.apps.uni_vpn;
+  cfg = config.workstation.uni_vpn;
 in
 {
-  options.apps.uni_vpn = {
+  options.workstation.uni_vpn = {
     enable = mkEnableOption "VPN for Uni";
   };
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
+    environment.systemPackages = with pkgs; [
       openconnect
+    ];
+    networking.networkmanager.plugins = with pkgs; [
       networkmanager-openconnect
-      networkmanagerapplet
     ];
   };
 }

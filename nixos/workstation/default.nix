@@ -10,6 +10,7 @@ in
     ./gnome
     ./virtualization
     ./work
+    ./uni-vpn
   ];
 
   options.workstation = {
