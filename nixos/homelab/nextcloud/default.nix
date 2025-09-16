@@ -74,7 +74,8 @@ in
         maintenance_window_start = 2; # 02:00
         default_phone_region = "de";
         filelocking.enabled = true;
-        # TODO: Authelia OIDC
+        session_lifetime = "2592000";
+        # Authelia OIDC
         allow_user_to_change_display_name = false;
         lost_password_link = "disabled";
         oidc_login_provider_url = "https://auth.${hl.baseDomain}";
