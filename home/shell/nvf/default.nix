@@ -43,7 +43,10 @@ in
                 backend = "kitty";
                 integrations.markdown = {
                   enable = true;
-                  onlyRenderAtCursor = true;
+                  #clearInInsertMode = true;
+                  only_render_at_cursor = true; #idk why this wont work 
+                  only_render_at_cursor_mode = "popup";
+                  floating_windows = true;
                 };
               };
             };
