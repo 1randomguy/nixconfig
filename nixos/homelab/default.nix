@@ -88,6 +88,7 @@ in
     ./ddclient
     ./nextcloud
     ./zola
+    ./navidrome
   ];
 
   options.homelab = {
@@ -203,6 +204,13 @@ in
                 description = "Personal photos and videos";
                 href = "https://immich.${cfg.baseDomain}";
                 icon = "immich.svg";
+              };
+            }
+            {
+              "Navidrome" = {
+                description = "Music streaming server";
+                href = "https://music.${cfg.baseDomain}";
+                icon = "navidrome.svg";
               };
             }
           ];

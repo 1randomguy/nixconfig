@@ -36,6 +36,7 @@
         sourceOwner = "bene";
         sourceDir = "/home/bene/blog";
       };
+      navidrome.enable = true;
     };
   };
 
