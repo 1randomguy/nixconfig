@@ -132,6 +132,7 @@ in
     # Setup Nginx because we have multiple services on this server.
     services.nginx.virtualHosts."cloud.${hl.baseDomain}" = {
       enableACME = true;
+      acmeRoot = null;
       forceSSL = true;
       locations."/".return = "301 https://nextcloud.${hl.baseDomain}$request_uri";
     };
