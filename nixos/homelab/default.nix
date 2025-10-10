@@ -198,7 +198,7 @@ in
       environmentFile = builtins.toFile "homepage.env" "HOMEPAGE_ALLOWED_HOSTS=${cfg.baseDomain}";
       services = [
         {
-          "Personal" = [
+          "Media" = [
             {
               "Immich" = {
                 description = "Personal photos and videos";
@@ -214,17 +214,43 @@ in
               };
             }
           ];
-          "Misc." = [
+        }
+        {
+          "Network" = [
+            {
+              "AdGuard Home" = {
+                description = "Network-wide ad blocker";
+                href = "https://adguard.${cfg.baseDomain}";
+                icon = "adguard-home.svg";
+              };
+            }
             {
               "Authelia" = {
                 description = "Authentication portal for the homelab";
                 href = "https://auth.${cfg.baseDomain}";
                 icon = "authelia.svg";
               };
-              "AdGuard Home" = {
-                description = "Network-wide ad blocker";
-                href = "https://adguard.${cfg.baseDomain}";
-                icon = "adguard-home.svg";
+            }
+          ];
+        }
+        {
+          "Cloud" = [
+            {
+              "Nextcloud" = {
+                description = "Personal cloud storage";
+                href = "https://nextcloud.${cfg.baseDomain}";
+                icon = "nextcloud.svg";
+              };
+            }
+          ];
+        }
+        {
+          "Services" = [
+            {
+              "Zola" = {
+                description = "Static site generator";
+                href = "https://zola.${cfg.baseDomain}";
+                icon = "zola.svg";
               };
             }
           ];
