@@ -30,6 +30,11 @@
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
+  fileSystems."/home/bene/HDD" = 
+    { device = "/dev/disk/by-uuid/a16541e6-a613-4720-bf80-c16047281524";
+      fsType = "ext4";
+    };
+
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
