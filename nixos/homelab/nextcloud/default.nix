@@ -49,7 +49,8 @@ in
       package = pkgs.nextcloud31;
       https = true;
 
-      hostName = "cloud.${hl.baseDomain}";
+      hostName = "nextcloud.${hl.baseDomain}";
+      extraDomains = [ "cloud.${hl.baseDomain}" ];
 
       phpOptions."opcache.interned_strings_buffer" = "13";
 
@@ -131,6 +132,12 @@ in
 
     # Setup Nginx because we have multiple services on this server.
     services.nginx.virtualHosts."cloud.${hl.baseDomain}" = {
+      enableACME = true;
+      acmeRoot = null;
+      forceSSL = true;
+    };
+
+    services.nginx.virtualHosts."nextcloud.${hl.baseDomain}" = {
       enableACME = true;
       acmeRoot = null;
       forceSSL = true;
