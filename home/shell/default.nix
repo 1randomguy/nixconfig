@@ -44,6 +44,8 @@ in {
       nix-prefetch-scripts
       fzf
       mosh
+      gemini-cli
+      rename
     ];
 
     programs.git = {
