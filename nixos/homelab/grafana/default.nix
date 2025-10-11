@@ -25,13 +25,17 @@ in
         root_url = "https://grafana.${hl.baseDomain}";
       };
       provision = {
-        datasources = [{
-          name = "Prometheus";
-          type = "prometheus";
-          access = "proxy";
-          url = "http://localhost:9090";
-          isDefault = true;
-        }];
+        datasources = {
+          settings = {
+            datasources = [{
+              name = "Prometheus";
+              type = "prometheus";
+              access = "proxy";
+              url = "http://localhost:9090";
+              isDefault = true;
+            }];
+          };
+        };
         dashboards = {
           settings = {
             apiVersion = 1;
