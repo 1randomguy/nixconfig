@@ -35,6 +35,7 @@ in
       ausweisapp
       foliate
       nextcloud-client
+      protonvpn-gui
     ];
   };
 }
