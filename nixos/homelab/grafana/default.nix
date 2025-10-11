@@ -6,15 +6,10 @@ let
     url = "https://grafana.com/api/dashboards/12777/revisions/1/download";
     sha256 = "1xzayyn9zxpcr3kcvp6pxr0dgdwjvzgizls3dx0zvz49hqdggdqx";
   };
-  blockyDashboardPkg = pkgs.stdenv.mkDerivation {
-    name = "blocky-dashboard";
-    src = blockyDashboard;
-    phases = [ "installPhase" ];
-    installPhase = ''
-      mkdir -p $out/share/grafana/dashboards
-      cp $src $out/share/grafana/dashboards/blocky.json
-    '';
-  };
+  dashboardDir = pkgs.runCommand "grafana-dashboards" {} ''
+    mkdir -p $out
+    cp ${blockyDashboard} $out/blocky.json
+  '';
 in
 {
   options.homelab.services.grafana = {
@@ -37,10 +32,23 @@ in
           url = "http://localhost:9090";
           isDefault = true;
         }];
+        dashboards = {
+          settings = {
+            apiVersion = 1;
+            providers = [{
+              name = "default";
+              orgId = 1;
+              folder = "";
+              type = "file";
+              disableDeletion = false;
+              editable = true;
+              options = {
+                path = dashboardDir;
+              };
+            }];
+          };
+        };
       };
-      dashboards = [
-        blockyDashboardPkg
-      ];
     };
 
     services.nginx.virtualHosts."grafana.${hl.baseDomain}" = {
