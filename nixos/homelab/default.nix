@@ -80,7 +80,7 @@ in
 {
   imports = [
     ./immich
-    ./adguard
+    ./blocky
     ./smb
     ./nfs
     ./restic
@@ -89,6 +89,8 @@ in
     ./nextcloud
     ./zola
     ./navidrome
+    ./prometheus
+    ./grafana
   ];
 
   options.homelab = {
@@ -218,17 +220,24 @@ in
         {
           "Network" = [
             {
-              "AdGuard Home" = {
-                description = "Network-wide ad blocker";
-                href = "https://adguard.${cfg.baseDomain}";
-                icon = "adguard-home.svg";
-              };
-            }
-            {
               "Authelia" = {
                 description = "Authentication portal for the homelab";
                 href = "https://auth.${cfg.baseDomain}";
                 icon = "authelia.svg";
+              };
+            }
+            {
+              "Grafana" = {
+                description = "Monitoring dashboard";
+                href = "https://grafana.${cfg.baseDomain}";
+                icon = "grafana.svg";
+              };
+            }
+            {
+              "Prometheus" = {
+                description = "Metrics collection";
+                href = "https://prometheus.${cfg.baseDomain}";
+                icon = "prometheus.svg";
               };
             }
           ];
@@ -249,8 +258,8 @@ in
             {
               "Zola" = {
                 description = "Static site generator";
-                href = "https://zola.${cfg.baseDomain}";
-                icon = "zola.svg";
+                href = "https://blog.${cfg.baseDomain}";
+                icon = "sh-zola.svg";
               };
             }
           ];
