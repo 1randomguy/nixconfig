@@ -16,7 +16,7 @@ in
       enable = true;
       enableZshIntegration = true;
       settings = {
-        theme = "catppuccin-mocha";
+        theme = "Catppuccin Mocha";
         font-size = 14;
         font-family = "JetBrainsMono";
         # keybind = [
