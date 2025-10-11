@@ -16,6 +16,7 @@ in {
       # music listening
       quodlibet
       amberol
+      supersonic
       spotify
     ];
     services.easyeffects = mkIf cfg.eq {
