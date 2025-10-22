@@ -13,6 +13,10 @@ in
       texlive.combined.scheme-full
       texworks
       zathura
+      # kile
+      kile
+      kdePackages.okular
+      ghostscript_headless
     ];
   };
 }
