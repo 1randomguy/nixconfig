@@ -50,9 +50,9 @@ in {
 
     programs.git = {
       enable = true;
-      userName = "Benedikt von Blomberg";
-      userEmail = "github@bvb.anonaddy.com";
-      extraConfig = {
+      settings = {
+        user.name = "Benedikt von Blomberg";
+        user.email = "git@bvb.anonaddy.com";
         init.defaultBranch = "main";
         credential.helper = [
           "cache --timeout 21600"
