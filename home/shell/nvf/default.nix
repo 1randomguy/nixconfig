@@ -185,32 +185,32 @@ in
             # Window resizing
             {
               mode = "n";
-              key = "<C-A-h>";  # Alt+h
+              key = "<C-S-h>";  # Alt+h
               action = "<C-w><";
               desc = "Decrease window width";
             }
             {
               mode = "n";
-              key = "<C-A-l>";  # Alt+l
+              key = "<C-S-l>";  # Alt+l
               action = "<C-w>>";
               desc = "Increase window width";
             }
             {
               mode = "n";
-              key = "<C-A-j>";  # Alt+j
+              key = "<C-S-j>";  # Alt+j
               action = "<C-w>-";
               desc = "Decrease window height";
             }
             {
               mode = "n";
-              key = "<C-A-k>";  # Alt+k
+              key = "<C-S-k>";  # Alt+k
               action = "<C-w>+";
               desc = "Increase window height";
             }
             { 
               mode = "n";
-              action = "<cmd>noh<CR>";
               key = "<leader>n";
+              action = "<cmd>noh<CR>";
               desc = "stop highlighting";
             }
             # Plugins
@@ -227,8 +227,8 @@ in
             # Exit Terminal
             { 
               mode = "t";
-              action = "<C-\\><C-n>";
               key = "<C-k><C-k>";
+              action = "<C-\\><C-n>";
               noremap = true;
             }
           ];
