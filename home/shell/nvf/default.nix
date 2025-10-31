@@ -112,7 +112,11 @@ in
             
             nix.enable = true;
             markdown.enable = true;
-            typst.enable = true;
+            typst = {
+              enable = true;
+              extensions.typst-preview-nvim.enable = true;
+              treesitter.enable = true;
+            };
             bash.enable = true;
             python.enable = true;
             ts.enable = true;

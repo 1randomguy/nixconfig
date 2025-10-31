@@ -36,6 +36,7 @@ in
       foliate
       nextcloud-client
       protonvpn-gui
+      typst
     ];
   };
 }
