@@ -11,7 +11,7 @@
 
   apps = {
     enable = true;
-    latex.enable = false;
+    latex.enable = true;
     touch_apps.enable = true;
     socials.enable = true;
     music = {
