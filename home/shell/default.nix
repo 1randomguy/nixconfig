@@ -46,6 +46,7 @@ in {
       mosh
       gemini-cli
       rename
+      devenv
     ];
 
     programs.git = {
