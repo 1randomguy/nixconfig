@@ -22,6 +22,7 @@ in
         mouse-hide-while-typing = true;
         scrollback-limit = 1000000;
         window-save-state = "always";
+        shell-integration-features = "ssh-terminfo,ssh-env";
         
         keybind = [
           "ctrl+h=goto_split:left"
