@@ -53,7 +53,7 @@ in
             img-clip.enable = true;
           };
 
-          statusline.lualine.enable = true;
+          #statusline.lualine.enable = true;
 
           utility.yazi-nvim = {
             enable = true;
@@ -66,6 +66,10 @@ in
           mini = {
             surround.enable = true;
             bufremove.enable = true;
+            clue.enable = true;
+            indentscope.enable = true;
+            statusline.enable = true;
+            tabline.enable = true;
           };
 
           ui = {
