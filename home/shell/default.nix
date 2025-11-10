@@ -44,6 +44,7 @@ in {
       nix-prefetch-scripts
       fzf
       mosh
+      zoxide
       gemini-cli
       rename
       devenv
