@@ -228,6 +228,11 @@ in
               action = "<cmd>lua MiniBufremove.delete()<CR>";
               key = "<leader>bd";
             }
+            {
+              mode = "n";
+              action = "<cmd>lua vim.diagnostic.open_float()";
+              key = "<leader>ld";
+            }
             # Exit Terminal
             { 
               mode = "t";
