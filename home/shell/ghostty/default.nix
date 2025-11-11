@@ -25,10 +25,10 @@ in
         shell-integration-features = "ssh-terminfo,ssh-env";
         
         keybind = [
-          "ctrl+h=goto_split:left"
-          "ctrl+j=goto_split:bottom"
-          "ctrl+k=goto_split:top"
-          "ctrl+l=goto_split:right"
+          "performable:ctrl+h=goto_split:left"
+          "performable:ctrl+j=goto_split:bottom"
+          "performable:ctrl+k=goto_split:top"
+          "performable:ctrl+l=goto_split:right"
 
           "ctrl+a>h=new_split:left"
           "ctrl+a>j=new_split:down"
