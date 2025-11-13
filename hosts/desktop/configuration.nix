@@ -104,7 +104,7 @@
   users.users.bene = {
     description = "Benedikt von Blomberg";
     isNormalUser = true;
-    extraGroups = [ "wheel" "docker" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "podman" "docker" ]; # Enable ‘sudo’ for the user.
   };
 
   # programs.firefox.enable = true;

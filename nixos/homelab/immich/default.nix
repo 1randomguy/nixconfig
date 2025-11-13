@@ -30,7 +30,7 @@ in
 
       users.users.immich = {
         isSystemUser = true;
-        extraGroups = [ "video" "render" "media" "docker" ];
+        extraGroups = [ "video" "render" "media" "podman" "docker" ];
       };
 
       homelab.services.restic.backupDirs = [ "/var/lib/immich" ];
