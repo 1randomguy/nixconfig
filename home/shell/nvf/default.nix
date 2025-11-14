@@ -98,6 +98,7 @@ in
               open_mapping = "<C-t>";  # Add this line
               insert_mappings = true;
               terminal_mappings = true;
+              direction = "float";
             };
             lazygit.enable = true;
           };
