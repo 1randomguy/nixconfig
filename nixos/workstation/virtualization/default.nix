@@ -25,14 +25,11 @@ in
 
     virtualisation.waydroid.enable = cfg.waydroid.enable;
 
-    virtualisation.podman = {
-      enable = true;
-      dockerCompat = true;
-    };
+    virtualisation.docker.enable = cfg.docker.enable;
 
     environment.systemPackages = [
       pkgs.distrobox 
-      pkgs.podman-compose
+      #pkgs.podman-compose
     ] ++ lib.optionals cfg.wine.enable [
       pkgs.wineWowPackages.stable
       pkgs.winetricks
