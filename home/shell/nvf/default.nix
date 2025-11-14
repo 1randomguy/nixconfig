@@ -69,7 +69,7 @@ in
             clue.enable = true;
             indentscope.enable = true;
             statusline.enable = true;
-            tabline.enable = true;
+            #tabline.enable = true;
           };
 
           ui = {
