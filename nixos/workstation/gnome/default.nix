@@ -57,14 +57,13 @@ in
           main = {
             capslock = "layer(control)"; # you might need to also enclose the key in quotes if it contains non-alphabetical symbols
             insert = "layer(otherlayer)";
+            leftalt = "layer(meta)";
+            leftmeta = "layer(alt)";
           };
           otherlayer = {
             capslock = "capslock";
           };
         };
-        extraConfig = ''
-          # put here any extra-config, e.g. you can copy/paste here directly a configuration, just remove the ids part
-        '';
       };
     };
     };
