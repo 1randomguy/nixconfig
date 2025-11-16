@@ -23,9 +23,11 @@ in
       # image viewing, basic editing
       gthumb
       vlc
-      # document editing
+      # document viewing/editing
       libreoffice
       pdfarranger
+      sioyek
+      zotero
       # studying
       anki
       antimicrox
