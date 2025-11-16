@@ -18,6 +18,9 @@ in
   };
 
   config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      appimage-run
+    ];
     fonts = {
       packages = with pkgs; [
         jetbrains-mono 
