@@ -19,6 +19,7 @@ in {
       pip-on-top
       gsconnect
       caffeine
+      paperwm
     ];
 
     dconf.settings = {
@@ -73,6 +74,7 @@ in {
           pip-on-top.extensionUuid
           gsconnect.extensionUuid
           caffeine.extensionUuid
+          paperwm.extensionUuid
         ];
       };
 
