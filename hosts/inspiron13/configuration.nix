@@ -12,6 +12,7 @@
     ];
 
   programs.niri.enable = true;
+  services.displayManager.defaultSession = "niri";
 
   workstation = {
     enable = true;

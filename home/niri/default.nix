@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ inputs, pkgs, ... }: {
   home.file.".config/niri/config.kdl" = { source = ./config.kdl; };
   home.packages = with pkgs; [ 
     xwayland-satellite 
@@ -8,6 +8,7 @@
     brightnessctl 
     swaylock
     fuzzel
-    waybar
+    #waybar
+    inputs.noctalia.packages.${system}.default
   ];
 }
