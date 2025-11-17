@@ -22,6 +22,7 @@ in
         mouse-hide-while-typing = true;
         scrollback-limit = 1000000;
         window-save-state = "always";
+        window-decoration = "none";
         shell-integration-features = "ssh-terminfo,ssh-env";
         
         keybind = [
