@@ -7,6 +7,7 @@
       ../../home/shell
       ../../home/apps
       ../../home/gnome
+      ../../home/niri
     ];
 
   apps = {

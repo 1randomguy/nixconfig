@@ -11,6 +11,8 @@
       ../../nixos
     ];
 
+  programs.niri.enable = true;
+
   workstation = {
     enable = true;
     gnome.enable = true;
