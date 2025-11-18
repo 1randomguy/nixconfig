@@ -6,8 +6,7 @@
       ../../home/common.nix
       ../../home/shell
       ../../home/apps
-      ../../home/gnome
-      ../../home/niri
+      ../../home/desktop
     ];
 
   apps = {
@@ -29,6 +28,11 @@
     ghostty.enable = true;
     zk.enable = true;
     nvf.enable = true;
+  };
+
+  desktop = {
+    niri.enable = true;
+    noctalia-shell.enable = true;
   };
 
   gnome_customizations = {

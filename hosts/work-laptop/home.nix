@@ -6,7 +6,7 @@
       ../../home/common.nix
       ../../home/shell
       ../../home/apps
-      ../../home/gnome
+      ../../home/desktop
     ];
 
   apps = {
@@ -32,6 +32,11 @@
   gnome_customizations = {
     enable = true;
     wallpaper = "file:///home/bene/Desktop/ray-zhuang-pe4o4-dnRVE-unsplash.jpg";
+  };
+
+  desktop = {
+    niri.enable = true;
+    noctalia-shell.enable = true;
   };
 
   # Home Manager needs a bit of information about you and the paths it should

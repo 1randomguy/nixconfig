@@ -8,6 +8,7 @@ in
     ./nfs-mount
     ./games
     ./gnome
+    ./niri
     ./virtualization
     ./work
     ./uni-vpn

@@ -5,8 +5,8 @@
     [ 
       ../../home/common.nix
       ../../home/shell
-      ../../home/gnome
       ../../home/apps
+      ../../home/desktop
     ];
 
   apps = {
@@ -32,6 +32,11 @@
     tmux.enable = true;
     zk.enable = true;
     nvf.enable = true;
+  };
+
+  desktop = {
+    niri.enable = true;
+    noctalia-shell.enable = true;
   };
 
   gnome_customizations = {
