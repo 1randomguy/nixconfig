@@ -10,7 +10,6 @@ prefer-no-csd
 input {
     keyboard {
         xkb {
-            // You can set rules, model, layout, variant and options.
             // For more information, see xkeyboard-config(7).
 
             // For example:
@@ -26,7 +25,6 @@ input {
 
     // Next sections include libinput settings.
     // Omitting settings disables them, or leaves them at their default values.
-    // All commented-out settings here are examples, not defaults.
     touchpad {
         tap
         // dwt
@@ -76,6 +74,13 @@ output "eDP-1" {
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
     scale 2
     position x=1280 y=0
+}
+
+output "HDMI-A-1" {
+    position  x=0 y=0
+}
+output "eDP-2" {
+    position  x=1920 y=0
 }
 
 // Settings that influence how windows are positioned and sized.
