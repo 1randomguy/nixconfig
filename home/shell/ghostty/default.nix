@@ -17,7 +17,7 @@ in
       enableZshIntegration = true;
       settings = {
         theme = "Catppuccin Mocha";
-        font-size = 14;
+        font-size = 12;
         font-family = "JetBrainsMono";
         mouse-hide-while-typing = true;
         scrollback-limit = 1000000;
