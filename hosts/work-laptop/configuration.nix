@@ -15,6 +15,7 @@
     enable = true;
     work.enable = true;
     gnome.enable = true;
+    niri.enable = true;
     virtualization = {
       enable = true;
       virtualbox.enable = false;
