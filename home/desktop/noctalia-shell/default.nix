@@ -8,8 +8,8 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.file.".config/noctalia/settings.json" = { source = ./settings.json; };
-    home.file.".config/noctalia/colors.json" = { source = ./colors.json; };
+    home.file.".config/noctalia/settings.json" = { source = ./settings.json; force = true; };
+    home.file.".config/noctalia/colors.json" = { source = ./colors.json; force = true; };
     home.packages = with pkgs; [ 
       inputs.noctalia.packages.${system}.default
     ];
