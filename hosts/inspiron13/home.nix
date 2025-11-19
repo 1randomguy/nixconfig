@@ -32,7 +32,10 @@
 
   desktop = {
     niri.enable = true;
-    noctalia-shell.enable = true;
+    noctalia-shell = {
+      enable = true;
+      laptop = true;
+    };
   };
 
   gnome_customizations = {
