@@ -35,7 +35,10 @@
   };
 
   desktop = {
-    niri.enable = true;
+    niri = {
+      enable = true;
+      laptop = true;
+    };
     noctalia-shell.enable = true;
   };
 
