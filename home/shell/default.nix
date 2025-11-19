@@ -48,6 +48,7 @@ in {
       gemini-cli
       rename
       devenv
+      exiftool
     ];
 
     programs.git = {
