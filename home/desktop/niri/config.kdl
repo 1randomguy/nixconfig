@@ -121,9 +121,11 @@ layout {
         // If you enable the border, you probably want to disable the focus ring.
         //off
 
-        width 3
+        width 2
         active-color "#cba6f7"
-        inactive-color "#6c7086"
+        //inactive-color "#6c7086"
+        inactive-color "#888c9f"
+
 
         // Color of the border around windows that request your attention.
         urgent-color "#9b0000"
@@ -131,6 +133,7 @@ layout {
 
     // You can enable drop shadows for windows.
     shadow {
+        on
         // Softness controls the shadow blur radius.
         softness 30
 
@@ -165,6 +168,7 @@ layout {
 // This line starts waybar, a commonly used bar for Wayland compositors.
 //spawn-at-startup "waybar"
 spawn-at-startup "noctalia-shell"
+spawn-at-startup "kanshi"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"

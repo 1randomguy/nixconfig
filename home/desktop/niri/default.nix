@@ -16,6 +16,7 @@ in
       brightnessctl 
       swaylock
       fuzzel
+      kanshi
     ];
   };
 }
