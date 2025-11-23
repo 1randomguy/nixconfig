@@ -132,7 +132,8 @@ in
         dock.enabled = false;
         general = {
           avatarImage = "/home/bene/Nextcloud/Photos/DiscordPB/takumi.jpg";
-          enableShadows = false;
+          #enableShadows = false;
+          shadowDirection = "overhead";
           radiusRatio = 0.45;
         };
         ui = {
