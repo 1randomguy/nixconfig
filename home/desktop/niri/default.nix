@@ -38,16 +38,40 @@ in
         scale 2
         alias $INSPI_INTERNAL
       }
+      output "AU Optronics 0x4B98 Unknown" {
+        mode 1920x1080@60.000
+        position 1920,0
+        scale 1
+        alias $WORK_INTERNAL
+      }
+      output "Lenovo Group Limited L32p-30 U5127VZD" {
+        mode 1920x1080@60.000
+        position 1920,0
+        scale 1
+        alias $WORK_EXTERNAL
+      }
 
       profile inspi_undocked {
         output $INSPI_INTERNAL enable
       }
-      profile inspi_undocked {
+      profile inspi_docked {
         output $INSPI_INTERNAL disable
         output $HOME_1 enable
         output $HOME_2 enable
       }
       profile home_1 {
+        output $HOME_1 enable
+        output $HOME_2 enable
+      }
+      profile work_office {
+        output $WORK_EXTERNAL enable
+        output $WORK_INTERNAL enable
+      }
+      profile work_mobile {
+        output $WORK_INTERNAL enable
+      }
+      profile work_home {
+        output $WORK_INTERNAL disable
         output $HOME_1 enable
         output $HOME_2 enable
       }
