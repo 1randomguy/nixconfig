@@ -35,11 +35,11 @@
   };
 
   desktop = {
-    niri = {
+    niri.enable = true;
+    noctalia-shell = {
       enable = true;
       laptop = true;
     };
-    noctalia-shell.enable = true;
   };
 
   # Home Manager needs a bit of information about you and the paths it should
