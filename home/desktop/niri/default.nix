@@ -17,7 +17,23 @@ in
       swaylock
       fuzzel
       kanshi
+      phinger-cursors
     ];
+
+    home.pointerCursor = {
+      name = "phinger-cursors-light";
+      package = pkgs.phinger-cursors;
+      size = 32;
+      gtk.enable = true;
+      x11.enable = true;
+    };
+
+    dconf.settings = {
+      "org/gnome/desktop/interface" = {
+        cursor-theme = config.home.pointerCursor.name;
+        cursor-size = config.home.pointerCursor.size;
+      };
+    };
 
     home.file.".config/kanshi/config".text = ''
       output "LG Electronics LG IPS FULLHD 0x00044374" {
