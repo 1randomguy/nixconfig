@@ -55,15 +55,15 @@ in
         alias $INSPI_INTERNAL
       }
       output "AU Optronics 0x4B98 Unknown" {
-        mode 1920x1080@60.000
-        position 1920,0
+        mode 1920x1200@60.000
+        position 3840,0
         scale 1
         alias $WORK_INTERNAL
       }
       output "Lenovo Group Limited L32p-30 U5127VZD" {
-        mode 1920x1080@60.000
-        position 1920,0
-        scale 1
+        mode 3840x2160@60.000
+        position 0,0
+        scale 1.5
         alias $WORK_EXTERNAL
       }
 
