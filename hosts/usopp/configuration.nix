@@ -14,8 +14,8 @@
     baseDomain = "shimagumo.party";
     services = {
       blocky.enable = true;
-      prometheus.enable = true;
-      grafana.enable = true;
+      prometheus.enable = false;
+      grafana.enable = false;
       immich = {
         enable = true;
         auto-stack.enable = true;

@@ -42,19 +42,15 @@ in
         };
         customDNS = {
           mapping = {
-            "immich.shimagumo.party" = "192.168.178.57";
-            "usopp.shimagumo.party" = "192.168.178.57";
-            "auth.shimagumo.party" = "192.168.178.57";
-            "cloud.shimagumo.party" = "192.168.178.57";
             "*.shimagumo.party" = "192.168.178.57";
             "shimagumo.party" = "192.168.178.57";
             "fritz.box" = "192.168.178.1";
           };
         };
-        prometheus = {
-          enable = true;
-          port = 9300;
-        };
+        #prometheus = {
+        #  enable = true;
+        #  port = 9300;
+        #};
       };
     };
   };
