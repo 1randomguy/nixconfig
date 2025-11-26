@@ -36,6 +36,7 @@ in
           denylists = {
             multi = [
               "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/pro.txt"
+              "https://big.oisd.nl/domainswild"
             ];
           };
           clientGroupsBlock = {
@@ -44,7 +45,6 @@ in
         };
         customDNS = {
           mapping = {
-            "*.shimagumo.party" = "192.168.178.57";
             "shimagumo.party" = "192.168.178.57";
             "fritz.box" = "192.168.178.1";
           };
