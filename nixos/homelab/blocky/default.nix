@@ -16,10 +16,15 @@ in
     services.blocky = {
       enable = true;
       settings = {
-        upstream = {
-          external = [
-            "https://dns10.quad9.net/dns-query"
-          ];
+        upstreams = {
+          groups = {
+            default = [
+              "https://dns10.quad9.net/dns-query"
+              "tcp-tls:dns10.quad9.net:853"
+              "tcp-tls:1.1.1.1:853"
+              "tcp-tls:1.0.0.1:853"
+            ];
+          };
         };
         bootstrapDns = [
           "9.9.9.10"
@@ -28,16 +33,13 @@ in
           "2620:fe::fe:10"
         ];
         blocking = {
-          blackLists = {
-            ads = [
-              "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/hosts/pro.txt"
-            ];
-            malware = [
-              "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/hosts/threat-intelligence.txt"
+          denylists = {
+            multi = [
+              "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/pro.txt"
             ];
           };
           clientGroupsBlock = {
-            default = [ "ads" "malware" ];
+            default = [ "multi" ];
           };
         };
         customDNS = {
