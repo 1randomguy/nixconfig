@@ -9,11 +9,6 @@
       ../../home/desktop
     ];
 
-  environment.variables = {
-    # Fixes graphical glitches in GTK4 apps (Nautilus, etc) on Intel hardware
-    GSK_RENDERER = "gl";
-  };
-
   apps = {
     enable = true;
     latex.enable = true;

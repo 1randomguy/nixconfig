@@ -36,6 +36,10 @@
   # nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
+  environment.variables = {
+    # Fixes graphical glitches in GTK4 apps (Nautilus, etc) on Intel hardware
+    GSK_RENDERER = "gl";
+  };
   services.xserver.videoDrivers = [ "modesetting" ];
   hardware.graphics = {
     enable = true;
