@@ -45,7 +45,7 @@
     enable = true;
     extraPackages = with pkgs; [
       intel-media-driver
-      intel-media-sdk
+      #intel-media-sdk
       #vpl-gpu-rt
       intel-compute-runtime
     ];
