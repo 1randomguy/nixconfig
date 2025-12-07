@@ -226,7 +226,11 @@ let
       panelsAttachedToBar = false;
       settingsPanelAttachToBar = false;
     };
-    wallpaper.defaultWallpaper = cfg.wallpaper;
+    wallpaper = {
+      enabled = true;
+      defaultWallpaper = cfg.wallpaper;
+      overviewEnabled = true;
+    };
     location = {
       name = "Darmstadt";
       showWeekNumberInCalendar = false;
