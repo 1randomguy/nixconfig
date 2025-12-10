@@ -31,6 +31,7 @@ input {
         // dwtp
         // drag false
         // drag-lock
+        click-method "clickfinger"
         natural-scroll
     }
 
