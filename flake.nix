@@ -59,6 +59,27 @@
           }
         ];
       };
+      # Lenovo Thinkpad X9 15 "sanji"
+      nixosConfigurations.sanji = lib.nixosSystem {
+        specialArgs = {
+          inherit system inputs;
+        };
+        modules = [
+          { 
+          imports = [ nixpkgs.nixosModules.readOnlyPkgs ];
+          nixpkgs.pkgs = pkgs; 
+          }
+          ./hosts/sanji/configuration.nix
+          agenix.nixosModules.default
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.extraSpecialArgs = { inherit inputs; };
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.bene = import ./hosts/sanji/home.nix;
+          }
+        ];
+      };
       # Desktop
       nixosConfigurations.desktop = lib.nixosSystem {
         specialArgs = {
