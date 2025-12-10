@@ -19,7 +19,7 @@ in
     home.packages = with pkgs; [
       # web
       firefox
-      brave
+      chromium
       # image viewing, basic editing
       gthumb
       vlc
