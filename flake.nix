@@ -19,13 +19,17 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v1.0.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, disko, agenix, ... }:
+  outputs = inputs @ { self, nixpkgs, home-manager, disko, agenix, lanzaboote, ... }:
     let
       lib = nixpkgs.lib;
       system = "x86_64-linux";
@@ -71,6 +75,7 @@
           }
           ./hosts/sanji/configuration.nix
           agenix.nixosModules.default
+          lanzaboote.nixosModules.lanzaboote
           home-manager.nixosModules.home-manager
           {
             home-manager.extraSpecialArgs = { inherit inputs; };

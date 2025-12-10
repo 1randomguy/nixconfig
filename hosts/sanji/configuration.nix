@@ -33,8 +33,19 @@
   #networking.wg-quick.interfaces.wg0.configFile = "/home/bene/wireguard/wg_config.conf";
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.enable = lib.mkForce false;
+  boot.lanzaboote = {
+    enable = true;
+    pkiBundle = "/var/lib/sbctl";
+  };
+
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.efiSysMountPoint = "/efi";
+  boot.loader.systemd-boot.xbootldrMountPoint = "/boot";
+
+  environment.systemPackages = with pkgs; [
+    sbctl
+  ];
 
   networking.hostName = "sanji"; # Define your hostname.
   # Pick only one of the below networking options.
