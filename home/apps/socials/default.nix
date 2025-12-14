@@ -10,7 +10,10 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       discord
-      signal-desktop
+      (signal-desktop.override {
+        commandLineArgs = "--password-store=gnome-libsecret";
+        withAppleEmojis = true;
+      })
     ];
   };
 }
