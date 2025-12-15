@@ -48,11 +48,11 @@ in
         scale 1
         alias $HOME_2
       }
-      output "AU Optronics 0x252B Unknown" {
-        mode 3840x2160@60.000
+      output "Samsung Display Corp. ATNA53JB01-0  Unknown" {
+        mode 2880x1800@60.000
         position 0,0
         scale 2
-        alias $INSPI_INTERNAL
+        alias $SANJI_INTERNAL
       }
       output "AU Optronics 0x4B98 Unknown" {
         mode 1920x1200@60.000
@@ -67,11 +67,11 @@ in
         alias $WORK_EXTERNAL
       }
 
-      profile inspi_undocked {
-        output $INSPI_INTERNAL enable
+      profile sanji_undocked {
+        output $SANJI_INTERNAL enable
       }
-      profile inspi_docked {
-        output $INSPI_INTERNAL disable
+      profile sanji_docked {
+        output $SANJI_INTERNAL disable
         output $HOME_1 enable
         output $HOME_2 enable
       }
