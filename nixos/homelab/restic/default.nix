@@ -53,9 +53,9 @@ in
               initialize = true;
               passwordFile = config.age.secrets.restic.path;
               pruneOpts = [
-                "--keep-daily 3"
-                "--keep-weekly 4"
-                "--keep-monthly 6"
+                "--keep-daily 7"
+                "--keep-weekly 5"
+                "--keep-monthly 12"
               ];
               exclude = [
               ];
@@ -75,9 +75,9 @@ in
                 initialize = true;
                 passwordFile = config.age.secrets.restic.path;
                 pruneOpts = [
-                  "--keep-daily 2"
-                  "--keep-weekly 2"
-                  "--keep-monthly 2"
+                  "--keep-daily 1"
+                  "--keep-weekly 3"
+                  "--keep-monthly 5"
                 ];
                 exclude = [
                 ];
