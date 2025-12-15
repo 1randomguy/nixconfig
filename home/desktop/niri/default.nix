@@ -18,6 +18,7 @@ in
       fuzzel
       kanshi
       phinger-cursors
+      gnome-online-accounts-gtk
     ];
 
     home.pointerCursor = {
