@@ -30,6 +30,16 @@
     #};
   };
 
+  services.fprintd = {
+    enable = true;
+  };
+
+  #security.pam.services.sudo.fprintAuth = false;
+  #security.pam.services.su.fprintAuth = false;
+  security.pam.services.hyprlock.fprintAuth = true; 
+  security.pam.services.login.fprintAuth = false;
+  security.pam.services.gdm-password.fprintAuth = false;
+
   #networking.wg-quick.interfaces.wg0.configFile = "/home/bene/wireguard/wg_config.conf";
 
   # Use the systemd-boot EFI boot loader.
