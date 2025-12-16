@@ -1,8 +1,10 @@
-{ lib, config, pkgs, ... }: 
+{ inputs, lib, config, pkgs, ... }: 
 let
   cfg = config.desktop.niri;
 in
 {
+  imports = [inputs.walker.homeManagerModules.default];
+
   options.desktop.niri = {
     enable = lib.mkEnableOption "enable Niri desktop config";
   };
@@ -81,6 +83,15 @@ in
           command = display "on";
         }
       ];
+    };
+
+    programs.walker = {
+      enable = true;
+      runAsService = true;
+
+      #config = {
+
+      #};
     };
 
     dconf.settings = {
