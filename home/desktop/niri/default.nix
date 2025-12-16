@@ -1,21 +1,29 @@
-{ inputs, lib, config, pkgs, ... }: 
+{
+  inputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 let
   cfg = config.desktop.niri;
 in
 {
-  imports = [inputs.walker.homeManagerModules.default];
+  imports = [ inputs.walker.homeManagerModules.default ];
 
   options.desktop.niri = {
     enable = lib.mkEnableOption "enable Niri desktop config";
   };
 
   config = lib.mkIf cfg.enable {
-    home.file.".config/niri/config.kdl" = { source = ./config.kdl; };
-    home.packages = with pkgs; [ 
-      xwayland-satellite 
-      xwayland-run 
-      cage 
-      brightnessctl 
+    home.file.".config/niri/config.kdl" = {
+      source = ./config.kdl;
+    };
+    home.packages = with pkgs; [
+      xwayland-satellite
+      xwayland-run
+      cage
+      brightnessctl
       hyprlock
       fuzzel
       kanshi
@@ -31,17 +39,17 @@ in
       gtk.enable = true;
       x11.enable = true;
     };
-    
+
     services.swayidle =
-    let
-      # Lock command
-      lock = "${pkgs.hyprlock}/bin/hyprlock";
-      # Niri
-       display = status: "${pkgs.niri}/bin/niri msg action power-${status}-monitors";
-    in
-    {
-      enable = true;
-      extraArgs = [ "-w" ];
+      let
+        # Lock command
+        lock = "${pkgs.hyprlock}/bin/hyprlock";
+        # Niri
+        display = status: "${pkgs.niri}/bin/niri msg action power-${status}-monitors";
+      in
+      {
+        enable = true;
+        extraArgs = [ "-w" ];
         #timeouts = [
         #  {
         #    timeout = 15; # in seconds
@@ -61,29 +69,21 @@ in
         #    command = "${pkgs.systemd}/bin/systemctl suspend";
         #  }
         #];
-      events = [
-        {
-          event = "before-sleep";
-          # adding duplicated entries for the same event may not work
-          # Best Practice: Trigger the system lock via loginctl.
-          # This fires the 'lock' event below immediately.
-          command = "${pkgs.systemd}/bin/loginctl lock-session";
-          #command = (display "off") + "; " + lock;
-        }
-        {
-          event = "after-resume";
-          command = display "on";
-        }
-        {
-          event = "lock";
-          command = (display "off") + "; " + lock;
-        }
-        {
-          event = "unlock";
-          command = display "on";
-        }
-      ];
-    };
+        #timeouts = [
+        #  {
+        #    timeout = 5;
+        #    command = "${pkgs.bash}/bin/bash -c '${pkgs.procps}/bin/pgrep -x hyprlock && ${pkgs.systemd}/bin/systemctl suspend'";
+        #  }
+        #];
+
+        events = {
+          before-sleep = (display "off") + "; " + lock;
+          #before-sleep = "${pkgs.systemd}/bin/loginctl lock-session";
+          after-resume = display "on";
+          lock = lock;
+          unlock = display "on";
+        };
+      };
 
     programs.walker = {
       enable = true;
