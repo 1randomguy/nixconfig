@@ -14,7 +14,7 @@ in
       xwayland-run 
       cage 
       brightnessctl 
-      swaylock
+      hyprlock
       fuzzel
       kanshi
       phinger-cursors
@@ -28,6 +28,59 @@ in
       size = 32;
       gtk.enable = true;
       x11.enable = true;
+    };
+    
+    services.swayidle =
+    let
+      # Lock command
+      lock = "${pkgs.hyprlock}/bin/hyprlock";
+      # Niri
+       display = status: "${pkgs.niri}/bin/niri msg action power-${status}-monitors";
+    in
+    {
+      enable = true;
+      extraArgs = [ "-w" ];
+        #timeouts = [
+        #  {
+        #    timeout = 15; # in seconds
+        #    command = "${pkgs.libnotify}/bin/notify-send 'Locking in 5 seconds' -t 5000";
+        #  }
+        #  {
+        #    timeout = 20;
+        #    command = lock;
+        #  }
+        #  {
+        #    timeout = 25;
+        #    command = display "off";
+        #    resumeCommand = display "on";
+        #  }
+        #  {
+        #    timeout = 30;
+        #    command = "${pkgs.systemd}/bin/systemctl suspend";
+        #  }
+        #];
+      events = [
+        {
+          event = "before-sleep";
+          # adding duplicated entries for the same event may not work
+          # Best Practice: Trigger the system lock via loginctl.
+          # This fires the 'lock' event below immediately.
+          command = "${pkgs.systemd}/bin/loginctl lock-session";
+          #command = (display "off") + "; " + lock;
+        }
+        {
+          event = "after-resume";
+          command = display "on";
+        }
+        {
+          event = "lock";
+          command = (display "off") + "; " + lock;
+        }
+        {
+          event = "unlock";
+          command = display "on";
+        }
+      ];
     };
 
     dconf.settings = {
