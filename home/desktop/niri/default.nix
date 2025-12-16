@@ -24,7 +24,6 @@ in
       xwayland-run
       cage
       brightnessctl
-      hyprlock
       fuzzel
       kanshi
       phinger-cursors
@@ -38,6 +37,112 @@ in
       size = 32;
       gtk.enable = true;
       x11.enable = true;
+    };
+
+    programs.hyprlock = {
+      enable = true;
+      settings = {
+        general = {
+          hide_cursor = true;
+          ignore_empty_input = true;
+        };
+
+        animations = {
+          enabled = true;
+          fade_in = {
+            duration = 300;
+            bezier = "easeOutQuint";
+          };
+          fade_out = {
+            duration = 300;
+            bezier = "easeOutQuint";
+          };
+        };
+
+        auth = {
+          "fingerprint:enabled" = true;
+          "fingerprint:ready_message" = "(Scan fingerprint to unlock)";
+          "fingerprint:present_message" = "Scanning fingerprint";
+        };
+
+        background = [
+          {
+            path = "screenshot";
+            blur_passes = 3;
+            blur_size = 14;
+          }
+        ];
+
+        input-field = [
+          {
+            monitor = "";
+            size = "15%, 5%";  # Responsive size (much larger)
+            outline_thickness = 3;
+
+            # Base (transparent)
+            inner_color = "rgba(30, 30, 46, 0.0)"; 
+            # Lavender -> Green (Default Gradient)
+            outer_color = "rgb(b4befe) rgb(a6e3a1) 45deg";
+            # Yellow -> Peach (Checking Password)
+            check_color = "rgb(f9e2af) rgb(fab387) 120deg";
+            # Red -> Maroon (Fail)
+            fail_color = "rgb(f38ba8) rgb(eba0ac) 40deg";
+
+            font_color = "rgb(143, 143, 143)";
+            fade_on_empty = false;
+            rounding = 15;
+
+            position = "0, -20";
+            halign = "center";
+            valign = "center";
+          }
+        ];
+        #input-field = [
+        #  {
+        #    size = "200, 50";
+        #    position = "0, -80";
+        #    monitor = "";
+        #    dots_center = true;
+        #    fade_on_empty = false;
+        #    font_color = "rgb(202, 211, 245)";
+        #    inner_color = "rgb(91, 96, 120)";
+        #    outer_color = "rgb(24, 25, 38)";
+        #    outline_thickness = 5;
+        #    #placeholder_text = ''<span foreground="##cad3f5">Password...</span>'';
+        #    shadow_passes = 2;
+        #  }
+        #];
+        label = [
+          {
+            text = "$TIME";
+            color = "rgba(200, 200, 200, 1.0)";
+            font_size = 128;
+            font_family = "Adwaita Sans";
+            position = "0, 160";
+            halign = "center";
+            valign = "center";
+          }
+          # Label (User)
+          #{
+          #  text = "Hi there, $USER";
+          #  color = "rgba(200, 200, 200, 1.0)";
+          #  font_size = 25;
+          #  font_family = "Noto Sans";
+          #  position = "0, 80";
+          #  halign = "center";
+          #  valign = "center";
+          #}
+          {
+            text = "$FPRINTPROMPT";
+            color = "rgb(202, 211, 245)";
+            font_size = 14;
+            font_family = "Adwaita Sans"; 
+            position = "0, -100";  # Placed below the input field
+            halign = "center";
+            valign = "center";
+          }
+        ];
+      };
     };
 
     services.swayidle =
