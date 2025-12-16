@@ -24,7 +24,6 @@ in
       xwayland-run
       cage
       brightnessctl
-      fuzzel
       kanshi
       phinger-cursors
       gnome-online-accounts-gtk
@@ -68,8 +67,9 @@ in
         background = [
           {
             path = "screenshot";
-            blur_passes = 3;
-            blur_size = 14;
+            blur_passes = 4;
+            blur_size = 10;
+            brightness = 0.5;
           }
         ];
 
@@ -97,21 +97,6 @@ in
             valign = "center";
           }
         ];
-        #input-field = [
-        #  {
-        #    size = "200, 50";
-        #    position = "0, -80";
-        #    monitor = "";
-        #    dots_center = true;
-        #    fade_on_empty = false;
-        #    font_color = "rgb(202, 211, 245)";
-        #    inner_color = "rgb(91, 96, 120)";
-        #    outer_color = "rgb(24, 25, 38)";
-        #    outline_thickness = 5;
-        #    #placeholder_text = ''<span foreground="##cad3f5">Password...</span>'';
-        #    shadow_passes = 2;
-        #  }
-        #];
         label = [
           {
             text = "$TIME";
@@ -122,16 +107,6 @@ in
             halign = "center";
             valign = "center";
           }
-          # Label (User)
-          #{
-          #  text = "Hi there, $USER";
-          #  color = "rgba(200, 200, 200, 1.0)";
-          #  font_size = 25;
-          #  font_family = "Noto Sans";
-          #  position = "0, 80";
-          #  halign = "center";
-          #  valign = "center";
-          #}
           {
             text = "$FPRINTPROMPT";
             color = "rgb(202, 211, 245)";
