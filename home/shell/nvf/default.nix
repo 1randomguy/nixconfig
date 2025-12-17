@@ -90,6 +90,8 @@ in
             softtabstop = 0;
             expandtab = true;
             smarttab = true;
+            title = true;
+            titlestring = "NVIM: %f %y%m (%F)";
           };
 
           terminal.toggleterm = {
