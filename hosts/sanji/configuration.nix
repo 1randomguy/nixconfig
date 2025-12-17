@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{ inputs, lib, pkgs, ... }:
 
 {
   imports =
@@ -45,7 +45,16 @@
 
   environment.systemPackages = with pkgs; [
     sbctl
+    inputs.agenix.packages."${system}".default
   ];
+
+  services.openssh = {
+    enable = true;
+    # require public key authentication for better security
+    settings.PasswordAuthentication = false;
+    settings.KbdInteractiveAuthentication = false;
+    #settings.PermitRootLogin = "yes";
+  };
 
   networking.hostName = "sanji"; # Define your hostname.
   # Pick only one of the below networking options.
