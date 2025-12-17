@@ -130,35 +130,8 @@ in
       {
         enable = true;
         extraArgs = [ "-w" ];
-        #timeouts = [
-        #  {
-        #    timeout = 15; # in seconds
-        #    command = "${pkgs.libnotify}/bin/notify-send 'Locking in 5 seconds' -t 5000";
-        #  }
-        #  {
-        #    timeout = 20;
-        #    command = lock;
-        #  }
-        #  {
-        #    timeout = 25;
-        #    command = display "off";
-        #    resumeCommand = display "on";
-        #  }
-        #  {
-        #    timeout = 30;
-        #    command = "${pkgs.systemd}/bin/systemctl suspend";
-        #  }
-        #];
-        #timeouts = [
-        #  {
-        #    timeout = 5;
-        #    command = "${pkgs.bash}/bin/bash -c '${pkgs.procps}/bin/pgrep -x hyprlock && ${pkgs.systemd}/bin/systemctl suspend'";
-        #  }
-        #];
-
         events = {
           before-sleep = (display "off") + "; " + lock;
-          #before-sleep = "${pkgs.systemd}/bin/loginctl lock-session";
           after-resume = display "on";
           lock = lock;
           unlock = display "on";
@@ -168,10 +141,6 @@ in
     programs.walker = {
       enable = true;
       runAsService = true;
-
-      #config = {
-
-      #};
     };
 
     dconf.settings = {
