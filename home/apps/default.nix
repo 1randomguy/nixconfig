@@ -20,6 +20,8 @@ in
       # web
       firefox
       chromium
+      # organization
+      evolution
       # image viewing, basic editing
       gthumb
       vlc
