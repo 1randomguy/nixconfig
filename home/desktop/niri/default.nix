@@ -19,6 +19,7 @@ in
       kanshi
       phinger-cursors
       gnome-online-accounts-gtk
+      wdisplays
     ];
 
     home.pointerCursor = {
