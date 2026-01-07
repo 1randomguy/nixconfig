@@ -41,6 +41,7 @@ in
       nextcloud-client
       protonvpn-gui
       typst
+      file-roller
     ];
   };
 }
