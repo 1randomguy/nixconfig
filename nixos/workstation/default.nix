@@ -28,6 +28,9 @@ in
         nerd-fonts.jetbrains-mono
         noto-fonts-cjk-serif
         noto-fonts-color-emoji
+        montserrat
+        fira-go
+        fira-math
       ];
       fontconfig = {
         defaultFonts = {
