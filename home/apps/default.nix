@@ -33,15 +33,16 @@ in
       # studying
       anki
       antimicrox
-      # system tools
-      resources
       # other
       ausweisapp
       foliate
       nextcloud-client
       protonvpn-gui
       typst
+      # tools
+      resources
       file-roller
+      bluetui
     ];
   };
 }
