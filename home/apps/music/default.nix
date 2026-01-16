@@ -18,6 +18,9 @@ in {
       amberol
       supersonic
       spotify
+      spek
+      soundconverter
+      fooyin
     ];
     services.easyeffects = mkIf cfg.eq {
       enable = true;
