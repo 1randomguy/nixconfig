@@ -15,6 +15,7 @@ in
     users.users.nextcloud = {
       isSystemUser = true;
       group = "nextcloud";
+      extraGroups = [ "media" ];
     };
 
     # Set up backing up the database automatically. The path will be in
