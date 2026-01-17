@@ -37,10 +37,8 @@ in {
       git-credential-oauth
       #inputs.nixvim.packages.${system}.default
       just
-      wget
       neofetch
       htop
-      file
       nix-prefetch-scripts
       fzf
       mosh
@@ -49,6 +47,9 @@ in {
       rename
       devenv
       exiftool
+      ripgrep
+      toybox
+      dig
     ];
 
     programs.git = {
