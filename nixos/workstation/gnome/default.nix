@@ -32,15 +32,15 @@ in
     # keyboard
     services.xserver.xkb.layout = "us";
     services.xserver.xkb.variant = "altgr-intl";
-    i18n.inputMethod = {
-      enable = true;
-      type = "ibus";
-      ibus.engines = with pkgs.ibus-engines; [ anthy ];
-    };
-    environment.variables = {
-      GLFW_IM_MODULE = "ibus";
-      IBUS_ENABLE_SYNC_MODE = "1";
-    };
+    #i18n.inputMethod = {
+    #  enable = true;
+    #  type = "ibus";
+    #  ibus.engines = with pkgs.ibus-engines; [ anthy ];
+    #};
+    #environment.variables = {
+    #  GLFW_IM_MODULE = "ibus";
+    #  IBUS_ENABLE_SYNC_MODE = "1";
+    #};
 
     services.keyd = {
       enable = true;
