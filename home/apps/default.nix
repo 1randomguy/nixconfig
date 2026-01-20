@@ -30,6 +30,7 @@ in
       pdfarranger
       sioyek
       zotero
+      kdePackages.okular
       # studying
       anki
       antimicrox

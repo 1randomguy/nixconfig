@@ -15,7 +15,6 @@ in
       zathura
       # kile
       kile
-      kdePackages.okular
       ghostscript_headless
     ];
   };
