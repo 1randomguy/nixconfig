@@ -33,6 +33,7 @@ in
       kdePackages.okular
       # studying
       anki
+      goldendict-ng
       antimicrox
       # other
       ausweisapp
