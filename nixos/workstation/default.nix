@@ -33,6 +33,7 @@ in
         montserrat
         fira-go
         fira-math
+        kanji-stroke-order-font
       ];
       fontconfig = {
         defaultFonts = {
