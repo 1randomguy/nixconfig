@@ -34,6 +34,7 @@ in
       # studying
       anki
       goldendict-ng
+      inputs.gd-tools.packages.${pkgs.system}.default
       antimicrox
       # other
       ausweisapp
