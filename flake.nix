@@ -34,9 +34,10 @@
       url = "github:abenz1267/walker";
       inputs.elephant.follows = "elephant";
     };
+    gd-tools.url = "github:1randomguy/gd-tools-flake";
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, disko, agenix, lanzaboote, ... }:
+  outputs = inputs @ { self, nixpkgs, home-manager, disko, agenix, lanzaboote, gd-tools, ... }:
     let
       lib = nixpkgs.lib;
       system = "x86_64-linux";
