@@ -37,7 +37,7 @@
     gd-tools.url = "github:1randomguy/gd-tools-flake";
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, disko, agenix, lanzaboote, gd-tools, ... }:
+  outputs = inputs @ { self, nixpkgs, home-manager, disko, agenix, lanzaboote, ... }:
     let
       lib = nixpkgs.lib;
       system = "x86_64-linux";
