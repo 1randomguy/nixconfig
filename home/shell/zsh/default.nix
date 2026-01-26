@@ -45,6 +45,11 @@ in
             [[ ! -f  ${./config/p10k.zsh} ]] || source ${./config/p10k.zsh}
             ${pkgs.any-nix-shell}/bin/any-nix-shell zsh --info-right | source /dev/stdin
         ''))
+        ( mkAfter ''
+          autoload -Uz edit-command-line
+          zle -N edit-command-line
+          bindkey "^x^e" edit-command-line
+        '')
       ];
 
       plugins = [
