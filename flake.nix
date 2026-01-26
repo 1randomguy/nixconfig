@@ -27,8 +27,6 @@
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    astal.url = "github:aylur/astal";
-    ags.url = "github:aylur/ags";
     elephant.url = "github:abenz1267/elephant";
     walker = {
       url = "github:abenz1267/walker";
