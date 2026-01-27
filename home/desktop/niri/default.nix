@@ -29,6 +29,7 @@ in
       gnome-online-accounts-gtk
       wdisplays
       ironbar
+      swayosd
       wifitui
     ];
 
@@ -38,6 +39,10 @@ in
       size = 32;
       gtk.enable = true;
       x11.enable = true;
+    };
+
+    services.swayosd = {
+      enable = true;
     };
 
     services.swayidle =
