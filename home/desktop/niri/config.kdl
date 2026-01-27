@@ -258,7 +258,6 @@ window-rule {
 }
 
 // Example: enable rounded corners for all windows.
-// (This example rule is commented out with a "/-" in front.)
 window-rule {
     geometry-corner-radius 8
     clip-to-geometry true
@@ -297,6 +296,7 @@ binds {
     Mod+Space hotkey-overlay-title="Run the launcher: walker" { spawn "walker"; }
     //Super+Alt+L allow-when-locked=true hotkey-overlay-title="Lock the Screen: noctalia" { spawn-sh "noctalia-shell ipc call sessionMenu lockAndSuspend"; }
     Super+Alt+L allow-when-locked=true hotkey-overlay-title="Lock the Screen" { spawn "loginctl" "lock-session"; }
+    Super+Shift+Alt+L allow-when-locked=true hotkey-overlay-title="Lock and Suspend" { spawn-sh "systemctl suspend"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
