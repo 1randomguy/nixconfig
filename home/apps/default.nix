@@ -32,6 +32,10 @@ in
       sioyek
       zotero
       kdePackages.okular
+      # tasks
+      taskwarrior3
+      vit
+      timewarrior
       # other
       ausweisapp
       foliate
