@@ -31,6 +31,8 @@ in
       ironbar
       swayosd
       wifitui
+      swaybg
+      waypaper
     ];
 
     home.pointerCursor = {
