@@ -21,6 +21,7 @@
       enable = true;
     };
     socials.enable = true;
+    study.enable = true;
   };
 
   shell = {

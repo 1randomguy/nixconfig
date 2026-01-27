@@ -12,8 +12,9 @@
   apps = {
     enable = true;
     latex.enable = true;
-    #touch_apps.enable = true;
     socials.enable = true;
+    study.enable = true;
+    #image_editing.enable = true;
     music = {
       enable = true;
     };

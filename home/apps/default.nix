@@ -11,6 +11,7 @@ in
     ./touch-apps
     ./devel
     ./socials
+    ./study
   ];
   options.apps = {
     enable = mkEnableOption "Install graphical apps on this system";
@@ -31,11 +32,6 @@ in
       sioyek
       zotero
       kdePackages.okular
-      # studying
-      anki
-      goldendict-ng
-      inputs.gd-tools.packages.${pkgs.system}.default
-      antimicrox
       # other
       ausweisapp
       foliate
