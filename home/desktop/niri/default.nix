@@ -28,6 +28,8 @@ in
       phinger-cursors
       gnome-online-accounts-gtk
       wdisplays
+      ironbar
+      wifitui
     ];
 
     home.pointerCursor = {
@@ -36,6 +38,36 @@ in
       size = 32;
       gtk.enable = true;
       x11.enable = true;
+    };
+
+    services.swayidle =
+      let
+        # Lock command
+        lock = "${pkgs.hyprlock}/bin/hyprlock";
+        # Niri
+        display = status: "${pkgs.niri}/bin/niri msg action power-${status}-monitors";
+      in
+      {
+        enable = true;
+        extraArgs = [ "-w" ];
+        events = {
+          before-sleep = (display "off") + "; " + lock;
+          after-resume = display "on";
+          lock = lock;
+          unlock = display "on";
+        };
+      };
+
+    programs.walker = {
+      enable = true;
+      runAsService = true;
+    };
+
+    dconf.settings = {
+      "org/gnome/desktop/interface" = {
+        cursor-theme = config.home.pointerCursor.name;
+        cursor-size = config.home.pointerCursor.size;
+      };
     };
 
     programs.hyprlock = {
@@ -117,36 +149,6 @@ in
             valign = "center";
           }
         ];
-      };
-    };
-
-    services.swayidle =
-      let
-        # Lock command
-        lock = "${pkgs.hyprlock}/bin/hyprlock";
-        # Niri
-        display = status: "${pkgs.niri}/bin/niri msg action power-${status}-monitors";
-      in
-      {
-        enable = true;
-        extraArgs = [ "-w" ];
-        events = {
-          before-sleep = (display "off") + "; " + lock;
-          after-resume = display "on";
-          lock = lock;
-          unlock = display "on";
-        };
-      };
-
-    programs.walker = {
-      enable = true;
-      runAsService = true;
-    };
-
-    dconf.settings = {
-      "org/gnome/desktop/interface" = {
-        cursor-theme = config.home.pointerCursor.name;
-        cursor-size = config.home.pointerCursor.size;
       };
     };
 
