@@ -37,7 +37,7 @@ in {
       git-credential-oauth
       #inputs.nixvim.packages.${system}.default
       just
-      neofetch
+      fastfetch
       htop
       nix-prefetch-scripts
       fzf
