@@ -26,13 +26,19 @@ in
       brightnessctl
       kanshi
       phinger-cursors
-      gnome-online-accounts-gtk
-      wdisplays
-      ironbar
       swayosd
-      wifitui
       swaybg
+      # helpful tuis
+      wifitui
+      # helpful guis
+      wdisplays
       waypaper
+      gnome-online-accounts-gtk
+      networkmanagerapplet
+      blueberry
+      easyeffects
+      pwvucontrol
+      pw-viz
     ];
 
     home.pointerCursor = {
