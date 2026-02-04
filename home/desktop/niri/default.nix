@@ -26,8 +26,19 @@ in
       brightnessctl
       kanshi
       phinger-cursors
-      gnome-online-accounts-gtk
+      swayosd
+      swaybg
+      # helpful tuis
+      wifitui
+      # helpful guis
       wdisplays
+      waypaper
+      gnome-online-accounts-gtk
+      networkmanagerapplet
+      blueberry
+      easyeffects
+      pwvucontrol
+      pw-viz
     ];
 
     home.pointerCursor = {
@@ -36,6 +47,40 @@ in
       size = 32;
       gtk.enable = true;
       x11.enable = true;
+    };
+
+    services.swayosd = {
+      enable = true;
+    };
+
+    services.swayidle =
+      let
+        # Lock command
+        lock = "${pkgs.hyprlock}/bin/hyprlock";
+        # Niri
+        display = status: "${pkgs.niri}/bin/niri msg action power-${status}-monitors";
+      in
+      {
+        enable = true;
+        extraArgs = [ "-w" ];
+        events = {
+          before-sleep = (display "off") + "; " + lock;
+          after-resume = display "on";
+          lock = lock;
+          unlock = display "on";
+        };
+      };
+
+    programs.walker = {
+      enable = true;
+      runAsService = true;
+    };
+
+    dconf.settings = {
+      "org/gnome/desktop/interface" = {
+        cursor-theme = config.home.pointerCursor.name;
+        cursor-size = config.home.pointerCursor.size;
+      };
     };
 
     programs.hyprlock = {
@@ -117,36 +162,6 @@ in
             valign = "center";
           }
         ];
-      };
-    };
-
-    services.swayidle =
-      let
-        # Lock command
-        lock = "${pkgs.hyprlock}/bin/hyprlock";
-        # Niri
-        display = status: "${pkgs.niri}/bin/niri msg action power-${status}-monitors";
-      in
-      {
-        enable = true;
-        extraArgs = [ "-w" ];
-        events = {
-          before-sleep = (display "off") + "; " + lock;
-          after-resume = display "on";
-          lock = lock;
-          unlock = display "on";
-        };
-      };
-
-    programs.walker = {
-      enable = true;
-      runAsService = true;
-    };
-
-    dconf.settings = {
-      "org/gnome/desktop/interface" = {
-        cursor-theme = config.home.pointerCursor.name;
-        cursor-size = config.home.pointerCursor.size;
       };
     };
 

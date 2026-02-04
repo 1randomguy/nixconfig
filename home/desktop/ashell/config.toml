@@ -1,0 +1,55 @@
+log_level = "warn"
+outputs = "All"
+position = "Top"
+app_launcher_cmd = "walker"
+
+[modules]
+left = [ [ "Workspaces" ] ]
+center = [ "Clock" ]
+right = [ "MediaPlayer", "Tray", [ "Privacy", "Settings" ] ]
+
+[system_info]
+indicators = [ "Cpu", "Memory", "IpAddress" ]
+
+[media_player]
+max_title_length = 50
+
+[workspaces]
+enable_workspace_filling = true
+visibility_mode = "MonitorSpecificExclusive"
+
+[window_title]
+truncate_title_after_length = 100
+
+[settings]
+lock_cmd = "playerctl --all-players pause; loginctl lock-session"
+audio_sinks_more_cmd = "pwvucontrol -t 1"
+audio_sources_more_cmd = "pwvucontrol -t 2"
+wifi_more_cmd = "nm-connection-editor"
+vpn_more_cmd = "nm-connection-editor"
+bluetooth_more_cmd = "blueberry"
+
+[appearance]
+style = "Solid"
+
+success_color = "#a6e3a1"
+text_color = "#cdd6f4"
+
+workspace_colors = [ "#b4befe" ]
+
+[appearance.primary_color]
+base = "#b4befe"
+text = "#181825"
+
+[appearance.danger_color]
+base = "#f38ba8"
+weak = "#f9e2af"
+
+[appearance.background_color]
+base = "#181825"
+weak = "#313244"
+strong = "#45475a"
+
+[appearance.secondary_color]
+base = "#181825"
+strong = "#1e1e2e"

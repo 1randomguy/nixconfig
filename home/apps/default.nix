@@ -1,4 +1,4 @@
-{lib, config, pkgs, inputs, ...}:
+{lib, config, pkgs, ...}:
 with lib;
 let
   cfg = config.apps;
@@ -11,6 +11,7 @@ in
     ./touch-apps
     ./devel
     ./socials
+    ./study
   ];
   options.apps = {
     enable = mkEnableOption "Install graphical apps on this system";
@@ -31,11 +32,10 @@ in
       sioyek
       zotero
       kdePackages.okular
-      # studying
-      anki
-      goldendict-ng
-      inputs.gd-tools.packages.${pkgs.system}.default
-      antimicrox
+      # tasks
+      taskwarrior3
+      vit
+      timewarrior
       # other
       ausweisapp
       foliate
