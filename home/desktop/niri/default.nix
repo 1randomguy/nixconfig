@@ -186,7 +186,7 @@ in
       }
       output "AU Optronics 0x4B98 Unknown" {
         mode 1920x1200@60.000
-        position 2560,0
+        position 2560,240
         scale 1
         alias $WORK_INTERNAL
       }
