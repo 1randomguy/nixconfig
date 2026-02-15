@@ -60,7 +60,7 @@
   time.timeZone = "Europe/Berlin";
 
   environment.systemPackages = with pkgs; [
-    inputs.agenix.packages."${system}".default
+    inputs.agenix.packages."${stdenv.hostPlatform.system}".default
   ];
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";

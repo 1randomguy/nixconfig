@@ -12,7 +12,7 @@ in
       # studying
       anki
       goldendict-ng
-      inputs.gd-tools.packages.${pkgs.system}.default
+      inputs.gd-tools.packages.${stdenv.hostPlatform.system}.default
       antimicrox
     ];
   };

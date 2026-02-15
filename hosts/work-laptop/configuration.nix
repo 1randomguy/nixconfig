@@ -45,7 +45,7 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   environment.systemPackages = with pkgs; [
-    inputs.agenix.packages."${system}".default
+    inputs.agenix.packages."${stdenv.hostPlatform.system}".default
   ];
 
   # Select internationalisation properties.

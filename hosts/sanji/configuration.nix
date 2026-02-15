@@ -55,7 +55,7 @@
 
   environment.systemPackages = with pkgs; [
     sbctl
-    inputs.agenix.packages."${system}".default
+    inputs.agenix.packages."${stdenv.hostPlatform.system}".default
   ];
 
   services.openssh = {

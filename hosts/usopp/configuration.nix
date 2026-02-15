@@ -83,7 +83,7 @@
     git
     powertop
     htop
-    inputs.agenix.packages."${system}".default
+    inputs.agenix.packages."${stdenv.hostPlatform.system}".default
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
