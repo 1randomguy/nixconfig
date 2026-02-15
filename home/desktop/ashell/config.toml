@@ -1,12 +1,13 @@
 log_level = "warn"
 outputs = "All"
 position = "Top"
+layer = "Overlay"
 app_launcher_cmd = "walker"
 
 [modules]
 left = [ [ "Workspaces" ] ]
-center = [ "Clock" ]
-right = [ "MediaPlayer", "Tray", [ "Privacy", "Settings" ] ]
+center = [ "Tempo" ]
+right = [ "Tray", [ "Privacy", "Settings" ] ]
 
 [system_info]
 indicators = [ "Cpu", "Memory", "IpAddress" ]
@@ -15,7 +16,7 @@ indicators = [ "Cpu", "Memory", "IpAddress" ]
 max_title_length = 50
 
 [workspaces]
-enable_workspace_filling = true
+enable_workspace_filling = false
 visibility_mode = "MonitorSpecificExclusive"
 
 [window_title]

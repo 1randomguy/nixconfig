@@ -33,6 +33,7 @@
       inputs.elephant.follows = "elephant";
     };
     gd-tools.url = "github:1randomguy/gd-tools-flake";
+    ashell.url = "github:MalpenZibo/ashell";
   };
 
   outputs = inputs @ { self, nixpkgs, home-manager, disko, agenix, lanzaboote, ... }:
