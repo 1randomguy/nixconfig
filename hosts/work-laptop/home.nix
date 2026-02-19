@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   imports =
@@ -8,6 +8,12 @@
       ../../home/apps
       ../../home/desktop
     ];
+
+  home.packages = with pkgs; [
+    logseq
+  ];
+
+
 
   apps = {
     enable = true;
