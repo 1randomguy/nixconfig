@@ -74,6 +74,7 @@ in
 
           ui = {
             illuminate.enable = true;
+            nvim-ufo.enable = true;
           };
 
           notes.todo-comments = {
@@ -92,6 +93,12 @@ in
             smarttab = true;
             title = true;
             titlestring = "NVIM: %f %y%m (%F)";
+            #foldcolumn = '1' -- '0' is not bad
+            foldlevel = 99;
+            foldlevelstart = 3;
+            foldenable = true;
+            #foldmethod = "expr";
+            #foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()";
           };
 
           terminal.toggleterm = {
