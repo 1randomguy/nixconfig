@@ -210,6 +210,18 @@ debug {
   honor-xdg-activation-with-invalid-serial
 }
 
+// Disable the hot corners.
+gestures {
+    hot-corners {
+        off
+    }
+}
+
+overview {
+  zoom 0.3
+  backdrop-color "#313244"
+}
+
 // Set the overview wallpaper on the backdrop.
 layer-rule {
   match namespace="^noctalia-overview*"
