@@ -1,7 +1,7 @@
 log_level = "warn"
 outputs = "All"
 position = "Top"
-layer = "Overlay"
+layer = "Top"
 app_launcher_cmd = "walker"
 
 [modules]
