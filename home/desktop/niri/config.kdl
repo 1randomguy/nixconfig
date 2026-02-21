@@ -256,7 +256,8 @@ binds {
     // For example, this is a standard bind to toggle the screen reader (orca).
     Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
 
-    Super+A hotkey-overlay-title=null { spawn-sh "pkill ashell || exec ashell"; }
+    Super+Shift+A hotkey-overlay-title=null { spawn-sh "pkill ashell || exec ashell"; }
+    Super+A hotkey-overlay-title=null { spawn-sh "killall -SIGUSR1 ashell"; }
 
     // volume keys mappings
     XF86AudioRaiseVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume" "raise"; }
