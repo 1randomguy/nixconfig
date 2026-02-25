@@ -22,6 +22,7 @@ in
       firefox
       chromium
       # organization
+      geary
       evolution
       # image viewing, basic editing
       gthumb
@@ -34,8 +35,6 @@ in
       kdePackages.okular
       # tasks
       taskwarrior3
-      vit
-      timewarrior
       # other
       ausweisapp
       foliate
