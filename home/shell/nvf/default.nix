@@ -95,7 +95,7 @@ in
             titlestring = "NVIM: %f %y%m (%F)";
             #foldcolumn = '1' -- '0' is not bad
             foldlevel = 99;
-            foldlevelstart = 3;
+            foldlevelstart = 99;
             foldenable = true;
             #foldmethod = "expr";
             #foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()";
