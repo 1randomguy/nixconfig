@@ -71,6 +71,8 @@ layout {
     // Set gaps around windows in logical pixels.
     gaps 5
     center-focused-column "never"
+    always-center-single-column
+    //empty-workspace-above-first
 
     // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
     preset-column-widths {
@@ -118,8 +120,8 @@ layout {
     // Top and bottom struts will simply add outer gaps in addition to the area occupied by
     // layer-shell panels and regular gaps.
     struts {
-        // left 64
-        // right 64
+        left 10
+        right 10
         // top 64
         // bottom 64
     }
