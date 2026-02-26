@@ -11,9 +11,8 @@
 
   home.packages = with pkgs; [
     logseq
+    teams-for-linux
   ];
-
-
 
   apps = {
     enable = true;
