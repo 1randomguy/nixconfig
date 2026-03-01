@@ -122,12 +122,12 @@ in
           {
             monitor = "";
             size = "15%, 5%";  # Responsive size (much larger)
-            outline_thickness = 3;
+            outline_thickness = 5;
 
             # Base (transparent)
             inner_color = "rgba(30, 30, 46, 0.0)"; 
             # Lavender -> Green (Default Gradient)
-            outer_color = "rgb(b4befe) rgb(a6e3a1) 45deg";
+            outer_color = "rgb(116, 199, 236) rgb(148, 226, 213) 90deg";
             # Yellow -> Peach (Checking Password)
             check_color = "rgb(f9e2af) rgb(fab387) 120deg";
             # Red -> Maroon (Fail)
