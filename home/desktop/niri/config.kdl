@@ -145,6 +145,7 @@ layout {
 // This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "ashell"
 spawn-at-startup "kanshi"
+spawn-at-startup "waypaper" "--restore"
 spawn-at-startup "fcitx5" "-d"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
