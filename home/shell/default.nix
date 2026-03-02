@@ -50,6 +50,7 @@ in {
       ripgrep
       toybox
       dig
+      gh
     ];
 
     programs.git = {
