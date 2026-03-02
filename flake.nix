@@ -11,6 +11,18 @@
       url = "github:NotAShelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    wrappers = {
+      url = "github:BirdeeHub/nix-wrapper-modules";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    plugins-lze = {
+      url = "github:BirdeeHub/lze";
+      flake = false;
+    };
+    plugins-lzextras = {
+      url = "github:BirdeeHub/lzextras";
+      flake = false;
+    };
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -36,7 +48,18 @@
     ashell.url = "github:MalpenZibo/ashell";
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, disko, agenix, lanzaboote, ... }:
+  outputs = 
+    inputs @ 
+    { 
+      self, 
+      nixpkgs, 
+      wrappers,
+      home-manager, 
+      disko, 
+      agenix, 
+      lanzaboote, 
+      ... 
+    }:
     let
       lib = nixpkgs.lib;
       system = "x86_64-linux";
@@ -44,11 +67,29 @@
         inherit system;
         config.allowUnfree = true;
         config.permittedInsecurePackages = [
-          #"electron-27.3.11"
           #"libsoup-2.74.3"
         ];
       };
+      forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.platforms.all;
+      nvimModule = nixpkgs.lib.modules.importApply ./modules/neovim/module.nix inputs;
+      nvimWrapper = wrappers.lib.evalModule nvimModule;
     in {
+      # This exposes the standalone package for `nix run .#nvim-test`
+      packages = forAllSystems (system:
+        let
+          pkgs = import nixpkgs { inherit system; };
+        in
+        {
+          neovim = nvimWrapper.config.wrap { inherit pkgs; };
+        }
+      );
+
+      # This creates a NixOS module
+      nixosModules.neovim = wrappers.lib.mkInstallModule {
+        name = "neovim"; # When you use this, the option will be `wrappers.nvim-test.enable = true`
+        value = nvimModule;
+      };
+
       # Dell Inspiron 13
       nixosConfigurations.inspiron13 = lib.nixosSystem {
         specialArgs = {
@@ -81,6 +122,9 @@
           nixpkgs.pkgs = pkgs; 
           }
           ./hosts/sanji/configuration.nix
+          # TODO: When you are ready to ditch nvf, you can just add:
+          # self.nixosModules.nvim-test
+          # And then put `wrappers.nvim-test.enable = true;` in your configuration.nix
           agenix.nixosModules.default
           lanzaboote.nixosModules.lanzaboote
           home-manager.nixosModules.home-manager
