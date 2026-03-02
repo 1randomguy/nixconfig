@@ -83,6 +83,18 @@ in
       };
     };
 
+    home.activation.configureWaypaper = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      # Make sure crudini doesn't fail on a fresh install
+      mkdir -p $HOME/.config/waypaper
+      touch $HOME/.config/waypaper/config.ini
+      if ! grep -q "^\[Settings\]" $HOME/.config/waypaper/config.ini; then
+        echo "[Settings]" >> $HOME/.config/waypaper/config.ini
+      fi
+
+      # Use crudini to set post_command while keeping the file otherwise writable for waypaper
+      ${pkgs.crudini}/bin/crudini --set $HOME/.config/waypaper/config.ini Settings post_command 'ln -sf "$wallpaper" $HOME/.config/hypr/bg'
+    '';
+
     programs.hyprlock = {
       enable = true;
       settings = {
@@ -111,9 +123,9 @@ in
 
         background = [
           {
-            path = "screenshot";
+            path = "~/.config/hypr/bg";
             blur_passes = 4;
-            blur_size = 10;
+            blur_size = 4;
             brightness = 0.5;
           }
         ];
