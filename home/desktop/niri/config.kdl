@@ -120,8 +120,8 @@ layout {
     // Top and bottom struts will simply add outer gaps in addition to the area occupied by
     // layer-shell panels and regular gaps.
     struts {
-        left 10
-        right 10
+        left 12
+        right 12
         // top 64
         // bottom 64
     }
