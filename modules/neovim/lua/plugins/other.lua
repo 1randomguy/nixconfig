@@ -13,7 +13,6 @@ return {
     before = function(_)
       vim.lsp.config('*', {
         on_attach = function(_, bufnr)
-
           -- we create a function that lets us more easily define mappings specific
           -- for LSP related items. It sets the mode, buffer and description for us each time.
           local nmap = function(keys, func, desc)
@@ -162,7 +161,7 @@ return {
             return
           end
 
-          if not treesitter_try_attach(buf,language) then
+          if not treesitter_try_attach(buf, language) then
             if vim.tbl_contains(installable_parsers, language) then
               -- not already installed, so try to install them via nvim-treesitter if possible
               require("nvim-treesitter").install(language):await(function()
@@ -204,7 +203,7 @@ return {
           -- mapping query_strings to modes.
           selection_modes = {
             ['@parameter.outer'] = 'v', -- charwise
-            ['@function.outer'] = 'V', -- linewise
+            ['@function.outer'] = 'V',  -- linewise
             -- ['@class.outer'] = '<c-v>', -- blockwise
           },
           -- If you set this to `true` (default is `false`) then any textobject is
@@ -254,7 +253,7 @@ return {
       { "<leader>FF", desc = "[F]ormat [F]ile" },
     },
     -- colorscheme = "",
-    after = function (plugin)
+    after = function(plugin)
       local conform = require("conform")
 
       conform.setup({
@@ -288,7 +287,7 @@ return {
     -- ft = "",
     -- keys = "",
     -- colorscheme = "",
-    after = function (plugin)
+    after = function(plugin)
       require('lint').linters_by_ft = {
         -- NOTE: download some linters
         -- and configure them here
@@ -324,11 +323,11 @@ return {
     "blink.cmp",
     auto_enable = true,
     event = "DeferredUIEnter",
-    after = function (_)
+    after = function(_)
       require("blink.cmp").setup({
         -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
         -- See :h blink-cmp-config-keymap for configuring keymaps
-        keymap =  {
+        keymap = {
           preset = 'default',
         },
         cmdline = {
@@ -439,7 +438,7 @@ return {
     -- ft = "",
     -- keys = "",
     -- colorscheme = "",
-    after = function (plugin)
+    after = function(plugin)
       require('lualine').setup({
         options = {
           icons_enabled = false,
@@ -456,7 +455,7 @@ return {
           lualine_b = {
             { 'filename', path = 3, status = true, },
           },
-          lualine_x = {'filetype'},
+          lualine_x = { 'filetype' },
         },
         tabline = {
           lualine_a = { 'buffers' },
@@ -475,7 +474,7 @@ return {
     -- ft = "",
     -- keys = "",
     -- colorscheme = "",
-    after = function (plugin)
+    after = function(plugin)
       require('gitsigns').setup({
         -- See `:help gitsigns.txt`
         --signs = {
@@ -556,28 +555,28 @@ return {
     -- ft = "",
     -- keys = "",
     -- colorscheme = "",
-    after = function (plugin)
+    after = function(plugin)
       require('which-key').setup({
       })
       require('which-key').add {
-        { "<leader><leader>", group = "buffer commands" },
+        { "<leader><leader>",  group = "buffer commands" },
         { "<leader><leader>_", hidden = true },
-        { "<leader>c", group = "[c]ode" },
-        { "<leader>c_", hidden = true },
-        { "<leader>d", group = "[d]ocument" },
-        { "<leader>d_", hidden = true },
-        { "<leader>g", group = "[g]it" },
-        { "<leader>g_", hidden = true },
-        { "<leader>m", group = "[m]arkdown" },
-        { "<leader>m_", hidden = true },
-        { "<leader>r", group = "[r]ename" },
-        { "<leader>r_", hidden = true },
-        { "<leader>s", group = "[s]earch" },
-        { "<leader>s_", hidden = true },
-        { "<leader>t", group = "[t]oggles" },
-        { "<leader>t_", hidden = true },
-        { "<leader>w", group = "[w]orkspace" },
-        { "<leader>w_", hidden = true },
+        { "<leader>c",         group = "[c]ode" },
+        { "<leader>c_",        hidden = true },
+        { "<leader>d",         group = "[d]ocument" },
+        { "<leader>d_",        hidden = true },
+        { "<leader>g",         group = "[g]it" },
+        { "<leader>g_",        hidden = true },
+        { "<leader>m",         group = "[m]arkdown" },
+        { "<leader>m_",        hidden = true },
+        { "<leader>r",         group = "[r]ename" },
+        { "<leader>r_",        hidden = true },
+        { "<leader>s",         group = "[s]earch" },
+        { "<leader>s_",        hidden = true },
+        { "<leader>t",         group = "[t]oggles" },
+        { "<leader>t_",        hidden = true },
+        { "<leader>w",         group = "[w]orkspace" },
+        { "<leader>w_",        hidden = true },
       }
     end,
   },
