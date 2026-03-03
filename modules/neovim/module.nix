@@ -19,18 +19,7 @@ inputs:
 
   # choose a directory for your config.
   config.settings.config_directory = ./.;
-  # you can also use an impure path!
-  # config.settings.config_directory = lib.generators.mkLuaInline "vim.fn.stdpath('config')";
-  # config.settings.config_directory = "/home/<USER>/.config/nvim";
-  # If you do that, it will not be provisioned by nix, but it will have normal reload for quick edits!
 
-  # If you want to install multiple neovim derivations via home.packages or environment.systemPackages
-  # in order to prevent path collisions:
-
-  # set this to true:
-  # config.settings.dont_link = true;
-
-  # and make sure these dont share values:
   # config.binName = "nvim";
   # config.settings.aliases = [ ];
 
@@ -40,9 +29,9 @@ inputs:
   # You can declare your own options!
   options.settings.colorscheme = lib.mkOption {
     type = lib.types.str;
-    default = "onedark_dark";
+    default = "catppuccin";
   };
-  config.settings.colorscheme = "moonfly"; # <- just demonstrating that it is an option
+  config.settings.colorscheme = "catppuccin"; # <- just demonstrating that it is an option
   # and grab it in lua with `require(vim.g.nix_info_plugin_name)("onedark_dark", "settings", "colorscheme") == "moonfly"`
   config.specs.colorscheme = {
     lazy = true;
@@ -54,6 +43,7 @@ inputs:
         "onedark" = onedarkpro-nvim;
         "onelight" = onedarkpro-nvim;
         "moonfly" = vim-moonfly-colors;
+        "catppuccin" = catppuccin-nvim;
       }
     );
   };
