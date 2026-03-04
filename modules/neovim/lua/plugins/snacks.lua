@@ -88,7 +88,7 @@ return {
         end
       end
       -- NOTE: we aren't loading this lazily, and the keybinds already are so it is fine to just set these here
-      vim.keymap.set("n", "-", function() Snacks.explorer.open() end, { desc = 'Snacks file explorer' })
+      -- vim.keymap.set("n", "-", function() Snacks.explorer.open() end, { desc = 'Snacks file explorer' })
       vim.keymap.set("n", "<c-\\>", function() Snacks.terminal.open() end, { desc = 'Snacks Terminal' })
       vim.keymap.set("n", "<leader>gg", function() Snacks.lazygit.open() end, { desc = 'Snacks LazyGit' })
       vim.keymap.set('n', "<leader>sf", function() Snacks.picker.smart() end, { desc = "Smart Find Files" })
