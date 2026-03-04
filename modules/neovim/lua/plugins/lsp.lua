@@ -130,7 +130,7 @@ return {
     enabled = true,
     for_cat = "markdown",
     lsp = {
-      filetypes = { "markdown", "markdown.mdx" },
+      filetypes = { "markdown" },
       settings = {
         -- Marksman doesn't require extensive settings out of the box
       },
