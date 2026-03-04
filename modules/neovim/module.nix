@@ -20,7 +20,7 @@ inputs:
   # choose a directory for your config.
   config.settings.config_directory = ./.;
 
-  # config.binName = "nvim";
+  config.binName = "nvim-test";
   # config.settings.aliases = [ ];
 
   # To add a wrapped $out/bin/${config.binName}-neovide to the resulting neovim derivation
@@ -84,7 +84,6 @@ inputs:
     }
   ];
 
-  # you can name these whatever you want.
   config.specs.nix = {
     data = null;
     extraPackages = with pkgs; [
@@ -92,7 +91,6 @@ inputs:
       nixfmt
     ];
   };
-  # You can use the before and after fields to run them before or after other specs or spec of lists of specs
   config.specs.lua = {
     after = [ "general" ];
     lazy = true;
@@ -102,6 +100,20 @@ inputs:
     extraPackages = with pkgs; [
       lua-language-server
       stylua
+    ];
+  };
+  config.specs.markdown = {
+    data = null;
+    extraPackages = with pkgs; [
+      marksman
+    ];
+  };
+  config.specs.rust = {
+    data = with pkgs.vimPlugins; [ rustaceanvim ];
+    extraPackages = with pkgs; [
+      rust-analyzer
+      rustfmt
+      cargo
     ];
   };
 
@@ -115,6 +127,7 @@ inputs:
       tree-sitter
       ripgrep
       fd
+      yazi
     ];
     # this `lazy = true` definition will transfer to specs in the contained DAL, if there is one.
     # This is because the definition of lazy in `config.specMods` checks `parentSpec.lazy or false`
@@ -145,6 +158,7 @@ inputs:
       nvim-lint
       conform-nvim
       nvim-treesitter-textobjects
+      yazi-nvim
       # treesitter + grammars
       nvim-treesitter.withAllGrammars
       # This is for if you only want some of the grammars
