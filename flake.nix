@@ -123,7 +123,7 @@
           }
           ./hosts/sanji/configuration.nix
           # TODO: When you are ready to ditch nvf, you can just add:
-          # self.nixosModules.nvim-test
+          self.nixosModules.neovim
           # And then put `wrappers.nvim-test.enable = true;` in your configuration.nix
           agenix.nixosModules.default
           lanzaboote.nixosModules.lanzaboote
