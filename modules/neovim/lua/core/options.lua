@@ -4,7 +4,9 @@ vim.g.maplocalleader = ' '
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
--- NOTE: You can change these options as you wish!
+
+vim.o.title = true
+vim.o.titlestring = "NVIM: %f %y%m (%F)"
 
 -- allow .nvim.lua in current dir and parents (project config)
 vim.o.exrc = false -- can be toggled off in that file to stop it from searching further
@@ -32,14 +34,14 @@ vim.wo.number = true
 vim.o.mouse = 'a'
 
 -- Indent
--- vim.o.smarttab = true
+vim.o.smarttab = true
 vim.opt.cpoptions:append('I')
 vim.o.expandtab = true
 -- vim.o.smartindent = true
 -- vim.o.autoindent = true
--- vim.o.tabstop = 4
--- vim.o.softtabstop = 4
--- vim.o.shiftwidth = 4
+vim.o.tabstop = 2
+vim.o.softtabstop = 0
+vim.o.shiftwidth = 2
 
 -- stops line wrapping from being confusing
 vim.o.breakindent = true
