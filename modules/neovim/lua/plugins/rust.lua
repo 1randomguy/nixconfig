@@ -6,13 +6,13 @@ return {
     -- Only load this plugin when we actually open a Rust file
     ft = "rust",
     -- rustaceanvim expects configuration in a global variable BEFORE it loads
-    before = function()
+    after = function()
       vim.g.rustaceanvim = {
         server = {
           default_settings = {
             ['rust-analyzer'] = {
               -- Tell rust-analyzer to use clippy on save!
-              checkOnSave = {
+              check = {
                 command = "clippy",
               },
               cargo = {
