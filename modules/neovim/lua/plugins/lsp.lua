@@ -136,4 +136,49 @@ return {
       },
     },
   },
+  {
+    "ts_ls",
+    enabled = true,
+    for_cat = "javascript",
+    lsp = {
+      filetypes = { 
+        "javascript", 
+        "javascriptreact", 
+        "typescript", 
+        "typescriptreact", 
+      },
+      settings = {
+        -- ts_ls defaults are usually fine, but you can add implicitProjectConfig here
+        javascript = {
+          inlayHints = {
+            includeInlayParameterNameHints = "all",
+            includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+            includeInlayFunctionParameterTypeHints = true,
+            includeInlayVariableTypeHints = true,
+            includeInlayPropertyDeclarationTypeHints = true,
+            includeInlayFunctionLikeReturnTypeHints = true,
+            includeInlayEnumMemberValueHints = true,
+          },
+        },
+      },
+    },
+  },
+  {
+    "pyright",
+    enabled = true,
+    for_cat = "python",
+    lsp = {
+      filetypes = { "python" },
+      settings = {
+        python = {
+          analysis = {
+            autoSearchPaths = true,
+            useLibraryCodeForTypes = true,
+            typeCheckingMode = "basic", -- You can change this to "off" or "strict"
+            diagnosticMode = "workspace",
+          },
+        },
+      },
+    },
+  }
 }

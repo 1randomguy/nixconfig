@@ -132,15 +132,16 @@ return {
 
       conform.setup({
         formatters_by_ft = {
-          -- NOTE: download some formatters
-          -- and configure them here
           lua = nixInfo(nil, "settings", "cats", "lua") and { "stylua" } or nil,
-          -- go = { "gofmt", "golint" },
-          -- templ = { "templ" },
-          -- Conform will run multiple formatters sequentially
-          -- python = { "isort", "black" },
+          python = nixInfo(nil, "settings", "cats", "python") and { "isort", "black" } or nil, -- sorts imports first, then formats code
+          javascript = nixInfo(nil, "settings", "cats", "javascript") and { "prettierd" } or nil,
+          typescript = nixInfo(nil, "settings", "cats", "javascript") and { "prettierd" } or nil,
+          javascriptreact = nixInfo(nil, "settings", "cats", "javascript") and { "prettierd" } or nil,
+          typescriptreact = nixInfo(nil, "settings", "cats", "javascript") and { "prettierd" } or nil,
           -- Use a sub-list to run only the first available formatter
           -- javascript = { { "prettierd", "prettier" } },
+          -- go = { "gofmt", "golint" },
+          -- templ = { "templ" },
         },
       })
 
@@ -166,8 +167,11 @@ return {
         -- NOTE: download some linters
         -- and configure them here
         -- markdown = {'vale',},
-        -- javascript = { 'eslint' },
-        -- typescript = { 'eslint' },
+        python = nixInfo(nil, "settings", "cats", "python") and { 'ruff' } or nil,
+        javascript = nixInfo(nil, "settings", "cats", "javascript") and { 'eslint_d' } or nil,
+        typescript = nixInfo(nil, "settings", "cats", "javascript") and { 'eslint_d' } or nil,
+        javascriptreact = nixInfo(nil, "settings", "cats", "javascript") and { 'eslint_d' } or nil,
+        typescriptreact = nixInfo(nil, "settings", "cats", "javascript") and { 'eslint_d' } or nil,
       }
 
       vim.api.nvim_create_autocmd({ "BufWritePost" }, {

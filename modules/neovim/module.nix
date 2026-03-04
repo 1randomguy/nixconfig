@@ -108,6 +108,22 @@ inputs:
       marksman
     ];
   };
+  config.specs.javascript = {
+    data = null;
+    extraPackages = with pkgs; [
+      typescript-language-server
+      prettierd
+      eslint_d
+    ];
+  };
+  config.specs.python = {
+    data = [];
+    extraPackages = with pkgs; [
+      pyright
+      black # Optional: for formatting
+      ruff  # Optional: for fast linting
+    ];
+  };
   config.specs.rust = {
     data = with pkgs.vimPlugins; [ rustaceanvim ];
     extraPackages = with pkgs; [
@@ -142,7 +158,7 @@ inputs:
         # You can override defaults from the parent spec here
         lazy = false;
       }
-      telescope-nvim
+      # TODO: undotree, toggleterminal, flash?, autopairs, todo-comments, illuminate, mini.surround(or keyboard shortcuts), image support?, origami?
       snacks-nvim
       nvim-lspconfig
       nvim-surround
