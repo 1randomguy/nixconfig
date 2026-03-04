@@ -296,7 +296,18 @@ return {
     end,
   },
   {
-
+    "yazi.nvim",
+    auto_enable = true,
+    after = function (plugin)
+      require("yazi").setup({
+        open_for_directories = false,
+        -- You can configure the floating window here
+        -- floating_window_scaling_factor = 0.9,
+        -- yazi_floating_window_winblend = 10,
       })
+      vim.keymap.set("n", "-", function() require("yazi").yazi() end, { desc = 'Open Yazi at current file' })
+      -- { "<leader>fw", "<cmd>Yazi cwd<CR>", desc = "Open Yazi in working directory" },
+      -- { "<leader><up>", "<cmd>Yazi toggle<CR>", desc = "Resume last Yazi session" }
+    end
   },
 }
