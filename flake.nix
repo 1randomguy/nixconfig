@@ -86,8 +86,18 @@
 
       # This creates a NixOS module
       nixosModules.neovim = wrappers.lib.mkInstallModule {
-        name = "neovim"; # When you use this, the option will be `wrappers.nvim-test.enable = true`
+        name = "neovim"; # When you use this, the option will be `wrappers.neovim.enable = true`
         value = nvimModule;
+      };
+      # This creates a Home Manager module
+      homeManagerModules.neovim = wrappers.lib.mkInstallModule {
+        name = "neovim"; # The option will be: wrappers.neovim.enable = true;
+        # just import in the home.nix and then enable, no need to modify the modules in here:
+        # imports = [
+        #   self.homeManagerModules.neovim
+        # ];
+        value = nvimModule;
+        path = [ "home" "packages" ];
       };
 
       # Dell Inspiron 13
@@ -122,7 +132,6 @@
           nixpkgs.pkgs = pkgs; 
           }
           ./hosts/sanji/configuration.nix
-          # TODO: When you are ready to ditch nvf, you can just add:
           self.nixosModules.neovim
           # And then put `wrappers.nvim-test.enable = true;` in your configuration.nix
           agenix.nixosModules.default
