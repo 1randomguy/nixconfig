@@ -20,8 +20,11 @@ inputs:
   # choose a directory for your config.
   config.settings.config_directory = ./.;
 
-  config.binName = "nvim-test";
-  # config.settings.aliases = [ ];
+  config.binName = "nvim";
+  config.settings.aliases = [
+    "vi"
+    "vim"
+  ];
 
   # To add a wrapped $out/bin/${config.binName}-neovide to the resulting neovim derivation
   # config.hosts.neovide.nvim-host.enable = true;
