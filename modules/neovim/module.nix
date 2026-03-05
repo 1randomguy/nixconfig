@@ -159,9 +159,15 @@ inputs:
         lazy = false;
       }
       # TODO: undotree, toggleterminal, flash?, autopairs, todo-comments, illuminate, mini.surround(or keyboard shortcuts), image support?, origami?
+      undotree
+      toggleterm-nvim
+      nvim-autopairs
+      todo-comments-nvim
+      vim-illuminate
+      mini-surround
+
       snacks-nvim
       nvim-lspconfig
-      nvim-surround
       vim-startuptime
       blink-cmp
       blink-compat

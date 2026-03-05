@@ -172,6 +172,8 @@ return {
         typescript = nixInfo(nil, "settings", "cats", "javascript") and { 'eslint_d' } or nil,
         javascriptreact = nixInfo(nil, "settings", "cats", "javascript") and { 'eslint_d' } or nil,
         typescriptreact = nixInfo(nil, "settings", "cats", "javascript") and { 'eslint_d' } or nil,
+        -- javascript = { 'eslint' },
+        -- typescript = { 'eslint' },
       }
 
       vim.api.nvim_create_autocmd({ "BufWritePost" }, {
@@ -281,12 +283,80 @@ return {
     end,
   },
   {
-    "nvim-surround",
+    "mini.surround",
     auto_enable = true,
-    event = "DeferredUIEnter",
-    -- keys = "",
-    after = function(plugin)
-      require('nvim-surround').setup()
+    event = { "BufReadPre", "BufNewFile" },
+    after = function()
+      require("mini.surround").setup()
+    end,
+  },
+  {
+    "nvim-autopairs",
+    auto_enable = true,
+    event = "InsertEnter",
+    after = function()
+      require("nvim-autopairs").setup({
+        check_ts = true, -- Integrates with Treesitter so it doesn't auto-pair inside strings/comments
+      })
+    end,
+  },
+  {
+    "todo-comments.nvim",
+    auto_enable = true,
+    event = { "BufReadPre", "BufNewFile" },
+    cmd = { "TodoTelescope", "TodoLocList", "TodoQuickFix" },
+    after = function()
+      require("todo-comments").setup()
+    end,
+  },
+  {
+    "toggleterm.nvim",
+    auto_enable = true,
+    cmd = { "ToggleTerm", "TermExec" },
+    keys = {
+      -- Tell lze to load the plugin the first time you press Ctrl+t
+      { "<C-t>", "<cmd>ToggleTerm<CR>", desc = "Toggle Floating Terminal" },
+      { "<leader>th", "<cmd>ToggleTerm size=15 direction=horizontal<CR>", desc = "Terminal Horizontal" },
+      { "<leader>tf", "<cmd>ToggleTerm direction=float<CR>", desc = "Terminal Float" },
+    },
+    after = function()
+      require("toggleterm").setup({
+        open_mapping = [[<C-t>]], -- This binds Ctrl+t to toggle the terminal globally
+        direction = "float",      -- Makes it float by default
+        float_opts = {
+          border = "curved",      -- single, double, shadow, or curved
+        },
+      })
+    end,
+  },
+  {
+    "undotree",
+    auto_enable = true,
+    cmd = { "UndotreeToggle", "UndotreeFocus" },
+    keys = {
+      { "<leader>u", "<cmd>UndotreeToggle<CR>", desc = "Toggle UndoTree" },
+    },
+    -- Undotree is an older Vim plugin. It relies on global variables instead of a setup() function.
+    -- We use `before` so these globals are set *before* the plugin loads!
+    before = function()
+      vim.g.undotree_WindowLayout = 1
+      vim.g.undotree_SplitWidth = 40
+      -- Highly recommended: Turn on persistent undo so history is saved between Neovim restarts
+      if vim.fn.has("persistent_undo") == 1 then
+        vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
+        vim.opt.undofile = true
+      end
+    end,
+  },
+  {
+    "vim-illuminate",
+    auto_enable = true,
+    event = { "BufReadPost", "BufNewFile" },
+    after = function()
+      require("illuminate").configure({
+        delay = 150, -- Wait 150ms before highlighting so it doesn't flash violently while moving
+        large_file_cutoff = 2000, -- Disable on huge files so Neovim doesn't freeze
+      })
     end,
   },
   {
