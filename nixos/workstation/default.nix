@@ -162,7 +162,7 @@ in
         libgcrypt
         libvpx
         librsvg
-        xorg.libXft
+        libxft
         libvdpau
         # ...
         # Some more libraries that I needed to run programs
