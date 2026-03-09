@@ -161,7 +161,7 @@ inputs:
         # You can override defaults from the parent spec here
         lazy = false;
       }
-      # TODO: undotree, toggleterminal, flash?, autopairs, todo-comments, illuminate, mini.surround(or keyboard shortcuts), image support?, origami?
+      # TODO: flash?, image support?, origami?, git diff tool?
       undotree
       toggleterm-nvim
       nvim-autopairs
