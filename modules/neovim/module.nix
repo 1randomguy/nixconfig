@@ -155,6 +155,9 @@ inputs:
     lazy = true;
     # here we chose a DAL of plugins, but we can also pass a single plugin, or null
     # plugins are of type wlib.types.stringable
+    # NOTE: view these names in the info plugin!
+    # :lua nixInfo.lze.debug.display(nixInfo.plugins)
+    # The display function is from lzextras
     data = with pkgs.vimPlugins; [
       {
         data = vim-sleuth;
@@ -168,6 +171,7 @@ inputs:
       todo-comments-nvim
       vim-illuminate
       mini-surround
+      nvim-origami
 
       snacks-nvim
       nvim-lspconfig

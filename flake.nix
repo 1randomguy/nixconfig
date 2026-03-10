@@ -48,22 +48,22 @@
     ashell.url = "github:MalpenZibo/ashell";
   };
 
-  outputs = 
-    inputs @ 
-    { 
-      self, 
-      nixpkgs, 
+  outputs =
+    inputs @
+    {
+      self,
+      nixpkgs,
       wrappers,
-      home-manager, 
-      disko, 
-      agenix, 
-      lanzaboote, 
-      ... 
+      home-manager,
+      disko,
+      agenix,
+      lanzaboote,
+      ...
     }:
     let
       lib = nixpkgs.lib;
       system = "x86_64-linux";
-      pkgs = import nixpkgs { 
+      pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
         config.permittedInsecurePackages = [

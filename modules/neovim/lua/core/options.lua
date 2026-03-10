@@ -43,6 +43,10 @@ vim.o.tabstop = 2
 vim.o.softtabstop = 0
 vim.o.shiftwidth = 2
 
+-- disable vim's auto-folding
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+
 -- stops line wrapping from being confusing
 vim.o.breakindent = true
 
