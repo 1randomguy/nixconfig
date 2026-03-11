@@ -117,12 +117,13 @@ in
         Base domain name to be used to access the homelab services via nginx reverse proxy
       '';
     };
+    homepage.enable = mkEnableOption "Homelab services and config";
   };
   options.services.nginx.virtualHosts = lib.mkOption {
     type = lib.types.attrsOf (lib.types.submodule vhostOptions);
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     users = {
       groups.${cfg.group} = {
         gid = 993;
@@ -196,7 +197,7 @@ in
       # };
     };
 
-    services.homepage-dashboard = {
+    services.homepage-dashboard = lib.mkIf cfg.homepage.enable {
       enable = true;
       environmentFile = builtins.toFile "homepage.env" "HOMEPAGE_ALLOWED_HOSTS=${cfg.baseDomain}";
       services = [
@@ -268,7 +269,7 @@ in
       ];
     };
 
-    services.nginx.virtualHosts."${cfg.baseDomain}" = {
+    services.nginx.virtualHosts."${cfg.baseDomain}" = lib.mkIf cfg.homepage.enable {
       enableACME = true;
       forceSSL = true;
       acmeRoot = null;
