@@ -14,6 +14,7 @@ in
       environment = {
         PERIOD = "5m";
         CONFIG_FILEPATH = "/run/credentials/ddns-updater.service/config.json";
+        SERVER_ENABLE = "no";
       };
     };
 
