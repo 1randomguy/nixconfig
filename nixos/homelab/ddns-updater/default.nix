@@ -19,10 +19,10 @@ in
 
     systemd.services.ddns-updater.serviceConfig.LoadCredential = [
       # Format is "credential_name:absolute_path_to_source_file"
-      "config.json:${config.age.secrets.ddns_config.path}"
+      "config.json:${config.age.secrets.ddns-updater.path}"
     ];
 
-    age.secrets.ddclient_config = {
+    age.secrets.ddns-updater = {
       file = ../../../secrets/ddns-updater.age;
     };
   };
