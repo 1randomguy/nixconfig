@@ -1,8 +1,7 @@
 {lib, config, ...}:
 with lib;
 let
-  cfg = config.homelab.services.ddclient;
-  hl = config.homelab;
+  cfg = config.homelab.services.ddns-updater;
 in
 {
   options.homelab.services.ddns-updater = {
