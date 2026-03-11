@@ -86,6 +86,7 @@ in
     ./restic
     ./authelia
     ./ddclient
+    ./ddns-updater
     ./nextcloud
     ./zola
     ./navidrome

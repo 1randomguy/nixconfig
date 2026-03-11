@@ -21,7 +21,7 @@
         auto-stack.enable = true;
       };
       authelia.enable = true;
-      ddclient.enable = true;
+      ddns-updater.enable = true;
       restic = {
         enable = true;
         local.enable = true;
