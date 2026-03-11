@@ -14,9 +14,14 @@ in
       enable = true;
       environment = {
         PERIOD = "5m";
-        CONFIG_FILEPATH = config.age.secrets.ddns-updater.path;
+        CONFIG_FILEPATH = "/run/credentials/ddns-updater.service/config.json";
       };
     };
+
+    systemd.services.ddns-updater.serviceConfig.LoadCredential = [
+      # Format is "credential_name:absolute_path_to_source_file"
+      "config.json:${config.age.secrets.ddns_config.path}"
+    ];
 
     age.secrets.ddclient_config = {
       file = ../../../secrets/ddns-updater.age;
