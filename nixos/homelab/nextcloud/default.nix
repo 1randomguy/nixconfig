@@ -114,6 +114,17 @@ in
       enableACME = true;
       acmeRoot = null;
       forceSSL = true;
+
+      extraConfig = ''
+        add_header X-Robots-Tag "noindex, nofollow" always;
+        add_header X-Frame-Options "SAMEORIGIN" always;
+        add_header X-Permitted-Cross-Domain-Policies "none" always;
+
+        # Re-apply your global security headers here so they aren't lost
+        add_header Strict-Transport-Security "max-age=31536000; includeSubdomains; preload" always;
+        add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+        add_header X-Content-Type-Options "nosniff" always;
+      '';
     };
 
     networking.firewall.allowedTCPPorts = [ 80 443 ];

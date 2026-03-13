@@ -171,10 +171,10 @@ in
         add_header 'Referrer-Policy' 'origin-when-cross-origin';
 
         # Disable embedding as a frame
-        add_header X-Frame-Options DENY;
+        add_header X-Frame-Options DENY; #change to SAMEORIGIN if I want to embedd on some other of my sites
 
         # Prevent injection of code in other mime types (XSS Attacks)
-        add_header X-Content-Type-Options nosniff;
+        add_header X-Content-Type-Options "nosniff" always;
 
         # This might create errors
         #proxy_cookie_path / "/; secure; HttpOnly; SameSite=lax";
