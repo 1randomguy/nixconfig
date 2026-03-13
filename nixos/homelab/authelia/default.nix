@@ -161,7 +161,7 @@ in
               authorization_policy = "one_factor";
               client_secret = "$pbkdf2-sha512$310000$FVEI7Ol..OWJkTFJ2VFe7Q$6JGrmm8UnAAa.YPBcRTOftzrAcE9jdkiq3ZTfFTBRSmc/iDNRwqjnfGTUBi8U9Tw6oYt21Ui9kH2PP20/pGhCw";
               redirect_uris = [ "https://nextcloud.${hl.baseDomain}/apps/user_oidc/code" ];
-              scopes = [ "openid" "profile" "email" ]; #"groups" "nextcloud_userinfo"
+              scopes = [ "openid" "profile" "email" "groups" ]; #"nextcloud_userinfo"
               token_endpoint_auth_method = "client_secret_post";
               userinfo_signed_response_alg = "none";
               response_types = [ "code" ];
