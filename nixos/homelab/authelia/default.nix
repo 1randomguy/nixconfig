@@ -137,13 +137,13 @@ in
         };
 
         identity_providers.oidc = {
-          claims_policies.nextcloud_userinfo = {
-              custom_claims.is_nextcloud_admin = {};
-          };
-          
-          scopes.nextcloud_userinfo = {
-              claims = [ "is_nextcloud_admin" ];
-          };
+          #claims_policies.nextcloud_userinfo = {
+          #    custom_claims.is_nextcloud_admin = {};
+          #};
+          #
+          #scopes.nextcloud_userinfo = {
+          #    claims = [ "is_nextcloud_admin" ];
+          #};
 
           clients = [ 
             {
@@ -160,12 +160,12 @@ in
               client_id = "Almkdw6nFOnuVxDW0SiMsO7RQetCVjJSobtnM.gDnSjvp~Dv2RsRKvPHxg~VOyE9lpY0Jwgz";
               authorization_policy = "one_factor";
               client_secret = "$pbkdf2-sha512$310000$FVEI7Ol..OWJkTFJ2VFe7Q$6JGrmm8UnAAa.YPBcRTOftzrAcE9jdkiq3ZTfFTBRSmc/iDNRwqjnfGTUBi8U9Tw6oYt21Ui9kH2PP20/pGhCw";
-              redirect_uris = [ "https://nextcloud.${hl.baseDomain}/apps/oidc_login/oidc" ];
-              scopes = [ "openid" "profile" "email" "groups" "nextcloud_userinfo" ];
+              redirect_uris = [ "https://nextcloud.${hl.baseDomain}/apps/user_oidc/code" ];
+              scopes = [ "openid" "profile" "email" "groups" ]; #"nextcloud_userinfo"
               userinfo_signed_response_alg = "none";
               response_types = "code";
               grant_types = [ "authorization_code" ];
-              claims_policy = "nextcloud_userinfo";
+              #claims_policy = "nextcloud_userinfo";
               consent_mode = "implicit";
             }
           ];

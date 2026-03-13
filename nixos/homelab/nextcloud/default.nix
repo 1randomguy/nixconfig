@@ -79,35 +79,35 @@ in
         # Authelia OIDC
         allow_user_to_change_display_name = false;
         lost_password_link = "disabled";
-        oidc_login_provider_url = "https://auth.${hl.baseDomain}";
-        oidc_login_client_id = "Almkdw6nFOnuVxDW0SiMsO7RQetCVjJSobtnM.gDnSjvp~Dv2RsRKvPHxg~VOyE9lpY0Jwgz";
-        oidc_login_auto_redirect = false;
-        oidc_login_end_session_redirect = false;
-        oidc_login_button_text = "Log in with Authelia";
-        oidc_login_hide_password_form = false;
-        oidc_login_use_id_token = false;
-        oidc_login_attributes = {
-            id = "preferred_username";
-            name = "name";
-            mail = "email";
-            groups = "groups";
-            is_admin = "is_nextcloud_admin";
-        };
-        oidc_login_default_group = "oidc";
-        oidc_login_use_external_storage = false;
-        oidc_login_scope = "openid profile email groups nextcloud_userinfo";
-        oidc_login_proxy_ldap = false;
-        oidc_login_disable_registration = false;
-        oidc_login_redir_fallback = false;
-        oidc_login_tls_verify = true;
-        oidc_create_groups = false;
-        oidc_login_webdav_enabled = false;
-        oidc_login_password_authentication = false;
-        oidc_login_public_key_caching_time = 86400;
-        oidc_login_min_time_between_jwks_requests = 10;
-        oidc_login_well_known_caching_time = 86400;
-        oidc_login_update_avatar = false;
-        oidc_login_code_challenge_method = "S256";
+        #oidc_login_provider_url = "https://auth.${hl.baseDomain}";
+        #oidc_login_client_id = "Almkdw6nFOnuVxDW0SiMsO7RQetCVjJSobtnM.gDnSjvp~Dv2RsRKvPHxg~VOyE9lpY0Jwgz";
+        #oidc_login_auto_redirect = false;
+        #oidc_login_end_session_redirect = false;
+        #oidc_login_button_text = "Log in with Authelia";
+        #oidc_login_hide_password_form = false;
+        #oidc_login_use_id_token = false;
+        #oidc_login_attributes = {
+        #    id = "preferred_username";
+        #    name = "name";
+        #    mail = "email";
+        #    groups = "groups";
+        #    is_admin = "is_nextcloud_admin";
+        #};
+        #oidc_login_default_group = "oidc";
+        #oidc_login_use_external_storage = false;
+        #oidc_login_scope = "openid profile email groups nextcloud_userinfo";
+        #oidc_login_proxy_ldap = false;
+        #oidc_login_disable_registration = false;
+        #oidc_login_redir_fallback = false;
+        #oidc_login_tls_verify = true;
+        #oidc_create_groups = false;
+        #oidc_login_webdav_enabled = false;
+        #oidc_login_password_authentication = false;
+        #oidc_login_public_key_caching_time = 86400;
+        #oidc_login_min_time_between_jwks_requests = 10;
+        #oidc_login_well_known_caching_time = 86400;
+        #oidc_login_update_avatar = false;
+        #oidc_login_code_challenge_method = "S256";
       };
 
       caching = {
@@ -122,11 +122,11 @@ in
         # https://github.com/NixOS/nixpkgs/blob/master/pkgs/servers/nextcloud/packages/nextcloud-apps.json
         inherit calendar contacts mail notes tasks;
         # custom apps ref: https://github.com/helsinki-systems/nc4nix/blob/main/31.json
-        oidc_login = pkgs.fetchNextcloudApp {
-          url = "https://github.com/pulsejet/nextcloud-oidc-login/releases/download/v3.2.2/oidc_login.tar.gz";
-          sha256 = "sha256-RLYquOE83xquzv+s38bahOixQ+y4UI6OxP9HfO26faI=";
-          license = "agpl3Plus";
-        };
+        #oidc_login = pkgs.fetchNextcloudApp {
+        #  url = "https://github.com/pulsejet/nextcloud-oidc-login/releases/download/v3.2.2/oidc_login.tar.gz";
+        #  sha256 = "sha256-RLYquOE83xquzv+s38bahOixQ+y4UI6OxP9HfO26faI=";
+        #  license = "agpl3Plus";
+        #};
         user_oidc = pkgs.fetchNextcloudApp {
           url = "https://github.com/nextcloud-releases/user_oidc/releases/download/v8.6.1/user_oidc-v8.6.1.tar.gz";
           sha256 = "sha256-Xl35Ss/P6PvK6pvm7i/J+0EHJaLPbOCffR8ZT5c3XA4=";
