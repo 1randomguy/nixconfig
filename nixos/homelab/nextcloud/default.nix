@@ -127,6 +127,12 @@ in
           sha256 = "sha256-RLYquOE83xquzv+s38bahOixQ+y4UI6OxP9HfO26faI=";
           license = "agpl3Plus";
         };
+        user_oidc = pkgs.fetchNextcloudApp {
+          url = "https://github.com/nextcloud-releases/user_oidc/releases/download/v8.6.1/user_oidc-v8.6.1.tar.gz";
+          sha256 = "sha256-Xl35Ss/P6PvK6pvm7i/J+0EHJaLPbOCffR8ZT5c3XA4=";
+          description = "Allows flexible configuration of an OIDC server as Nextcloud login user backend.";
+          license = "agpl3Plus";
+        };
       };
     };
 
