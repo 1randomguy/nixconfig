@@ -164,7 +164,7 @@ inputs:
         # You can override defaults from the parent spec here
         lazy = false;
       }
-      # TODO: flash?, image support?, origami?, git diff tool?
+      # TODO: flash?, image support?, git diff tool?
       undotree
       toggleterm-nvim
       nvim-autopairs
