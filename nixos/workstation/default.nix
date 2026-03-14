@@ -12,6 +12,7 @@ in
     ./virtualization
     ./work
     ./uni-vpn
+    ./thesis-tools
   ];
 
   options.workstation = {
