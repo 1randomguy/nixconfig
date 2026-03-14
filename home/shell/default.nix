@@ -51,6 +51,7 @@ in {
       toybox
       dig
       gh
+      direnv
     ];
 
     programs.git = {

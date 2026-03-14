@@ -46,6 +46,7 @@ in
             ${pkgs.any-nix-shell}/bin/any-nix-shell zsh --info-right | source /dev/stdin
         ''))
         ( mkAfter ''
+          eval "$(direnv hook zsh)"
           autoload -Uz edit-command-line
           zle -N edit-command-line
           bindkey "^x^e" edit-command-line
