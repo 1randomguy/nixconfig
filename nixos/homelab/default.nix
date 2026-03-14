@@ -176,6 +176,9 @@ in
         # Prevent injection of code in other mime types (XSS Attacks)
         add_header X-Content-Type-Options "nosniff" always;
 
+        # Other
+        add_header X-Permitted-Cross-Domain-Policies "none" always;
+
         # This might create errors
         #proxy_cookie_path / "/; secure; HttpOnly; SameSite=lax";
       '';
