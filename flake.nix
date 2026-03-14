@@ -11,18 +11,6 @@
       url = "github:NotAShelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    wrappers = {
-      url = "github:BirdeeHub/nix-wrapper-modules";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    plugins-lze = {
-      url = "github:BirdeeHub/lze";
-      flake = false;
-    };
-    plugins-lzextras = {
-      url = "github:BirdeeHub/lzextras";
-      flake = false;
-    };
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -46,6 +34,18 @@
     };
     gd-tools.url = "github:1randomguy/gd-tools-flake";
     ashell.url = "github:MalpenZibo/ashell";
+    wrappers = {
+      url = "github:BirdeeHub/nix-wrapper-modules";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nvim-plugins-lze = {
+      url = "github:BirdeeHub/lze";
+      flake = false;
+    };
+    nvim-plugins-lzextras = {
+      url = "github:BirdeeHub/lzextras";
+      flake = false;
+    };
   };
 
   outputs =

@@ -14,7 +14,7 @@ inputs:
     type = lib.types.attrsOf wlib.types.stringable;
     # Makes plugins autobuilt from our inputs available with
     # `config.nvim-lib.neovimPlugins.<name_without_prefix>`
-    default = config.nvim-lib.pluginsFromPrefix "plugins-" inputs;
+    default = config.nvim-lib.pluginsFromPrefix "nvim-plugins-" inputs;
   };
 
   # choose a directory for your config.

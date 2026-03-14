@@ -696,7 +696,7 @@
         "type": "github"
       }
     },
-    "plugins-lze": {
+    "nvim-plugins-lze": {
       "flake": false,
       "locked": {
         "lastModified": 1772949858,
@@ -712,7 +712,7 @@
         "type": "github"
       }
     },
-    "plugins-lzextras": {
+    "nvim-plugins-lzextras": {
       "flake": false,
       "locked": {
         "lastModified": 1772949841,
@@ -764,8 +764,8 @@
         "nixvim": "nixvim",
         "noctalia": "noctalia",
         "nvf": "nvf",
-        "plugins-lze": "plugins-lze",
-        "plugins-lzextras": "plugins-lzextras",
+        "nvim-plugins-lze": "nvim-plugins-lze",
+        "nvim-plugins-lzextras": "nvim-plugins-lzextras",
         "walker": "walker",
         "wrappers": "wrappers"
       }
