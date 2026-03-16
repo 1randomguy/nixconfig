@@ -35,7 +35,7 @@ in
       waypaper
       gnome-online-accounts-gtk
       networkmanagerapplet
-      blueberry
+      blueman
       easyeffects
       pwvucontrol
       pw-viz

@@ -28,7 +28,7 @@ audio_sinks_more_cmd = "pwvucontrol -t 1"
 audio_sources_more_cmd = "pwvucontrol -t 2"
 wifi_more_cmd = "nm-connection-editor"
 vpn_more_cmd = "nm-connection-editor"
-bluetooth_more_cmd = "blueberry"
+bluetooth_more_cmd = "blueman"
 indicators = ["IdleInhibitor", "PowerProfile", "Audio", "Bluetooth", "Network", "Vpn", "Battery"]
 
 [appearance]
