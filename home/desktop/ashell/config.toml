@@ -19,6 +19,11 @@ max_title_length = 50
 enable_workspace_filling = false
 visibility_mode = "MonitorSpecificExclusive"
 
+[tempo]
+weather_location = { City = "Darmstadt" }
+weather_indicator = "None"
+timezones = [ "Europe/Berlin", "Japan" ]
+
 [window_title]
 truncate_title_after_length = 100
 
