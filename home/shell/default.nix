@@ -33,6 +33,7 @@ in {
 
   config = mkIf cfg.shelltools {
     home.packages = with pkgs; [
+      busybox
       git
       git-credential-oauth
       #inputs.nixvim.packages.${system}.default
@@ -48,7 +49,6 @@ in {
       devenv
       exiftool
       ripgrep
-      toybox
       dig
       gh
       direnv
