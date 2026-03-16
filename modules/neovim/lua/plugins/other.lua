@@ -392,4 +392,16 @@ return {
       -- { "<leader><up>", "<cmd>Yazi toggle<CR>", desc = "Resume last Yazi session" }
     end
   },
+  {
+    "jupytext.nvim",
+    auto_enable = true,
+    -- We must intercept .ipynb files the second Neovim tries to open them
+    event = { "BufReadCmd *.ipynb", "BufNewFile *.ipynb" },
+    after = function()
+      require("jupytext").setup({
+        style = "percent",
+        output_extension = "ju.py",
+      })
+    end,
+  },
 }

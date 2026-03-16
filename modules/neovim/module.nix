@@ -127,6 +127,14 @@ inputs:
       ruff  # Optional: for fast linting
     ];
   };
+  config.specs.jupyter = {
+    data = [
+      pkgs.vimPlugins.jupytext-nvim
+    ];
+    extraPackages = with pkgs; [
+      python313Packages.jupytext
+    ];
+  };
   config.specs.rust = {
     data = with pkgs.vimPlugins; [ rustaceanvim ];
     extraPackages = with pkgs; [
