@@ -52,6 +52,7 @@ in {
       dig
       gh
       direnv
+      lazygit
     ];
 
     programs.git = {
