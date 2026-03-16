@@ -22,6 +22,11 @@
     LC_COLLATE = "de_DE.UTF-8";
   };
 
+  security.pam.loginLimits = [
+    { domain = "*"; type = "soft"; item = "nofile"; value = "8192"; }
+    { domain = "*"; type = "hard"; item = "nofile"; value = "65536"; }
+  ];
+
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
 
