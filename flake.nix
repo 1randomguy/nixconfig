@@ -199,6 +199,7 @@
           nixpkgs.pkgs = pkgs; 
           }
           ./hosts/work-laptop/configuration.nix
+          self.nixosModules.neovim
           agenix.nixosModules.default
           home-manager.nixosModules.home-manager
           {
