@@ -22,6 +22,7 @@ inputs:
 
   config.binName = "nvim";
   config.settings.aliases = [
+    "v"
     "vi"
     "vim"
   ];
