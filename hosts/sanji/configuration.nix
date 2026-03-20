@@ -23,10 +23,10 @@
     #  enable = true;
     #  directory = "/home/bene/data";
     #};
-    #games = {
-    #  enable = true;
-    #  steam.enable = true;
-    #};
+    games = {
+      enable = true;
+      bottles.enable = true;
+    };
     #virtualization = {
     #  enable = true;
     #  docker.enable = true;
