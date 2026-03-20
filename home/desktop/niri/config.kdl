@@ -144,6 +144,7 @@ layout {
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "ashell"
+spawn-at-startup "niriusd"
 spawn-at-startup "kanshi"
 spawn-at-startup "waypaper" "--restore"
 spawn-at-startup "fcitx5" "-d"
@@ -374,6 +375,10 @@ binds {
     Mod+Shift+WheelScrollUp        { focus-column-left; }
     Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
     Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
+
+    Mod+G { spawn "nirius" "toggle-follow-mode"; }
+    Mod+Ctrl+M { spawn "nirius" "scratchpad-toggle"; }
+    Mod+M { spawn "nirius" "scratchpad-show-all"; }
 
     // Similarly, you can bind touchpad scroll "ticks".
     // Touchpad scrolling is continuous, so for these binds it is split into
