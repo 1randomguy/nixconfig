@@ -8,6 +8,7 @@
       ./disk-config.nix
       ../../nixos
     ];
+  wrappers.neovim.enable = true;
 
   homelab = {
     enable = true;

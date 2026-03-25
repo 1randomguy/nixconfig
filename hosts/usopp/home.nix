@@ -17,7 +17,6 @@
       enable = true;
       full = false;
     };
-    nvf.enable = true;
   };
 
   # Home Manager needs a bit of information about you and the paths it should

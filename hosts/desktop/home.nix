@@ -32,7 +32,6 @@
     ghostty.enable = true;
     tmux.enable = true;
     zk.enable = true;
-    nvf.enable = true;
   };
 
   desktop = {
