@@ -22,11 +22,3 @@ upgrade:
   {{rebuild}}
   git add flake.lock
   git commit -m "upgrade"
-
-upgrade-nixvim:
-  git pull
-  nix flake update nixvim
-  {{rebuild}}
-  git add flake.lock
-  git commit -m "upgrade nixvim"
-

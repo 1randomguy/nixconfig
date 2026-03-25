@@ -35,7 +35,6 @@ in {
       busybox
       git
       git-credential-oauth
-      #inputs.nixvim.packages.${system}.default
       just
       fastfetch
       htop
