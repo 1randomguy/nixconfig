@@ -25,7 +25,7 @@ in
       cage
       brightnessctl
       kanshi
-      phinger-cursors
+      #phinger-cursors
       swayosd
       swaybg
       nirius
@@ -42,13 +42,19 @@ in
       pw-viz
     ];
 
-    home.pointerCursor = {
-      name = "phinger-cursors-light";
-      package = pkgs.phinger-cursors;
-      size = 32;
-      gtk.enable = true;
-      x11.enable = true;
-    };
+    #home.pointerCursor = {
+    #  name = "phinger-cursors-light";
+    #  package = pkgs.phinger-cursors;
+    #  size = 32;
+    #  gtk.enable = true;
+    #  x11.enable = true;
+    #};
+    #dconf.settings = {
+    #  "org/gnome/desktop/interface" = {
+    #    cursor-theme = config.home.pointerCursor.name;
+    #    cursor-size = config.home.pointerCursor.size;
+    #  };
+    #};
 
     services.swayosd = {
       enable = true;
@@ -75,13 +81,6 @@ in
     programs.walker = {
       enable = true;
       runAsService = true;
-    };
-
-    dconf.settings = {
-      "org/gnome/desktop/interface" = {
-        cursor-theme = config.home.pointerCursor.name;
-        cursor-size = config.home.pointerCursor.size;
-      };
     };
 
     home.activation.configureWaypaper = lib.hm.dag.entryAfter ["writeBoundary"] ''

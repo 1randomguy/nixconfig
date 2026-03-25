@@ -16,7 +16,30 @@ in
 
     environment.systemPackages = with pkgs; [
       (python3.withPackages (pyPkgs: with pyPkgs; [ pygobject3 ]))
+      phinger-cursors
     ];
+
+    # cursor
+    #environment.systemPackages = [ pkgs.phinger-cursors ];
+    environment.variables = {
+      XCURSOR_THEME = "phinger-cursors-light";
+      XCURSOR_SIZE = "32";
+    };
+    # This forces GTK3/GTK4 apps (including flatpaks) to respect the cursor
+    programs.dconf.enable = true;
+    programs.dconf.profiles.user.databases = [{
+      settings = {
+        "org/gnome/desktop/interface" = {
+          cursor-theme = "phinger-cursors-light";
+          cursor-size = pkgs.lib.gvariant.mkInt32 32; 
+        };
+      };
+    }];
+    # This catches stubborn XWayland apps that ignore the environment variables
+    environment.etc."X11/Xresources".text = ''
+      Xcursor.theme: phinger-cursors-light
+      Xcursor.size: 32
+    '';
 
     # keyboard
     services.xserver.xkb.layout = "us";
