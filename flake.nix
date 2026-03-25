@@ -49,8 +49,7 @@
   };
 
   outputs =
-    inputs @
-    {
+    inputs@{
       self,
       nixpkgs,
       wrappers,
@@ -61,7 +60,6 @@
       ...
     }:
     let
-      lib = nixpkgs.lib;
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
@@ -73,9 +71,11 @@
       forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.platforms.all;
       nvimModule = nixpkgs.lib.modules.importApply ./modules/neovim/module.nix inputs;
       nvimWrapper = wrappers.lib.evalModule nvimModule;
-    in {
+    in
+    {
       # This exposes the standalone package for `nix run .#nvim-test`
-      packages = forAllSystems (system:
+      packages = forAllSystems (
+        system:
         let
           pkgs = import nixpkgs { inherit system; };
         in
@@ -97,18 +97,21 @@
         #   self.homeManagerModules.neovim
         # ];
         value = nvimModule;
-        path = [ "home" "packages" ];
+        path = [
+          "home"
+          "packages"
+        ];
       };
 
       # Dell Inspiron 13
-      nixosConfigurations.inspiron13 = lib.nixosSystem {
+      nixosConfigurations.inspiron13 = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit system inputs;
         };
         modules = [
-          { 
-          imports = [ nixpkgs.nixosModules.readOnlyPkgs ];
-          nixpkgs.pkgs = pkgs; 
+          {
+            imports = [ nixpkgs.nixosModules.readOnlyPkgs ];
+            nixpkgs.pkgs = pkgs;
           }
           ./hosts/inspiron13/configuration.nix
           agenix.nixosModules.default
@@ -122,14 +125,14 @@
         ];
       };
       # Lenovo Thinkpad X9 15 "sanji"
-      nixosConfigurations.sanji = lib.nixosSystem {
+      nixosConfigurations.sanji = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit system inputs;
         };
         modules = [
-          { 
-          imports = [ nixpkgs.nixosModules.readOnlyPkgs ];
-          nixpkgs.pkgs = pkgs; 
+          {
+            imports = [ nixpkgs.nixosModules.readOnlyPkgs ];
+            nixpkgs.pkgs = pkgs;
           }
           ./hosts/sanji/configuration.nix
           self.nixosModules.neovim
@@ -146,14 +149,14 @@
         ];
       };
       # Desktop
-      nixosConfigurations.desktop = lib.nixosSystem {
+      nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit system inputs;
         };
         modules = [
-          { 
+          {
             imports = [ nixpkgs.nixosModules.readOnlyPkgs ];
-            nixpkgs.pkgs = pkgs; 
+            nixpkgs.pkgs = pkgs;
           }
           ./hosts/desktop/configuration.nix
           agenix.nixosModules.default
@@ -167,14 +170,14 @@
         ];
       };
       # Main Homeserver
-      nixosConfigurations.usopp = lib.nixosSystem {
+      nixosConfigurations.usopp = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit system inputs;
         };
         modules = [
-          { 
-          imports = [ nixpkgs.nixosModules.readOnlyPkgs ];
-          nixpkgs.pkgs = pkgs; 
+          {
+            imports = [ nixpkgs.nixosModules.readOnlyPkgs ];
+            nixpkgs.pkgs = pkgs;
           }
           ./hosts/usopp/configuration.nix
           disko.nixosModules.disko
@@ -189,14 +192,14 @@
         ];
       };
       # Work Laptop
-      nixosConfigurations.worklaptop = lib.nixosSystem {
+      nixosConfigurations.worklaptop = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit system inputs;
         };
         modules = [
-          { 
-          imports = [ nixpkgs.nixosModules.readOnlyPkgs ];
-          nixpkgs.pkgs = pkgs; 
+          {
+            imports = [ nixpkgs.nixosModules.readOnlyPkgs ];
+            nixpkgs.pkgs = pkgs;
           }
           ./hosts/work-laptop/configuration.nix
           self.nixosModules.neovim
@@ -212,15 +215,15 @@
       };
       # WSL
       homeConfigurations.wsl = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          extraSpecialArgs = { inherit inputs; };
-          modules = [ ./hosts/wsl/home.nix ];
+        inherit pkgs;
+        extraSpecialArgs = { inherit inputs; };
+        modules = [ ./hosts/wsl/home.nix ];
       };
       # WSL-work
       homeConfigurations.bene = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          extraSpecialArgs = { inherit inputs; };
-          modules = [ ./hosts/wsl-work/home.nix ];
+        inherit pkgs;
+        extraSpecialArgs = { inherit inputs; };
+        modules = [ ./hosts/wsl-work/home.nix ];
       };
     };
 }
