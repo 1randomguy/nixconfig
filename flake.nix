@@ -4,9 +4,21 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     #nixpkgs.url = "/home/bene/nixpkgs";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    wrappers = {
+      url = "github:BirdeeHub/nix-wrapper-modules";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nvim-plugins-lze = {
+      url = "github:BirdeeHub/lze";
+      flake = false;
+    };
+    nvim-plugins-lzextras = {
+      url = "github:BirdeeHub/lzextras";
+      flake = false;
+    };
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    nixvim.url = "github:1randomguy/nixvim";
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,18 +42,6 @@
     };
     gd-tools.url = "github:1randomguy/gd-tools-flake";
     ashell.url = "github:MalpenZibo/ashell";
-    wrappers = {
-      url = "github:BirdeeHub/nix-wrapper-modules";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nvim-plugins-lze = {
-      url = "github:BirdeeHub/lze";
-      flake = false;
-    };
-    nvim-plugins-lzextras = {
-      url = "github:BirdeeHub/lzextras";
-      flake = false;
-    };
   };
 
   outputs =
