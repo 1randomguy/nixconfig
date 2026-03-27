@@ -5,44 +5,11 @@ let
 in
 {
   imports = [
-    ./image-editing
-    ./latex
     ./music
-    ./devel
-    ./study
   ];
   options.apps = {
     enable = mkEnableOption "Install graphical apps on this system";
   };
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      # web
-      firefox
-      chromium
-      # organization
-      geary
-      evolution
-      # image viewing, basic editing
-      gthumb
-      vlc
-      # document viewing/editing
-      libreoffice
-      pdfarranger
-      sioyek
-      zotero
-      kdePackages.okular
-      # tasks
-      taskwarrior3
-      # other
-      ausweisapp
-      foliate
-      nextcloud-client
-      protonvpn-gui
-      typst
-      # tools
-      resources
-      file-roller
-      bluetui
-    ];
   };
 }
