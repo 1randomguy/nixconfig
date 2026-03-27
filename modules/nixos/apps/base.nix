@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.base = {pkgs, ...}:
+  flake.nixosModules.base-apps = {pkgs, ...}:
   {
     environment.systemPackages = with pkgs; [
       # web

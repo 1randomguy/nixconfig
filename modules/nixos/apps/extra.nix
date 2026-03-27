@@ -1,6 +1,6 @@
 {inputs, ...}:
 {
-  flake.nixosModules.extra = {pkgs, ...}:
+  flake.nixosModules.extra-apps = {pkgs, ...}:
   {
     # these are extra apps for private machines
     environment.systemPackages = with pkgs; [
