@@ -47,11 +47,30 @@
   };
 
   # outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
-  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+  outputs = inputs: 
+  let
+    myNixpkgsConfig = {
+      allowUnfree = true;
+      permittedInsecurePackages = [
+        #"libsoup-2.74.3"
+      ];
+    };
+  in
+  inputs.flake-parts.lib.mkFlake { inherit inputs; } 
+  {
     systems = [ "x86_64-linux" ]; # add "aarch64-linux" etc if needed
+    _module.args.sharedNixpkgsConfig = {
+      nixpkgs.config = myNixpkgsConfig;
+    };
     imports = [
       (inputs.import-tree ./modules)
     ];
+    perSystem = { system, ... }: {
+      _module.args.pkgs = import inputs.nixpkgs {
+        inherit system;
+        config = myNixpkgsConfig;
+      };
+    };
   };
 
   # outputs =
@@ -127,30 +146,6 @@
   #           home-manager.useGlobalPkgs = true;
   #           home-manager.useUserPackages = true;
   #           home-manager.users.bene = import ./hosts/inspiron13/home.nix;
-  #         }
-  #       ];
-  #     };
-  #     # Lenovo Thinkpad X9 15 "sanji"
-  #     nixosConfigurations.sanji = nixpkgs.lib.nixosSystem {
-  #       specialArgs = {
-  #         inherit system inputs;
-  #       };
-  #       modules = [
-  #         {
-  #           imports = [ nixpkgs.nixosModules.readOnlyPkgs ];
-  #           nixpkgs.pkgs = pkgs;
-  #         }
-  #         ./hosts/sanji/configuration.nix
-  #         self.nixosModules.neovim
-  #         # And then put `wrappers.nvim-test.enable = true;` in your configuration.nix
-  #         agenix.nixosModules.default
-  #         lanzaboote.nixosModules.lanzaboote
-  #         home-manager.nixosModules.home-manager
-  #         {
-  #           home-manager.extraSpecialArgs = { inherit inputs; };
-  #           home-manager.useGlobalPkgs = true;
-  #           home-manager.useUserPackages = true;
-  #           home-manager.users.bene = import ./hosts/sanji/home.nix;
   #         }
   #       ];
   #     };
