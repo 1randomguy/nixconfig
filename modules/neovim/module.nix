@@ -132,10 +132,6 @@
       };
 
       config.specs.start = {
-        after = [ "lze" ];
-        # note we didn't have to specify the `lze` specs name, because it was a top level spec
-        # here we chose a DAL of plugins, but we can also pass a single plugin, or null
-        # plugins are of type wlib.types.stringable
         # NOTE: view these names in the info plugin!
         # :lua nixInfo.lze.debug.display(nixInfo.plugins)
         # The display function is from lzextras
@@ -175,12 +171,13 @@
         extraPackages = with pkgs; [
           ripgrep
           fd
-        ] ++ lib.optionals (!config.settings.minimal) [
           lazygit
           yazi
         ];
         lazy = true;
+        # TODO: flash?, image support?, git diff tool?
         data = with pkgs.vimPlugins; [
+          colorful-menu-nvim
           nvim-autopairs
           mini-surround
           nvim-lspconfig
@@ -189,7 +186,7 @@
           cmp-cmdline
           nvim-lint
           conform-nvim
-        ] ++ lib.optionals (!config.settings.minimal) [
+
           undotree
           toggleterm-nvim
           todo-comments-nvim
@@ -197,7 +194,6 @@
           nvim-origami
           snacks-nvim
           vim-startuptime
-          colorful-menu-nvim
           yazi-nvim
         ];
       };
