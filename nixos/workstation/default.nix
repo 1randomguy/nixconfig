@@ -1,8 +1,4 @@
 {lib, config, pkgs, ...}:
-with lib;
-let
-  cfg = config.workstation;
-in
 {
   imports = [
     ./nfs-mount
