@@ -72,7 +72,7 @@
       };
 
       config.specs.lua = {
-        after = [ "general" ];
+        after = [ "start" ];
         lazy = true;
         data = with pkgs.vimPlugins; [
           lazydev-nvim
@@ -131,43 +131,24 @@
         ];
       };
 
-      config.specs.general = {
-        # this would ensure any config included from nix in here will be ran after any provided by the `lze` spec
-        # If we provided any from within either spec, anyway
+      config.specs.start = {
         after = [ "lze" ];
         # note we didn't have to specify the `lze` specs name, because it was a top level spec
-        extraPackages = with pkgs; [
-          lazygit
-          tree-sitter
-          ripgrep
-          fd
-          yazi
-        ];
-        lazy = true;
         # here we chose a DAL of plugins, but we can also pass a single plugin, or null
         # plugins are of type wlib.types.stringable
         # NOTE: view these names in the info plugin!
         # :lua nixInfo.lze.debug.display(nixInfo.plugins)
         # The display function is from lzextras
+        lazy = false;
         data = with pkgs.vimPlugins; [
           {
             data = vim-sleuth;
-            # You can override defaults from the parent spec here
             lazy = false;
           }
-          # TODO: flash?, image support?, git diff tool?
-          nvim-autopairs
-          mini-surround
-          nvim-lspconfig
-          blink-cmp
-          blink-compat
-          cmp-cmdline
           lualine-nvim
           gitsigns-nvim
           which-key-nvim
           fidget-nvim
-          nvim-lint
-          conform-nvim
           nvim-treesitter-textobjects
           (if config.settings.minimal then
             (nvim-treesitter.withPlugins (
@@ -183,6 +164,31 @@
             ))
           else
             nvim-treesitter.withAllGrammars)
+        ];
+        extraPackages = with pkgs; [
+          tree-sitter
+        ];
+      };
+
+      config.specs.general = {
+        after = [ "start" ];
+        extraPackages = with pkgs; [
+          ripgrep
+          fd
+        ] ++ lib.optionals (!config.settings.minimal) [
+          lazygit
+          yazi
+        ];
+        lazy = true;
+        data = with pkgs.vimPlugins; [
+          nvim-autopairs
+          mini-surround
+          nvim-lspconfig
+          blink-cmp
+          blink-compat
+          cmp-cmdline
+          nvim-lint
+          conform-nvim
         ] ++ lib.optionals (!config.settings.minimal) [
           undotree
           toggleterm-nvim
