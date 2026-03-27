@@ -141,7 +141,7 @@
             data = vim-sleuth;
             lazy = false;
           }
-          lualine-nvim
+          #lualine-nvim
           gitsigns-nvim
           which-key-nvim
           fidget-nvim
