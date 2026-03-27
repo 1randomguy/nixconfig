@@ -11,13 +11,7 @@
 
   apps = {
     enable = true;
-    latex.enable = true;
-    study.enable = true;
-    #image_editing.enable = true;
     music = {
-      enable = true;
-    };
-    devel = {
       enable = true;
     };
   };
