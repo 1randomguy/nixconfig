@@ -7,7 +7,6 @@ in {
     ./tmux
     ./zsh
     ./ghostty
-    ./zk
   ];
 
   ## OPTIONS
