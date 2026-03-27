@@ -32,7 +32,8 @@ in {
 
   config = mkIf cfg.shelltools {
     home.packages = with pkgs; [
-      busybox
+      #busybox
+      toybox
       git
       git-credential-oauth
       just
