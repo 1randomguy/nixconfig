@@ -7,6 +7,7 @@
         # Include the results of the hardware scan.
         self.nixosModules.sanjiHardware
 
+        self.nixosModules.defaults
         self.nixosModules.shell
 
         self.nixosModules.base-apps
