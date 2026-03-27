@@ -6,6 +6,8 @@
       imports = [
         # Include the results of the hardware scan.
         self.nixosModules.sanjiHardware
+
+        self.nixosModules.shell
         ../../../nixos
       ];
 
