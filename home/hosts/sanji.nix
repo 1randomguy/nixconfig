@@ -20,7 +20,6 @@
     zsh.enable = true;
     tmux.enable = true;
     ghostty.enable = true;
-    zk.enable = true;
   };
 
   desktop = {

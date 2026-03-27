@@ -7,6 +7,5 @@
     ./niri
     ./virtualization
     ./work
-    ./uni-vpn
   ];
 }

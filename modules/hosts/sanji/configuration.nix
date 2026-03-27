@@ -23,10 +23,8 @@
       ];
 
       workstation = {
-        enable = true;
         gnome.enable = true;
         niri.enable = true;
-        uni_vpn.enable = true;
         #nfs-mount = {
         #  enable = true;
         #  directory = "/home/bene/data";
