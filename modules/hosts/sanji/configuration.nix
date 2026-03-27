@@ -17,6 +17,7 @@
         self.nixosModules.compat
         self.nixosModules.fonts
         self.nixosModules.master-thesis
+        self.nixosModules.uni-vpn
         ../../../nixos
       ];
 
