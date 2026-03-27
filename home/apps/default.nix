@@ -8,7 +8,6 @@ in
     ./image-editing
     ./latex
     ./music
-    ./touch-apps
     ./devel
     ./socials
     ./study
