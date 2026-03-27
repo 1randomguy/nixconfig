@@ -8,7 +8,13 @@
         self.nixosModules.sanjiHardware
 
         self.nixosModules.shell
-        self.nixosModules.socials
+
+        self.nixosModules.base
+        self.nixosModules.extra
+        #self.nixosModules.image-editing
+        self.nixosModules.latex
+
+        self.nixosModules.master-thesis
         ../../../nixos
       ];
 
@@ -17,7 +23,6 @@
         gnome.enable = true;
         niri.enable = true;
         uni_vpn.enable = true;
-        thesis_tools.enable = true;
         #nfs-mount = {
         #  enable = true;
         #  directory = "/home/bene/data";
