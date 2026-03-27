@@ -64,6 +64,7 @@
       ];
 
       config.specs.nix = {
+        data = null;
         extraPackages = with pkgs; [
           nixd
           nixfmt
@@ -84,6 +85,7 @@
 
       config.specs.markdown = {
         enable = !config.settings.minimal;
+        data = null;
         extraPackages = with pkgs; [
           marksman
         ];
@@ -91,6 +93,7 @@
 
       config.specs.javascript = {
         enable = !config.settings.minimal;
+        data = null;
         extraPackages = with pkgs; [
           typescript-language-server
           prettierd
@@ -100,6 +103,7 @@
 
       config.specs.python = {
         enable = !config.settings.minimal;
+        data = null;
         extraPackages = with pkgs; [
           pyright
           black
