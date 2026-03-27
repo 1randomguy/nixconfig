@@ -2,7 +2,7 @@
   flake.nixosModules.socials = {pkgs, ...}:
   {
     environment.systemPackages = with pkgs; [
-      discord
+      vesktop
       (signal-desktop.override {
         commandLineArgs = "--password-store=gnome-libsecret";
         withAppleEmojis = true;
