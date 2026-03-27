@@ -14,6 +14,8 @@
         #self.nixosModules.image-editing
         self.nixosModules.latex
 
+        self.nixosModules.compat
+        self.nixosModules.fonts
         self.nixosModules.master-thesis
         ../../../nixos
       ];
