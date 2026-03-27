@@ -9,7 +9,6 @@ in
     ./latex
     ./music
     ./devel
-    ./socials
     ./study
   ];
   options.apps = {

@@ -8,6 +8,7 @@
         self.nixosModules.sanjiHardware
 
         self.nixosModules.shell
+        self.nixosModules.socials
         ../../../nixos
       ];
 

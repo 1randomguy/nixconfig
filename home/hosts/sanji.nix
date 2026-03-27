@@ -12,7 +12,6 @@
   apps = {
     enable = true;
     latex.enable = true;
-    socials.enable = true;
     study.enable = true;
     #image_editing.enable = true;
     music = {
