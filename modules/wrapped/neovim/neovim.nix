@@ -32,7 +32,11 @@
       config.settings.config_directory = ./.;
 
       config.binName = if config.settings.minimal then "nvim-mini" else "nvim";
-      config.settings.aliases = [ "v" "vi" "vim" ];
+      config.settings.aliases = [
+        "v"
+        "vi"
+        "vim"
+      ];
 
       # You can declare your own options!
       options.settings.colorscheme = lib.mkOption {
@@ -146,20 +150,22 @@
           which-key-nvim
           fidget-nvim
           nvim-treesitter-textobjects
-          (if config.settings.minimal then
-            (nvim-treesitter.withPlugins (
-              plugins: with plugins; [
-                nix
-                lua
-                markdown
-                bash
-                json
-                yaml
-                toml
-              ]
-            ))
-          else
-            nvim-treesitter.withAllGrammars)
+          (
+            if config.settings.minimal then
+              (nvim-treesitter.withPlugins (
+                plugins: with plugins; [
+                  nix
+                  lua
+                  markdown
+                  bash
+                  json
+                  yaml
+                  toml
+                ]
+              ))
+            else
+              nvim-treesitter.withAllGrammars
+          )
         ];
         extraPackages = with pkgs; [
           tree-sitter
@@ -198,7 +204,9 @@
         ];
       };
 
-      config.specMods = { ... }: {
+      config.specMods =
+        { ... }:
+        {
           options.extraPackages = lib.mkOption {
             type = lib.types.listOf wlib.types.stringable;
             default = [ ];
