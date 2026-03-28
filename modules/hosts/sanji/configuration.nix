@@ -11,6 +11,7 @@
         self.nixosModules.shell
 
         self.nixosModules.ashell
+        self.nixosModules.nirius
 
         self.nixosModules.base-apps
         self.nixosModules.extra-apps
