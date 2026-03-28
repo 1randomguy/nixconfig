@@ -54,5 +54,24 @@
         Restart = "always";
       };
     };
+    # Configure Wallpaper set in Waypaper as Hyperlock Background
+    systemd.user.services.configure-waypaper = {
+      description = "Initialize waypaper config with post_command";
+      wantedBy = [ "graphical-session.target" ];
+      partOf = [ "graphical-session.target" ];
+      script = ''
+        mkdir -p $HOME/.config/waypaper
+        touch $HOME/.config/waypaper/config.ini
+        if ! grep -q "^\[Settings\]" $HOME/.config/waypaper/config.ini; then
+          echo "[Settings]" >> $HOME/.config/waypaper/config.ini
+        fi
+        # Use crudini to set post_command while keeping the file otherwise writable for waypaper
+        ${pkgs.crudini}/bin/crudini --set $HOME/.config/waypaper/config.ini Settings post_command 'ln -sf "$wallpaper" $HOME/.cache/current_wallpaper'
+      '';
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+      };
+    };
   };
 }
