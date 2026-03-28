@@ -40,23 +40,18 @@ in
       pw-viz
     ];
 
-    services.swayidle =
-      let
-        # Lock command
-        lock = "${pkgs.hyprlock}/bin/hyprlock";
-        # Niri
-        display = status: "${pkgs.niri}/bin/niri msg action power-${status}-monitors";
-      in
-      {
-        enable = true;
-        extraArgs = [ "-w" ];
-        events = {
-          before-sleep = (display "off") + "; " + lock;
-          after-resume = display "on";
-          lock = lock;
-          unlock = display "on";
-        };
-      };
+    # services.swayidle =
+    #   let
+    #     lock = "${pkgs.hyprlock}/bin/hyprlock";
+    #   in
+    #   {
+    #     enable = true;
+    #     extraArgs = [ "-w" ];
+    #     events = {
+    #       before-sleep = "loginctl lock-session";
+    #       lock = lock;
+    #     };
+    #   };
 
     programs.walker = {
       enable = true;
