@@ -24,7 +24,6 @@
 
   desktop = {
     niri.enable = true;
-    ashell.enable = true;
   };
 
   gnome_customizations = {
