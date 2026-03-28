@@ -39,6 +39,7 @@ indicators = ["IdleInhibitor", "PowerProfile", "Audio", "Bluetooth", "Network", 
 
 [appearance]
 style = "Solid"
+font_name = "Adwaita Sans"
 
 success_color = "#a6e3a1"
 text_color = "#cdd6f4"
