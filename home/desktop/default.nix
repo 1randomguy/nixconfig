@@ -4,6 +4,5 @@
     ./gnome
     ./niri
     ./noctalia-shell
-    ./ashell
   ];
 }
