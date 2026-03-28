@@ -28,7 +28,6 @@ in
       #phinger-cursors
       swayosd
       swaybg
-      nirius
       # helpful tuis
       wifitui
       # helpful guis
