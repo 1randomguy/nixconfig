@@ -50,87 +50,87 @@ in
     #   ${pkgs.crudini}/bin/crudini --set $HOME/.config/waypaper/config.ini Settings post_command 'ln -sf "$wallpaper" $HOME/.config/hypr/bg'
     # '';
 
-    programs.hyprlock = {
-      enable = true;
-      settings = {
-        general = {
-          hide_cursor = true;
-          ignore_empty_input = true;
-        };
-
-        animations = {
-          enabled = true;
-          fade_in = {
-            duration = 300;
-            bezier = "easeOutQuint";
-          };
-          fade_out = {
-            duration = 300;
-            bezier = "easeOutQuint";
-          };
-        };
-
-        auth = {
-          "fingerprint:enabled" = true;
-          "fingerprint:ready_message" = "(Scan fingerprint to unlock)";
-          "fingerprint:present_message" = "Scanning fingerprint";
-        };
-
-        background = [
-          {
-            path = "~/.cache/current_wallpaper";
-            blur_passes = 4;
-            blur_size = 4;
-            brightness = 0.5;
-          }
-        ];
-
-        input-field = [
-          {
-            monitor = "";
-            size = "15%, 5%";  # Responsive size (much larger)
-            outline_thickness = 5;
-
-            # Base (transparent)
-            inner_color = "rgba(30, 30, 46, 0.0)"; 
-            # Lavender -> Green (Default Gradient)
-            outer_color = "rgb(116, 199, 236) rgb(148, 226, 213) 90deg";
-            # Yellow -> Peach (Checking Password)
-            check_color = "rgb(f9e2af) rgb(fab387) 120deg";
-            # Red -> Maroon (Fail)
-            fail_color = "rgb(f38ba8) rgb(eba0ac) 40deg";
-
-            font_color = "rgb(143, 143, 143)";
-            fade_on_empty = false;
-            rounding = 15;
-
-            position = "0, -20";
-            halign = "center";
-            valign = "center";
-          }
-        ];
-        label = [
-          {
-            text = "$TIME";
-            color = "rgba(200, 200, 200, 1.0)";
-            font_size = 128;
-            font_family = "Adwaita Sans";
-            position = "0, 160";
-            halign = "center";
-            valign = "center";
-          }
-          {
-            text = "$FPRINTPROMPT";
-            color = "rgb(202, 211, 245)";
-            font_size = 14;
-            font_family = "Adwaita Sans"; 
-            position = "0, -100";  # Placed below the input field
-            halign = "center";
-            valign = "center";
-          }
-        ];
-      };
-    };
+    # programs.hyprlock = {
+    #   enable = true;
+    #   settings = {
+    #     general = {
+    #       hide_cursor = true;
+    #       ignore_empty_input = true;
+    #     };
+    #
+    #     animations = {
+    #       enabled = true;
+    #       fade_in = {
+    #         duration = 300;
+    #         bezier = "easeOutQuint";
+    #       };
+    #       fade_out = {
+    #         duration = 300;
+    #         bezier = "easeOutQuint";
+    #       };
+    #     };
+    #
+    #     auth = {
+    #       "fingerprint:enabled" = true;
+    #       "fingerprint:ready_message" = "(Scan fingerprint to unlock)";
+    #       "fingerprint:present_message" = "Scanning fingerprint";
+    #     };
+    #
+    #     background = [
+    #       {
+    #         path = "~/.cache/current_wallpaper";
+    #         blur_passes = 4;
+    #         blur_size = 4;
+    #         brightness = 0.5;
+    #       }
+    #     ];
+    #
+    #     input-field = [
+    #       {
+    #         monitor = "";
+    #         size = "15%, 5%";  # Responsive size (much larger)
+    #         outline_thickness = 5;
+    #
+    #         # Base (transparent)
+    #         inner_color = "rgba(30, 30, 46, 0.0)"; 
+    #         # Lavender -> Green (Default Gradient)
+    #         outer_color = "rgb(116, 199, 236) rgb(148, 226, 213) 90deg";
+    #         # Yellow -> Peach (Checking Password)
+    #         check_color = "rgb(f9e2af) rgb(fab387) 120deg";
+    #         # Red -> Maroon (Fail)
+    #         fail_color = "rgb(f38ba8) rgb(eba0ac) 40deg";
+    #
+    #         font_color = "rgb(143, 143, 143)";
+    #         fade_on_empty = false;
+    #         rounding = 15;
+    #
+    #         position = "0, -20";
+    #         halign = "center";
+    #         valign = "center";
+    #       }
+    #     ];
+    #     label = [
+    #       {
+    #         text = "$TIME";
+    #         color = "rgba(200, 200, 200, 1.0)";
+    #         font_size = 128;
+    #         font_family = "Adwaita Sans";
+    #         position = "0, 160";
+    #         halign = "center";
+    #         valign = "center";
+    #       }
+    #       {
+    #         text = "$FPRINTPROMPT";
+    #         color = "rgb(202, 211, 245)";
+    #         font_size = 14;
+    #         font_family = "Adwaita Sans"; 
+    #         position = "0, -100";  # Placed below the input field
+    #         halign = "center";
+    #         valign = "center";
+    #       }
+    #     ];
+    #   };
+    # };
 
     home.file.".config/kanshi/config".text = ''
       output "LG Electronics LG IPS FULLHD 0x00044374" {
