@@ -5,6 +5,27 @@
     selfpkgs = self.packages."${pkgs.system}";
   in
   {
+    environment.systemPackages = with pkgs; [
+      xwayland-satellite
+      xwayland-run
+      cage
+      brightnessctl
+      swaybg
+
+      kanshi # make into systemd service / replace by shikane?
+      nirius # if we embed it in the command config of niri we might not need it as a systempackage here?
+      # helpful tuis
+      wifitui #?
+      # helpful guis
+      waypaper
+      wdisplays
+      gnome-online-accounts-gtk
+      networkmanagerapplet
+      blueman #?
+      pwvucontrol
+      pw-viz #?
+      easyeffects #here?
+    ];
     # Nirius
     systemd.user.services.niriusd = {
       description = "Nirius Daemon for Niri";
