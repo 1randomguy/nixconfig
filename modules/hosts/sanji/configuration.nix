@@ -10,6 +10,8 @@
         self.nixosModules.common
         self.nixosModules.shell
 
+        self.nixosModules.ashell
+
         self.nixosModules.base-apps
         self.nixosModules.extra-apps
         #self.nixosModules.image-editing

@@ -143,7 +143,6 @@ layout {
 // See the binds section below for more spawn examples.
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
-spawn-at-startup "ashell"
 spawn-at-startup "niriusd"
 spawn-at-startup "kanshi"
 spawn-at-startup "waypaper" "--restore"
