@@ -19,26 +19,6 @@ in
     home.file.".config/niri/config.kdl" = {
       source = ./config.kdl;
     };
-    home.packages = with pkgs; [
-      xwayland-satellite
-      xwayland-run
-      cage
-      brightnessctl
-      kanshi
-      #phinger-cursors
-      swaybg
-      # helpful tuis
-      wifitui
-      # helpful guis
-      wdisplays
-      waypaper
-      gnome-online-accounts-gtk
-      networkmanagerapplet
-      blueman
-      easyeffects
-      pwvucontrol
-      pw-viz
-    ];
 
     # services.swayidle =
     #   let
@@ -58,17 +38,17 @@ in
       runAsService = true;
     };
 
-    home.activation.configureWaypaper = lib.hm.dag.entryAfter ["writeBoundary"] ''
-      # Make sure crudini doesn't fail on a fresh install
-      mkdir -p $HOME/.config/waypaper
-      touch $HOME/.config/waypaper/config.ini
-      if ! grep -q "^\[Settings\]" $HOME/.config/waypaper/config.ini; then
-        echo "[Settings]" >> $HOME/.config/waypaper/config.ini
-      fi
-
-      # Use crudini to set post_command while keeping the file otherwise writable for waypaper
-      ${pkgs.crudini}/bin/crudini --set $HOME/.config/waypaper/config.ini Settings post_command 'ln -sf "$wallpaper" $HOME/.config/hypr/bg'
-    '';
+    # home.activation.configureWaypaper = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    #   # Make sure crudini doesn't fail on a fresh install
+    #   mkdir -p $HOME/.config/waypaper
+    #   touch $HOME/.config/waypaper/config.ini
+    #   if ! grep -q "^\[Settings\]" $HOME/.config/waypaper/config.ini; then
+    #     echo "[Settings]" >> $HOME/.config/waypaper/config.ini
+    #   fi
+    #
+    #   # Use crudini to set post_command while keeping the file otherwise writable for waypaper
+    #   ${pkgs.crudini}/bin/crudini --set $HOME/.config/waypaper/config.ini Settings post_command 'ln -sf "$wallpaper" $HOME/.config/hypr/bg'
+    # '';
 
     programs.hyprlock = {
       enable = true;
@@ -98,7 +78,7 @@ in
 
         background = [
           {
-            path = "~/.config/hypr/bg";
+            path = "~/.cache/current_wallpaper";
             blur_passes = 4;
             blur_size = 4;
             brightness = 0.5;
