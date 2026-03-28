@@ -26,7 +26,6 @@ in
       brightnessctl
       kanshi
       #phinger-cursors
-      swayosd
       swaybg
       # helpful tuis
       wifitui
@@ -40,24 +39,6 @@ in
       pwvucontrol
       pw-viz
     ];
-
-    #home.pointerCursor = {
-    #  name = "phinger-cursors-light";
-    #  package = pkgs.phinger-cursors;
-    #  size = 32;
-    #  gtk.enable = true;
-    #  x11.enable = true;
-    #};
-    #dconf.settings = {
-    #  "org/gnome/desktop/interface" = {
-    #    cursor-theme = config.home.pointerCursor.name;
-    #    cursor-size = config.home.pointerCursor.size;
-    #  };
-    #};
-
-    services.swayosd = {
-      enable = true;
-    };
 
     services.swayidle =
       let
