@@ -1,5 +1,9 @@
+{self, ...}:
 {
   flake.nixosModules.niri = {pkgs, lib, ...}:
+  let
+    selfpkgs = self.packages."${pkgs.system}";
+  in
   {
     # Nirius
     systemd.user.services.niriusd = {
@@ -31,6 +35,7 @@
           RestartSec = 2;
       };
     };
+    # SwayIdle
     systemd.user.services.swayidle = {
       description = "Idle manager for Wayland";
       after = [ "graphical-session.target" ];
@@ -42,7 +47,7 @@
         Environment = "PATH=${lib.makeBinPath [ pkgs.bash ]}";
         ExecStart = ''
           ${pkgs.swayidle}/bin/swayidle -w \
-            lock '${pkgs.hyprlock}/bin/hyprlock' \
+            lock '${selfpkgs.hyprlock}/bin/hyprlock' \
             before-sleep 'loginctl lock-session'
         '';
         #timeout 300 '${niriCmd "off"}' \
