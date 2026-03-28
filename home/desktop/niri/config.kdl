@@ -14,7 +14,7 @@ input {
     }
     touchpad {
         //tap
-        dwt //disable while typing
+        //dwt //disable while typing
         // dwtp
         // drag false
         // drag-lock
@@ -142,8 +142,6 @@ layout {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 
-// This line starts waybar, a commonly used bar for Wayland compositors.
-spawn-at-startup "niriusd"
 spawn-at-startup "kanshi"
 spawn-at-startup "waypaper" "--restore"
 spawn-at-startup "fcitx5" "-d"
