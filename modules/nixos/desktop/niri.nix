@@ -56,20 +56,24 @@
           RestartSec = 2;
       };
     };
+    # Hyprlock
+    programs.hyprlock.enable = true;
+    programs.hyprlock.package = selfpkgs.hyprlock;
+    services.hypridle.enable = lib.mkForce false;
     # SwayIdle
     systemd.user.services.swayidle = {
       description = "Idle manager for Wayland";
       after = [ "graphical-session.target" ];
       partOf = [ "graphical-session.target" ];
       requisite = [ "graphical-session.target" ];
-      wantedBy = [ "niri.service" ];
+      wantedBy = [ "graphical-session.target" ];
       serviceConfig = {
         Type = "simple";
-        Environment = "PATH=${lib.makeBinPath [ pkgs.bash ]}";
+        Environment = "PATH=${lib.makeBinPath [ pkgs.bash pkgs.systemd ]}";
         ExecStart = ''
           ${pkgs.swayidle}/bin/swayidle -w \
-            lock '${selfpkgs.hyprlock}/bin/hyprlock' \
-            before-sleep 'loginctl lock-session'
+            before-sleep '${selfpkgs.hyprlockSmart}/bin/lock' \
+            lock '${selfpkgs.hyprlockSmart}/bin/lock'
         '';
         #timeout 300 '${niriCmd "off"}' \
         Restart = "always";
