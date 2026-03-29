@@ -15,6 +15,9 @@
         commandLineArgs = "--password-store=gnome-libsecret";
         withAppleEmojis = true;
       })
+      # music
+      spek
+      soundconverter
       # other
       ausweisapp
       foliate
