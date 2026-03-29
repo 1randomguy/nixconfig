@@ -23,8 +23,6 @@
       networkmanagerapplet
       blueman #?
       pwvucontrol
-      pw-viz #?
-      easyeffects #here?
     ];
     # Nirius
     systemd.user.services.niriusd = {
