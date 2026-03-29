@@ -16,6 +16,7 @@
       spotify
       fooyin
       supersonic
+      easyeffects
       # document viewing/editing
       libreoffice
       pdfarranger
