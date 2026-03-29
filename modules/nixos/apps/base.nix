@@ -11,6 +11,11 @@
       # image viewing, basic editing
       gthumb
       vlc
+      # music
+      amberol
+      spotify
+      fooyin
+      supersonic
       # document viewing/editing
       libreoffice
       pdfarranger

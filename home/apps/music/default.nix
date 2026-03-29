@@ -12,16 +12,6 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      # music listening
-      quodlibet
-      amberol
-      supersonic
-      spotify
-      spek
-      soundconverter
-      fooyin
-    ];
     services.easyeffects = mkIf cfg.eq {
       enable = true;
       extraPresets = {
