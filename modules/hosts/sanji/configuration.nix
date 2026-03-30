@@ -24,23 +24,10 @@
         self.nixosModules.fonts
         self.nixosModules.master-thesis
         self.nixosModules.uni-vpn
-        ../../../nixos
+        self.nixosModules.games
       ];
 
-      workstation = {
-        #nfs-mount = {
-        #  enable = true;
-        #  directory = "/home/bene/data";
-        #};
-        games = {
-          enable = true;
-          bottles.enable = true;
-        };
-        #virtualization = {
-        #  enable = true;
-        #  docker.enable = true;
-        #};
-      };
+      games.bottles.enable = true;
 
       services.fprintd = {
         enable = true;

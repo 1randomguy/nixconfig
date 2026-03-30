@@ -1,14 +1,7 @@
-{ config, lib, ... }:
-with lib;
-let
-  cfg = config.workstation.work;
-in
+{self, ...}:
 {
-  options.workstation.work = {
-    enable = mkEnableOption "Enable setup for work";
-  };
-
-  config = mkIf cfg.enable {
+  flake.nixosModules.work = {config, ...}:
+  {
     age.secrets.work_wireguard_sk = {
       file = ../../../secrets/wireguard_work.age;
     };
