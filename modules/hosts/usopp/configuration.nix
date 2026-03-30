@@ -1,7 +1,7 @@
-{self, ...}:
+{self, inputs, ...}:
 {
   flake.nixosModules.usoppConfiguration =
-    { pkgs, inputs, ... }:
+    { pkgs, ... }:
 
     {
       imports = [
