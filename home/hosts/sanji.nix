@@ -6,7 +6,6 @@
       ../../home/common.nix
       ../../home/shell
       ../../home/apps
-      ../../home/desktop
     ];
 
   apps = {
@@ -20,11 +19,6 @@
     zsh.enable = true;
     tmux.enable = true;
     ghostty.enable = true;
-  };
-
-  gnome_customizations = {
-    enable = true;
-    #wallpaper = "file:///home/bene/nixconfig/assets/wallpapers/XE030006.JPG";
   };
 
   # Home Manager needs a bit of information about you and the paths it should
