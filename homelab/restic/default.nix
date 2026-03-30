@@ -46,7 +46,7 @@ in
           attrsets.optionalAttrs cfg.local.enable {
             appdata-local = {
               timerConfig = {
-                OnCalendar = "*-*-* 05:00:00";
+                OnCalendar = "*-*-* 02:00:00";
                 Persistent = true;
               };
               repository = cfg.local.targetDir; 
@@ -67,7 +67,7 @@ in
               {
                 timerConfig = {
                   #OnCalendar = "Sun *-*-* 06:00:00";
-                  OnCalendar = "*-*-* 05:00:00";
+                  OnCalendar = "*-*-* 02:00:00";
                   Persistent = true;
                 };
                 environmentFile = config.age.secrets.backblazeb2.path;

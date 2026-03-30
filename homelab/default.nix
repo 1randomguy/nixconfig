@@ -1,14 +1,15 @@
-{lib, config, ...}:
+{ lib, config, ... }:
 with lib;
 let
   cfg = config.homelab;
   hl = config.homelab;
-  vhostOptions = {config,...}: {
-    options = {
-      enableAuthelia = lib.mkEnableOption "Enable authelia location";
-    };
-    config =
-      lib.mkIf config.enableAuthelia {
+  vhostOptions =
+    { config, ... }:
+    {
+      options = {
+        enableAuthelia = lib.mkEnableOption "Enable authelia location";
+      };
+      config = lib.mkIf config.enableAuthelia {
         locations."/authelia".extraConfig = ''
           internal;
           set $upstream_authelia http://127.0.0.1:9091/api/verify;
@@ -49,7 +50,7 @@ let
 
         locations."/".extraConfig = lib.mkBefore ''
           default_type text/html;
-          
+
           # Basic Authelia Config
           # Send a subsequent request to Authelia to verify if the user is authenticated
           # and has the right permissions to access the resource.
@@ -75,7 +76,7 @@ let
           error_page 401 =302 https://auth.${hl.baseDomain}/?rd=$target_url;
         '';
       };
-  };
+    };
 in
 {
   imports = [
@@ -132,7 +133,11 @@ in
         uid = 994;
         isSystemUser = true;
         group = cfg.group;
-        extraGroups = [ "video" "render" "media" ];
+        extraGroups = [
+          "video"
+          "render"
+          "media"
+        ];
       };
     };
 
@@ -145,6 +150,42 @@ in
       file = ../secrets/porkbun.age;
     };
 
+    age.secrets.ntfy_url = {
+      file = ../secrets/ntfy_url.age;
+    };
+
+    system.autoUpgrade = {
+      enable = true;
+      flake = "github:1randomguy/nixconfig#usopp";
+      #dates = "Sat 08:00";
+      dates = "22:00";
+      randomizedDelaySec = "45min";
+      flags = [ "--refresh" ];
+      allowReboot = false;
+    };
+
+    systemd.services.nixos-upgrade.serviceConfig.ExecStopPost =
+      "${pkgs.writeShellScript "upgrade-notify" ''
+        # Read the decrypted URL securely managed by agenix
+        WEBHOOK_URL=$(cat ${config.age.secrets.ntfy_url.path})
+
+        if [ "$EXIT_STATUS" = "0" ]; then
+          ${pkgs.curl}/bin/curl \
+            -H "Title: NixOS Upgrade Success" \
+            -H "Tags: white_check_mark" \
+            -d "Server updated successfully to the latest GitHub commit." \
+            "$WEBHOOK_URL"
+        else
+          # Grab the last 50 lines of the journal on failure
+          ${pkgs.systemd}/bin/journalctl -u nixos-upgrade.service -n 50 --no-pager | \
+          ${pkgs.curl}/bin/curl \
+            -H "Title: NixOS Upgrade FAILED" \
+            -H "Tags: warning" \
+            -d @- \
+            "$WEBHOOK_URL"
+        fi
+      ''}";
+
     services.nginx = {
       enable = true;
       # recommended Settings
@@ -152,7 +193,7 @@ in
       recommendedTlsSettings = true;
       recommendedGzipSettings = true;
       recommendedOptimisation = true;
-      
+
       # Only allow PFS-enabled ciphers with AES256
       sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
 
@@ -183,7 +224,10 @@ in
         #proxy_cookie_path / "/; secure; HttpOnly; SameSite=lax";
       '';
     };
-    networking.firewall.allowedTCPPorts = [ 80 443 ];
+    networking.firewall.allowedTCPPorts = [
+      80
+      443
+    ];
 
     security.acme = {
       acceptTerms = true;
