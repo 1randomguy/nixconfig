@@ -1,7 +1,11 @@
 {self, ...}:
 {
-  flake.nixosModules.work = {config, ...}:
+  flake.nixosModules.work = {pkgs, config, ...}:
   {
+    environment.systemPackages = [
+      pkgs.teams-for-linux
+      pkgs.logseq
+    ];
     age.secrets.work_wireguard_sk = {
       file = ../../../secrets/wireguard_work.age;
     };
