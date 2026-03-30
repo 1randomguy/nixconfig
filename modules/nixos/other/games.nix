@@ -6,7 +6,7 @@
       cfg = config.games;
     in
     {
-      options.workstation.games = {
+      options.games = {
         steam.enable = lib.mkEnableOption "Enable Steam";
         bottles.enable = lib.mkEnableOption "Enable Bottles and VN translation tools";
       };
