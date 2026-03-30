@@ -11,27 +11,27 @@ in
 
   config = mkIf cfg.enable {
     age.secrets.authelia_jwt_secret = {
-      file = ../../../secrets/authelia_jwt_secret.age;
+      file = ../../secrets/authelia_jwt_secret.age;
       owner = "authelia-main";
       group = "authelia-main";
     };
     age.secrets.authelia_storage_encryption = {
-      file = ../../../secrets/authelia_storage_encryption.age;
+      file = ../../secrets/authelia_storage_encryption.age;
       owner = "authelia-main";
       group = "authelia-main";
     };
     age.secrets.authelia_session_secret = {
-      file = ../../../secrets/authelia_session_secret.age;
+      file = ../../secrets/authelia_session_secret.age;
       owner = "authelia-main";
       group = "authelia-main";
     };
     age.secrets.authelia_jwks = {
-      file = ../../../secrets/authelia_jwks.age;
+      file = ../../secrets/authelia_jwks.age;
       owner = "authelia-main";
       group = "authelia-main";
     };
     age.secrets.authelia_hmac_secret = {
-      file = ../../../secrets/authelia_hmac_secret.age;
+      file = ../../secrets/authelia_hmac_secret.age;
       owner = "authelia-main";
       group = "authelia-main";
     };

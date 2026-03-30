@@ -142,7 +142,7 @@ in
     virtualisation.docker.enable = true;
 
     age.secrets.porkbun = {
-      file = ../../secrets/porkbun.age;
+      file = ../secrets/porkbun.age;
     };
 
     services.nginx = {
