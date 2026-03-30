@@ -2,7 +2,7 @@ name: Update Flake Lock
 
 on:
   schedule:
-    # Run every Saturday at 02:00 UTC (Before your server's 04:00 AM update)
+    # Run every Saturday at 02:00 UTC (Before your server's 08:00 AM update)
     - cron: '0 2 * * 6'
   workflow_dispatch: # Allows you to run this manually from the Actions tab
 
