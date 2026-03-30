@@ -2,46 +2,21 @@
 
 {
   imports =
-    [ 
+    [
       ../../home/common.nix
       ../../home/shell
-      ../../home/apps
-      ../../home/desktop
     ];
 
-  apps = {
-    enable = true;
-    latex.enable = true;
-    image_editing.enable = true;
-    music = {
-      enable = true;
-      eq = true;
-    };
-    devel = {
-      enable = true;
-    };
-    socials.enable = true;
-    study.enable = true;
-  };
-
   shell = {
+    remote = true;
     zsh = {
       enable = true;
-      p10k = true;
+      p10k = false;
     };
-    ghostty.enable = true;
-    tmux.enable = true;
-    zk.enable = true;
-  };
-
-  desktop = {
-    niri.enable = true;
-    noctalia-shell.enable = true;
-  };
-
-  gnome_customizations = {
-    enable = true;
-    wallpaper = "/home/bene/nixconfig/assets/wallpapers/XE030210.JPG";
+    tmux = {
+      enable = true;
+      full = false;
+    };
   };
 
   # Home Manager needs a bit of information about you and the paths it should

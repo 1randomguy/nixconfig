@@ -2,35 +2,16 @@
 
 {
   imports =
-    [ 
+    [
       ../../home/common.nix
       ../../home/shell
       ../../home/apps
-      ../../home/desktop
     ];
-
-  home.packages = with pkgs; [
-    logseq
-    teams-for-linux
-  ];
-
-  apps = {
-    enable = true;
-    latex.enable = false;
-    touch_apps.enable = true;
-    music = {
-      enable = true;
-    };
-    devel = {
-      enable = true;
-    };
-  };
 
   shell = {
     zsh.enable = true;
     tmux.enable = true;
     ghostty.enable = true;
-    zk.enable = true;
   };
 
   gnome_customizations = {

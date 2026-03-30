@@ -1,11 +1,15 @@
-{ self, inputs, ... }:
+# Edit this configuration file to define what should be installed on
+# your system. Help is available in the configuration.nix(5) man page, on
+# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
+{self, ...}:
 {
-  flake.nixosModules.sanjiConfiguration =
-    { pkgs, lib, ... }:
+  flake.nixosModules.worklaptopConfiguration =
+    { inputs, pkgs, ... }:
+
     {
       imports = [
         # Include the results of the hardware scan.
-        self.nixosModules.sanjiHardware
+        self.nixosModules.worklaptopHardware
 
         self.nixosModules.common
         self.nixosModules.shell
@@ -15,67 +19,51 @@
         self.nixosModules.ashell
 
         self.nixosModules.base-apps
-        self.nixosModules.extra-apps
-        #self.nixosModules.image-editing
-        self.nixosModules.latex
+        self.nixosModules.games
 
         self.nixosModules.compat
         self.nixosModules.fonts
-        self.nixosModules.master-thesis
-        self.nixosModules.uni-vpn
-        self.nixosModules.games
+        self.nixosModules.work
+        self.nixosModules.docker
       ];
 
-      games.bottles.enable = true;
-
-      services.fprintd = {
-        enable = true;
-      };
-
-      #security.pam.services.sudo.fprintAuth = false;
-      #security.pam.services.su.fprintAuth = false;
-      security.pam.services.hyprlock.fprintAuth = true;
-      security.pam.services.login.fprintAuth = false;
-      security.pam.services.gdm-password.fprintAuth = false;
-
-      #networking.wg-quick.interfaces.wg0.configFile = "/home/bene/wireguard/wg_config.conf";
+      games.steam.enable = true;
 
       # Use the systemd-boot EFI boot loader.
-      boot.loader.systemd-boot.enable = lib.mkForce false;
-      boot.lanzaboote = {
-        enable = true;
-        pkiBundle = "/var/lib/sbctl";
-      };
-
+      boot.loader.systemd-boot.enable = true;
       boot.loader.efi.canTouchEfiVariables = true;
-      boot.loader.efi.efiSysMountPoint = "/efi";
-      boot.loader.systemd-boot.xbootldrMountPoint = "/boot";
 
-      environment.systemPackages = with pkgs; [
-        sbctl
-        inputs.agenix.packages."${stdenv.hostPlatform.system}".default
-      ];
-
-      services.openssh = {
-        enable = true;
-        # require public key authentication for better security
-        settings.PasswordAuthentication = false;
-        settings.KbdInteractiveAuthentication = false;
-        #settings.PermitRootLogin = "yes";
-      };
-
-      networking.hostName = "sanji"; # Define your hostname.
+      networking.hostName = "worklaptop"; # Define your hostname.
       # Pick only one of the below networking options.
       # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-      networking.networkmanager.enable = true;
-      #networking.wireless.iwd.enable = true;
-      #networking.networkmanager.wifi.backend = "iwd";
+      networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
       # Set your time zone.
       time.timeZone = "Europe/Berlin";
 
+      # Configure network proxy if necessary
+      # networking.proxy.default = "http://user:password@proxy:port/";
+      # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+      environment.systemPackages = with pkgs; [
+        inputs.agenix.packages."${stdenv.hostPlatform.system}".default
+      ];
+
       # Select internationalisation properties.
-      console.keyMap = "us";
+      # i18n.defaultLocale = "en_US.UTF-8";
+      # console = {
+      #   font = "Lat2-Terminus16";
+      #   keyMap = "us";
+      #   useXkbConfig = true; # use xkb.options in tty.
+      # };
+      console.keyMap = "de";
+
+      # Configure keymap in X11
+      # services.xserver.xkb.layout = "us";
+      # services.xserver.xkb.options = "eurosign:e,caps:escape";
+
+      # Enable CUPS to print documents.
+      # services.printing.enable = true;
 
       # Enable sound.
       # hardware.pulseaudio.enable = true;
@@ -94,8 +82,8 @@
         isNormalUser = true;
         extraGroups = [
           "wheel"
+          "podman"
           "docker"
-          "networkmanager"
         ]; # Enable ‘sudo’ for the user.
       };
 
@@ -106,6 +94,28 @@
       #   enable = true;
       #   enableSSHSupport = true;
       # };
+
+      # List services that you want to enable:
+
+      # Enable the OpenSSH daemon.
+      services.openssh = {
+        enable = true;
+        settings = {
+          PasswordAuthentication = false;
+          KbdInteractiveAuthentication = false;
+        };
+      };
+
+      # Open ports in the firewall.
+      # networking.firewall.allowedTCPPorts = [ ... ];
+      # networking.firewall.allowedUDPPorts = [ ... ];
+      # Or disable the firewall altogether.
+      # networking.firewall.enable = false;
+
+      # Copy the NixOS configuration file and link it from the resulting system
+      # (/run/current-system/configuration.nix). This is useful in case you
+      # accidentally delete configuration.nix.
+      # system.copySystemConfiguration = true;
 
       # This option defines the first version of NixOS you have installed on this particular machine,
       # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
@@ -125,5 +135,6 @@
       #
       # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
       system.stateVersion = "24.05"; # Did you read the comment?
+
     };
 }

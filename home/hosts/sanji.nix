@@ -8,13 +8,6 @@
       ../../home/apps
     ];
 
-  apps = {
-    enable = true;
-    music = {
-      enable = true;
-    };
-  };
-
   shell = {
     zsh.enable = true;
     tmux.enable = true;
