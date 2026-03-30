@@ -20,11 +20,6 @@ in
       source = ./config.kdl;
     };
 
-    programs.walker = {
-      enable = true;
-      runAsService = true;
-    };
-
     home.file.".config/kanshi/config".text = ''
       output "LG Electronics LG IPS FULLHD 0x00044374" {
         mode 1920x1080@60.000

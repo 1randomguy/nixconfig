@@ -23,6 +23,7 @@
       networkmanagerapplet
       blueman #?
       pwvucontrol
+      walker
     ];
     # Nirius
     systemd.user.services.niriusd = {
@@ -94,6 +95,21 @@
       serviceConfig = {
         Type = "oneshot";
         RemainAfterExit = true;
+      };
+    };
+    # Walker
+    services.elephant.enable = true;
+    systemd.user.services.walker = {
+      description = "Walker - Application Runner";
+      partOf = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" "elephant.service" ];
+      requires = [ "elephant.service" ];
+      wantedBy = [ "niri.service" ];
+      serviceConfig = {
+        ExecStart = "${lib.getExe pkgs.walker} --gapplication-service";
+        Environment = "PATH=${lib.makeBinPath [ pkgs.elephant ]}";
+        Restart = "on-failure";
+        RestartSec = 5;
       };
     };
   };
