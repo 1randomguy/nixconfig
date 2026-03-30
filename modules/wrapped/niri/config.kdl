@@ -141,8 +141,6 @@ layout {
 // Note that running niri as a session supports xdg-desktop-autostart,
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
-
-spawn-at-startup "kanshi"
 spawn-at-startup "waypaper" "--restore"
 spawn-at-startup "fcitx5" "-d"
 
