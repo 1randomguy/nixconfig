@@ -5,13 +5,9 @@
 }:
 {
   perSystem = { pkgs, system, ... }: {
-    packages.niri = inputs.wrapper-modules.lib.wrapPackage ({ config, lib, ... }: {
+    packages.niri = inputs.wrapper-modules.wrappers.niri.wrap {
       inherit pkgs; 
-      package = pkgs.niri;
-      binName = "niri";
-      flags = {
-        "--config" = "${./config.kdl}";
-      };
-    });
+      "config.kdl".content = builtins.readFile ./config.kdl;
+    };
   };
 }
