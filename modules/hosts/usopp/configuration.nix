@@ -13,7 +13,7 @@
 
         # disko
         inputs.disko.nixosModules.disko
-        self.diskoConfigurations.hostMain
+        self.diskoConfigurations.usopp
         ../../homelab
       ];
 
