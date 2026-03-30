@@ -4,7 +4,6 @@
     ./nfs-mount
     ./games
     ./gnome
-    ./niri
     ./virtualization
     ./work
   ];
