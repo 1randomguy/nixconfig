@@ -9,17 +9,11 @@ let
   cfg = config.desktop.niri;
 in
 {
-  imports = [ inputs.walker.homeManagerModules.default ];
-
   options.desktop.niri = {
     enable = lib.mkEnableOption "enable Niri desktop config";
   };
 
   config = lib.mkIf cfg.enable {
-    home.file.".config/niri/config.kdl" = {
-      source = ./config.kdl;
-    };
-
     home.file.".config/kanshi/config".text = ''
       output "LG Electronics LG IPS FULLHD 0x00044374" {
         mode 1920x1080@60.000
