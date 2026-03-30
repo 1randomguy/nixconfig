@@ -1,0 +1,33 @@
+name: Update Flake Lock
+
+on:
+  schedule:
+    # Run every Saturday at 02:00 UTC (Before your server's 04:00 AM update)
+    - cron: '0 2 * * 6'
+  workflow_dispatch: # Allows you to run this manually from the Actions tab
+
+jobs:
+  update-lockfile:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Required to push commits to the repo
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v30
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update flake.lock
+        run: nix flake update
+
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: auto-update flake.lock"
+          file_pattern: flake.lock
+          commit_user_name: "github-actions[bot]"
+          commit_user_email: "github-actions[bot]@users.noreply.github.com"
