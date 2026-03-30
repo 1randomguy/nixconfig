@@ -22,10 +22,6 @@
     ghostty.enable = true;
   };
 
-  desktop = {
-    niri.enable = true;
-  };
-
   gnome_customizations = {
     enable = true;
     #wallpaper = "file:///home/bene/nixconfig/assets/wallpapers/XE030006.JPG";
