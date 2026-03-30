@@ -14,7 +14,7 @@
         # disko
         inputs.disko.nixosModules.disko
         self.diskoConfigurations.hostMain
-        ../../nixos
+        ../../homelab
       ];
 
       homelab = {
