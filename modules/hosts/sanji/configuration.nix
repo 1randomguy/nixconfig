@@ -10,8 +10,10 @@
         self.nixosModules.common
         self.nixosModules.shell
 
-        self.nixosModules.ashell
+        self.nixosModules.common
+        self.nixosModules.gnome
         self.nixosModules.niri
+        self.nixosModules.ashell
 
         self.nixosModules.base-apps
         self.nixosModules.extra-apps
