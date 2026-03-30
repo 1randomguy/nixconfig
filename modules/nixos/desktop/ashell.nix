@@ -3,7 +3,7 @@
   flake.nixosModules.ashell =
     { pkgs, lib, ... }:
     let
-      selfpkgs = self.packages."${pkgs.system}";
+      selfpkgs = self.packages."${pkgs.stdenv.hostPlatform.system}";
     in
     {
       systemd.user.services.ashell = {

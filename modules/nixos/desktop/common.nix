@@ -1,9 +1,6 @@
 {self, ...}:
 {
   flake.nixosModules.common = {pkgs, lib, ...}:
-  let
-    selfpkgs = self.packages."${pkgs.system}";
-  in
   {
     # keyboard
     services.xserver.xkb.layout = "us";

@@ -1,9 +1,6 @@
 {self, ...}:
 {
-  flake.nixosModules.gnome = {pkgs, lib, ...}:
-  let
-    selfpkgs = self.packages."${pkgs.system}";
-  in
+  flake.nixosModules.gnome = {pkgs, ...}:
   {
     # This forces GTK3/GTK4 apps (including flatpaks) to respect the cursor
     programs.dconf.enable = true;

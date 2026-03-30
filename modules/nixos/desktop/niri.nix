@@ -2,7 +2,7 @@
 {
   flake.nixosModules.niri = {pkgs, lib, ...}:
   let
-    selfpkgs = self.packages."${pkgs.system}";
+    selfpkgs = self.packages."${pkgs.stdenv.hostPlatform.system}";
   in
   {
     environment.systemPackages = with pkgs; [

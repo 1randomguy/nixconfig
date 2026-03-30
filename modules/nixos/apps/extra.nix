@@ -21,7 +21,7 @@
       # other
       ausweisapp
       foliate
-      protonvpn-gui
+      proton-vpn
       typst
     ];
   };
