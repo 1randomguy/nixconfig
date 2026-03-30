@@ -2,19 +2,26 @@
 
 {
   imports =
-    [ 
+    [
       ../../home/common.nix
-      ../../home/non-nixos.nix
       ../../home/shell
+      ../../home/apps
     ];
 
+  apps.music = {
+    enable = true;
+    eq = true;
+  };
+
   shell = {
-    nixos = false;
     zsh = {
       enable = true;
+      p10k = true;
     };
+    ghostty.enable = true;
     tmux.enable = true;
   };
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "bene";
