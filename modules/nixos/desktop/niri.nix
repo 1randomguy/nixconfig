@@ -122,6 +122,13 @@
     };
     # Walker
     services.elephant.enable = true;
+    systemd.user.services.elephant = {
+      path = [
+        pkgs.bash
+        "/run/current-system/sw"      # System-wide packages
+        "/etc/profiles/per-user/%u"   # User-specific packages (%u is systemd's variable for your username)
+      ];
+    };
     systemd.user.services.walker = {
       description = "Walker - Application Runner";
       partOf = [ "graphical-session.target" ];
