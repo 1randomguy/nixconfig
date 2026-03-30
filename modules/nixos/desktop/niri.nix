@@ -169,5 +169,19 @@
         RestartSec = 5;
       };
     };
+    # Kanshi
+    systemd.user.services.kanshi = {
+      description = "Kanshi Automatic Monitor Setup";
+      after = [ "graphical-session.target" ];
+      partOf = [ "graphical-session.target" ];
+      requisite = [ "graphical-session.target" ];
+      wantedBy = [ "niri.service" ];
+      serviceConfig = {
+          Type = "simple";
+          ExecStart = ''${lib.getExe selfpkgs.kanshi}'';
+          Restart = "always";
+          RestartSec = 1;
+      };
+    };
   };
 }
