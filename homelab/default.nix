@@ -158,8 +158,7 @@ in
       enable = true;
       flake = "github:1randomguy/nixconfig#usopp";
       #dates = "Sat, 08:00";
-      dates = "22:20";
-      randomizedDelaySec = "45min";
+      dates = "22:30";
       flags = [ "--refresh" ];
       allowReboot = false;
     };
