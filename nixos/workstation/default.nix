@@ -3,7 +3,6 @@
   imports = [
     ./nfs-mount
     ./games
-    ./gnome
     ./virtualization
     ./work
   ];
