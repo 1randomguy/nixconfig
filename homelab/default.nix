@@ -157,8 +157,7 @@ in
     system.autoUpgrade = {
       enable = true;
       flake = "github:1randomguy/nixconfig#usopp";
-      #dates = "Sat, 08:00";
-      dates = "22:30";
+      dates = "Sat, 08:00";
       flags = [ "--refresh" ];
       allowReboot = false;
     };
