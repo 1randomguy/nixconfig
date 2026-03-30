@@ -29,6 +29,12 @@
 
       games.steam.enable = true;
 
+      zramSwap.enable = true;
+      services.earlyoom.enable = true;
+      services.earlyoom.extraArgs = [
+        "--prefer" "(^|/)(.+-)?(firefox|teams)$"
+      ];
+
       # Use the systemd-boot EFI boot loader.
       boot.loader.systemd-boot.enable = true;
       boot.loader.efi.canTouchEfiVariables = true;
