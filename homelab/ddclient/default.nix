@@ -20,7 +20,7 @@ in
     };
 
     age.secrets.ddclient_config = {
-      file = ../../../secrets/ddclient_config.age;
+      file = ../../secrets/ddclient_config.age;
     };
   };
 }

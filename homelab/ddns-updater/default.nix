@@ -24,7 +24,7 @@ in
     ];
 
     age.secrets.ddns-updater = {
-      file = ../../../secrets/ddns-updater.age;
+      file = ../../secrets/ddns-updater.age;
     };
   };
 }
