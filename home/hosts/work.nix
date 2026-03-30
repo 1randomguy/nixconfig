@@ -14,16 +14,6 @@
     ghostty.enable = true;
   };
 
-  gnome_customizations = {
-    enable = true;
-    wallpaper = "file:///home/bene/Desktop/ray-zhuang-pe4o4-dnRVE-unsplash.jpg";
-  };
-
-  desktop = {
-    niri.enable = true;
-    ashell.enable = true;
-  };
-
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "bene";
