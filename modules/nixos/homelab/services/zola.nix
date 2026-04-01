@@ -1,11 +1,10 @@
-{config, lib, pkgs, ...}:
+{ flake.nixosModules.zola = {config, lib, pkgs, ...}:
 let
   cfg = config.homelab.services.zola;
   hl = config.homelab;
 in
 {
   options.homelab.services.zola = {
-    enable = lib.mkEnableOption "Zola static site generator & server";
     sourceDir = lib.mkOption {
       type = lib.types.path;
       description = "Path to your blog source directory";
@@ -23,7 +22,6 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable {
     # backup the blog source
     homelab.services.restic.backupDirs = [ cfg.sourceDir ];
 
@@ -76,5 +74,4 @@ in
     systemd.tmpfiles.rules = [
       "d ${cfg.outputDir} 0755 ${cfg.sourceOwner} nginx -"
     ];
-  };
-}
+}; }

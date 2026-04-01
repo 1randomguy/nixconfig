@@ -1,0 +1,240 @@
+{
+  flake.nixosModules.authelia =
+    # TODO: move this module to homelab common, and the per service definitions to each service?
+    { config, ... }:
+    let
+      hl = config.homelab;
+    in
+    {
+      age.secrets.authelia_jwt_secret = {
+        file = ../../secrets/authelia_jwt_secret.age;
+        owner = "authelia-main";
+        group = "authelia-main";
+      };
+      age.secrets.authelia_storage_encryption = {
+        file = ../../secrets/authelia_storage_encryption.age;
+        owner = "authelia-main";
+        group = "authelia-main";
+      };
+      age.secrets.authelia_session_secret = {
+        file = ../../secrets/authelia_session_secret.age;
+        owner = "authelia-main";
+        group = "authelia-main";
+      };
+      age.secrets.authelia_jwks = {
+        file = ../../secrets/authelia_jwks.age;
+        owner = "authelia-main";
+        group = "authelia-main";
+      };
+      age.secrets.authelia_hmac_secret = {
+        file = ../../secrets/authelia_hmac_secret.age;
+        owner = "authelia-main";
+        group = "authelia-main";
+      };
+      homelab.services.restic.backupDirs = [ "/var/lib/authelia-main" ];
+
+      services.authelia.instances.main = {
+        enable = true;
+        secrets = {
+          jwtSecretFile = config.age.secrets.authelia_jwt_secret.path;
+          storageEncryptionKeyFile = config.age.secrets.authelia_storage_encryption.path;
+          sessionSecretFile = config.age.secrets.authelia_session_secret.path;
+          oidcIssuerPrivateKeyFile = config.age.secrets.authelia_jwks.path;
+          oidcHmacSecretFile = config.age.secrets.authelia_hmac_secret.path;
+        };
+        settings = {
+          server = {
+            address = "tcp://127.0.0.1:9091";
+          };
+
+          log = {
+            level = "debug";
+            format = "text";
+          };
+
+          authentication_backend = {
+            file = {
+              path = "/var/lib/authelia-main/users_database.yml";
+            };
+          };
+
+          totp = {
+            disable = false;
+            issuer = "Shimagumo";
+          };
+
+          access_control = {
+            default_policy = "deny";
+            rules = [
+              {
+                domain = [ "auth.${hl.baseDomain}" ];
+                policy = "bypass";
+              }
+              {
+                domain = [ "adguard.${hl.baseDomain}" ];
+                policy = "one_factor"; # other option: "two_factor"
+                subject = [ "group:admins" ];
+              }
+              {
+                domain = [ "${hl.baseDomain}" ];
+                policy = "one_factor"; # other option: "two_factor"
+              }
+              {
+                domain = [ "immich.${hl.baseDomain}" ];
+                policy = "bypass"; # other option: "two_factor"
+                #networks = [ "192.168.178.0/24" ];
+              }
+              #{
+              #  domain = ["immich.${hl.baseDomain}"];
+              #  policy = "one_factor"; # other option: "two_factor"
+              #}
+            ];
+          };
+
+          session = {
+            name = "authelia_session";
+            expiration = "12h";
+            inactivity = "45m";
+            remember_me = "1M";
+            cookies = [
+              {
+                domain = "${hl.baseDomain}";
+                authelia_url = "https://auth.${hl.baseDomain}";
+                default_redirection_url = "https://${hl.baseDomain}";
+              }
+            ];
+            redis.host = "/run/redis-authelia-main/redis.sock";
+          };
+
+          regulation = {
+            max_retries = 3;
+            find_time = "5m";
+            ban_time = "15m";
+          };
+
+          storage = {
+            local = {
+              path = "/var/lib/authelia-main/db.sqlite3";
+            };
+          };
+
+          notifier = {
+            disable_startup_check = false;
+            filesystem = {
+              filename = "/var/lib/authelia-main/notification.txt";
+            };
+          };
+
+          definitions.user_attributes = {
+            is_nextcloud_admin = {
+              ## Expression to evaluate admin privilege for Nextcloud.
+              expression = "'nextcloud-admins' in groups";
+            };
+          };
+
+          identity_providers.oidc = {
+            #claims_policies.nextcloud_userinfo = {
+            #    custom_claims.is_nextcloud_admin = {};
+            #};
+            #
+            #scopes.nextcloud_userinfo = {
+            #    claims = [ "is_nextcloud_admin" ];
+            #};
+
+            clients = [
+              {
+                client_name = "immich";
+                client_id = "Y0Jh7X6m5IdNKEtCJKzKWyeAftze0K0fnyowcZc6a41zHYpOFm3qCdDX.heMFwEbmyhWJBik";
+                authorization_policy = "one_factor";
+                client_secret = "$pbkdf2-sha512$310000$ey9KSCbGPAdAFap69OTt/A$1OrCIaele2TwjSrLKqbRGa7xLxkKOpCdS7Xa1J7YWZOTeEKpvCK5BMBbG41nQHs552oQwJXyZL8Gtzcntee.og";
+                redirect_uris = [
+                  "https://immich.${hl.baseDomain}/auth/login"
+                  "https://immich.${hl.baseDomain}/user-settings"
+                  "app.immich:///oauth-callback"
+                ];
+                scopes = [
+                  "openid"
+                  "profile"
+                  "email"
+                ];
+                userinfo_signed_response_alg = "none";
+              }
+              {
+                client_name = "nextcloud";
+                client_id = "Almkdw6nFOnuVxDW0SiMsO7RQetCVjJSobtnM.gDnSjvp~Dv2RsRKvPHxg~VOyE9lpY0Jwgz";
+                authorization_policy = "one_factor";
+                client_secret = "$pbkdf2-sha512$310000$FVEI7Ol..OWJkTFJ2VFe7Q$6JGrmm8UnAAa.YPBcRTOftzrAcE9jdkiq3ZTfFTBRSmc/iDNRwqjnfGTUBi8U9Tw6oYt21Ui9kH2PP20/pGhCw";
+                redirect_uris = [ "https://nextcloud.${hl.baseDomain}/apps/user_oidc/code" ];
+                scopes = [
+                  "openid"
+                  "profile"
+                  "email"
+                  "groups"
+                ]; # "nextcloud_userinfo"
+                token_endpoint_auth_method = "client_secret_post";
+                userinfo_signed_response_alg = "none";
+                response_types = [ "code" ];
+                grant_types = [ "authorization_code" ];
+                require_pkce = true;
+                #claims_policy = "nextcloud_userinfo";
+                consent_mode = "implicit";
+              }
+            ];
+          };
+        };
+      };
+      services.redis.servers.authelia-main = {
+        enable = true;
+        user = "authelia-main";
+        port = 0;
+        unixSocket = "/run/redis-authelia-main/redis.sock";
+        unixSocketPerm = 600;
+      };
+      services.nginx.virtualHosts."auth.${hl.baseDomain}" = {
+        enableACME = true;
+        acmeRoot = null;
+        forceSSL = true;
+
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:9091";
+          proxyWebsockets = true;
+          extraConfig = ''
+            # Essential proxy headers for Authelia
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            proxy_set_header X-Forwarded-Host $http_host;
+            proxy_set_header X-Forwarded-Uri $request_uri;
+            proxy_set_header X-Forwarded-Ssl on;
+
+            # Handle redirects properly
+            proxy_redirect http:// $scheme://;
+            proxy_redirect http://127.0.0.1:9091/ $scheme://$http_host/;
+
+            # WebSocket support
+            # proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection $connection_upgrade;
+
+            # Buffer settings
+            proxy_buffering off;
+            proxy_buffer_size 4k;
+            proxy_buffers 64 4k;
+            proxy_busy_buffers_size 8k;
+
+            # Timeout settings
+            proxy_read_timeout 86400s;
+            proxy_send_timeout 86400s;
+
+            # Don't cache auth responses
+            proxy_cache_bypass $cookie_session;
+            proxy_no_cache $cookie_session;
+
+            # Security headers passthrough
+            proxy_pass_header Server;
+          '';
+        };
+      };
+    };
+}

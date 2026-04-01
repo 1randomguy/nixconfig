@@ -1,4 +1,4 @@
-{self, inputs, ...}:
+{ self, inputs, ... }:
 {
   flake.nixosModules.usoppConfiguration =
     { pkgs, ... }:
@@ -14,40 +14,34 @@
         # disko
         inputs.disko.nixosModules.disko
         self.diskoConfigurations.usopp
-        ../../../homelab
+
+        # homelab services
+        self.nixosModules.homelab
+        self.nixosModules.restic
+        self.nixosModules.ddns-updater
+        self.nixosModules.authelia
+        self.nixosModules.blocky
+        self.nixosModules.immich
+        self.nixosModules.immich-auto-stacker
+        self.nixosModules.immich-public-proxy
+        self.nixosModules.navidrome
+        self.nixosModules.nextcloud
+        self.nixosModules.nfs
+        self.nixosModules.zola
       ];
 
-      homelab = {
-        enable = true;
-        baseDomain = "shimagumo.party";
-        services = {
-          blocky.enable = true;
-          prometheus.enable = false;
-          grafana.enable = false;
-          immich = {
-            enable = true;
-            auto-stack.enable = true;
-          };
-          authelia.enable = true;
-          ddns-updater.enable = true;
-          restic = {
-            enable = true;
-            local.enable = true;
-            local.targetDir = "/data/restic";
-            s3.enable = true;
-          };
-          nfs = {
-            enable = true;
-            directory = "/public";
-          };
-          nextcloud.enable = true;
-          zola = {
-            enable = true;
-            sourceOwner = "bene";
-            sourceDir = "/home/bene/blog";
-          };
-          navidrome.enable = true;
-        };
+      homelab.baseDomain = "shimagumo.party";
+      homelab.services.restic = {
+        local.enable = true;
+        local.targetDir = "/data/restic";
+        s3.enable = true;
+      };
+      homelab.services.nfs = {
+        directory = "/public";
+      };
+      homelab.services.zola = {
+        sourceOwner = "bene";
+        sourceDir = "/home/bene/blog";
       };
 
       # Use the systemd-boot EFI boot loader.

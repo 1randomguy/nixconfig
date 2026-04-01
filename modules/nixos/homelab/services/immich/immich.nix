@@ -1,21 +1,16 @@
-{lib, config, ...}:
-with lib;
-let
-  cfg = config.homelab.services.immich;
-  hl = config.homelab;
-in
 {
-  imports = [
-    ./public-proxy.nix
-    ./auto-stack.nix
-  ];
+  flake.nixosModules.immich =
+    { lib, config, ... }:
+    let
+      cfg = config.homelab.services.immich;
+      hl = config.homelab;
+    in
+    {
+      imports = [
+        ./public-proxy.nix
+        ./auto-stack.nix
+      ];
 
-  options.homelab.services.immich = {
-    enable = mkEnableOption "Immich Picture Server";
-  };
-
-  config = 
-    mkIf cfg.enable {
       services.immich = {
         enable = true;
         port = 2283;
@@ -23,14 +18,20 @@ in
         # `null` will give access to all devices.
         # You may want to restrict this by using something like `[ "/dev/dri/renderD128" ]`
         accelerationDevices = null;
-        environment = { 
+        environment = {
           #DB_SKIP_MIGRATIONS = "true"; # NOTE: tmp for migration
         };
       };
 
       users.users.immich = {
         isSystemUser = true;
-        extraGroups = [ "video" "render" "media" "podman" "docker" ];
+        extraGroups = [
+          "video"
+          "render"
+          "media"
+          "podman"
+          "docker"
+        ];
       };
 
       homelab.services.restic.backupDirs = [ "/var/lib/immich" ];
@@ -64,5 +65,5 @@ in
           '';
         };
       };
-  };
+    };
 }
