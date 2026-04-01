@@ -1,8 +1,7 @@
 {
   flake.nixosModules.immich =
-    { lib, config, ... }:
+    { config, ... }:
     let
-      cfg = config.homelab.services.immich;
       hl = config.homelab;
     in
     {
