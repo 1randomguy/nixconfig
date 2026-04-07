@@ -129,121 +129,123 @@
         type = lib.types.attrsOf (lib.types.submodule vhostOptions);
       };
 
-      users = {
-        groups.${cfg.group} = {
-          gid = 993;
+      config = {
+        users = {
+          groups.${cfg.group} = {
+            gid = 993;
+          };
+          users.${cfg.user} = {
+            uid = 994;
+            isSystemUser = true;
+            group = cfg.group;
+            extraGroups = [
+              "video"
+              "render"
+              "media"
+            ];
+          };
         };
-        users.${cfg.user} = {
-          uid = 994;
-          isSystemUser = true;
-          group = cfg.group;
-          extraGroups = [
-            "video"
-            "render"
-            "media"
-          ];
+
+        networking.firewall.enable = true;
+        networking.firewall.allowPing = true;
+
+        virtualisation.docker.enable = true;
+
+        age.secrets.ntfy_url = {
+          file = ../secrets/ntfy_url.age;
         };
-      };
 
-      networking.firewall.enable = true;
-      networking.firewall.allowPing = true;
-
-      virtualisation.docker.enable = true;
-
-      age.secrets.ntfy_url = {
-        file = ../secrets/ntfy_url.age;
-      };
-
-      system.autoUpgrade = {
-        enable = true;
-        flake = "github:1randomguy/nixconfig#usopp";
-        dates = "Sat, 08:00";
-        flags = [ "--refresh" ];
-        allowReboot = false;
-      };
-
-      systemd.services.nixos-upgrade.serviceConfig.ExecStopPost =
-        "${pkgs.writeShellScript "upgrade-notify" ''
-          # Read the decrypted URL securely managed by agenix
-          WEBHOOK_URL=$(cat ${config.age.secrets.ntfy_url.path})
-
-          if [ "$EXIT_STATUS" = "0" ]; then
-            ${pkgs.curl}/bin/curl \
-              -H "Title: NixOS Upgrade Success" \
-              -H "Tags: white_check_mark" \
-              -d "Server updated successfully to the latest GitHub commit." \
-              "$WEBHOOK_URL"
-          else
-            # Grab the last 50 lines of the journal on failure
-            ${pkgs.systemd}/bin/journalctl -u nixos-upgrade.service -n 50 --no-pager | \
-            ${pkgs.curl}/bin/curl \
-              -H "Title: NixOS Upgrade FAILED" \
-              -H "Tags: warning" \
-              -d @- \
-              "$WEBHOOK_URL"
-          fi
-        ''}";
-
-      services.nginx = {
-        enable = true;
-        # recommended Settings
-        recommendedProxySettings = true;
-        recommendedTlsSettings = true;
-        recommendedGzipSettings = true;
-        recommendedOptimisation = true;
-
-        # Only allow PFS-enabled ciphers with AES256
-        sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
-
-        appendHttpConfig = ''
-          # Add HSTS header with preloading to HTTPS requests.
-          # Adding this header to HTTP requests is discouraged
-          map $scheme $hsts_header {
-              https   "max-age=31536000; includeSubdomains; preload";
-          }
-          add_header Strict-Transport-Security $hsts_header;
-
-          # Enable CSP for your services.
-          #add_header Content-Security-Policy "script-src 'self'; object-src 'none'; base-uri 'none';" always;
-
-          # Minimize information leaked to other domains
-          add_header 'Referrer-Policy' 'origin-when-cross-origin';
-
-          # Disable embedding as a frame
-          add_header X-Frame-Options DENY; #change to SAMEORIGIN if I want to embedd on some other of my sites
-
-          # Prevent injection of code in other mime types (XSS Attacks)
-          add_header X-Content-Type-Options "nosniff" always;
-
-          # Other
-          add_header X-Permitted-Cross-Domain-Policies "none" always;
-
-          # This might create errors
-          #proxy_cookie_path / "/; secure; HttpOnly; SameSite=lax";
-        '';
-      };
-
-      networking.firewall.allowedTCPPorts = [
-        80
-        443
-      ];
-
-      age.secrets.porkbun = {
-        file = ../secrets/porkbun.age;
-      };
-
-      security.acme = {
-        acceptTerms = true;
-        defaults = {
-          email = "bblomberg123@gmail.com";
-          dnsProvider = "porkbun";
-          dnsResolver = "1.1.1.1:53";
-          environmentFile = config.age.secrets.porkbun.path;
+        system.autoUpgrade = {
+          enable = true;
+          flake = "github:1randomguy/nixconfig#usopp";
+          dates = "Sat, 08:00";
+          flags = [ "--refresh" ];
+          allowReboot = false;
         };
-        # certs."shimagumo.party" = {
-        #   domain = "shimagumo.party";
-        #   extraDomainNames = [ "*.shimagumo.party" ];
-        # };
+
+        systemd.services.nixos-upgrade.serviceConfig.ExecStopPost =
+          "${pkgs.writeShellScript "upgrade-notify" ''
+            # Read the decrypted URL securely managed by agenix
+            WEBHOOK_URL=$(cat ${config.age.secrets.ntfy_url.path})
+
+            if [ "$EXIT_STATUS" = "0" ]; then
+              ${pkgs.curl}/bin/curl \
+                -H "Title: NixOS Upgrade Success" \
+                -H "Tags: white_check_mark" \
+                -d "Server updated successfully to the latest GitHub commit." \
+                "$WEBHOOK_URL"
+            else
+              # Grab the last 50 lines of the journal on failure
+              ${pkgs.systemd}/bin/journalctl -u nixos-upgrade.service -n 50 --no-pager | \
+              ${pkgs.curl}/bin/curl \
+                -H "Title: NixOS Upgrade FAILED" \
+                -H "Tags: warning" \
+                -d @- \
+                "$WEBHOOK_URL"
+            fi
+          ''}";
+
+        services.nginx = {
+          enable = true;
+          # recommended Settings
+          recommendedProxySettings = true;
+          recommendedTlsSettings = true;
+          recommendedGzipSettings = true;
+          recommendedOptimisation = true;
+
+          # Only allow PFS-enabled ciphers with AES256
+          sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
+
+          appendHttpConfig = ''
+            # Add HSTS header with preloading to HTTPS requests.
+            # Adding this header to HTTP requests is discouraged
+            map $scheme $hsts_header {
+                https   "max-age=31536000; includeSubdomains; preload";
+            }
+            add_header Strict-Transport-Security $hsts_header;
+
+            # Enable CSP for your services.
+            #add_header Content-Security-Policy "script-src 'self'; object-src 'none'; base-uri 'none';" always;
+
+            # Minimize information leaked to other domains
+            add_header 'Referrer-Policy' 'origin-when-cross-origin';
+
+            # Disable embedding as a frame
+            add_header X-Frame-Options DENY; #change to SAMEORIGIN if I want to embedd on some other of my sites
+
+            # Prevent injection of code in other mime types (XSS Attacks)
+            add_header X-Content-Type-Options "nosniff" always;
+
+            # Other
+            add_header X-Permitted-Cross-Domain-Policies "none" always;
+
+            # This might create errors
+            #proxy_cookie_path / "/; secure; HttpOnly; SameSite=lax";
+          '';
+        };
+
+        networking.firewall.allowedTCPPorts = [
+          80
+          443
+        ];
+
+        age.secrets.porkbun = {
+          file = ../secrets/porkbun.age;
+        };
+
+        security.acme = {
+          acceptTerms = true;
+          defaults = {
+            email = "bblomberg123@gmail.com";
+            dnsProvider = "porkbun";
+            dnsResolver = "1.1.1.1:53";
+            environmentFile = config.age.secrets.porkbun.path;
+          };
+          # certs."shimagumo.party" = {
+          #   domain = "shimagumo.party";
+          #   extraDomainNames = [ "*.shimagumo.party" ];
+          # };
+        };
       };
     };
 }

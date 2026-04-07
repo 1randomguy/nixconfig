@@ -29,60 +29,62 @@
         };
       };
 
-      # backup the blog source
-      homelab.services.restic.backupDirs = [ cfg.sourceDir ];
+      config = {
+        # backup the blog source
+        homelab.services.restic.backupDirs = [ cfg.sourceDir ];
 
-      # watchexec-based activation of rebuild on any source changes
-      systemd.services.zola-blog-server = {
-        description = "Watch for blog changes and rebuild";
-        wantedBy = [ "multi-user.target" ];
-        after = [ "network.target" ];
+        # watchexec-based activation of rebuild on any source changes
+        systemd.services.zola-blog-server = {
+          description = "Watch for blog changes and rebuild";
+          wantedBy = [ "multi-user.target" ];
+          after = [ "network.target" ];
 
-        serviceConfig = {
-          Type = "simple";
-          User = cfg.sourceOwner;
-          WorkingDirectory = cfg.sourceDir;
-          Restart = "always";
-          RestartSec = 5;
-          # Security restrictions
-          NoNewPrivileges = true;
-          PrivateTmp = true;
-          #ProtectSystem = "strict";
-          #ProtectHome = true;
-          #ReadOnlyPaths = [ cfg.sourceDir ];
-          #ReadWritePaths = [ cfg.outputDir ];
-          # Network restrictions (zola build doesn't need network)
-          PrivateNetwork = true;
+          serviceConfig = {
+            Type = "simple";
+            User = cfg.sourceOwner;
+            WorkingDirectory = cfg.sourceDir;
+            Restart = "always";
+            RestartSec = 5;
+            # Security restrictions
+            NoNewPrivileges = true;
+            PrivateTmp = true;
+            #ProtectSystem = "strict";
+            #ProtectHome = true;
+            #ReadOnlyPaths = [ cfg.sourceDir ];
+            #ReadWritePaths = [ cfg.outputDir ];
+            # Network restrictions (zola build doesn't need network)
+            PrivateNetwork = true;
+          };
+
+          script = ''
+            ${pkgs.watchexec}/bin/watchexec --watch ${cfg.sourceDir} --exts md,toml,html -- \
+            ${pkgs.zola}/bin/zola build --output-dir ${cfg.outputDir}/www --force
+          '';
+
+          path = [
+            pkgs.watchexec
+            pkgs.zola
+          ];
         };
 
-        script = ''
-          ${pkgs.watchexec}/bin/watchexec --watch ${cfg.sourceDir} --exts md,toml,html -- \
-          ${pkgs.zola}/bin/zola build --output-dir ${cfg.outputDir}/www --force
-        '';
+        # Nginx configuration
+        services.nginx.virtualHosts."blog.${hl.baseDomain}" = {
+          enableACME = true;
+          acmeRoot = null;
+          forceSSL = true;
 
-        path = [
-          pkgs.watchexec
-          pkgs.zola
+          root = "${cfg.outputDir}/www";
+
+          locations."/" = {
+            index = "index.html";
+            tryFiles = "$uri $uri/ =404";
+          };
+        };
+
+        # Ensure the output directory has correct permissions
+        systemd.tmpfiles.rules = [
+          "d ${cfg.outputDir} 0755 ${cfg.sourceOwner} nginx -"
         ];
       };
-
-      # Nginx configuration
-      services.nginx.virtualHosts."blog.${hl.baseDomain}" = {
-        enableACME = true;
-        acmeRoot = null;
-        forceSSL = true;
-
-        root = "${cfg.outputDir}/www";
-
-        locations."/" = {
-          index = "index.html";
-          tryFiles = "$uri $uri/ =404";
-        };
-      };
-
-      # Ensure the output directory has correct permissions
-      systemd.tmpfiles.rules = [
-        "d ${cfg.outputDir} 0755 ${cfg.sourceOwner} nginx -"
-      ];
     };
 }
