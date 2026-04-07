@@ -9,6 +9,9 @@ rebuild := "sudo nixos-rebuild switch --flake ."
 rebuild:
   sudo nixos-rebuild switch --flake .
 
+usopp:
+  nixos-rebuild switch --flake .#usopp --sudo --target-host bene@192.168.178.57
+
 rebuild-hm:
   home-manager switch --flake .
 
