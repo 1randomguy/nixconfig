@@ -136,7 +136,7 @@
         virtualisation.docker.enable = true;
 
         age.secrets.ntfy_url = {
-          file = ../secrets/ntfy_url.age;
+          file = ../../../secrets/ntfy_url.age;
         };
 
         system.autoUpgrade = {
@@ -214,7 +214,7 @@
         ];
 
         age.secrets.porkbun = {
-          file = ../secrets/porkbun.age;
+          file = ../../../secrets/porkbun.age;
         };
 
         security.acme = {

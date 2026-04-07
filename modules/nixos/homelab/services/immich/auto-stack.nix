@@ -37,7 +37,7 @@
         };
 
         age.secrets."auto-stacker-env" = {
-          file = ../../secrets/auto_stacker_env.age;
+          file = ../../../../../secrets/auto_stacker_env.age;
           owner = "immich";
         };
       };

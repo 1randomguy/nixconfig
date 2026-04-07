@@ -29,10 +29,10 @@
       };
       config = lib.mkIf (cfg.backupDirs != [ ]) {
         age.secrets.restic = {
-          file = ../../secrets/restic.age;
+          file = ../../../../secrets/restic.age;
         };
         age.secrets.backblazeb2 = {
-          file = ../../secrets/backblazeb2.age;
+          file = ../../../../secrets/backblazeb2.age;
         };
         systemd.tmpfiles.rules = lib.lists.optionals cfg.local.enable [
           "d ${cfg.local.targetDir} 0770 ${hl.user} ${hl.group} - -"
