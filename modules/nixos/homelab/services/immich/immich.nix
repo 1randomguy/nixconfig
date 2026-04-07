@@ -5,11 +5,6 @@
       hl = config.homelab;
     in
     {
-      imports = [
-        ./public-proxy.nix
-        ./auto-stack.nix
-      ];
-
       services.immich = {
         enable = true;
         port = 2283;
