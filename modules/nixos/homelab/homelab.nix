@@ -85,22 +85,6 @@
         };
     in
     {
-      imports = [
-        ./immich
-        ./blocky
-        ./smb
-        ./nfs
-        ./restic
-        ./authelia
-        ./ddclient
-        ./ddns-updater
-        ./nextcloud
-        ./zola
-        ./navidrome
-        ./prometheus
-        ./grafana
-      ];
-
       options.homelab = {
         user = lib.mkOption {
           default = "share";
