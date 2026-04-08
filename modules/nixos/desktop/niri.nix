@@ -13,6 +13,7 @@
       swaybg
       phinger-cursors
 
+      swayosd
       nirius # if we embed it in the command config of niri we might not need it as a systempackage here?
       # helpful tuis
       wifitui #?
@@ -21,7 +22,7 @@
       wdisplays
       gnome-online-accounts-gtk
       networkmanagerapplet
-      blueman #?
+      #blueman #?
       pwvucontrol
       walker
     ];
