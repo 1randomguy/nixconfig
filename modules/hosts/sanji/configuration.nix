@@ -24,6 +24,7 @@
         self.nixosModules.master-thesis
         self.nixosModules.uni-vpn
         self.nixosModules.games
+        self.nixosModules.local-llm
       ];
 
       games.bottles.enable = true;
