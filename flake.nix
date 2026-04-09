@@ -33,15 +33,11 @@
       url = "github:nix-community/lanzaboote/v1.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    elephant.url = "github:abenz1267/elephant";
-    walker = {
-      url = "github:abenz1267/walker";
-      inputs.elephant.follows = "elephant";
-    };
+    # elephant.url = "github:abenz1267/elephant";
+    # walker = {
+    #   url = "github:abenz1267/walker";
+    #   inputs.elephant.follows = "elephant";
+    # };
     gd-tools.url = "github:1randomguy/gd-tools-flake";
     ashell.url = "github:MalpenZibo/ashell";
   };

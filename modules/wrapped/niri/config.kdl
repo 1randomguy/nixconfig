@@ -204,11 +204,6 @@ window-rule {
     clip-to-geometry true
 }
 
-// FOR NOCTALIA-SHELL
-debug {
-  honor-xdg-activation-with-invalid-serial
-}
-
 // Disable the hot corners.
 gestures {
     hot-corners {
@@ -221,11 +216,16 @@ overview {
   backdrop-color "#313244"
 }
 
-// Set the overview wallpaper on the backdrop.
-layer-rule {
-  match namespace="^noctalia-overview*"
-  place-within-backdrop true
-}
+// // FOR NOCTALIA-SHELL
+// debug {
+//   honor-xdg-activation-with-invalid-serial
+// }
+//
+// // Set the overview wallpaper on the backdrop.
+// layer-rule {
+//   match namespace="^noctalia-overview*"
+//   place-within-backdrop true
+// }
 
 //switch-events {
 //  lid-close { spawn "noctalia-shell" "ipc" "call" "sessionMenu" "lockAndSuspend"; }
