@@ -25,6 +25,7 @@
         self.nixosModules.fonts
         self.nixosModules.work
         self.nixosModules.docker
+        self.nixosModules.local-llm
       ];
 
       games.steam.enable = true;
