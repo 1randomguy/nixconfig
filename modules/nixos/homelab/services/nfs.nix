@@ -21,6 +21,7 @@
 
         fileSystems."/export/data" = {
           device = cfg.directory;
+          fsType = "none";
           options = [ "bind" ];
         };
 
