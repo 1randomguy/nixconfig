@@ -80,4 +80,13 @@ return {
       })
     end,
   },
+  {
+    "diffview.nvim",
+    auto_enable = true,
+    event = "DeferredUIEnter",
+    -- keys = "",
+    after = function(plugin)
+      require('diffview').setup({})
+    end,
+  },
 }

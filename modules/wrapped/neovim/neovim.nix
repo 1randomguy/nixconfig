@@ -192,6 +192,7 @@
           cmp-cmdline
           nvim-lint
           conform-nvim
+          diffview-nvim
 
           undotree
           toggleterm-nvim
