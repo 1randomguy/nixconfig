@@ -25,6 +25,7 @@
       kdePackages.okular
       # tasks
       taskwarrior3
+      logseq
       # tools
       nextcloud-client
       resources
