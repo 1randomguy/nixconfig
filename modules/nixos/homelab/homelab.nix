@@ -143,7 +143,7 @@
           enable = true;
           flake = "github:1randomguy/nixconfig#usopp";
           dates = "Sat, Sun, 08:00";
-          flags = [ "--refresh" ];
+          flags = [ "--refresh" "--no-write-lock-file" ];
           allowReboot = false;
         };
         systemd.services.nixos-upgrade.serviceConfig.ExecStopPost =
