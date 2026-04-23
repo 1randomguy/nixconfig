@@ -25,16 +25,16 @@
         self.nixosModules.fonts
         self.nixosModules.work
         self.nixosModules.docker
-        self.nixosModules.local-llm
+        #self.nixosModules.local-llm
       ];
 
       games.steam.enable = true;
 
-      zramSwap.enable = true;
-      services.earlyoom.enable = true;
-      services.earlyoom.extraArgs = [
-        "--prefer" "(^|/)(.+-)?(firefox|teams)$"
-      ];
+      # zramSwap.enable = true;
+      # services.earlyoom.enable = true;
+      # services.earlyoom.extraArgs = [
+      #   "--prefer" "(^|/)(.+-)?(firefox|teams)$"
+      # ];
 
       # Use the systemd-boot EFI boot loader.
       boot.loader.systemd-boot.enable = true;
