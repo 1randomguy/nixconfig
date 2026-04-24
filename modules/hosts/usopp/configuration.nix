@@ -89,6 +89,7 @@
         powertop
         htop
         inputs.agenix.packages."${stdenv.hostPlatform.system}".default
+        smartmontools
       ];
 
       # Some programs need SUID wrappers, can be configured further or are
@@ -111,6 +112,10 @@
       };
       programs.mosh.enable = true;
       services.vnstat.enable = true;
+      services.smartd = {
+        enable = true;
+        notifications.wall.enable = true;
+      };
 
       # Copy the NixOS configuration file and link it from the resulting system
       # (/run/current-system/configuration.nix). This is useful in case you
