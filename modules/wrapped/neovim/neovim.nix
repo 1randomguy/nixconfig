@@ -135,6 +135,17 @@
         ];
       };
 
+      config.specs.latex = {
+        enable = !config.settings.minimal;
+        data = with pkgs.vimPlugins; [
+          texpresso-vim
+          vimtex
+        ];
+        extraPackages = with pkgs; [
+          texpresso
+        ];
+      };
+
       config.specs.start = {
         # NOTE: view these names in the info plugin!
         # :lua nixInfo.lze.debug.display(nixInfo.plugins)

@@ -319,4 +319,12 @@ return {
       })
     end,
   },
+  {
+    "texpresso.vim",
+    auto_enable = true,
+  },
+  {
+    "vimtex",
+    auto_enable = true,
+  },
 }
