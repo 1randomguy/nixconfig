@@ -142,7 +142,7 @@
         system.autoUpgrade = {
           enable = true;
           flake = "github:1randomguy/nixconfig#usopp";
-          dates = "Sat, Sun, 08:00";
+          dates = "Sat,Sun 08:00";
           flags = [ "--refresh" "--no-write-lock-file" ];
           allowReboot = false;
         };
