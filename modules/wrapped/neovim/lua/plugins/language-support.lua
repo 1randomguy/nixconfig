@@ -277,8 +277,9 @@ return {
             snippets = {
               score_offset = 45,
               opts = {
-                friendly_snippets = true,
-                search_paths = { vim.fn.stdpath('config') .. '/snippets' },
+                search_paths = {
+                  nixInfo(nil, "settings", "custom_snippets_path"),
+                },
               },
             },
             cmp_cmdline = {

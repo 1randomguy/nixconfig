@@ -15,6 +15,11 @@
     {
       imports = [ wlib.wrapperModules.neovim ];
 
+      options.settings.custom_snippets_path = lib.mkOption {
+        type = lib.types.str;
+        default = "${./snippets}";
+      };
+
       options.settings.minimal = lib.mkOption {
         type = lib.types.bool;
         default = false;

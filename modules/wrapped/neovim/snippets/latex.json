@@ -1,0 +1,36 @@
+{
+  "Figure Environment": {
+    "prefix": "fig",
+    "body": [
+      "\\begin{figure}[htpb]",
+      "  \\centering",
+      "  \\includegraphics[width=\\linewidth]{$1:filename}",
+      "  \\caption{$2:caption}",
+      "  \\label{fig:$3:label}",
+      "\\end{figure}",
+      "$0"
+    ],
+    "description": "Insert a boilerplate figure environment"
+  },
+  "Equation Environment": {
+    "prefix": "eq",
+    "body": [
+      "\\begin{equation}",
+      "  \\label{eq:$1:label}",
+      "  $2",
+      "\\end{equation}",
+      "$0"
+    ],
+    "description": "Insert a numbered equation environment"
+  },
+  "List Environment": {
+    "prefix": "list",
+    "body": [
+      "\\begin{itemize}",
+      "  \\item $1",
+      "\\end{itemize}",
+      "$0"
+    ],
+    "description": "Insert a numbered equation environment"
+  }
+}
