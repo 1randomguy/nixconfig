@@ -275,7 +275,7 @@ return {
               score_offset = 40,
             },
             snippets = {
-              score_offset = 45,
+              score_offset = 10,
               opts = {
                 search_paths = {
                   nixInfo(nil, "settings", "custom_snippets_path"),
@@ -335,6 +335,27 @@ return {
   {
     "texpresso.vim",
     auto_enable = true,
+    after = function()
+      vim.keymap.set('n', '<leader>lr', function()
+        local current_file = vim.fn.expand("%")
+        if current_file == "" then
+          print("No file found in the current buffer!")
+          return
+        end
+
+        local cmd = string.format("tectonic -k %s && killall -SIGUSR1 texpresso", vim.fn.shellescape(current_file))
+
+        vim.fn.jobstart({"sh", "-c", cmd}, {
+          on_exit = function(_, exit_code)
+            if exit_code == 0 then
+              print("LaTeX Build Successful: " .. current_file)
+            else
+              print("LaTeX Build Failed (Exit code: " .. exit_code .. ")")
+            end
+          end,
+        })
+      end, { desc = "Build LaTeX and update texpresso" })
+    end,
   },
   {
     "vimtex",
