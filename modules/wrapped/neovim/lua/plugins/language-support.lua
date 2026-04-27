@@ -200,6 +200,11 @@ return {
     on_plugin = { "blink.cmp" },
   },
   {
+    "friendly-snippets",
+    auto_enable = true,
+    on_plugin = { "blink.cmp" },
+  },
+  {
     "blink.cmp",
     auto_enable = true,
     event = "DeferredUIEnter",
@@ -261,13 +266,20 @@ return {
           },
         },
         sources = {
-          default = { 'lsp', 'path', 'buffer', 'omni' },
+          default = { 'lsp', 'path', 'snippets', 'buffer', 'omni' },
           providers = {
             path = {
               score_offset = 50,
             },
             lsp = {
               score_offset = 40,
+            },
+            snippets = {
+              score_offset = 45,
+              opts = {
+                friendly_snippets = true,
+                search_paths = { vim.fn.stdpath('config') .. '/snippets' },
+              },
             },
             cmp_cmdline = {
               name = 'cmp_cmdline',

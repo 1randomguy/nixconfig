@@ -143,6 +143,7 @@
         ];
         extraPackages = with pkgs; [
           texpresso
+          tectonic # TODO: add keymap for reloading citations in texpresso
         ];
       };
 
@@ -205,6 +206,7 @@
           conform-nvim
           diffview-nvim
 
+          friendly-snippets
           undotree
           toggleterm-nvim
           todo-comments-nvim
