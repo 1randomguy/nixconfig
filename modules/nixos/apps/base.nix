@@ -13,6 +13,7 @@
       vlc
       # music
       amberol
+      gapless
       spotify
       fooyin
       supersonic
