@@ -17,6 +17,7 @@
       spotify
       fooyin
       supersonic
+      lollypop
       easyeffects
       # document viewing/editing
       libreoffice
