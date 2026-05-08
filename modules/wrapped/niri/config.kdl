@@ -373,8 +373,15 @@ binds {
     Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
 
     Mod+G { spawn "nirius" "toggle-follow-mode"; }
-    Mod+Ctrl+M { spawn "nirius" "scratchpad-toggle"; }
-    Mod+M { spawn "nirius" "scratchpad-show-all"; }
+
+    Mod+Ctrl+apostrophe { spawn "nirius" "scratchpad-toggle"; }
+    Mod+apostrophe { spawn "nirius" "scratchpad-show-all"; }
+
+    Mod+Ctrl+M { spawn-sh "nirius scratchpad-toggle -a 'g4music|spotify|fooyin|amberol|lollypop'"; }
+    Mod+M { spawn-sh "nirius scratchpad-show -a 'g4music|spotify|fooyin|amberol|lollypop'"; }
+
+    Mod+Ctrl+N { spawn "nirius" "scratchpad-toggle" "--title" ".*Notes.*"; }
+    Mod+N { spawn "nirius" "scratchpad-show" "--title" ".*Notes.*"; }
 
     // Similarly, you can bind touchpad scroll "ticks".
     // Touchpad scrolling is continuous, so for these binds it is split into
