@@ -100,6 +100,33 @@
         ]; # Enable ‘sudo’ for the user.
       };
 
+      swapDevices = [{
+        device = "/var/lib/swapfile";
+        size = 32*1024; # 32 GiB
+        options = [ "discard" ];
+      }];
+      boot.zswap = {
+        enable = true;
+      };
+      boot.kernel.sysctl = {
+        "vm.swappiness" = 10;
+        "vm.vfs_cache_pressure" = 50;
+        "vm.dirty_ratio" = 10;
+        "vm.dirty_background_ratio" = 5;
+        "vm.page-cluster" = 0;
+      };
+      services.ananicy = {
+        enable = true;
+        package = pkgs.ananicy-cpp;
+        rulesProvider = pkgs.ananicy-rules-cachyos;
+      };
+      services.earlyoom.enable = true;
+      services.earlyoom.extraArgs = [
+        "--avoid" "(^|/)(.+-)?(niri|Xwayland)$"
+        "--prefer" "(^|/)(.+-)?(electron|chromium|firefox|teams)$"
+      ];
+      security.rtkit.enable = true;
+
       # Some programs need SUID wrappers, can be configured further or are
       # started in user sessions.
       # programs.mtr.enable = true;
