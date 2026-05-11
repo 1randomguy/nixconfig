@@ -1,6 +1,6 @@
 {self, ...}:
 {
-  flake.nixosModules.common = {pkgs, lib, ...}:
+  flake.nixosModules.common-desktop = {pkgs, lib, ...}:
   {
     # keyboard
     services.xserver.xkb.layout = "us";

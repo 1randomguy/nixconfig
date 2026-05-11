@@ -10,6 +10,7 @@
         self.nixosModules.common
         self.nixosModules.shell
 
+        self.nixosModules.common-desktop
         self.nixosModules.gnome
         self.nixosModules.niri
         self.nixosModules.ashell
