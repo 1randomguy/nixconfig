@@ -7,11 +7,6 @@
       ../../home/shell
     ];
 
-  apps.music = {
-    enable = true;
-    eq = true;
-  };
-
   shell = {
     zsh = {
       enable = true;

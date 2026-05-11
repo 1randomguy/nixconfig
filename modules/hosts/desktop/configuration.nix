@@ -18,11 +18,11 @@
         self.nixosModules.base-apps
         self.nixosModules.extra-apps
         #self.nixosModules.image-editing
-        self.nixosModules.latex
+        #self.nixosModules.latex
 
         self.nixosModules.compat
         self.nixosModules.fonts
-        self.nixosModules.master-thesis
+        #self.nixosModules.master-thesis
         self.nixosModules.uni-vpn
         self.nixosModules.games
 
@@ -44,18 +44,18 @@
       boot.loader.efi.efiSysMountPoint = "/efi";
       boot.loader.systemd-boot.xbootldrMountPoint = "/boot";
 
-      #nixpkgs.config.allowUnfree = true;
-      services.xserver.videoDrivers = [ "nvidia" ];
-      hardware.nvidia = {
-        modesetting.enable = true;
-        powerManagement.enable = false;
-        powerManagement.finegrained = false;
-        open = false;
-        nvidiaSettings = true;
-        package = config.boot.kernelPackages.nvidiaPackages.production;
-      };
+      # #nixpkgs.config.allowUnfree = true;
+      # services.xserver.videoDrivers = [ "nvidia" ];
+      # hardware.nvidia = {
+      #   modesetting.enable = true;
+      #   powerManagement.enable = false;
+      #   powerManagement.finegrained = false;
+      #   open = false;
+      #   nvidiaSettings = true;
+      #   #package = config.boot.kernelPackages.nvidiaPackages.production;
+      # };
 
-      hardware.graphics.enable = true;
+      # hardware.graphics.enable = true;
         
       networking.hostName = "desktop"; # Define your hostname.
       networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
