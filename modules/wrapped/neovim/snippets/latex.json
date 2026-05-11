@@ -15,5 +15,25 @@
       "\\leftarrow$0"
     ],
     "description": "Insert an arrow that points left"
+  },
+  "Python Code": {
+    "prefix": [ "python" ],
+    "body": [
+      "\\begin{lstlisting}[language=Python, caption=$1]",
+      "$2",
+      "\\end{lstlisting}",
+      "$0"
+    ],
+    "description": "Insert python code"
+  },
+  "Code": {
+    "prefix": [ "code" ],
+    "body": [
+      "\\begin{lstlisting}[language=$1, caption=$2]",
+      "$3",
+      "\\end{lstlisting}",
+      "$0"
+    ],
+    "description": "Insert code"
   }
 }
