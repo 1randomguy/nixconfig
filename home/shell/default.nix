@@ -4,7 +4,6 @@ let
   cfg = config.shell;
 in {
   imports = [
-    ./tmux
     ./zsh
     ./ghostty
   ];
