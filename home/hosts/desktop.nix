@@ -5,7 +5,6 @@
     [
       ../../home/common.nix
       ../../home/shell
-      ../../home/apps
     ];
 
   apps.music = {
