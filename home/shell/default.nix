@@ -29,29 +29,6 @@ in {
   };
 
   config = mkIf cfg.shelltools {
-    home.packages = with pkgs; [
-      #busybox
-      toybox
-      git
-      git-credential-oauth
-      just
-      fastfetch
-      htop
-      nix-prefetch-scripts
-      fzf
-      mosh
-      zoxide
-      gemini-cli
-      rename
-      devenv
-      exiftool
-      ripgrep
-      dig
-      gh
-      direnv
-      lazygit
-    ];
-
     programs.git = {
       enable = true;
       settings = {
@@ -64,16 +41,6 @@ in {
         ];
         pull.rebase = true;
       };
-    };
-
-    programs.zoxide = {
-      enable = true;
-      enableZshIntegration = true;
-    };
-
-    programs.yazi = {
-      enable = true;
-      shellWrapperName = "y";
     };
   };
 }
