@@ -46,11 +46,43 @@
           '';
         }
       ) { };
+      libcamera-git = pkgs.libcamera.overrideAttrs (old: {
+        version = "imx471-patched";
+
+        src = pkgs.fetchgit {
+          url = "https://github.com/gdamjan/libcamera.git";
+          rev = "refs/heads/thinkpad-x9"; # Pulling the patched community branch
+          hash = "sha256-GWqt/fFUthGu0MR4qdkOeca4pScd/8hhD5scf3DJTcs=";
+        };
+
+        # We will leave these here just in case this community branch
+        # is also based on a newer commit that requires them.
+        buildInputs = (old.buildInputs or [ ]) ++ [
+          pkgs.elfutils
+          pkgs.libyuv
+          pkgs.libGL
+        ];
+      });
     in
     {
       imports = [
         (modulesPath + "/installer/scan/not-detected.nix")
       ];
+
+      # --- THE MAGIC TRICK ---
+      # Inject the patched libcamera ONLY into the PipeWire media server.
+      # This avoids rebuilding your whole OS, but gives native camera support to GNOME and Firefox!
+      # services.pipewire = {
+      #   enable = true;
+      #   # ... keep your existing audio/pulse settings here ...
+      #
+      #   package = pkgs.pipewire.override {
+      #     libcamera = libcamera-git;
+      #   };
+      #   wireplumber.package = pkgs.wireplumber.override {
+      #     pipewire = pkgs.pipewire.override { libcamera = libcamera-git; };
+      #   };
+      # };
 
       boot.initrd.availableKernelModules = [
         "xhci_pci"
@@ -62,11 +94,11 @@
       boot.initrd.kernelModules = [ ];
       boot.kernelModules = [
         "kvm-intel"
-        "imx471"
-        "ipu-bridge"
+        # "imx471"
+        # "ipu-bridge"
       ];
       boot.kernelPackages = pkgs.linuxPackages_latest;
-      boot.extraModulePackages = [ imx471-module ];
+      # boot.extraModulePackages = [ imx471-module ];
 
       fileSystems."/" = {
         device = "/dev/disk/by-uuid/64772fc4-75b5-4654-970b-9a37e0734140";
@@ -118,6 +150,7 @@
       environment.systemPackages = with pkgs; [
         sof-firmware
         alsa-utils # useful for testing later
+        #libcamera-git
       ];
 
       nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
