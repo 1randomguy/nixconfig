@@ -14,6 +14,9 @@ return {
 				-- enables syntax highlighting and other treesitter features
 				vim.treesitter.start(buf, language)
 
+				if language == "latex" then
+					vim.bo[buf].syntax = "ON"
+				end
 				-- -- enables treesitter based folds
 				-- vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 				-- vim.wo.foldmethod = "expr"
