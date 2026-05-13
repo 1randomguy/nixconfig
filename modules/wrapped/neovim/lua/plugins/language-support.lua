@@ -376,18 +376,30 @@ return {
 			vim.g.tex_flavor = "latex"
 		end,
 		after = function()
-			-- Create a dedicated group so the autocmd doesn't duplicate
-			local vimtex_group = vim.api.nvim_create_augroup("VimtexAutoCompile", { clear = true })
-
-			vim.api.nvim_create_autocmd("BufWritePost", {
-				group = vimtex_group,
-				pattern = "*.tex",
-				callback = function()
-					-- Check if the VimTeX command actually exists in this buffer before calling it
-					if vim.fn.exists(":VimtexCompileSS") == 2 then
-						vim.cmd("silent! VimtexCompileSS")
-					end
-				end,
+			require("which-key").add({
+				-- { "<localleader>l", group = "", icon = "󰙩" }, -- Assuming your vimtex maplocalleader is the default
+				{ "<localleader>la", desc = "Context Menu" },
+				{ "<localleader>lc", desc = "Clean" },
+				{ "<localleader>lC", desc = "Clean Full" },
+				{ "<localleader>le", desc = "Errors" },
+				{ "<localleader>lg", desc = "Status" },
+				{ "<localleader>lG", desc = "Status All" },
+				{ "<localleader>li", desc = "Info" },
+				{ "<localleader>lI", desc = "Info Full" },
+				{ "<localleader>lk", desc = "Stop" },
+				{ "<localleader>lK", desc = "Stop All" },
+				{ "<localleader>ll", desc = "Compile" },
+				{ "<localleader>lL", desc = "Compile Selected" },
+				{ "<localleader>lm", desc = "Imaps List" },
+				{ "<localleader>lo", desc = "Compile Output" },
+				{ "<localleader>lq", desc = "Log" },
+				{ "<localleader>ls", desc = "Toggle Main" },
+				{ "<localleader>lS", desc = "Compile SS" },
+				{ "<localleader>lt", desc = "TOC Open" },
+				{ "<localleader>lT", desc = "TOC Toggle" },
+				{ "<localleader>lv", desc = "View" },
+				{ "<localleader>lx", desc = "Reload" },
+				{ "<localleader>lX", desc = "Reload State" },
 			})
 		end,
 	},
