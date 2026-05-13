@@ -148,7 +148,8 @@
         ];
         extraPackages = with pkgs; [
           texpresso
-          tectonic # TODO: add keymap for reloading citations in texpresso
+          tectonic
+          entr
         ];
       };
 

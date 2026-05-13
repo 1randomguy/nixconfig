@@ -85,6 +85,8 @@ return {
         { "<leader>t_",        hidden = true },
         { "<leader>w",         group = "[w]orkspace" },
         { "<leader>w_",        hidden = true },
+        { "<leader>l",         group = "[l]atex" },
+        { "<leader>l_",        hidden = true },
       }
     end,
   },
