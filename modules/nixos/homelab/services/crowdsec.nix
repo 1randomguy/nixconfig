@@ -4,7 +4,29 @@
     {
       services.crowdsec = {
         enable = true;
-        # ... your other crowdsec settings ...
+        allowlist = [
+          "127.0.0.1"
+          "192.168.0.0/16"
+          "10.0.0.0/8"
+        ];
+
+        hub.collections = [
+          "crowdsecurity/nginx"
+          "crowdsecurity/linux"
+          "crowdsecurity/http-cve" # Adds protection against known web exploits
+        ];
+
+        # Tell CrowdSec where to find the Nginx logs
+        localConfig.acquisitions = [
+          {
+            source = "file";
+            labels.type = "nginx";
+            filenames = [
+              "/var/log/nginx/access.log"
+              "/var/log/nginx/error.log"
+            ];
+          }
+        ];
 
         settings.console = {
           tokenFile = config.age.secrets.crowdsec_token.path;
@@ -16,6 +38,11 @@
             share_context = true;
           };
         };
+      };
+
+      services.crowdsec-firewall-bouncer = {
+        enable = true;
+        # It will automatically hook into your default NixOS firewall (iptables or nftables)
       };
 
       age.secrets.crowdsec_token = {
