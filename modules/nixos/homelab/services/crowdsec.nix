@@ -22,11 +22,14 @@
           "nginx"
           "systemd-journal"
         ];
+
         readOnlyPaths = [ "/var/log/nginx" ];
 
         hub = {
           collections = [
             "crowdsecurity/nginx"
+            "LePresidente/authelia" # Authelia brute force detection
+            "gauth-fr/immich" # Immich brute force detection
             "crowdsecurity/linux"
             "crowdsecurity/http-cve" # Adds protection against known web exploits
           ];
@@ -49,13 +52,24 @@
             ];
           }
           {
+            labels.type = "immich";
+            source = "journalctl";
+            journalctl_filter = [ "_SYSTEMD_UNIT=immich-server.service" ];
+          }
+          {
+            labels.type = "authelia";
+            source = "journalctl";
+            journalctl_filter = [ "_SYSTEMD_UNIT=authelia-main.service" ];
+          }
+          {
             labels.type = "syslog";
             source = "journalctl";
             journalctl_filter = [ "_SYSTEMD_UNIT=sshd.service" ];
           }
         ];
 
-        settings.config.api.server.online_client.credentials_path = "/var/lib/crowdsec/data/online_api_credentials.yaml";
+        settings.config.api.server.online_client.credentials_path =
+          "/var/lib/crowdsec/data/online_api_credentials.yaml";
 
         settings.console = {
           enrollKeyFile = config.age.secrets.crowdsec_token.path;
