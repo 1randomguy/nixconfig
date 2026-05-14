@@ -23,6 +23,7 @@
       foliate
       proton-vpn
       typst
+      obs-studio
     ];
   };
 }
