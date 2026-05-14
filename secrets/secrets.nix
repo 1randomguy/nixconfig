@@ -23,6 +23,7 @@ in
   "nextcloud_admin_password.age".publicKeys = private;
   "nextcloud_secrets.age".publicKeys = private;
   "ntfy_url.age".publicKeys = private;
+  "crowdsec_token.age".publicKeys = private;
 
   "wireguard_work.age".publicKeys = worklaptop_both;
 }
