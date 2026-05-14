@@ -16,7 +16,7 @@
         enable = true;
         autoUpdateService = true;
 
-        package = inputs.crowdsec-pr.packages.${pkgs.system}.crowdsec;
+        package = inputs.crowdsec-pr.legacyPackages.${pkgs.system}.crowdsec;
 
         extraGroups = [
           "nginx"
