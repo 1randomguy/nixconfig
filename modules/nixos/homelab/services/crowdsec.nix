@@ -55,6 +55,8 @@
           }
         ];
 
+        settings.config.api.server.online_client.credentials_path = "/var/lib/crowdsec/data/online_api_credentials.yaml";
+
         settings.console = {
           enrollKeyFile = config.age.secrets.crowdsec_token.path;
         };
