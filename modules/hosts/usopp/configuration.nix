@@ -28,6 +28,7 @@
         self.nixosModules.nextcloud
         self.nixosModules.nfs
         self.nixosModules.zola
+        self.nixosModules.crowdsec
       ];
 
       homelab.baseDomain = "shimagumo.party";
