@@ -1,7 +1,7 @@
 { self, inputs, ... }:
 {
   flake.nixosModules.crowdsec =
-    { config, ... }:
+    { pkgs, config, ... }:
     {
       disabledModules = [
         "services/security/crowdsec.nix"
@@ -15,6 +15,14 @@
       services.crowdsec = {
         enable = true;
         autoUpdateService = true;
+
+        package = pkgs.crowdsec.overrideAttrs (old: {
+          postInstall = (old.postInstall or "") + ''
+            mkdir -p $out/libexec/crowdsec/plugins/
+            touch $out/libexec/crowdsec/plugins/notification-dummy
+            chmod +x $out/libexec/crowdsec/plugins/notification-dummy
+          '';
+        });
 
         extraGroups = [
           "nginx"
