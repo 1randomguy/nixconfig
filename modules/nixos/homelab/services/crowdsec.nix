@@ -22,20 +22,20 @@
         ];
         readOnlyPaths = [ "/var/log/nginx" ];
 
-        hub.collections = [
-          "crowdsecurity/nginx"
-          "crowdsecurity/linux"
-          "crowdsecurity/http-cve" # Adds protection against known web exploits
-        ];
-
-        hub.parsers = [
-          "crowdsecurity/sshd-logs"
-          "crowdsecurity/whitelists"
-        ];
-
-        hub.postoverflows = [
-          "crowdsecurity/auditd-nix-wrappers-whitelist-process" # Ignore benign Nix wrapper execs
-        ];
+        hub = {
+          collections = [
+            "crowdsecurity/nginx"
+            "crowdsecurity/linux"
+            "crowdsecurity/http-cve" # Adds protection against known web exploits
+          ];
+          parsers = [
+            "crowdsecurity/sshd-logs"
+            "crowdsecurity/whitelists"
+          ];
+          postoverflows = [
+            "crowdsecurity/auditd-nix-wrappers-whitelist-process" # Ignore benign Nix wrapper execs
+          ];
+        };
 
         # Tell CrowdSec where to find the Nginx logs
         settings.acquisitions = [
@@ -52,11 +52,6 @@
             journalctl_filter = [ "_SYSTEMD_UNIT=sshd.service" ];
           }
         ];
-
-        settings.api.server = {
-          enable = true;
-          listen_uri = "127.0.0.1:8080";
-        };
 
         settings.console = {
           enrollKeyFile = config.age.secrets.crowdsec_token.path;
