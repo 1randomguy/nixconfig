@@ -5,6 +5,7 @@
       darktable
       gimp
       inkscape
+      davinci-resolve
     ];
   };
 }

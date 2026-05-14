@@ -17,7 +17,7 @@
 
         self.nixosModules.base-apps
         self.nixosModules.extra-apps
-        #self.nixosModules.image-editing
+        self.nixosModules.image-editing
         self.nixosModules.latex
 
         self.nixosModules.compat
