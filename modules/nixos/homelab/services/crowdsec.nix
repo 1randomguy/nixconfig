@@ -23,6 +23,11 @@
           }
         ];
 
+        settings.api.server = {
+          enable = true;
+          listen_uri = "127.0.0.1:8080";
+        };
+
         settings.console = {
           tokenFile = config.age.secrets.crowdsec_token.path;
 
