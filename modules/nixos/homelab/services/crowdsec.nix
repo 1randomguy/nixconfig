@@ -1,4 +1,4 @@
-{ inputs }:
+{ self, inputs, ... }:
 {
   flake.nixosModules.crowdsec =
     { config, ... }:
@@ -60,17 +60,10 @@
 
         settings.console = {
           enrollKeyFile = config.age.secrets.crowdsec_token.path;
-
-          configuration = {
-            share_manual_decisions = true;
-            share_tainted = true;
-            console_management = false; # Keep NixOS in control of your config
-            share_context = true;
-          };
         };
-
-        crowdsec-firewall-bouncer.enable = true;
       };
+
+      services.crowdsec-firewall-bouncer.enable = true;
 
       age.secrets.crowdsec_token = {
         file = ../../../../secrets/crowdsec_token.age;
