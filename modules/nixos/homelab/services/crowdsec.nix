@@ -16,7 +16,14 @@
         enable = true;
         autoUpdateService = true;
 
-        package = inputs.crowdsec-pr.legacyPackages.${pkgs.system}.crowdsec;
+        # package = inputs.crowdsec-pr.legacyPackages.${pkgs.system}.crowdsec;
+        package = pkgs.crowdsec.overrideAttrs (old: {
+          postInstall = (old.postInstall or "") + ''
+            mkdir -p $out/libexec/crowdsec/plugins/
+            touch $out/libexec/crowdsec/plugins/notification-dummy
+            chmod +x $out/libexec/crowdsec/plugins/notification-dummy
+          '';
+        });
 
         extraGroups = [
           "nginx"
