@@ -33,7 +33,6 @@
               # Basic Proxy Config
               client_body_buffer_size 128k;
               proxy_set_header X-Original-URL $scheme://$http_host$request_uri;
-              proxy_set_header X-Forwarded-Host $http_host;
               proxy_set_header X-Forwarded-Uri $request_uri;
               proxy_set_header X-Forwarded-Ssl on;
               proxy_redirect  http://  $scheme://;
@@ -174,7 +173,7 @@
         services.nginx = {
           enable = true;
           # recommended Settings
-          recommendedProxySettings = true;
+          recommendedProxySettings = true; # (Host, X-Real-IP, X-Forwarded-(For/Proto/Host/Server))
           recommendedTlsSettings = true;
           recommendedGzipSettings = true;
           recommendedOptimisation = true;

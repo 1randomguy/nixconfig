@@ -40,7 +40,6 @@
           client_max_body_size 50000M;
 
           # Something here broke the app
-          #proxy_set_header X-Forwarded-Proto $scheme;
           #proxy_redirect off;
         '';
 
