@@ -30,6 +30,7 @@
             "crowdsecurity/nginx"
             "LePresidente/authelia" # Authelia brute force detection
             "gauth-fr/immich" # Immich brute force detection
+            "crowdsecurity/nextcloud" # Nextcloud brute force detection
             "crowdsecurity/linux"
             "crowdsecurity/http-cve" # Adds protection against known web exploits
           ];
@@ -60,6 +61,11 @@
             labels.type = "authelia";
             source = "journalctl";
             journalctl_filter = [ "_SYSTEMD_UNIT=authelia-main.service" ];
+          }
+          {
+            labels.type = "nextcloud";
+            source = "journalctl";
+            journalctl_filter = [ "SYSLOG_IDENTIFIER=Nextcloud" ];
           }
           {
             labels.type = "syslog";

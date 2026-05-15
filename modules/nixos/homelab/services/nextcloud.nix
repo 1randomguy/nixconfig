@@ -69,6 +69,7 @@
           default_phone_region = "de";
           filelocking.enabled = true;
           session_lifetime = "2592000";
+          log_type = "systemd";
           # Authelia OIDC
           allow_user_to_change_display_name = false;
           lost_password_link = "disabled";
