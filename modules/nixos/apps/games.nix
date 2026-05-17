@@ -1,7 +1,12 @@
 { self, ... }:
 {
   flake.nixosModules.games =
-    { pkgs, lib, config, ... }:
+    {
+      pkgs,
+      lib,
+      config,
+      ...
+    }:
     let
       cfg = config.games;
     in
@@ -20,6 +25,16 @@
           dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
           localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
         };
+
+        # needed for bottles, test currently broken
+        nixpkgs.overlays = [
+          (_: prev: {
+            openldap = prev.openldap.overrideAttrs {
+              doCheck = !prev.stdenv.hostPlatform.isi686;
+            };
+          })
+        ];
+
         environment.systemPackages =
           with pkgs;
           [ gamescope ]
