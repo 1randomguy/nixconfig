@@ -8,20 +8,8 @@ rebuild := "sudo nixos-rebuild switch --flake ."
 
 rebuild:
   sudo nixos-rebuild switch --flake .
+  # The hyphen tells `just` to ignore errors if this fails
+  -systemctl --user try-restart elephant.service
 
 usopp:
   nixos-rebuild switch --flake .#usopp --sudo --target-host bene@192.168.178.57
-
-rebuild-hm:
-  home-manager switch --flake .
-
-update:
-  git pull
-  {{rebuild}}
-
-upgrade:
-  git pull
-  nix flake update
-  {{rebuild}}
-  git add flake.lock
-  git commit -m "upgrade"
