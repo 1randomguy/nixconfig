@@ -22,6 +22,8 @@
             mkdir -p $out/libexec/crowdsec/plugins/
             touch $out/libexec/crowdsec/plugins/notification-dummy
             chmod +x $out/libexec/crowdsec/plugins/notification-dummy
+            touch $out/libexec/crowdsec/plugins/notification-email
+            chmod +x $out/libexec/crowdsec/plugins/notification-email
           '';
         });
 
