@@ -18,8 +18,8 @@ output "Samsung Display Corp. ATNA53JB01-0  Unknown" {
 }
 output "AU Optronics 0x4B98 Unknown" {
   mode 1920x1200@60.000
-  position 2560,240
-  scale 1
+  position 2560,640
+  scale 1.5
   alias $WORK_INTERNAL
 }
 output "Lenovo Group Limited L32p-30 U5127VZD" {
