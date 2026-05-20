@@ -179,6 +179,20 @@
                 #claims_policy = "nextcloud_userinfo";
                 consent_mode = "implicit";
               }
+              {
+                client_name = "Tailscale";
+                client_id = "ZSz0hfAgvaaKJb73mWdBkl4SY3CNycPbPdRY7iwWV4T33wvttJiBMO.4puheou9BOOEeR2bZ";
+                authorization_policy = "one_factor";
+                client_secret = "$pbkdf2-sha512$310000$DBi/P0LAPrm3z.J3LSNzYw$/R7TPVb88RqTT096qTSWpHfeDBsfaNa6Bcmo5JQCx69NYg0LPOzk0bObZcjtUEW5YDhkOFtBd6Z8ypNdKOCfgw";
+                redirect_uris = [ "https://login.tailscale.com/a/oauth_response" ];
+                scopes = [
+                  "openid"
+                  "profile"
+                  "email"
+                ];
+                token_endpoint_auth_method = "client_secret_basic";
+                userinfo_signed_response_alg = "none";
+              }
             ];
           };
         };
@@ -229,6 +243,26 @@
 
             # Security headers passthrough
             proxy_pass_header Server;
+          '';
+        };
+      };
+      services.nginx.virtualHosts."${hl.baseDomain}" = {
+        enableACME = true;
+        acmeRoot = null;
+        forceSSL = true;
+
+        locations."= /.well-known/webfinger" = {
+          extraConfig = ''
+            default_type application/jrd+json;
+            return 200 '{
+              "subject": "$arg_resource",
+              "links": [
+                {
+                  "rel": "http://openid.net/specs/connect/1.0/issuer",
+                  "href": "https://auth.${hl.baseDomain}"
+                }
+              ]
+            }';
           '';
         };
       };
