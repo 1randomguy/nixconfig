@@ -254,8 +254,16 @@
         locations."= /.well-known/webfinger" = {
           extraConfig = ''
             default_type application/jrd+json;
+
+            # Regex to capture the username between 'acct:' and '@domain'
+            # This handles both encoded (: / @) and unencoded (%3A / %40) separators
+            set $wf_user "unknown";
+            if ($arg_resource ~* "^acct(?::|%3A)([^@%]+)(?:@|%40)${hl.baseDomain}$") {
+                set $wf_user $1;
+            }
+
             return 200 '{
-              "subject": "$arg_resource",
+              "subject": "acct:$wf_user@${hl.baseDomain}",
               "links": [
                 {
                   "rel": "http://openid.net/specs/connect/1.0/issuer",
