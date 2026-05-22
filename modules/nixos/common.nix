@@ -30,5 +30,6 @@
       options = "--delete-older-than 30d";
     };
     nix.optimise.automatic = true;
+    services.tailscale.enable = true;
   };
 }
