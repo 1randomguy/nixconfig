@@ -30,7 +30,7 @@
         enableACME = true;
         acmeRoot = null;
         forceSSL = true;
-        #enableAuthelia = true;
+        enableAuthelia = true;
 
         locations."/" = {
           proxyPass = "http://127.0.0.1:${toString config.services.navidrome.settings.Port}";
