@@ -73,6 +73,7 @@
           # Authelia OIDC
           allow_user_to_change_display_name = false;
           lost_password_link = "disabled";
+          allow_local_remote_servers = true;
           ## for config of user_oidc look at nextcloud_secrets.age
         };
 
