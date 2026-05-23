@@ -45,6 +45,8 @@
         sourceDir = "/home/bene/blog";
       };
 
+      services.tailscale.extraUpFlags = "--advertise-routes=192.168.178.57/32";
+
       # Use the systemd-boot EFI boot loader.
       boot.loader.systemd-boot.enable = true;
       boot.loader.efi.canTouchEfiVariables = true;
