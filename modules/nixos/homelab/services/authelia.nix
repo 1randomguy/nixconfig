@@ -79,11 +79,15 @@
                 domain = [ "${hl.baseDomain}" ];
                 policy = "one_factor"; # other option: "two_factor"
               }
-              # {
-              #   domain = [ "nextcloud.${hl.baseDomain}" ];
-              #   policy = "one_factor"; # other option: "two_factor"
-              #   networks = [ "192.168.178.0/24" "100.0.0.0/8" ];
-              # }
+              {
+                domain = [ "nextcloud.${hl.baseDomain}" ];
+                policy = "bypass"; # other option: "two_factor"
+                networks = [ "192.168.178.0/24" "100.0.0.0/8" ];
+              }
+              {
+                domain = [ "nextcloud.${hl.baseDomain}" ];
+                policy = "one_factor"; # other option: "two_factor"
+              }
               {
                 domain = [ "music.${hl.baseDomain}" ];
                 policy = "bypass";
