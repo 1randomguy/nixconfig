@@ -121,7 +121,6 @@
         enableACME = true;
         acmeRoot = null;
         forceSSL = true;
-        enableAuthelia = true;
 
         extraConfig = ''
           add_header X-Robots-Tag "noindex, nofollow" always;
