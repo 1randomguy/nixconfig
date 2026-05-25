@@ -13,6 +13,9 @@ right = [ "Tray", [ "Privacy", "Settings" ] ]
 [system_info]
 indicators = [ "Cpu", "Memory", "IpAddress" ]
 
+[tray]
+right_click = "menu"
+
 [media_player]
 max_title_length = 50
 
