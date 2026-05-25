@@ -47,6 +47,21 @@
 
       services.tailscale.extraUpFlags = "--advertise-routes=192.168.178.57/32";
 
+      networking.useNetworkd = true;
+      systemd.network.enable = true;
+
+      systemd.network.networks."wlan" = {
+        matchConfig.Name = "wlp2s0";
+        networkConfig = {
+          # Enable SLAAC/Router Advertisements globally for this interface
+          IPv6AcceptRA = true;
+        };
+        # Configure the specific behavior of those Router Advertisements
+        ipv6AcceptRAConfig = {
+          Token = "::10";
+        };
+      };
+
       # Use the systemd-boot EFI boot loader.
       boot.loader.systemd-boot.enable = true;
       boot.loader.efi.canTouchEfiVariables = true;
