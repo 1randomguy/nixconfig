@@ -52,9 +52,6 @@
         permittedInsecurePackages = [
           #"libsoup-2.74.3"
         ];
-        problems.handlers = {
-          chipwhisperer.broken = "warn"; # or "ignore"
-        };
       };
     in
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
