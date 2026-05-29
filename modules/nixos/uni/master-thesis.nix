@@ -4,6 +4,7 @@
     {
       environment.systemPackages = with pkgs; [
         vscodium
+        mattermost-desktop
       ];
       users.groups.chipwhisperer = { };
       users.users."bene".extraGroups = [
