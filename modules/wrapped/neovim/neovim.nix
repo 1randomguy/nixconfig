@@ -74,7 +74,7 @@
 
       config.specs.nix = {
         data = null;
-        extraPackages = with pkgs; [
+        runtimePkgs = with pkgs; [
           nixd
           nixfmt
         ];
@@ -86,7 +86,7 @@
         data = with pkgs.vimPlugins; [
           lazydev-nvim
         ];
-        extraPackages = with pkgs; [
+        runtimePkgs = with pkgs; [
           lua-language-server
           stylua
         ];
@@ -95,7 +95,7 @@
       config.specs.markdown = {
         enable = !config.settings.minimal;
         data = null;
-        extraPackages = with pkgs; [
+        runtimePkgs = with pkgs; [
           marksman
         ];
       };
@@ -103,7 +103,7 @@
       config.specs.javascript = {
         enable = !config.settings.minimal;
         data = null;
-        extraPackages = with pkgs; [
+        runtimePkgs = with pkgs; [
           typescript-language-server
           prettierd
           eslint_d
@@ -113,7 +113,7 @@
       config.specs.python = {
         enable = !config.settings.minimal;
         data = null;
-        extraPackages = with pkgs; [
+        runtimePkgs = with pkgs; [
           pyright
           black
           ruff
@@ -125,7 +125,7 @@
         data = [
           pkgs.vimPlugins.jupytext-nvim
         ];
-        extraPackages = with pkgs; [
+        runtimePkgs = with pkgs; [
           python313Packages.jupytext
         ];
       };
@@ -133,7 +133,7 @@
       config.specs.rust = {
         enable = !config.settings.minimal;
         data = with pkgs.vimPlugins; [ rustaceanvim ];
-        extraPackages = with pkgs; [
+        runtimePkgs = with pkgs; [
           rust-analyzer
           rustfmt
           cargo
@@ -146,7 +146,7 @@
           texpresso-vim
           vimtex
         ];
-        extraPackages = with pkgs; [
+        runtimePkgs = with pkgs; [
           texpresso
           tectonic
           entr
@@ -185,14 +185,14 @@
               nvim-treesitter.withAllGrammars
           )
         ];
-        extraPackages = with pkgs; [
+        runtimePkgs = with pkgs; [
           tree-sitter
         ];
       };
 
       config.specs.general = {
         after = [ "start" ];
-        extraPackages = with pkgs; [
+        runtimePkgs = with pkgs; [
           ripgrep
           fd
           lazygit
@@ -227,14 +227,14 @@
       config.specMods =
         { ... }:
         {
-          options.extraPackages = lib.mkOption {
+          options.runtimePkgs = lib.mkOption {
             type = lib.types.listOf wlib.types.stringable;
             default = [ ];
-            description = "a extraPackages spec field to put packages to suffix to the PATH";
+            description = "a runtimePkgs spec field to put packages to suffix to the PATH";
           };
         };
 
-      config.extraPackages = config.specCollect (acc: v: acc ++ (v.extraPackages or [ ])) [ ];
+      config.runtimePkgs = config.specCollect (acc: v: acc ++ (v.runtimePkgs or [ ])) [ ];
 
       # Inform our lua of which top level specs are enabled
       options.settings.cats = lib.mkOption {

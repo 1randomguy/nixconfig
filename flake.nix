@@ -3,7 +3,7 @@
 
   inputs = {
     #nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     #nixpkgs.url = "/home/bene/nixpkgs";
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
@@ -19,7 +19,7 @@
       url = "github:BirdeeHub/lzextras";
       flake = false;
     };
-    home-manager.url = "github:nix-community/home-manager/master";
+    home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     disko = {
       url = "github:nix-community/disko";
@@ -51,6 +51,7 @@
         allowUnfree = true;
         permittedInsecurePackages = [
           #"libsoup-2.74.3"
+          "electron-39.8.10"
         ];
       };
     in
