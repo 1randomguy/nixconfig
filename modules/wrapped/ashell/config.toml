@@ -7,11 +7,11 @@ app_launcher_cmd = "walker"
 [modules]
 left = [ [ "Workspaces" ] ]
 center = [ "Tempo" ]
-right = [ "Tray", [ "Privacy", "Settings" ] ]
-# "SystemInfo",
+right = [ "SystemInfo", "Tray", [ "Privacy", "Settings" ] ]
+# 
 
 [system_info]
-indicators = [ "Cpu", "Memory", "IpAddress" ]
+indicators = [ "Memory", "MemorySwap" ]
 
 [tray]
 right_click = "menu"
