@@ -16,16 +16,16 @@
         enable = true;
         autoUpdateService = true;
 
-        # package = inputs.crowdsec-pr.legacyPackages.${pkgs.system}.crowdsec;
-        package = pkgs.crowdsec.overrideAttrs (old: {
-          postInstall = (old.postInstall or "") + ''
-            mkdir -p $out/libexec/crowdsec/plugins/
-            touch $out/libexec/crowdsec/plugins/notification-dummy
-            chmod +x $out/libexec/crowdsec/plugins/notification-dummy
-            touch $out/libexec/crowdsec/plugins/notification-email
-            chmod +x $out/libexec/crowdsec/plugins/notification-email
-          '';
-        });
+        package = inputs.crowdsec-pr.legacyPackages.${pkgs.system}.crowdsec;
+        # package = pkgs.crowdsec.overrideAttrs (old: {
+        #   postInstall = (old.postInstall or "") + ''
+        #     mkdir -p $out/libexec/crowdsec/plugins/
+        #     touch $out/libexec/crowdsec/plugins/notification-dummy
+        #     chmod +x $out/libexec/crowdsec/plugins/notification-dummy
+        #     touch $out/libexec/crowdsec/plugins/notification-email
+        #     chmod +x $out/libexec/crowdsec/plugins/notification-email
+        #   '';
+        # });
 
         extraGroups = [
           "nginx"
