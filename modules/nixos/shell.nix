@@ -28,6 +28,7 @@
       dig
       gh
       lazygit
+      android-tools
     ];
     programs.zoxide.enable = true;
     programs.yazi.enable = true;
