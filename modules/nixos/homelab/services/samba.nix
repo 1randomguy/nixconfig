@@ -1,6 +1,6 @@
 {
   flake.nixosModules.samba =
-    { lib, config, ... }:
+    { lib, pkgs, config, ... }:
     with lib;
     let
       cfg = config.homelab.services.samba;
@@ -52,7 +52,7 @@
         };
 
         # Apple / Linux Network Discovery
-        system.nssModules = with pkgs; [ avahi ];
+        system.nssModules = [ pkgs.avahi ];
         services.avahi = {
           enable = true;
           nssmdns4 = true;
