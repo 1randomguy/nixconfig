@@ -13,10 +13,8 @@
       vlc
       # music
       amberol
-      gapless
       spotify
       fooyin
-      supersonic
       lollypop
       easyeffects
       # document viewing/editing
