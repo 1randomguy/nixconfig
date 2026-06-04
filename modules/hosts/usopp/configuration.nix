@@ -26,7 +26,7 @@
         self.nixosModules.immich-public-proxy
         self.nixosModules.navidrome
         self.nixosModules.nextcloud
-        self.nixosModules.nfs
+        # self.nixosModules.nfs
         self.nixosModules.samba
         self.nixosModules.zola
         self.nixosModules.crowdsec
@@ -38,9 +38,9 @@
         local.targetDir = "/data/restic";
         s3.enable = true;
       };
-      homelab.services.nfs = {
-        directory = "/public";
-      };
+      # homelab.services.nfs = {
+      #   directory = "/public";
+      # };
       homelab.services.samba = {
         directory = "/public";
       };

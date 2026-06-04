@@ -26,15 +26,15 @@
         self.nixosModules.uni-vpn
         self.nixosModules.games
 
-        self.nixosModules.nfs-mount
+        # self.nixosModules.nfs-mount
         self.nixosModules.vbox
         self.nixosModules.docker
       ];
 
-      nfs-mount = {
-        enable = true;
-        directory = "/home/bene/data";
-      };
+      # nfs-mount = {
+      #   enable = true;
+      #   directory = "/home/bene/data";
+      # };
       games.steam.enable = true;
       games.bottles.enable = true;
 
