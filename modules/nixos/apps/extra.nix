@@ -24,6 +24,8 @@
       proton-vpn
       typst
       obs-studio
+      # shell tools
+      android-tools
     ];
   };
 }
