@@ -27,6 +27,7 @@
         self.nixosModules.navidrome
         self.nixosModules.nextcloud
         self.nixosModules.nfs
+        self.nixosModules.samba
         self.nixosModules.zola
         self.nixosModules.crowdsec
       ];
@@ -38,6 +39,9 @@
         s3.enable = true;
       };
       homelab.services.nfs = {
+        directory = "/public";
+      };
+      homelab.services.samba = {
         directory = "/public";
       };
       homelab.services.zola = {
