@@ -19,6 +19,7 @@
         self.nixosModules.extra-apps
         self.nixosModules.image-editing
         self.nixosModules.latex
+        self.nixosModules.razer
 
         self.nixosModules.compat
         self.nixosModules.fonts
