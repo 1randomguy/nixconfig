@@ -5,6 +5,7 @@
     environment.systemPackages = [
       pkgs.teams-for-linux
       pkgs.logseq
+      pkgs.opencode
     ];
     age.secrets.work_wireguard_sk = {
       file = ../../../secrets/wireguard_work.age;
