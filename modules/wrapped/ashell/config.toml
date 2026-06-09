@@ -12,6 +12,8 @@ right = [ "SystemInfo", "Tray", [ "Privacy", "Settings" ] ]
 
 [system_info]
 indicators = [ "Memory", "MemorySwap" ]
+[system_info.disk]
+format = "Fraction"
 
 [tray]
 right_click = "menu"
