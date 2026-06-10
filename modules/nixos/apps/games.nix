@@ -35,6 +35,8 @@
           })
         ];
 
+        programs.cdemu.enable = true;
+
         environment.systemPackages =
           with pkgs;
           [ gamescope ]

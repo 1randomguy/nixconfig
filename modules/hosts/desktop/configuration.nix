@@ -36,7 +36,9 @@
       #   directory = "/home/bene/data";
       # };
       games.steam.enable = true;
-      games.bottles.enable = true;
+      #games.bottles.enable = true;
+
+      services.flatpak.enable = true;
 
       # Use the systemd-boot EFI boot loader.
       boot.loader.systemd-boot.enable = true;
@@ -44,16 +46,16 @@
       boot.loader.efi.efiSysMountPoint = "/efi";
       boot.loader.systemd-boot.xbootldrMountPoint = "/boot";
 
-      # #nixpkgs.config.allowUnfree = true;
-      # services.xserver.videoDrivers = [ "nvidia" ];
-      # hardware.nvidia = {
-      #   modesetting.enable = true;
-      #   powerManagement.enable = false;
-      #   powerManagement.finegrained = false;
-      #   open = false;
-      #   nvidiaSettings = true;
-      #   #package = config.boot.kernelPackages.nvidiaPackages.production;
-      # };
+      #nixpkgs.config.allowUnfree = true;
+      services.xserver.videoDrivers = [ "nvidia" ];
+      hardware.nvidia = {
+        modesetting.enable = true;
+        powerManagement.enable = false;
+        powerManagement.finegrained = false;
+        open = false;
+        nvidiaSettings = true;
+        package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
+      };
 
       # hardware.graphics.enable = true;
         
@@ -71,7 +73,7 @@
       users.users.bene = {
         description = "Benedikt von Blomberg";
         isNormalUser = true;
-        extraGroups = [ "wheel" "podman" "docker" ]; # Enable ‘sudo’ for the user.
+        extraGroups = [ "wheel" "podman" "docker" "cdrom" ]; # Enable ‘sudo’ for the user.
       };
 
       # This option defines the first version of NixOS you have installed on this particular machine,
