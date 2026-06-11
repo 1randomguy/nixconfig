@@ -38,6 +38,7 @@
     #   url = "github:abenz1267/walker";
     #   inputs.elephant.follows = "elephant";
     # };
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     crowdsec-pr.url = "github:TornaxO7/nixpkgs/crowdsec";
     gd-tools.url = "github:1randomguy/gd-tools-flake";
     ashell.url = "github:MalpenZibo/ashell";
