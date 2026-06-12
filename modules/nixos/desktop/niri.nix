@@ -25,6 +25,14 @@
       #blueman #?
       pwvucontrol
       walker
+
+      (pkgs.writeShellScriptBin "nw" ''
+        if [ -n "$1" ]; then
+          exec niri msg action set-workspace-name "$1"
+        else
+          exec niri msg action unset-workspace-name
+        fi
+      '')
     ];
     programs.niri.enable = true;
     programs.niri.package = selfpkgs.niri;
