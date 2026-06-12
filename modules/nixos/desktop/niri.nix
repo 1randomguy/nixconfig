@@ -28,6 +28,11 @@
 
       (pkgs.writeShellScriptBin "nw" ''
         if [ -n "$1" ]; then
+          if WORKSPACES=$(niri msg --json workspaces 2>/dev/null); then
+            if echo "$WORKSPACES" | ${pkgs.jq}/bin/jq -e --arg name "$1" '.[] | select(.name == $name)' >/dev/null; then
+              exec niri msg action focus-workspace "$1"
+            fi
+          fi
           exec niri msg action set-workspace-name "$1"
         else
           exec niri msg action unset-workspace-name
