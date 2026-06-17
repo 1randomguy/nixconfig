@@ -16,7 +16,7 @@
         enable = true;
         autoUpdateService = true;
 
-        package = inputs.crowdsec-pr.legacyPackages.${pkgs.system}.crowdsec;
+        package = inputs.crowdsec-pr.legacyPackages.${pkgs.stdenv.hostPlatform.system}.crowdsec;
         # package = pkgs.crowdsec.overrideAttrs (old: {
         #   postInstall = (old.postInstall or "") + ''
         #     mkdir -p $out/libexec/crowdsec/plugins/
