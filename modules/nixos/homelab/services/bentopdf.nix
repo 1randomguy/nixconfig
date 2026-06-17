@@ -11,9 +11,12 @@
         domain = domain;
         nginx = {
           enable = true;
-          enableACME = true;
-          acmeRoot = null;
-        forceSSL = true;
+          virtualHost = {
+            # hostName = domain;
+            enableACME = true;
+            acmeRoot = null;
+            forceSSL = true;
+          };
         };
       };
     };
