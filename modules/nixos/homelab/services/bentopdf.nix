@@ -1,14 +1,13 @@
 {
   flake.nixosModules.bentopdf =
-    { config, ... }:
+    { lib, config, ... }:
     let
       hl = config.homelab;
-      domain = "bentopdf.${hl.baseDomain}";
     in
     {
       services.bentopdf = {
         enable = true;
-        domain = domain;
+        domain = "bentopdf.${hl.baseDomain}";
         nginx = {
           enable = true;
           virtualHost = {
@@ -19,5 +18,13 @@
           };
         };
       };
+      services.nginx.virtualHosts."bentopdf.${hl.baseDomain}".locations."~* \\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$".extraConfig =
+        lib.mkAfter ''
+          add_header Strict-Transport-Security "max-age=31536000; includeSubdomains; preload" always;
+          add_header Referrer-Policy origin-when-cross-origin always;
+          add_header X-Frame-Options DENY always;
+          add_header X-Content-Type-Options "nosniff" always;
+          add_header X-Permitted-Cross-Domain-Policies "none" always;
+        '';
     };
 }
