@@ -285,8 +285,8 @@
             # Regex to capture the username between 'acct:' and '@domain'
             # This handles both encoded (: / @) and unencoded (%3A / %40) separators
             set $wf_user "unknown";
-            if ($arg_resource ~* "^acct(?::|%3A)([^@%]+)(?:@|%40)${hl.baseDomain}$") {
-                set $wf_user $1;
+            if ($arg_resource ~* "^acct(?::|%3A)(?<username>[^@%]+)(?:@|%40)${hl.baseDomain}$") {
+                set $wf_user $username;
             }
 
             return 200 '{
