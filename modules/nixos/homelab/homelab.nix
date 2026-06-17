@@ -200,7 +200,8 @@
             add_header 'Referrer-Policy' 'origin-when-cross-origin';
 
             # Disable embedding as a frame
-            add_header X-Frame-Options DENY; #change to SAMEORIGIN if I want to embedd on some other of my sites
+            # change to SAMEORIGIN if I want to embedd on some other of my sites
+            add_header X-Frame-Options SAMEORIGIN always;
 
             # Prevent injection of code in other mime types (XSS Attacks)
             add_header X-Content-Type-Options "nosniff" always;
