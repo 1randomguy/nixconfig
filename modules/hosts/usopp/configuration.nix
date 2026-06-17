@@ -26,6 +26,7 @@
         self.nixosModules.immich-public-proxy
         self.nixosModules.navidrome
         self.nixosModules.nextcloud
+        self.nixosModules.bentopdf
         # self.nixosModules.nfs
         self.nixosModules.samba
         self.nixosModules.zola
