@@ -9,14 +9,12 @@
       services.bentopdf = {
         enable = true;
         domain = domain;
-        nginx.enable = true;
-      };
-
-      services.nginx.virtualHosts.domain = {
-        enableACME = true;
-        acmeRoot = null;
+        nginx = {
+          enable = true;
+          enableACME = true;
+          acmeRoot = null;
         forceSSL = true;
-        enableAuthelia = true;
+        };
       };
     };
 }
