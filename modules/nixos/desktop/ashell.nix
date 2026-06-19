@@ -6,6 +6,8 @@
       selfpkgs = self.packages."${pkgs.stdenv.hostPlatform.system}";
     in
     {
+      environment.systemPackages = [ selfpkgs.ashell ];
+
       systemd.user.services.ashell = {
         enable = true;
         description = "Ashell for Niri";
@@ -30,6 +32,7 @@
               pkgs.blueman
             ]
           }";
+          ExecStartPre = "${pkgs.systemd}/bin/systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP DISPLAY";
           ExecStart = "${selfpkgs.ashell}/bin/ashell";
           Restart = "always";
           RestartSec = 1;
