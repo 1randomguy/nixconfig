@@ -13,7 +13,6 @@
       swaybg
       phinger-cursors
 
-      swayosd
       nirius # if we embed it in the command config of niri we might not need it as a systempackage here?
       # helpful tuis
       wifitui #?
@@ -74,22 +73,6 @@
           ExecStart = ''${pkgs.nirius}/bin/niriusd'';
           Restart = "always";
           RestartSec = 1;
-      };
-    };
-    # SwayOSD
-    systemd.user.services.swayosd = {
-      description = "Volume/backlight OSD indicator";
-      after = [ "graphical-session.target" ];
-      partOf = [ "graphical-session.target" ];
-      requisite = [ "graphical-session.target" ];
-      startLimitBurst = 5;
-      startLimitIntervalSec = 10;
-      wantedBy = [ "niri.service" ];
-      serviceConfig = {
-          Type = "simple";
-          ExecStart = "${pkgs.swayosd}/bin/swayosd-server";
-          Restart = "always";
-          RestartSec = 2;
       };
     };
     # Hyprlock

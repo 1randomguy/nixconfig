@@ -271,10 +271,10 @@ binds {
 
     // media keys mapping
     // This will work with any MPRIS-enabled media player.
-    XF86AudioPlay        allow-when-locked=true { spawn "swayosd-client" "--playerctl" "play-pause"; }
-    XF86AudioStop        allow-when-locked=true { spawn "swayosd-client" "--playerctl" "stop"; }
-    XF86AudioPrev        allow-when-locked=true { spawn "swayosd-client" "--playerctl" "previous"; }
-    XF86AudioNext        allow-when-locked=true { spawn "swayosd-client" "--playerctl" "next"; }
+    // XF86AudioPlay        allow-when-locked=true { spawn "swayosd-client" "--playerctl" "play-pause"; }
+    // XF86AudioStop        allow-when-locked=true { spawn "swayosd-client" "--playerctl" "stop"; }
+    // XF86AudioPrev        allow-when-locked=true { spawn "swayosd-client" "--playerctl" "previous"; }
+    // XF86AudioNext        allow-when-locked=true { spawn "swayosd-client" "--playerctl" "next"; }
 
     // brightness key mappings for brightnessctl.
     XF86MonBrightnessUp allow-when-locked=true { spawn "ashell" "msg" "brightness-up"; }
