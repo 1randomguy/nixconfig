@@ -104,11 +104,13 @@
         ]; # Enable ‘sudo’ for the user.
       };
 
-      swapDevices = [{
-        device = "/var/lib/swapfile";
-        size = 32*1024; # 32 GiB
-        options = [ "discard" ];
-      }];
+      swapDevices = [
+        {
+          device = "/var/lib/swapfile";
+          size = 32 * 1024; # 32 GiB
+          options = [ "discard" ];
+        }
+      ];
       boot.zswap = {
         enable = true;
       };
@@ -124,11 +126,15 @@
         package = pkgs.ananicy-cpp;
         rulesProvider = pkgs.ananicy-rules-cachyos;
       };
-      services.earlyoom.enable = true;
-      services.earlyoom.extraArgs = [
-        "--avoid" "(^|/)(.+-)?(niri|Xwayland)$"
-        "--prefer" "(^|/)(.+-)?(electron|chromium|firefox|teams)$"
-      ];
+      # services.earlyoom.enable = true;
+      # services.earlyoom.extraArgs = [
+      #   "--avoid" "(^|/)(.+-)?(niri|Xwayland)$"
+      #   "--prefer" "(^|/)(.+-)?(electron|chromium|firefox|teams)$"
+      # ];
+      services.nohang = {
+        enable = true;
+        package = pkgs.nohang-desktop; # Gives you GUI notification warnings
+      };
       security.rtkit.enable = true;
 
       # Some programs need SUID wrappers, can be configured further or are
