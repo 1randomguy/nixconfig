@@ -133,7 +133,7 @@
       # ];
       services.nohang = {
         enable = true;
-        package = pkgs.nohang-desktop; # Gives you GUI notification warnings
+        #package = pkgs.nohang-desktop; # Gives you GUI notification warnings
       };
       security.rtkit.enable = true;
 
