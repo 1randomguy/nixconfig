@@ -14,6 +14,7 @@
         self.nixosModules.gnome
         self.nixosModules.niri
         self.nixosModules.ashell
+        self.nixosModules.vicinae
 
         self.nixosModules.base-apps
         self.nixosModules.extra-apps
@@ -133,7 +134,7 @@
       # ];
       services.nohang = {
         enable = true;
-        #package = pkgs.nohang-desktop; # Gives you GUI notification warnings
+        configPath = "desktop";
       };
       security.rtkit.enable = true;
 
