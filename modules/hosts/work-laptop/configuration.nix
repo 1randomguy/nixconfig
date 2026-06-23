@@ -1,7 +1,7 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-{self, inputs, ...}:
+{ self, inputs, ... }:
 {
   flake.nixosModules.worklaptopConfiguration =
     { pkgs, ... }:
@@ -36,6 +36,27 @@
       # services.earlyoom.extraArgs = [
       #   "--prefer" "(^|/)(.+-)?(firefox|teams)$"
       # ];
+      environment.systemPackages = [
+        inputs.agenix.packages."${pkgs.stdenv.hostPlatform.system}".default
+        pkgs.polkit_gnome # Provides the graphical auth popup
+      ];
+
+      # Ensure Polkit is globally enabled
+      security.polkit.enable = true;
+
+      # Create a systemd user service to launch the agent automatically
+      systemd.user.services.polkit-gnome-authentication-agent = {
+        description = "polkit-gnome-authentication-agent";
+        wantedBy = [ "graphical-session.target" ];
+        after = [ "graphical-session.target" ];
+        serviceConfig = {
+          Type = "simple";
+          ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+          Restart = "on-failure";
+          RestartSec = 1;
+          TimeoutStopSec = 10;
+        };
+      };
 
       # Use the systemd-boot EFI boot loader.
       boot.loader.systemd-boot.enable = true;
@@ -52,10 +73,6 @@
       # Configure network proxy if necessary
       # networking.proxy.default = "http://user:password@proxy:port/";
       # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-      environment.systemPackages = with pkgs; [
-        inputs.agenix.packages."${stdenv.hostPlatform.system}".default
-      ];
 
       # Select internationalisation properties.
       # i18n.defaultLocale = "en_US.UTF-8";
