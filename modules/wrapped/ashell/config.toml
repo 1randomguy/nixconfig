@@ -15,7 +15,7 @@ indicators = [ "Memory", "MemorySwap" ]
 format = "Fraction"
 
 [tray]
-right_click = "menu"
+right_click = "Menu"
 
 [media_player]
 max_title_length = 50
