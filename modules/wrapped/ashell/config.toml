@@ -2,7 +2,7 @@ log_level = "warn"
 outputs = "All"
 position = "Top"
 layer = "Top"
-app_launcher_cmd = "walker"
+# app_launcher_cmd = "walker"
 
 [modules]
 left = [ [ "Workspaces" ] ]
