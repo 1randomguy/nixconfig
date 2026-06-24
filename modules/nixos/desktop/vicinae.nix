@@ -34,7 +34,7 @@
         builtins.toJSON {
           close_on_focus_loss = true;
           pop_to_root_on_close = true;
-          theme.dark.name = "catppuccin-macchiato";
+          theme.dark.name = "catppuccin-mocha";
           font.normal = {
             family = "Adwaita Sans";
             size = 11.5;
