@@ -6,22 +6,27 @@
       niriWorkspaceScript = pkgs.writeScript "nw.sh" ''
         #!/usr/bin/env bash
         # @vicinae.schemaVersion 1
-        # @vicinae.title niri-workspaces
-        # @vicinae.alias nw
+        # @vicinae.title Niri Workspace Helper
+        # @vicinae.icon 📜
+        # @vicinae.description Rename or change workspaces
+        # @vicinae.keywords ["nw", "niri", "workspace"]
         # @vicinae.mode silent
         # @vicinae.exec ["${pkgs.bash}/bin/bash"]
         # @vicinae.argument1 { "type": "text", "placeholder": "Workspace name", "optional": true }
 
         if [ -z "''$1" ]; then
+          echo "Removing Workspace Name"
           exec niri msg action unset-workspace-name
         fi
 
         if WORKSPACES=''$(niri msg --json workspaces 2>/dev/null); then
           if echo "''$WORKSPACES" | ${pkgs.jq}/bin/jq -e --arg name "''$1" '.[] | select(.name == ''$name)' >/dev/null; then
+            echo "Changing to Workspace: ''$1"
             exec niri msg action focus-workspace "''$1"
           fi
         fi
 
+        echo "Renaming Workspace to: ''$1"
         exec niri msg action set-workspace-name "''$1"
       '';
       vicinateCustomScriptsDir = pkgs.linkFarm "vicinae-custom-scripts" [
