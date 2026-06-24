@@ -3,6 +3,33 @@
   flake.nixosModules.vicinae =
     { pkgs, lib, ... }:
     let
+      niriWorkspaceScript = pkgs.writeScript "nw.sh" ''
+        #!/usr/bin/env bash
+        # @vicinae.schemaVersion 1
+        # @vicinae.title niri-workspaces
+        # @vicinae.alias nw
+        # @vicinae.mode silent
+        # @vicinae.exec ["${pkgs.bash}/bin/bash"]
+        # @vicinae.argument1 { "type": "text", "placeholder": "Workspace name", "optional": true }
+
+        if [ -z "''$1" ]; then
+          exec niri msg action unset-workspace-name
+        fi
+
+        if WORKSPACES=''$(niri msg --json workspaces 2>/dev/null); then
+          if echo "''$WORKSPACES" | ${pkgs.jq}/bin/jq -e --arg name "''$1" '.[] | select(.name == ''$name)' >/dev/null; then
+            exec niri msg action focus-workspace "''$1"
+          fi
+        fi
+
+        exec niri msg action set-workspace-name "''$1"
+      '';
+      vicinateCustomScriptsDir = pkgs.linkFarm "vicinae-custom-scripts" [
+        {
+          name = "nw.sh";
+          path = niriWorkspaceScript;
+        }
+      ];
       vicinaeNixConfig = pkgs.writeText "vicinae-nix-settings.json" (
         builtins.toJSON {
           close_on_focus_loss = true;
@@ -23,6 +50,9 @@
               report-bug.enabled = false;
               sponsor.enabled = false;
             };
+            scripts.preferences.customDirs = [
+              vicinateCustomScriptsDir
+            ];
           };
         }
       );
@@ -30,36 +60,36 @@
     {
       environment.systemPackages = [ pkgs.vicinae ];
 
-      systemd.user.services.vicinae = {
-        enable = true;
-        description = "Vicinae for Niri";
-
-        after = [ "graphical-session.target" ];
-        partOf = [ "graphical-session.target" ];
-        requisite = [ "graphical-session.target" ];
-
-        wantedBy = [ "niri.service" ];
-
-        serviceConfig = {
-          Type = "simple";
-          Environment = "PATH=${
-            lib.makeBinPath [
-              pkgs.bash
-              pkgs.systemd
-              pkgs.coreutils
-              pkgs.util-linux
-              pkgs.playerctl
-              pkgs.pwvucontrol
-              pkgs.networkmanager
-              pkgs.niri
-            ]
-          }";
-          ExecStartPre = "${pkgs.systemd}/bin/systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP DISPLAY";
-          ExecStart = "${pkgs.vicinae}/bin/vicinae server"; # --config ${./vicinae.json}
-          Restart = "always";
-          RestartSec = 1;
-        };
-      };
+      # systemd.user.services.vicinae = {
+      #   enable = true;
+      #   description = "Vicinae for Niri";
+      #
+      #   after = [ "graphical-session.target" ];
+      #   partOf = [ "graphical-session.target" ];
+      #   requisite = [ "graphical-session.target" ];
+      #
+      #   wantedBy = [ "niri.service" ];
+      #
+      #   serviceConfig = {
+      #     Type = "simple";
+      #     Environment = "PATH=${
+      #       lib.makeBinPath [
+      #         pkgs.bash
+      #         pkgs.systemd
+      #         pkgs.coreutils
+      #         pkgs.util-linux
+      #         pkgs.playerctl
+      #         pkgs.pwvucontrol
+      #         pkgs.networkmanager
+      #         pkgs.niri
+      #       ]
+      #     }";
+      #     ExecStartPre = "${pkgs.systemd}/bin/systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP DISPLAY";
+      #     ExecStart = "${pkgs.vicinae}/bin/vicinae server"; # --config ${./vicinae.json}
+      #     Restart = "always";
+      #     RestartSec = 1;
+      #   };
+      # };
 
       system.activationScripts.vicinaeBootstrap = {
         text = ''

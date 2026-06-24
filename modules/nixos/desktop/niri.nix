@@ -23,7 +23,6 @@
       networkmanagerapplet
       #blueman #?
       pwvucontrol
-      walker
 
       (pkgs.writeShellScriptBin "nw" ''
         if [ -n "$1" ]; then
