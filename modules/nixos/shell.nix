@@ -25,7 +25,6 @@
         pkgs.nix-prefetch-scripts
         pkgs.fzf
         pkgs.mosh
-        pkgs.zoxide
         pkgs.gemini-cli
         pkgs-unstable.antigravity-cli
         pkgs.rename
@@ -36,7 +35,6 @@
         pkgs.gh
         pkgs.lazygit
       ];
-      programs.zoxide.enable = true;
       programs.yazi.enable = true;
 
       programs.git = {

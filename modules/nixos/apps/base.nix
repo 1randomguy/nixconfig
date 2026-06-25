@@ -2,9 +2,6 @@
 {
   flake.nixosModules.base-apps =
     { pkgs, ... }:
-    let
-      selfpkgs = self.packages."${pkgs.stdenv.hostPlatform.system}";
-    in
     {
       environment.systemPackages = with pkgs; [
         ghostty

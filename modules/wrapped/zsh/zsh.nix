@@ -29,6 +29,9 @@
       config = {
         skipGlobalRC = true;
         # env.EDITOR = "nvim";
+        runtimePkgs = [
+          pkgs.zoxide
+        ];
         zshrc.content = lib.mkMerge [
           ''
             # --- Base Configuration ---
@@ -56,6 +59,10 @@
             source "$ZSH/oh-my-zsh.sh"
 
             source ${pkgs.zsh-you-should-use}/share/zsh/plugins/you-should-use/you-should-use.plugin.zsh
+          ''
+
+          ''
+            eval "$(${lib.getExe pkgs.zoxide} init zsh)"
           ''
 
           # (lib.mkIf config.historyKeymaps ''
