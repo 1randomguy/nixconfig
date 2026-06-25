@@ -7,6 +7,7 @@
       self.nixosModules.sanjiConfiguration
       inputs.agenix.nixosModules.default
       inputs.lanzaboote.nixosModules.lanzaboote
+      inputs.hjem.nixosModules.default
       inputs.home-manager.nixosModules.home-manager
       {
         home-manager.extraSpecialArgs = { inherit inputs; };

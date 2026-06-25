@@ -7,7 +7,8 @@
     in
     {
       environment.systemPackages = with pkgs; [
-        selfpkgs.ghostty
+        ghostty
+        wl-clipboard
         # web
         firefox
         chromium
@@ -39,5 +40,6 @@
         bluetui
         gitg
       ];
+      hjem.users.bene.files.".config/ghostty".source = ./config/ghostty;
     };
 }

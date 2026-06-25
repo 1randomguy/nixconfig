@@ -6,6 +6,7 @@
       sharedNixpkgsConfig
       self.nixosModules.desktopConfiguration
       inputs.agenix.nixosModules.default
+      inputs.hjem.nixosModules.default
       inputs.home-manager.nixosModules.home-manager
       {
         home-manager.extraSpecialArgs = { inherit inputs; };

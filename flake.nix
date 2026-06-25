@@ -33,11 +33,10 @@
       url = "github:nix-community/lanzaboote/v1.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # elephant.url = "github:abenz1267/elephant";
-    # walker = {
-    #   url = "github:abenz1267/walker";
-    #   inputs.elephant.follows = "elephant";
-    # };
+    hjem = {
+      url = "github:feel-co/hjem";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     crowdsec-pr.url = "github:TornaxO7/nixpkgs/crowdsec";
     gd-tools.url = "github:1randomguy/gd-tools-flake";
