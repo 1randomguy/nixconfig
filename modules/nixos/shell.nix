@@ -13,6 +13,7 @@
       users.defaultUserShell = pkgs.zsh;
       programs.zsh.enable = true;
 
+      # TODO: make a wrapped zsh shell
       environment.systemPackages = [
         selfpkgs.neovim
         selfpkgs.zsh
