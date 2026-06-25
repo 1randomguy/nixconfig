@@ -28,7 +28,7 @@
 
       config = {
         skipGlobalRC = true;
-        env.EDITOR.set = "nvim";
+        # env.EDITOR = "nvim";
         zshrc.content = lib.mkMerge [
           ''
             # --- Base Configuration ---
@@ -58,11 +58,16 @@
             source ${pkgs.zsh-you-should-use}/share/zsh/plugins/you-should-use/you-should-use.plugin.zsh
           ''
 
-          (lib.mkIf config.historyKeymaps ''
-            # these don't work in wsl e.g.
-            bindkey "''${key[Up]}" up-line-or-search
-            bindkey "''${key[Down]}" down-line-or-search
-          '')
+          # (lib.mkIf config.historyKeymaps ''
+          #   # these don't work in wsl e.g.
+          #   autoload -Uz up-line-or-search down-line-or-search
+          #   zmodload zsh/terminfo
+          #   typeset -gA key
+          #   key[Up]="$terminfo[kcuu1]"
+          #   key[Down]="$terminfo[kcud1]"
+          #   [[ -n "$key[Up]"   ]] && bindkey "$key[Up]"   up-line-or-search
+          #   [[ -n "$key[Down]" ]] && bindkey "$key[Down]" down-line-or-search
+          # '')
 
           # --- Powerlevel10k Conditional Block ---
           (lib.mkIf config.p10k ''

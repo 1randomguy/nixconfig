@@ -1,0 +1,23 @@
+font-family = JetBrainsMono
+font-size = 12
+keybind = performable:ctrl+h=goto_split:left
+keybind = performable:ctrl+j=goto_split:bottom
+keybind = performable:ctrl+k=goto_split:top
+keybind = performable:ctrl+l=goto_split:right
+keybind = ctrl+a>h=new_split:left
+keybind = ctrl+a>j=new_split:down
+keybind = ctrl+a>k=new_split:up
+keybind = ctrl+a>l=new_split:right
+keybind = ctrl+a>s=new_split:auto
+keybind = ctrl+a>f=toggle_split_zoom
+keybind = ctrl+a>c=new_tab
+keybind = ctrl+a>ctrl+n=next_tab
+keybind = ctrl+a>n=next_tab
+keybind = ctrl+a>ctrl+p=previous_tab
+keybind = ctrl+a>p=previous_tab
+keybind = super+r=reload_config
+mouse-hide-while-typing = true
+scrollback-limit = 1000000
+shell-integration-features = ssh-terminfo,ssh-env
+theme = Catppuccin Mocha
+window-save-state = always

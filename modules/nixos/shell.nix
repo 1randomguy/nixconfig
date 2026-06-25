@@ -15,6 +15,7 @@
 
       environment.systemPackages = [
         selfpkgs.neovim
+        selfpkgs.zsh
         pkgs.toybox
         pkgs.git
         pkgs.git-credential-oauth

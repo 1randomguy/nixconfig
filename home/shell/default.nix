@@ -4,8 +4,6 @@ let
   cfg = config.shell;
 in {
   imports = [
-    ./zsh
-    ./ghostty
   ];
 
   ## OPTIONS
