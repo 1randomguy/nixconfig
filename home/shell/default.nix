@@ -26,19 +26,4 @@ in {
     };
   };
 
-  config = mkIf cfg.shelltools {
-    programs.git = {
-      enable = true;
-      settings = {
-        user.name = "Benedikt von Blomberg";
-        user.email = "bblomberg123@gmail.com";
-        init.defaultBranch = "main";
-        credential.helper = [
-          "cache --timeout 21600"
-          (mkIf (!cfg.remote) "oauth")
-        ];
-        pull.rebase = true;
-      };
-    };
-  };
 }

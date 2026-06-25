@@ -39,6 +39,20 @@
       programs.zoxide.enable = true;
       programs.yazi.enable = true;
 
+      programs.git = {
+        enable = true;
+        config = {
+          user.name = "Benedikt von Blomberg";
+          user.email = "bblomberg123@gmail.com";
+          init.defaultBranch = "main";
+          credential.helper = [
+            "cache --timeout 21600"
+            "oauth"
+          ];
+          pull.rebase = true;
+        };
+      };
+
       programs.direnv = {
         enable = true;
         settings = {
