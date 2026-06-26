@@ -18,6 +18,7 @@
         self.nixosModules.gnome
         self.nixosModules.niri
         self.nixosModules.ashell
+        self.nixosModules.vicinae
 
         self.nixosModules.base-apps
         self.nixosModules.games
