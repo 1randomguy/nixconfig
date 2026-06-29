@@ -36,6 +36,7 @@
         file-roller
         bluetui
         gitg
+        localsend
       ];
       hjem.users.bene.files.".config/ghostty".source = ./config/ghostty;
     };
