@@ -2,11 +2,28 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+
 -- [[ Setting options ]]
 -- See `:help vim.o`
 
+-- vim.o.titlestring = "nvim: (%{strlen(&ft)?&ft:'none'}) %f"
 vim.o.title = true
-vim.o.titlestring = "NVIM: %f %y%m (%F)"
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "TermEnter" }, {
+  callback = function()
+    local dir = vim.fn.getcwd()
+    -- Shorten home directory to '~'
+    local home = os.getenv("HOME")
+    if home then
+      dir = dir:gsub("^" .. vim.pesc(home), "~")
+    end
+    if vim.bo.buftype == "terminal" then
+      vim.o.titlestring = string.format("Nvim: %%y (%s)", dir)
+    else
+      -- Fallback for regular files
+      vim.o.titlestring = string.format("Nvim: %%t (%s)", dir)
+    end
+  end,
+})
 
 -- allow .nvim.lua in current dir and parents (project config)
 vim.o.exrc = false -- can be toggled off in that file to stop it from searching further
