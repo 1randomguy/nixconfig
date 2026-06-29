@@ -267,44 +267,8 @@ window-rule {
 
 layer-rule {
     match namespace="vicinae"
-    // opacity 0.7
-    // background-effect {
-    //     xray false
-    //     blur true
-    //     noise 0.05
-    //     saturation 3
-    // }
-    //
-    // popups {
-    //     opacity 0.7
-    //     background-effect {
-    //         xray false
-    //         blur true
-    //         noise 0.05
-    //         saturation 3
-    //     }
-    // }
 }
 
-// layer-rule {
-//     match namespace="ashell-menu-layer"
-//     // opacity 0.7
-//     // background-effect {
-//     //     xray false
-//     //     blur true
-//     //     noise 0.05
-//     //     saturation 3
-//     // }
-//     popups {
-//         opacity 0.7
-//         background-effect {
-//             xray false
-//             blur true
-//             noise 0.05
-//             saturation 3
-//         }
-//     }
-// }
 
 // window-rule {
 //     match app-id="com.mitchellh.ghostty"
@@ -380,6 +344,39 @@ overview {
 //switch-events {
 //  lid-close { spawn "noctalia-shell" "ipc" "call" "sessionMenu" "lockAndSuspend"; }
 //}
+
+recent-windows {
+    // off
+    debounce-ms 750
+
+    open-delay-ms 150
+
+    highlight {
+        active-color "#cba6f7"
+        // inactive-color "#888c9f"
+        // Color of the border around windows that request your attention.
+        urgent-color "#9b0000"
+        padding 30
+        corner-radius 4
+    }
+
+    previews {
+        max-height 480
+        max-scale 0.3
+    }
+
+    // binds {
+    //     Alt+Tab         { next-window; }
+    //     Alt+Shift+Tab   { previous-window; }
+    //     Alt+grave       { next-window     filter="app-id"; }
+    //     Alt+Shift+grave { previous-window filter="app-id"; }
+    //
+    //     Mod+Tab         { next-window; }
+    //     Mod+Shift+Tab   { previous-window; }
+    //     Mod+grave       { next-window     filter="app-id"; }
+    //     Mod+Shift+grave { previous-window filter="app-id"; }
+    // }
+}
 
 binds {
     // Keys consist of modifiers separated by + signs, followed by an XKB key name
