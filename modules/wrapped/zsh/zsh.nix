@@ -99,6 +99,25 @@
             autoload -Uz edit-command-line
             zle -N edit-command-line
             bindkey "^x^e" edit-command-line
+
+            # Function to set the Ghostty title
+            set_window_title() {
+              # \e]2; is the escape sequence to start the title
+              # \a (or \x07) terminates it
+              print -Pn "\e]2;$1\a"
+            }
+
+            # Runs right before the prompt is drawn (when idle)
+            precmd() {
+              # %~ shows the current path, shortening home to '~'
+              set_window_title "zsh (%~)"
+            }
+
+            # Runs right before a command executes
+            preexec() {
+              # $1 is the raw command you just typed
+              set_window_title "$1 (%~)"
+            }
           ''
         ];
       };
