@@ -19,8 +19,6 @@
       url = "github:BirdeeHub/lzextras";
       flake = false;
     };
-    home-manager.url = "github:nix-community/home-manager/release-26.05";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
