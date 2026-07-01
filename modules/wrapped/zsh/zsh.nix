@@ -119,6 +119,10 @@
               set_window_title "$1 (%~)"
             }
           ''
+
+          ''
+            alias lg='lazygit'
+          ''
         ];
       };
     };
