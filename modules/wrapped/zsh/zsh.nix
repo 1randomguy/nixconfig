@@ -89,6 +89,9 @@
             # Look for your custom p10k.zsh file relative to where this flake module lives
             [[ ! -f ${./config/p10k.zsh} ]] || source ${./config/p10k.zsh}
 
+            # export STARSHIP_CONFIG=~/starship.toml
+            # eval "$(${lib.getExe pkgs.starship} init zsh)"
+
             # Replaces home.packages = [ any-nix-shell ] via inline invocation
             ${pkgs.any-nix-shell}/bin/any-nix-shell zsh --info-right | source /dev/stdin
           '')
