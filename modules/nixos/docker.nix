@@ -1,7 +1,9 @@
-{...}:
+{ ... }:
 {
-  flake.nixosModules.docker = {pkgs, lib, ...}:
-  {
-    virtualisation.docker.enable = true;
-  };
+  flake.nixosModules.docker =
+    { pkgs, lib, ... }:
+    {
+      environment.systemPackages = [ pkgs.distrobox ];
+      virtualisation.docker.enable = true;
+    };
 }
