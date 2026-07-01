@@ -32,6 +32,7 @@
         pkgs.devenv
         pkgs.exiftool
         pkgs.ripgrep
+        pkgs.fd
         pkgs.dig
         pkgs.gh
         pkgs.lazygit
