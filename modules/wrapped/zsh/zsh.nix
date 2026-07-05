@@ -28,7 +28,7 @@
 
       config = {
         skipGlobalRC = true;
-        # env.EDITOR = "nvim";
+        env.EDITOR = "nvim";
         runtimePkgs = [
           pkgs.zoxide
         ];
