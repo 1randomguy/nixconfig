@@ -15,6 +15,7 @@
         commandLineArgs = "--password-store=gnome-libsecret";
         withAppleEmojis = true;
       })
+      cinny-desktop
       # music
       spek
       soundconverter
