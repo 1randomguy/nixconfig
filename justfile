@@ -9,7 +9,7 @@ rebuild := "sudo nixos-rebuild switch --flake ."
 rebuild:
   sudo nixos-rebuild switch --flake .
   # The hyphen tells `just` to ignore errors if this fails
-  # -systemctl --user try-restart vicinae.service
+  -systemctl --user restart vicinae.service
 
 usopp:
   nixos-rebuild switch --flake .#usopp --sudo --target-host bene@192.168.178.57

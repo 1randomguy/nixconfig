@@ -1,7 +1,7 @@
 { self, ... }:
 {
   flake.nixosModules.vicinae =
-    { pkgs, lib, ... }:
+    { pkgs, config, ... }:
     let
       niriWorkspaceScript = pkgs.writeScript "nw.sh" ''
         #!/usr/bin/env bash
@@ -65,36 +65,38 @@
     {
       environment.systemPackages = [ pkgs.vicinae ];
 
-      # systemd.user.services.vicinae = {
-      #   enable = true;
-      #   description = "Vicinae for Niri";
-      #
-      #   after = [ "graphical-session.target" ];
-      #   partOf = [ "graphical-session.target" ];
-      #   requisite = [ "graphical-session.target" ];
-      #
-      #   wantedBy = [ "niri.service" ];
-      #
-      #   serviceConfig = {
-      #     Type = "simple";
-      #     Environment = "PATH=${
-      #       lib.makeBinPath [
-      #         pkgs.bash
-      #         pkgs.systemd
-      #         pkgs.coreutils
-      #         pkgs.util-linux
-      #         pkgs.playerctl
-      #         pkgs.pwvucontrol
-      #         pkgs.networkmanager
-      #         pkgs.niri
-      #       ]
-      #     }";
-      #     ExecStartPre = "${pkgs.systemd}/bin/systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP DISPLAY";
-      #     ExecStart = "${pkgs.vicinae}/bin/vicinae server"; # --config ${./vicinae.json}
-      #     Restart = "always";
-      #     RestartSec = 1;
-      #   };
-      # };
+      systemd.user.services.vicinae = {
+        enable = true;
+        description = "Vicinae for Niri";
+
+        after = [ "graphical-session.target" ];
+        partOf = [ "graphical-session.target" ];
+        requisite = [ "graphical-session.target" ];
+
+        wantedBy = [ "niri.service" ];
+
+        serviceConfig = {
+          Type = "simple";
+          # Environment = "PATH=${
+          #   lib.makeBinPath [
+          #     pkgs.bash
+          #     pkgs.systemd
+          #     pkgs.coreutils
+          #     pkgs.util-linux
+          #     pkgs.playerctl
+          #     pkgs.pwvucontrol
+          #     pkgs.networkmanager
+          #     pkgs.niri
+          #     pkgs.firefox
+          #   ]
+          # }";
+          Environment = "PATH=${pkgs.lib.makeBinPath config.environment.systemPackages}:/run/current-system/sw/bin";
+          ExecStartPre = "${pkgs.systemd}/bin/systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP DISPLAY";
+          ExecStart = "${pkgs.vicinae}/bin/vicinae server"; # --config ${./vicinae.json}
+          Restart = "always";
+          RestartSec = 1;
+        };
+      };
 
       system.activationScripts.vicinaeBootstrap = {
         text = ''
