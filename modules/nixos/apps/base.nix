@@ -1,4 +1,4 @@
-{ self, ... }:
+{ self, inputs, ... }:
 {
   flake.nixosModules.base-apps =
     { pkgs, ... }:
@@ -18,7 +18,8 @@
         # music
         amberol
         spotify
-        fooyin
+        # fooyin
+        inputs.fooyin-pr.legacyPackages.${pkgs.stdenv.hostPlatform.system}.fooyin
         lollypop
         easyeffects
         # document viewing/editing

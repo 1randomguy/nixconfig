@@ -183,6 +183,22 @@
         "type": "github"
       }
     },
+    "fooyin-pr": {
+      "locked": {
+        "lastModified": 1782217957,
+        "narHash": "sha256-wbQHzEJ9OkCP/bazEJErVnxh2OVekeORp0DE4SznZlw=",
+        "owner": "kybe236",
+        "repo": "nixpkgs",
+        "rev": "17c6f78468cf10d80246ac5a48ee234a007dae8e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kybe236",
+        "ref": "fooyin-bump",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "gd-tools": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -445,6 +461,7 @@
         "crowdsec-pr": "crowdsec-pr",
         "disko": "disko",
         "flake-parts": "flake-parts",
+        "fooyin-pr": "fooyin-pr",
         "gd-tools": "gd-tools",
         "hjem": "hjem",
         "import-tree": "import-tree",
