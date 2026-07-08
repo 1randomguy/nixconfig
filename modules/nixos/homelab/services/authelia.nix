@@ -219,6 +219,8 @@
                 ];
                 token_endpoint_auth_method = "client_secret_post";
                 userinfo_signed_response_alg = "none";
+                response_types = [ "code" ];
+                grant_types = [ "authorization_code" ];
               }
             ];
           };
