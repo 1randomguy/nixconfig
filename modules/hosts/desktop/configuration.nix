@@ -10,36 +10,98 @@
         self.nixosModules.common
         self.nixosModules.shell
 
-        self.nixosModules.common-desktop
-        self.nixosModules.gnome
-        self.nixosModules.niri
-        self.nixosModules.ashell
-        self.nixosModules.vicinae
+        # self.nixosModules.common-desktop
+        # self.nixosModules.gnome
+        # self.nixosModules.niri
+        # self.nixosModules.ashell
+        # self.nixosModules.vicinae
 
-        self.nixosModules.base-apps
-        self.nixosModules.extra-apps
-        self.nixosModules.image-editing
-        self.nixosModules.latex
-
-        self.nixosModules.compat
-        self.nixosModules.fonts
-        #self.nixosModules.master-thesis
-        self.nixosModules.uni-vpn
-        self.nixosModules.games
-
-        # self.nixosModules.nfs-mount
-        self.nixosModules.vbox
-        self.nixosModules.docker
+        # self.nixosModules.base-apps
+        # self.nixosModules.extra-apps
+        # self.nixosModules.image-editing
+        # self.nixosModules.latex
+        #
+        # self.nixosModules.compat
+        # self.nixosModules.fonts
+        # self.nixosModules.master-thesis
+        # self.nixosModules.uni-vpn
+        # self.nixosModules.games
+        #
+        # # self.nixosModules.nfs-mount
+        # self.nixosModules.vbox
+        # self.nixosModules.docker
       ];
 
-      # nfs-mount = {
-      #   enable = true;
-      #   directory = "/home/bene/data";
+      # services.flatpak.enable = true;
+      # games.steam.enable = true;
+      # services.xserver.videoDrivers = [ "nvidia" ];
+      # hardware.nvidia = {
+      #   modesetting.enable = true;
+      #   powerManagement.enable = false;
+      #   powerManagement.finegrained = false;
+      #   open = false;
+      #   nvidiaSettings = true;
+      #   package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
       # };
-      games.steam.enable = true;
-      #games.bottles.enable = true;
+      swapDevices = [
+        {
+          device = "/var/lib/swapfile";
+          size = 32 * 1024; # GiB
+          options = [ "discard" ];
+          priority = 200;
+        }
+        {
+          device = "/home/bene/HDD/swapfile_2";
+          size = 64 * 1024; # GiB
+          priority = 0;
+        }
+      ];
+      boot.zswap = {
+        enable = true;
+      };
+      boot.kernel.sysctl = {
+        "vm.swappiness" = 10;
+        "vm.vfs_cache_pressure" = 50;
+        "vm.dirty_ratio" = 10;
+        "vm.dirty_background_ratio" = 5;
+        "vm.page-cluster" = 0;
+      };
+      services.ananicy = {
+        enable = true;
+        package = pkgs.ananicy-cpp;
+        rulesProvider = pkgs.ananicy-rules-cachyos;
+      };
+      # services.earlyoom.enable = true;
+      # services.earlyoom.extraArgs = [
+      #   "--avoid" "(^|/)(.+-)?(niri|Xwayland)$"
+      #   "--prefer" "(^|/)(.+-)?(electron|chromium|firefox|teams)$"
+      # ];
+      services.nohang = {
+        enable = true;
+        configPath = "desktop";
+      };
+      security.rtkit.enable = true;
 
-      services.flatpak.enable = true;
+      # Open the UDP port for the magic packet inside your network
+      networking.firewall.allowedUDPPorts = [ 9 ];
+      # Systemd service to ensure wowlan is enabled on boot
+      systemd.services.wake-on-wlan = {
+        description = "Enable Wake-on-Wireless-LAN (WoWLAN)";
+        wantedBy = [ "multi-user.target" ];
+        after = [ "network.target" ];
+        requires = [ "network.target" ];
+
+        serviceConfig = {
+          Type = "oneshot";
+          RemainAfterExit = true;
+          # Note: Adjust phy0 if your command above returned a different number
+          ExecStart = "${pkgs.iw}/bin/iw phy phy0 wowlan enable magic-packet";
+        };
+      };
+
+      boot.extraModprobeConfig = ''
+        options snd_hda_intel snoop=0 power_save=0
+      '';
 
       # Use the systemd-boot EFI boot loader.
       boot.loader.systemd-boot.enable = true;
@@ -48,20 +110,11 @@
       boot.loader.systemd-boot.xbootldrMountPoint = "/boot";
 
       #nixpkgs.config.allowUnfree = true;
-      services.xserver.videoDrivers = [ "nvidia" ];
-      hardware.nvidia = {
-        modesetting.enable = true;
-        powerManagement.enable = false;
-        powerManagement.finegrained = false;
-        open = false;
-        nvidiaSettings = true;
-        package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
-      };
 
       # hardware.graphics.enable = true;
-        
+
       networking.hostName = "desktop"; # Define your hostname.
-      networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+      networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
       # Set your time zone.
       time.timeZone = "Europe/Berlin";
@@ -74,7 +127,24 @@
       users.users.bene = {
         description = "Benedikt von Blomberg";
         isNormalUser = true;
-        extraGroups = [ "wheel" "podman" "docker" "cdrom" ]; # Enable ‘sudo’ for the user.
+        extraGroups = [
+          "wheel"
+          "podman"
+          "docker"
+          "cdrom"
+        ]; # Enable ‘sudo’ for the user.
+        openssh.authorizedKeys.keys = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILeR2HYD8+GXorP8MMI1MtvosGcY3x60056X/S8Sba7r bene" # desktop
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGlNygbiGHOUNarDMe/RkT9sYSLakSswo/IWF2c0O5oR bene" # inspi
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPCbATrAxuPLKk5UdhY5Jq9ONL+LQptpYgkisltGhu6R bene@sanji" # sanji
+        ];
+      };
+      services.openssh = {
+        enable = true;
+        settings = {
+          PasswordAuthentication = false;
+          KbdInteractiveAuthentication = false;
+        };
       };
 
       # This option defines the first version of NixOS you have installed on this particular machine,
