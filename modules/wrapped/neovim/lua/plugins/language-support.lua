@@ -137,6 +137,8 @@ return {
 				formatters_by_ft = {
 					lua = nixInfo(nil, "settings", "cats", "lua") and { "stylua" } or nil,
 					python = nixInfo(nil, "settings", "cats", "python") and { "isort", "black" } or nil, -- sorts imports first, then formats code
+					c = nixInfo(nil, "settings", "cats", "c") and { "clang-format" } or nil,
+					cpp = nixInfo(nil, "settings", "cats", "c") and { "clang-format" } or nil,
 					javascript = nixInfo(nil, "settings", "cats", "javascript") and { "prettierd" } or nil,
 					typescript = nixInfo(nil, "settings", "cats", "javascript") and { "prettierd" } or nil,
 					javascriptreact = nixInfo(nil, "settings", "cats", "javascript") and { "prettierd" } or nil,

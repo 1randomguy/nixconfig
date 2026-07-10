@@ -164,6 +164,22 @@ return {
     },
   },
   {
+    "clangd",
+    enabled = true,
+    for_cat = "c",
+    lsp = {
+      filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
+      -- clangd uses cmd arguments rather than a nested settings table for configuration
+      cmd = {
+        "clangd",
+        "--background-index",
+        "--clang-tidy",
+        "--header-insertion=never", -- Stops clangd from automatically inserting #include lines randomly
+      },
+      settings = {},
+    },
+  },
+  {
     "pyright",
     enabled = true,
     for_cat = "python",

@@ -120,6 +120,14 @@
         ];
       };
 
+      config.specs.c = {
+        enable = !config.settings.minimal;
+        data = null;
+        runtimePkgs = with pkgs; [
+          clang-tools # Gives you clangd (LSP) and clang-format (Formatter)
+        ];
+      };
+
       config.specs.jupyter = {
         enable = !config.settings.minimal;
         data = [
