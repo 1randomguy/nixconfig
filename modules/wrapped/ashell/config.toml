@@ -56,13 +56,17 @@ grouped = true
 toast_timeout = 2000
 
 [appearance]
-style = "Solid"
 font_name = "Adwaita Sans"
 
 success_color = "#a6e3a1"
 text_color = "#cdd6f4"
 
 workspace_colors = [ "#b4befe" ]
+
+[appearance.bar]
+surface = "solid"
+# radius = "md"
+opacity = 0.8
 
 [appearance.primary_color]
 base = "#b4befe"
