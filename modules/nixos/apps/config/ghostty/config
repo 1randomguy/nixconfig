@@ -17,7 +17,7 @@ keybind = ctrl+a>ctrl+p=previous_tab
 keybind = ctrl+a>p=previous_tab
 keybind = super+r=reload_config
 mouse-hide-while-typing = true
-scrollback-limit = 1000000
+scrollback-limit = 10000000
 shell-integration-features = ssh-terminfo,ssh-env
 theme = Catppuccin Mocha
 window-save-state = always
