@@ -6,6 +6,7 @@
     {
       imports = [
         # Include the results of the hardware scan.
+        # TODO: hardware
         self.nixosModules.chopperHardware
 
         self.nixosModules.common
