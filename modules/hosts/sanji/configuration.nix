@@ -60,36 +60,10 @@
       environment.systemPackages = with pkgs; [
         sbctl
         inputs.agenix.packages."${stdenv.hostPlatform.system}".default
+        libcamera
       ];
 
-      services.openssh = {
-        enable = true;
-        # require public key authentication for better security
-        settings.PasswordAuthentication = false;
-        settings.KbdInteractiveAuthentication = false;
-        #settings.PermitRootLogin = "yes";
-      };
-
       networking.hostName = "sanji"; # Define your hostname.
-      # Pick only one of the below networking options.
-      # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-      networking.networkmanager.enable = true;
-      #networking.wireless.iwd.enable = true;
-      #networking.networkmanager.wifi.backend = "iwd";
-
-      # Set your time zone.
-      time.timeZone = "Europe/Berlin";
-
-      # Select internationalisation properties.
-      console.keyMap = "us";
-
-      # Enable sound.
-      # hardware.pulseaudio.enable = true;
-      # OR
-      # services.pipewire = {
-      #   enable = true;
-      #   pulse.enable = true;
-      # };
 
       # Enable touchpad support (enabled default in most desktopManager).
       services.libinput.enable = true;
@@ -117,57 +91,7 @@
           options = [ "discard" ];
         }
       ];
-      boot.zswap = {
-        enable = true;
-      };
-      boot.kernel.sysctl = {
-        "vm.swappiness" = 10;
-        "vm.vfs_cache_pressure" = 50;
-        "vm.dirty_ratio" = 10;
-        "vm.dirty_background_ratio" = 5;
-        "vm.page-cluster" = 0;
-      };
-      services.ananicy = {
-        enable = true;
-        package = pkgs.ananicy-cpp;
-        rulesProvider = pkgs.ananicy-rules-cachyos;
-      };
-      # services.earlyoom.enable = true;
-      # services.earlyoom.extraArgs = [
-      #   "--avoid" "(^|/)(.+-)?(niri|Xwayland)$"
-      #   "--prefer" "(^|/)(.+-)?(electron|chromium|firefox|teams)$"
-      # ];
-      services.nohang = {
-        enable = true;
-        configPath = "desktop";
-      };
-      security.rtkit.enable = true;
 
-      # Some programs need SUID wrappers, can be configured further or are
-      # started in user sessions.
-      # programs.mtr.enable = true;
-      # programs.gnupg.agent = {
-      #   enable = true;
-      #   enableSSHSupport = true;
-      # };
-
-      # This option defines the first version of NixOS you have installed on this particular machine,
-      # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
-      #
-      # Most users should NEVER change this value after the initial install, for any reason,
-      # even if you've upgraded your system to a new NixOS release.
-      #
-      # This value does NOT affect the Nixpkgs version your packages and OS are pulled from,
-      # so changing it will NOT upgrade your system - see https://nixos.org/manual/nixos/stable/#sec-upgrading for how
-      # to actually do that.
-      #
-      # This value being lower than the current NixOS release does NOT mean your system is
-      # out of date, out of support, or vulnerable.
-      #
-      # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
-      # and migrated your data accordingly.
-      #
-      # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
       system.stateVersion = "24.05"; # Did you read the comment?
     };
 }

@@ -129,6 +129,8 @@
           };
         };
 
+        services.nohang.configPath = "basic";
+
         networking.firewall.enable = true;
         networking.firewall.allowPing = true;
 

@@ -56,31 +56,6 @@
           priority = 0;
         }
       ];
-      boot.zswap = {
-        enable = true;
-      };
-      boot.kernel.sysctl = {
-        "vm.swappiness" = 10;
-        "vm.vfs_cache_pressure" = 50;
-        "vm.dirty_ratio" = 10;
-        "vm.dirty_background_ratio" = 5;
-        "vm.page-cluster" = 0;
-      };
-      services.ananicy = {
-        enable = true;
-        package = pkgs.ananicy-cpp;
-        rulesProvider = pkgs.ananicy-rules-cachyos;
-      };
-      # services.earlyoom.enable = true;
-      # services.earlyoom.extraArgs = [
-      #   "--avoid" "(^|/)(.+-)?(niri|Xwayland)$"
-      #   "--prefer" "(^|/)(.+-)?(electron|chromium|firefox|teams)$"
-      # ];
-      services.nohang = {
-        enable = true;
-        configPath = "desktop";
-      };
-      security.rtkit.enable = true;
 
       # Open the UDP port for the magic packet inside your network
       networking.firewall.allowedUDPPorts = [ 9 ];
@@ -114,10 +89,6 @@
       # hardware.graphics.enable = true;
 
       networking.hostName = "desktop"; # Define your hostname.
-      networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
-
-      # Set your time zone.
-      time.timeZone = "Europe/Berlin";
 
       environment.systemPackages = with pkgs; [
         inputs.agenix.packages."${stdenv.hostPlatform.system}".default
@@ -139,32 +110,7 @@
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPCbATrAxuPLKk5UdhY5Jq9ONL+LQptpYgkisltGhu6R bene@sanji" # sanji
         ];
       };
-      services.openssh = {
-        enable = true;
-        settings = {
-          PasswordAuthentication = false;
-          KbdInteractiveAuthentication = false;
-        };
-      };
 
-      # This option defines the first version of NixOS you have installed on this particular machine,
-      # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
-      #
-      # Most users should NEVER change this value after the initial install, for any reason,
-      # even if you've upgraded your system to a new NixOS release.
-      #
-      # This value does NOT affect the Nixpkgs version your packages and OS are pulled from,
-      # so changing it will NOT upgrade your system - see https://nixos.org/manual/nixos/stable/#sec-upgrading for how
-      # to actually do that.
-      #
-      # This value being lower than the current NixOS release does NOT mean your system is
-      # out of date, out of support, or vulnerable.
-      #
-      # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
-      # and migrated your data accordingly.
-      #
-      # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
       system.stateVersion = "24.11"; # Did you read the comment?
-
     };
 }
