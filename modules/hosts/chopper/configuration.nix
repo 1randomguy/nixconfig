@@ -42,7 +42,6 @@
       ];
 
       homelab.baseDomain = "shimagumo.party";
-      # TODO: mount external drive as /data (permanently)
       homelab.services.restic = {
         local.enable = true;
         local.targetDir = "/data/restic";
@@ -59,6 +58,12 @@
 
       # TODO: change IP to correct new IP (maybe 192.168.178.2?)
       services.tailscale.extraUpFlags = "--advertise-routes=192.168.178.57/32";
+
+      # TODO: maybe change uuid?
+      fileSystems."/data" = {
+        device = "/dev/disk/by-uuid/a6b4a1b9-1a9b-47d4-b07a-e9fd9d25fe0a";
+        fsType = "ext4";
+      };
 
       networking.useNetworkd = true;
       systemd.network.enable = true;
