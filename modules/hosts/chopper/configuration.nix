@@ -101,6 +101,7 @@
               networkConfig.DHCP = "ipv4";
             };
           };
+          emergencyAccess = true;
         };
         availableKernelModules = [
           "igc" # Intel I226-V 2.5GbE NIC Driver (Crucial for initrd SSH)
