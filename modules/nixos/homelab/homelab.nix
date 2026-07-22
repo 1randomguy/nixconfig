@@ -186,26 +186,26 @@
           # Only allow PFS-enabled ciphers with AES256
           sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
 
-          appendHttpConfig = ''
-            # Enable CSP for your services.
-            #add_header Content-Security-Policy "script-src 'self'; object-src 'none'; base-uri 'none';" always;
-
-            # Minimize information leaked to other domains
-            add_header 'Referrer-Policy' 'origin-when-cross-origin';
-
-            # Disable embedding as a frame
-            # change to SAMEORIGIN if I want to embedd on some other of my sites
-            add_header X-Frame-Options SAMEORIGIN always;
-
-            # Prevent injection of code in other mime types (XSS Attacks)
-            add_header X-Content-Type-Options "nosniff" always;
-
-            # Other
-            add_header X-Permitted-Cross-Domain-Policies "none" always;
-
-            # This might create errors
-            #proxy_cookie_path / "/; secure; HttpOnly; SameSite=lax";
-          '';
+          # appendHttpConfig = ''
+          #   # Enable CSP for your services.
+          #   #add_header Content-Security-Policy "script-src 'self'; object-src 'none'; base-uri 'none';" always;
+          #
+          #   # Minimize information leaked to other domains
+          #   add_header 'Referrer-Policy' 'origin-when-cross-origin';
+          #
+          #   # Disable embedding as a frame
+          #   # change to SAMEORIGIN if I want to embedd on some other of my sites
+          #   add_header X-Frame-Options SAMEORIGIN always;
+          #
+          #   # Prevent injection of code in other mime types (XSS Attacks)
+          #   add_header X-Content-Type-Options "nosniff" always;
+          #
+          #   # Other
+          #   add_header X-Permitted-Cross-Domain-Policies "none" always;
+          #
+          #   # This might create errors
+          #   #proxy_cookie_path / "/; secure; HttpOnly; SameSite=lax";
+          # '';
         };
 
         networking.firewall.allowedTCPPorts = [
