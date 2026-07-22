@@ -106,7 +106,6 @@
             Base domain name to be used to access the homelab services via nginx reverse proxy
           '';
         };
-        homepage.enable = lib.mkEnableOption "Homelab services and config";
       };
       options.services.nginx.virtualHosts = lib.mkOption {
         type = lib.types.attrsOf (lib.types.submodule vhostOptions);
@@ -142,7 +141,7 @@
 
         system.autoUpgrade = {
           enable = true;
-          flake = "github:1randomguy/nixconfig#usopp";
+          flake = "github:1randomguy/nixconfig#${config.networking.hostName}";
           dates = "Sat,Sun 08:00";
           flags = [ "--refresh" "--no-write-lock-file" ];
           allowReboot = false;

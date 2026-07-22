@@ -19,7 +19,7 @@
         # TODO: add ssh key of chopper to agenix list and rekey
 
         # homelab services
-        # self.nixosModules.homelab
+        self.nixosModules.homelab
         # self.nixosModules.restic
         # self.nixosModules.ddns-updater
         # # TODO: restore backup
@@ -33,7 +33,7 @@
         # self.nixosModules.navidrome
         # # TODO: restore backup
         # self.nixosModules.nextcloud
-        # self.nixosModules.bentopdf
+        self.nixosModules.bentopdf
         # self.nixosModules.samba
         # # TODO: restore backup
         # self.nixosModules.zola
@@ -41,7 +41,7 @@
         # # self.nixosModules.crowdsec
       ];
 
-      # homelab.baseDomain = "shimagumo.party";
+      homelab.baseDomain = "shimagumo.party";
       # homelab.services.restic = {
       #   local.enable = true;
       #   local.targetDir = "/external/restic";
