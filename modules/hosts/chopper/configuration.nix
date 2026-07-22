@@ -20,10 +20,10 @@
 
         # homelab services
         self.nixosModules.homelab
-        # self.nixosModules.restic
-        # self.nixosModules.ddns-updater
+        self.nixosModules.restic
+        self.nixosModules.ddns-updater
         # # TODO: restore backup
-        # self.nixosModules.authelia
+        self.nixosModules.authelia
         # self.nixosModules.blocky
         # # TODO: restore backup
         # self.nixosModules.immich
@@ -42,11 +42,11 @@
       ];
 
       homelab.baseDomain = "shimagumo.party";
-      # homelab.services.restic = {
-      #   local.enable = true;
-      #   local.targetDir = "/external/restic";
-      #   s3.enable = true;
-      # };
+      homelab.services.restic = {
+        local.enable = true;
+        local.targetDir = "/external/restic";
+        s3.enable = true;
+      };
       # # TODO: set password
       # homelab.services.samba = {
       #   directory = "/public";
@@ -59,11 +59,10 @@
       # # TODO: change IP to correct new IP (maybe 192.168.178.2?)
       # services.tailscale.extraUpFlags = "--advertise-routes=192.168.178.57/32";
       #
-      # # TODO: maybe change uuid?
-      # fileSystems."/external" = {
-      #   device = "/dev/disk/by-uuid/a6b4a1b9-1a9b-47d4-b07a-e9fd9d25fe0a";
-      #   fsType = "ext4";
-      # };
+      fileSystems."/external" = {
+        device = "/dev/disk/by-uuid/a6b4a1b9-1a9b-47d4-b07a-e9fd9d25fe0a";
+        fsType = "ext4";
+      };
       # Ensure the subdirectories exist on the dataset before mounting
       boot.zfs.forceImportRoot = false;
       systemd.tmpfiles.rules = [
