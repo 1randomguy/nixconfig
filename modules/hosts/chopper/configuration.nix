@@ -91,7 +91,17 @@
       fileSystems."/public/archive".depends = [ "/public" ];
 
       boot.initrd = {
-        systemd.enable = true;
+        systemd = {
+          enable = true;
+          # Tell systemd-networkd inside initrd to request DHCP on Ethernet interfaces
+          network = {
+            enable = true;
+            networks."10-eth" = {
+              matchConfig.Name = "en*";
+              networkConfig.DHCP = "ipv4";
+            };
+          };
+        };
         availableKernelModules = [
           "igc" # Intel I226-V 2.5GbE NIC Driver (Crucial for initrd SSH)
           "ahci" # Intel Alder Lake-N SATA Controller
