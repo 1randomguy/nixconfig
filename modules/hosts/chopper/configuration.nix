@@ -65,6 +65,7 @@
       #   fsType = "ext4";
       # };
       # Ensure the subdirectories exist on the dataset before mounting
+      boot.zfs.forceImportRoot = false;
       systemd.tmpfiles.rules = [
         "d /var/lib/immich-media/upload 0750 immich immich -"
         "d /var/lib/immich-media/library 0750 immich immich -"
@@ -114,6 +115,7 @@
       # Create media group
       users.groups.media = { };
 
+      users.users.root.hashedPassword = "!"; # Locks the password field for root
       # Define a user account. Don't forget to set a password with ‘passwd’.
       users.users.bene = {
         isNormalUser = true;
