@@ -90,6 +90,36 @@
       };
       fileSystems."/public/archive".depends = [ "/public" ];
 
+      boot = {
+        initrd.network = {
+          # This will use udhcp to get an ip address.
+          # Make sure you have added the kernel module for your network driver to `boot.initrd.availableKernelModules`,
+          # so your initrd can load it!
+          # Static ip addresses might be configured using the ip argument in kernel command line:
+          # https://www.kernel.org/doc/Documentation/filesystems/nfs/nfsroot.txt
+          enable = true;
+          ssh = {
+            enable = true;
+            # To prevent ssh clients from freaking out because a different host key is used,
+            # a different port for ssh is useful (assuming the same host has also a regular sshd running)
+            port = 2222;
+            # hostKeys paths must be unquoted strings, otherwise you'll run into issues with boot.initrd.secrets
+            # the keys are copied to initrd from the path specified; multiple keys can be set
+            # you can generate any number of host keys using
+            # `ssh-keygen -t ed25519 -N "" -f /path/to/ssh_host_ed25519_key`
+            hostKeys = [
+              "/etc/secrets/initrd/ssh_host_ed25519_key"
+            ];
+            # public ssh key used for login
+            authorizedKeys = [
+              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILeR2HYD8+GXorP8MMI1MtvosGcY3x60056X/S8Sba7r bene" # desktop
+              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGlNygbiGHOUNarDMe/RkT9sYSLakSswo/IWF2c0O5oR bene" # inspi
+              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPCbATrAxuPLKk5UdhY5Jq9ONL+LQptpYgkisltGhu6R bene@sanji"
+            ];
+          };
+        };
+      };
+
       networking.useNetworkd = true;
       systemd.network.enable = true;
 
