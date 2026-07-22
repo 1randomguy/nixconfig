@@ -13,57 +13,79 @@
         self.nixosModules.shell
 
         # disko
-        # inputs.disko.nixosModules.disko
-        # self.diskoConfigurations.usopp
+        inputs.disko.nixosModules.disko
+        self.diskoConfigurations.chopper
 
         # TODO: add ssh key of chopper to agenix list and rekey
 
         # homelab services
-        self.nixosModules.homelab
-        self.nixosModules.restic
-        self.nixosModules.ddns-updater
-        # TODO: restore backup
-        self.nixosModules.authelia
-        self.nixosModules.blocky
-        # TODO: restore backup
-        self.nixosModules.immich
-        self.nixosModules.immich-auto-stacker
-        self.nixosModules.immich-public-proxy
-        # NOTE: change to gonic?
-        self.nixosModules.navidrome
-        # TODO: restore backup
-        self.nixosModules.nextcloud
-        self.nixosModules.bentopdf
-        self.nixosModules.samba
-        # TODO: restore backup
-        self.nixosModules.zola
-        # TODO: relogin/setup
-        # self.nixosModules.crowdsec
+        # self.nixosModules.homelab
+        # self.nixosModules.restic
+        # self.nixosModules.ddns-updater
+        # # TODO: restore backup
+        # self.nixosModules.authelia
+        # self.nixosModules.blocky
+        # # TODO: restore backup
+        # self.nixosModules.immich
+        # self.nixosModules.immich-auto-stacker
+        # self.nixosModules.immich-public-proxy
+        # # NOTE: change to gonic?
+        # self.nixosModules.navidrome
+        # # TODO: restore backup
+        # self.nixosModules.nextcloud
+        # self.nixosModules.bentopdf
+        # self.nixosModules.samba
+        # # TODO: restore backup
+        # self.nixosModules.zola
+        # # TODO: relogin/setup
+        # # self.nixosModules.crowdsec
       ];
 
-      homelab.baseDomain = "shimagumo.party";
-      homelab.services.restic = {
-        local.enable = true;
-        local.targetDir = "/data/restic";
-        s3.enable = true;
-      };
-      # TODO: set password
-      homelab.services.samba = {
-        directory = "/public";
-      };
-      homelab.services.zola = {
-        sourceOwner = "bene";
-        sourceDir = "/home/bene/blog";
+      # homelab.baseDomain = "shimagumo.party";
+      # homelab.services.restic = {
+      #   local.enable = true;
+      #   local.targetDir = "/external/restic";
+      #   s3.enable = true;
+      # };
+      # # TODO: set password
+      # homelab.services.samba = {
+      #   directory = "/public";
+      # };
+      # homelab.services.zola = {
+      #   sourceOwner = "bene";
+      #   sourceDir = "/home/bene/blog";
+      # };
+      #
+      # # TODO: change IP to correct new IP (maybe 192.168.178.2?)
+      # services.tailscale.extraUpFlags = "--advertise-routes=192.168.178.57/32";
+      #
+      # # TODO: maybe change uuid?
+      # fileSystems."/external" = {
+      #   device = "/dev/disk/by-uuid/a6b4a1b9-1a9b-47d4-b07a-e9fd9d25fe0a";
+      #   fsType = "ext4";
+      # };
+      # Ensure the subdirectories exist on the dataset before mounting
+      systemd.tmpfiles.rules = [
+        "d /var/lib/immich-media/upload 0750 immich immich -"
+        "d /var/lib/immich-media/library 0750 immich immich -"
+        "d /var/lib/immich/upload 0750 immich immich -"
+        "d /var/lib/immich/library 0750 immich immich -"
+      ];
+
+      # Bind mount upload
+      fileSystems."/var/lib/immich/upload" = {
+        device = "/var/lib/immich-media/upload";
+        options = [ "bind" ];
+        depends = [ "/var/lib/immich-media" ];
       };
 
-      # TODO: change IP to correct new IP (maybe 192.168.178.2?)
-      services.tailscale.extraUpFlags = "--advertise-routes=192.168.178.57/32";
-
-      # TODO: maybe change uuid?
-      fileSystems."/data" = {
-        device = "/dev/disk/by-uuid/a6b4a1b9-1a9b-47d4-b07a-e9fd9d25fe0a";
-        fsType = "ext4";
+      # Bind mount library
+      fileSystems."/var/lib/immich/library" = {
+        device = "/var/lib/immich-media/library";
+        options = [ "bind" ];
+        depends = [ "/var/lib/immich-media" ];
       };
+      fileSystems."/public/archive".depends = [ "/public" ];
 
       networking.useNetworkd = true;
       systemd.network.enable = true;
@@ -76,7 +98,7 @@
         };
         # Configure the specific behavior of those Router Advertisements
         ipv6AcceptRAConfig = {
-          Token = "::20";
+          Token = "::10";
         };
       };
 

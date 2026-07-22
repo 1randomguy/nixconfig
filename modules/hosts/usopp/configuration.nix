@@ -59,7 +59,7 @@
         };
         # Configure the specific behavior of those Router Advertisements
         ipv6AcceptRAConfig = {
-          Token = "::10";
+          Token = "::30";
         };
       };
 
