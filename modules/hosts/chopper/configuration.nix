@@ -6,7 +6,6 @@
     {
       imports = [
         # Include the results of the hardware scan.
-        # TODO: hardware
         self.nixosModules.chopperHardware
 
         self.nixosModules.common
@@ -16,15 +15,12 @@
         inputs.disko.nixosModules.disko
         self.diskoConfigurations.chopper
 
-        # TODO: add ssh key of chopper to agenix list and rekey
-
         # homelab services
         self.nixosModules.homelab
         self.nixosModules.restic
         self.nixosModules.ddns-updater
-        # # TODO: restore backup
         self.nixosModules.authelia
-        # self.nixosModules.blocky
+        self.nixosModules.blocky
         # # TODO: restore backup
         # self.nixosModules.immich
         # self.nixosModules.immich-auto-stacker
@@ -151,8 +147,8 @@
       networking.useNetworkd = true;
       systemd.network.enable = true;
 
-      systemd.network.networks."wlan" = {
-        matchConfig.Name = "wlp2s0";
+      systemd.network.networks."eth" = {
+        matchConfig.Name = "enp1s0";
         networkConfig = {
           # Enable SLAAC/Router Advertisements globally for this interface
           IPv6AcceptRA = true;
