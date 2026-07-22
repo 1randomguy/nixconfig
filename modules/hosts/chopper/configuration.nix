@@ -75,6 +75,7 @@
       # Bind mount upload
       fileSystems."/var/lib/immich/upload" = {
         device = "/var/lib/immich-media/upload";
+        fsType = "none";
         options = [ "bind" ];
         depends = [ "/var/lib/immich-media" ];
       };
@@ -82,6 +83,7 @@
       # Bind mount library
       fileSystems."/var/lib/immich/library" = {
         device = "/var/lib/immich-media/library";
+        fsType = "none";
         options = [ "bind" ];
         depends = [ "/var/lib/immich-media" ];
       };
@@ -107,6 +109,7 @@
       boot.loader.efi.canTouchEfiVariables = true;
 
       networking.hostName = "chopper"; # Define your hostname.
+      networking.hostId = "8425e349";
 
       # Create media group
       users.groups.media = { };

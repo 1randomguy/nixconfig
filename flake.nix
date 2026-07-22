@@ -60,6 +60,7 @@
         nixpkgs.config = myNixpkgsConfig;
       };
       imports = [
+        inputs.disko.flakeModule
         (inputs.import-tree ./modules)
       ];
       perSystem =
