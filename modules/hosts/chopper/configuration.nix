@@ -101,7 +101,17 @@
               networkConfig.DHCP = "ipv4";
             };
           };
-          emergencyAccess = true;
+          services.zfs-ssh-unlock-profile = {
+            description = "Auto-run systemd password agent on SSH login";
+            wantedBy = [ "initrd.target" ];
+            before = [ "initrd-root-fs.target" ];
+            unitConfig.DefaultDependencies = false;
+            script = ''
+              mkdir -p /var/empty
+              echo "systemd-tty-ask-password-agent" > /var/empty/.profile
+            '';
+            serviceConfig.Type = "oneshot";
+          };
         };
         availableKernelModules = [
           "igc" # Intel I226-V 2.5GbE NIC Driver (Crucial for initrd SSH)
