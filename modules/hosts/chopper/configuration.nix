@@ -90,8 +90,16 @@
       };
       fileSystems."/public/archive".depends = [ "/public" ];
 
-      boot = {
-        initrd.network = {
+      boot.initrd = {
+        systemd.enable = true;
+        availableKernelModules = [
+          "igc" # Intel I226-V 2.5GbE NIC Driver (Crucial for initrd SSH)
+          "ahci" # Intel Alder Lake-N SATA Controller
+          "nvme" # M.2 NVMe Storage Driver
+          "xhci_pci" # USB 3.0 Controllers
+        ];
+
+        network = {
           # This will use udhcp to get an ip address.
           # Make sure you have added the kernel module for your network driver to `boot.initrd.availableKernelModules`,
           # so your initrd can load it!
