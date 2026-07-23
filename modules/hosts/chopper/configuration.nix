@@ -43,16 +43,16 @@
         s3.enable = true;
       };
       # # TODO: set password
-      # homelab.services.samba = {
-      #   directory = "/public";
-      # };
+      homelab.services.samba = {
+        directory = "/public";
+      };
       homelab.services.zola = {
         sourceOwner = "bene";
         sourceDir = "/home/bene/blog";
       };
 
       # # TODO:
-      # services.tailscale.extraUpFlags = "--advertise-routes=192.168.178.2/32";
+      services.tailscale.extraUpFlags = "--advertise-routes=192.168.178.2/32";
 
       fileSystems."/external" = {
         device = "/dev/disk/by-uuid/a6b4a1b9-1a9b-47d4-b07a-e9fd9d25fe0a";
