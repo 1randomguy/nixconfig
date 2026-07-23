@@ -114,10 +114,10 @@
       config = {
         users = {
           groups.${cfg.group} = {
-            gid = 993;
+            gid = 500;
           };
           users.${cfg.user} = {
-            uid = 994;
+            uid = 500;
             isSystemUser = true;
             group = cfg.group;
             extraGroups = [

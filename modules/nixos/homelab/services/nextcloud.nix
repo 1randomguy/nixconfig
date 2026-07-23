@@ -7,9 +7,12 @@
     {
       # Set up the user in case you need consistent UIDs and GIDs. And also to make
       # sure we can write out the secrets file with the proper permissions.
-      users.groups.nextcloud = { };
+      users.groups.nextcloud = {
+        gid = 501;
+      };
       users.users.nextcloud = {
         isSystemUser = true;
+        uid = 501;
         group = "nextcloud";
         extraGroups = [ "media" ];
       };

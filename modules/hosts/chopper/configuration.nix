@@ -167,7 +167,9 @@
       networking.hostId = "8425e349";
 
       # Create media group
-      users.groups.media = { };
+      users.groups.media = {
+        gid = 505;
+      };
 
       users.users.root.hashedPassword = "!"; # Locks the password field for root
       # Define a user account. Don't forget to set a password with ‘passwd’.

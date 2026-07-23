@@ -33,6 +33,14 @@
       };
       homelab.services.restic.backupDirs = [ "/var/lib/authelia-main" ];
 
+      users.groups.authelia-main = {
+        gid = 600;
+      };
+      users.users.authelia-main = {
+        isSystemUser = true;
+        uid = 600;
+        group = "authelia-main";
+      };
       services.authelia.instances.main = {
         enable = true;
         secrets = {

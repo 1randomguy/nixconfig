@@ -19,6 +19,7 @@
 
       users.users.immich = {
         isSystemUser = true;
+        uid = 502;
         extraGroups = [
           "video"
           "render"
