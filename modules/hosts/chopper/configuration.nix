@@ -31,8 +31,7 @@
         # self.nixosModules.nextcloud
         self.nixosModules.bentopdf
         # self.nixosModules.samba
-        # # TODO: restore backup
-        # self.nixosModules.zola
+        self.nixosModules.zola
         # # TODO: relogin/setup
         # # self.nixosModules.crowdsec
       ];
@@ -47,14 +46,14 @@
       # homelab.services.samba = {
       #   directory = "/public";
       # };
-      # homelab.services.zola = {
-      #   sourceOwner = "bene";
-      #   sourceDir = "/home/bene/blog";
-      # };
-      #
+      homelab.services.zola = {
+        sourceOwner = "bene";
+        sourceDir = "/home/bene/blog";
+      };
+
       # # TODO: change IP to correct new IP (maybe 192.168.178.2?)
       # services.tailscale.extraUpFlags = "--advertise-routes=192.168.178.57/32";
-      #
+
       fileSystems."/external" = {
         device = "/dev/disk/by-uuid/a6b4a1b9-1a9b-47d4-b07a-e9fd9d25fe0a";
         fsType = "ext4";
@@ -67,6 +66,7 @@
         "d /var/lib/immich/upload 0750 immich immich -"
         "d /var/lib/immich/library 0750 immich immich -"
       ];
+      environment.enableAllTerminfo = true;
 
       # Bind mount upload
       fileSystems."/var/lib/immich/upload" = {
