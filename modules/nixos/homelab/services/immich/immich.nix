@@ -31,6 +31,9 @@
         ];
       };
 
+      services.postgresqlBackup = {
+        databases = [ "immich" ];
+      };
       homelab.services.restic.backupDirs = [ "/var/lib/immich" ];
 
       services.nginx.virtualHosts."immich.${hl.baseDomain}" = {

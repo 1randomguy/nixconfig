@@ -37,13 +37,18 @@
         systemd.tmpfiles.rules = lib.lists.optionals cfg.local.enable [
           "d ${cfg.local.targetDir} 0770 ${hl.user} ${hl.group} - -"
         ];
+        services.postgresqlBackup = {
+          enable = true;
+          startAt = "*-*-* 02:00:00"; # Daily at 2 AM
+          location = "/var/backup/postgresql";
+        };
 
         services.restic = {
           backups =
             lib.attrsets.optionalAttrs cfg.local.enable {
               appdata-local = {
                 timerConfig = {
-                  OnCalendar = "*-*-* 02:00:00";
+                  OnCalendar = "*-*-* 03:00:00";  # 1 hour after the postgresql backup
                   Persistent = true;
                 };
                 repository = cfg.local.targetDir;
@@ -56,14 +61,14 @@
                 ];
                 exclude = [
                 ];
-                paths = cfg.backupDirs;
+                paths = cfg.backupDirs ++ [ "var/lib/postgresql" ];
               };
             }
             // lib.attrsets.optionalAttrs cfg.s3.enable {
               appdata-s3 = {
                 timerConfig = {
                   #OnCalendar = "Sun *-*-* 06:00:00";
-                  OnCalendar = "*-*-* 02:00:00";
+                  OnCalendar = "*-*-* 03:00:00"; # 1 hour after the postgresql backup
                   Persistent = true;
                 };
                 environmentFile = config.age.secrets.backblazeb2.path;
@@ -77,7 +82,7 @@
                 ];
                 exclude = [
                 ];
-                paths = cfg.backupDirs;
+                paths = cfg.backupDirs ++ [ "var/lib/postgresql" ];
               };
             };
         };

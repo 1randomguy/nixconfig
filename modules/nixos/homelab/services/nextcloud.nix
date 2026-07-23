@@ -20,15 +20,11 @@
       # Set up backing up the database automatically. The path will be in
       # `/var/backups/postgresql/nextcloud.gz`.
       services.postgresqlBackup = {
-        enable = true;
         databases = [ "nextcloud" ];
-        startAt = "*-*-* 02:00:00"; # Daily at 2 AM
-        location = "/var/backup/postgresql";
       };
 
       homelab.services.restic.backupDirs = [
         "/var/lib/nextcloud"
-        "/var/backup/postgresql"
       ];
 
       # Set up secrets. This is a sops-nix file checked in at the same folder as

@@ -139,6 +139,8 @@
           file = ../../../secrets/ntfy_url.age;
         };
 
+        services.postgresql.enable = true;
+
         system.autoUpgrade = {
           enable = true;
           flake = "github:1randomguy/nixconfig#${config.networking.hostName}";
