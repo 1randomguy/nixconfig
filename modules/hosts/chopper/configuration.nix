@@ -22,15 +22,15 @@
         self.nixosModules.authelia
         self.nixosModules.blocky
         # # TODO: restore backup
-        # self.nixosModules.immich
-        # self.nixosModules.immich-auto-stacker
-        # self.nixosModules.immich-public-proxy
+        self.nixosModules.immich
+        self.nixosModules.immich-auto-stacker
+        self.nixosModules.immich-public-proxy
         # # NOTE: change to gonic?
-        # self.nixosModules.navidrome
+        self.nixosModules.navidrome
         # # TODO: restore backup
         # self.nixosModules.nextcloud
         self.nixosModules.bentopdf
-        # self.nixosModules.samba
+        self.nixosModules.samba
         self.nixosModules.zola
         # # TODO: relogin/setup
         # # self.nixosModules.crowdsec
@@ -51,8 +51,8 @@
         sourceDir = "/home/bene/blog";
       };
 
-      # # TODO: change IP to correct new IP (maybe 192.168.178.2?)
-      # services.tailscale.extraUpFlags = "--advertise-routes=192.168.178.57/32";
+      # # TODO:
+      # services.tailscale.extraUpFlags = "--advertise-routes=192.168.178.2/32";
 
       fileSystems."/external" = {
         device = "/dev/disk/by-uuid/a6b4a1b9-1a9b-47d4-b07a-e9fd9d25fe0a";
