@@ -29,7 +29,7 @@
         enableAuthelia = true;
 
         locations."/" = {
-          proxyPass = address;
+          proxyPass = "http://${address}";
           proxyWebsockets = true;
           recommendedProxySettings = true;
         };
