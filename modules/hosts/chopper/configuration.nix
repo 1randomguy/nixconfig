@@ -123,8 +123,17 @@
         };
         systemd = {
           enable = true;
-          network.enable = true;
-          network.networks."eth" = config.systemd.network.networks."eth";
+          network = {
+            enable = true;
+            networks."eth" = {
+              enable = true;
+              matchConfig.Name = "enp1s0";
+              address = [ "192.168.178.2/24" ];
+              gateway = [ "192.168.178.1" ];
+              linkConfig.RequiredForOnline = "routable";
+            };
+          };
+
           services.zfs-ssh-unlock-profile = {
             description = "Auto-run systemd password agent on SSH login";
             wantedBy = [ "initrd.target" ];
