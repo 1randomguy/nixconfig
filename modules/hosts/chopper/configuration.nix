@@ -150,6 +150,7 @@
         matchConfig.Name = "enp1s0";
         networkConfig = {
           # Enable SLAAC/Router Advertisements globally for this interface
+          DHCP = "ipv4";
           IPv6AcceptRA = true;
         };
         # Configure the specific behavior of those Router Advertisements
