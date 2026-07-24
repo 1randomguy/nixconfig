@@ -183,6 +183,24 @@
         "type": "github"
       }
     },
+    "flake-utils_2": {
+      "inputs": {
+        "systems": "systems_3"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "fooyin-pr": {
       "locked": {
         "lastModified": 1782217957,
@@ -470,6 +488,7 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nvim-plugins-lze": "nvim-plugins-lze",
         "nvim-plugins-lzextras": "nvim-plugins-lzextras",
+        "tinysub": "tinysub",
         "wrapper-modules": "wrapper-modules"
       }
     },
@@ -543,6 +562,42 @@
         "owner": "nix-systems",
         "repo": "default",
         "type": "github"
+      }
+    },
+    "systems_3": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "tinysub": {
+      "inputs": {
+        "flake-utils": "flake-utils_2",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1784892089,
+        "narHash": "sha256-nlD0gnbKBbIl3FEZboPghVm+wpRI6xfEx1TAlBE57QE=",
+        "ref": "refs/heads/main",
+        "rev": "9fc523d693618366bdc08d5a20794f5310b73527",
+        "revCount": 593,
+        "type": "git",
+        "url": "https://tangled.org/devins.page/tinysub"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://tangled.org/devins.page/tinysub"
       }
     },
     "wrapper-modules": {
