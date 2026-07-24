@@ -1,6 +1,7 @@
+{ inputs, ... }:
 {
   flake.nixosModules.tinysub =
-    { config, pkgs, inputs, ... }:
+    { config, pkgs, ... }:
     let
       hl = config.homelab;
       tinysubPkg = inputs.tinysub.packages.${pkgs.stdenv.hostPlatform.system}.default;
