@@ -50,6 +50,9 @@
         sourceDir = "/home/bene/blog";
       };
 
+      networking.hostName = "chopper"; # Define your hostname.
+      networking.hostId = "8425e349"; # for zfs
+
       # # TODO:
       services.tailscale.extraUpFlags = "--advertise-routes=192.168.178.2/32";
 
@@ -84,72 +87,8 @@
       };
       fileSystems."/public/archive".depends = [ "/public" ];
 
-      boot.initrd = {
-        systemd = {
-          enable = true;
-          # Tell systemd-networkd inside initrd to request DHCP on Ethernet interfaces
-          # network = {
-          #   enable = true;
-          #   networks."10-eth" = {
-          #     matchConfig.Name = "en*";
-          #     networkConfig.DHCP = "ipv4";
-          #   };
-          # };
-          network = {
-            enable = true;
-            networks."eth" = config.systemd.network.networks."eth";
-          };
-          services.zfs-ssh-unlock-profile = {
-            description = "Auto-run systemd password agent on SSH login";
-            wantedBy = [ "initrd.target" ];
-            before = [ "initrd-root-fs.target" ];
-            unitConfig.DefaultDependencies = false;
-            script = ''
-              mkdir -p /var/empty
-              echo "systemd-tty-ask-password-agent" > /var/empty/.profile
-            '';
-            serviceConfig.Type = "oneshot";
-          };
-        };
-        availableKernelModules = [
-          "igc" # Intel I226-V 2.5GbE NIC Driver (Crucial for initrd SSH)
-          "ahci" # Intel Alder Lake-N SATA Controller
-          "nvme" # M.2 NVMe Storage Driver
-          "xhci_pci" # USB 3.0 Controllers
-        ];
-
-        network = {
-          # This will use udhcp to get an ip address.
-          # Make sure you have added the kernel module for your network driver to `boot.initrd.availableKernelModules`,
-          # so your initrd can load it!
-          # Static ip addresses might be configured using the ip argument in kernel command line:
-          # https://www.kernel.org/doc/Documentation/filesystems/nfs/nfsroot.txt
-          enable = true;
-          ssh = {
-            enable = true;
-            # To prevent ssh clients from freaking out because a different host key is used,
-            # a different port for ssh is useful (assuming the same host has also a regular sshd running)
-            port = 2222;
-            # hostKeys paths must be unquoted strings, otherwise you'll run into issues with boot.initrd.secrets
-            # the keys are copied to initrd from the path specified; multiple keys can be set
-            # you can generate any number of host keys using
-            # `ssh-keygen -t ed25519 -N "" -f /path/to/ssh_host_ed25519_key`
-            hostKeys = [
-              "/etc/secrets/initrd/ssh_host_ed25519_key"
-            ];
-            # public ssh key used for login
-            authorizedKeys = [
-              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILeR2HYD8+GXorP8MMI1MtvosGcY3x60056X/S8Sba7r bene" # desktop
-              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGlNygbiGHOUNarDMe/RkT9sYSLakSswo/IWF2c0O5oR bene" # inspi
-              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPCbATrAxuPLKk5UdhY5Jq9ONL+LQptpYgkisltGhu6R bene@sanji"
-            ];
-          };
-        };
-      };
-
       networking.useNetworkd = true;
       systemd.network.enable = true;
-
       systemd.network.networks."eth" = {
         matchConfig.Name = "enp1s0";
         networkConfig = {
@@ -170,16 +109,42 @@
       # Use the systemd-boot EFI boot loader.
       boot.loader.systemd-boot.enable = true;
       boot.loader.efi.canTouchEfiVariables = true;
+      # remote zfs unlock
+      boot.initrd = {
+        systemd = {
+          enable = true;
+          network.enable = true;
+          network.networks."eth" = config.systemd.network.networks."eth";
+          services.zfs-ssh-unlock-profile = {
+            description = "Auto-run systemd password agent on SSH login";
+            wantedBy = [ "initrd.target" ];
+            before = [ "initrd-root-fs.target" ];
+            unitConfig.DefaultDependencies = false;
+            script = ''
+              mkdir -p /var/empty
+              echo "systemd-tty-ask-password-agent" > /var/empty/.profile
+            '';
+            serviceConfig.Type = "oneshot";
+          };
+        };
+        availableKernelModules = [
+          "igc" # Intel I226-V 2.5GbE NIC Driver (Crucial for initrd SSH)
+        ];
 
-      networking.hostName = "chopper"; # Define your hostname.
-      networking.hostId = "8425e349"; # for zfs
-
-      # Create media group
-      users.groups.media = {
-        gid = 505;
+        network = {
+          enable = true;
+          ssh = {
+            enable = true;
+            port = 2222;
+            hostKeys = [
+              "/etc/secrets/initrd/ssh_host_ed25519_key"
+            ];
+            # public ssh key used for login (same as for normal login)
+            authorizedKeys = config.users.users.bene.openssh.authorizedKeys.keys;
+          };
+        };
       };
 
-      users.users.root.hashedPassword = "!"; # Locks the password field for root
       # Define a user account. Don't forget to set a password with ‘passwd’.
       users.users.bene = {
         isNormalUser = true;
@@ -194,6 +159,13 @@
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPCbATrAxuPLKk5UdhY5Jq9ONL+LQptpYgkisltGhu6R bene@sanji"
         ];
       };
+
+      # Create media group
+      users.groups.media = {
+        gid = 505;
+      };
+
+      users.users.root.hashedPassword = "!"; # Locks the password field for root
 
       # List packages installed in system profile. To search, run:
       # $ nix search wget
