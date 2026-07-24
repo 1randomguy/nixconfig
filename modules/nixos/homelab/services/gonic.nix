@@ -3,6 +3,7 @@
     { config, ... }:
     let
       hl = config.homelab;
+      address = "127.0.0.1:4747";
     in
     {
       # Set up gonic.
@@ -10,7 +11,7 @@
         enable = true;
         settings = {
           music-path = "/public/Music";
-          listen-addr = "127.0.0.1:4747";
+          listen-addr = address;
           scan-watcher-enabled = true;
           multi-value-genre = "delim ;";
           multi-value-artist = "delim ;";
@@ -26,7 +27,7 @@
         enableAuthelia = true;
 
         locations."/" = {
-          proxyPass = config.services.gonic.settings.listen-addr;
+          proxyPass = address;
           proxyWebsockets = true;
           recommendedProxySettings = true;
         };
