@@ -95,7 +95,10 @@
           #     networkConfig.DHCP = "ipv4";
           #   };
           # };
-          network.networks."eth" = config.systemd.network.networks."eth";
+          network = {
+            enable = true;
+            networks."eth" = config.systemd.network.networks."eth";
+          };
           services.zfs-ssh-unlock-profile = {
             description = "Auto-run systemd password agent on SSH login";
             wantedBy = [ "initrd.target" ];
@@ -169,7 +172,7 @@
       boot.loader.efi.canTouchEfiVariables = true;
 
       networking.hostName = "chopper"; # Define your hostname.
-      networking.hostId = "8425e349"; #for zfs
+      networking.hostId = "8425e349"; # for zfs
 
       # Create media group
       users.groups.media = {
