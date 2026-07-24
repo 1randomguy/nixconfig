@@ -12,7 +12,7 @@
         settings = {
           music-path = "/public/Music";
           podcast-path = "/public/Podcasts";
-          playlist-path = "/public/Music/Playlists";
+          playlists-path = "/public/Music/Playlists";
           listen-addr = address;
           scan-watcher-enabled = true;
           multi-value-genre = "delim ;";
