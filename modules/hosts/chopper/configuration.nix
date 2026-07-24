@@ -21,19 +21,17 @@
         self.nixosModules.ddns-updater
         self.nixosModules.authelia
         self.nixosModules.blocky
-        # TODO: restore backup
         self.nixosModules.immich
         self.nixosModules.immich-auto-stacker
         self.nixosModules.immich-public-proxy
         # NOTE: change to gonic?
         self.nixosModules.navidrome
-        # TODO: restore backup
         self.nixosModules.nextcloud
         self.nixosModules.bentopdf
         self.nixosModules.samba
         self.nixosModules.zola
-        # # TODO: relogin/setup
-        # # self.nixosModules.crowdsec
+        # TODO: relogin/setup
+        # self.nixosModules.crowdsec
       ];
 
       homelab.baseDomain = "shimagumo.party";
@@ -53,7 +51,6 @@
       networking.hostName = "chopper"; # Define your hostname.
       networking.hostId = "8425e349"; # for zfs
 
-      # # TODO:
       services.tailscale.extraUpFlags = "--advertise-routes=192.168.178.2/32";
 
       fileSystems."/external" = {
@@ -70,15 +67,13 @@
       ];
       environment.enableAllTerminfo = true;
 
-      # Bind mount upload
+      # Bind mounts for immich (to get same dataset for library and upload)
       fileSystems."/var/lib/immich/upload" = {
         device = "/var/lib/immich-media/upload";
         fsType = "none";
         options = [ "bind" ];
         depends = [ "/var/lib/immich-media" ];
       };
-
-      # Bind mount library
       fileSystems."/var/lib/immich/library" = {
         device = "/var/lib/immich-media/library";
         fsType = "none";
