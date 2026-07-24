@@ -153,6 +153,7 @@
           DHCP = "ipv4";
           # Enable SLAAC/Router Advertisements globally for this interface
           IPv6AcceptRA = true;
+          IPv6PrivacyExtensions = "no";
         };
         dhcpV4Config = {
           ClientIdentifier = "mac";
@@ -168,7 +169,7 @@
       boot.loader.efi.canTouchEfiVariables = true;
 
       networking.hostName = "chopper"; # Define your hostname.
-      networking.hostId = "8425e349";
+      networking.hostId = "8425e349"; #for zfs
 
       # Create media group
       users.groups.media = {
