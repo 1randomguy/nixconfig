@@ -8,6 +8,8 @@
         allowedUDPPorts = [ 53 ];
       };
 
+      services.resolved.enable = false;
+
       services.blocky = {
         enable = true;
         settings = {
