@@ -153,6 +153,9 @@
           DHCP = "ipv4";
           IPv6AcceptRA = true;
         };
+        dhcpV4Config = {
+          ClientIdentifier = "mac";
+        };
         # Configure the specific behavior of those Router Advertisements
         ipv6AcceptRAConfig = {
           Token = "::10";
