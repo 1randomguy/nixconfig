@@ -1,7 +1,7 @@
 { self, inputs, ... }:
 {
   flake.nixosModules.chopperConfiguration =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
 
     {
       imports = [
@@ -88,13 +88,14 @@
         systemd = {
           enable = true;
           # Tell systemd-networkd inside initrd to request DHCP on Ethernet interfaces
-          network = {
-            enable = true;
-            networks."10-eth" = {
-              matchConfig.Name = "en*";
-              networkConfig.DHCP = "ipv4";
-            };
-          };
+          # network = {
+          #   enable = true;
+          #   networks."10-eth" = {
+          #     matchConfig.Name = "en*";
+          #     networkConfig.DHCP = "ipv4";
+          #   };
+          # };
+          network.networks."eth" = config.systemd.network.networks."eth";
           services.zfs-ssh-unlock-profile = {
             description = "Auto-run systemd password agent on SSH login";
             wantedBy = [ "initrd.target" ];
@@ -149,8 +150,8 @@
       systemd.network.networks."eth" = {
         matchConfig.Name = "enp1s0";
         networkConfig = {
-          # Enable SLAAC/Router Advertisements globally for this interface
           DHCP = "ipv4";
+          # Enable SLAAC/Router Advertisements globally for this interface
           IPv6AcceptRA = true;
         };
         dhcpV4Config = {
