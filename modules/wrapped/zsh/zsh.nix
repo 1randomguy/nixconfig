@@ -35,15 +35,16 @@
         zshrc.content = lib.mkMerge [
           ''
             # --- Base Configuration ---
-            # Replaces history.size = 10000;
             HISTSIZE=10000
             SAVEHIST=10000
 
-            # Replaces enableCompletion, autosuggestion, syntaxHighlighting
+            # Force completion dump file into user cache instead of Nix store
+            export ZSH_COMPDUMP="''${XDG_CACHE_HOME:-$HOME/.cache}/zcompdump-''${ZSH_VERSION}"
+
             source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
             source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-            autoload -Uz compinit && compinit
+            autoload -Uz compinit && compinit -d "$ZSH_COMPDUMP"
 
             # --- Oh My Zsh Setup ---
             # To simulate HM's oh-my-zsh module without HM, source the main file 
