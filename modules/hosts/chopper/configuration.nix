@@ -25,6 +25,7 @@
         self.nixosModules.immich-auto-stacker
         self.nixosModules.immich-public-proxy
         self.nixosModules.gonic
+        self.nixosModules.tinysub
         self.nixosModules.nextcloud
         self.nixosModules.bentopdf
         self.nixosModules.samba

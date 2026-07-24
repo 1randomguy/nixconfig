@@ -40,6 +40,10 @@
     fooyin-pr.url = "github:kybe236/nixpkgs/fooyin-bump";
     gd-tools.url = "github:1randomguy/gd-tools-flake";
     ashell.url = "github:MalpenZibo/ashell";
+    tinysub = {
+      url = "git+https://tangled.org/devins.page/tinysub";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
