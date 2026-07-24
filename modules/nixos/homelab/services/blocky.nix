@@ -40,7 +40,7 @@
           };
           customDNS = {
             mapping = {
-              "shimagumo.party" = "192.168.178.57";
+              "shimagumo.party" = "192.168.178.2";
               "fritz.box" = "192.168.178.1";
             };
           };
