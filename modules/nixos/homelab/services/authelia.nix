@@ -100,6 +100,18 @@
                 policy = "one_factor"; # other option: "two_factor"
               }
               {
+                domain = [ "gonic.${hl.baseDomain}" ];
+                policy = "bypass";
+                networks = [
+                  "192.168.178.0/24"
+                  "100.0.0.0/8"
+                ];
+              }
+              {
+                domain = [ "gonic.${hl.baseDomain}" ];
+                policy = "one_factor"; # other option: "two_factor"
+              }
+              {
                 domain = [ "music.${hl.baseDomain}" ];
                 policy = "bypass";
                 networks = [
