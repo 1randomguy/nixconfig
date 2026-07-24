@@ -100,12 +100,15 @@
                 policy = "one_factor"; # other option: "two_factor"
               }
               {
+                domain = [ "tinysub.${hl.baseDomain}" ];
+                policy = "one_factor"; # other option: "two_factor"
+              }
+              {
                 domain = [ "gonic.${hl.baseDomain}" ];
                 policy = "bypass";
                 networks = [
                   "192.168.178.0/24"
                   "100.0.0.0/8"
-                  "79.219.111.123/32" #tinysub.devins.page
                 ];
               }
               {
