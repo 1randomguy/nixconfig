@@ -106,6 +106,21 @@
       boot.loader.efi.canTouchEfiVariables = true;
       # remote zfs unlock
       boot.initrd = {
+        kernelModules = [
+          "igc" # Intel I226-V 2.5GbE NIC Driver (Crucial for initrd SSH)
+        ];
+        network = {
+          enable = true;
+          ssh = {
+            enable = true;
+            port = 2222;
+            hostKeys = [
+              "/etc/secrets/initrd/ssh_host_ed25519_key"
+            ];
+            # public ssh key used for login (same as for normal login)
+            authorizedKeys = config.users.users.bene.openssh.authorizedKeys.keys;
+          };
+        };
         systemd = {
           enable = true;
           network.enable = true;
@@ -120,22 +135,6 @@
               echo "systemd-tty-ask-password-agent" > /var/empty/.profile
             '';
             serviceConfig.Type = "oneshot";
-          };
-        };
-        availableKernelModules = [
-          "igc" # Intel I226-V 2.5GbE NIC Driver (Crucial for initrd SSH)
-        ];
-
-        network = {
-          enable = true;
-          ssh = {
-            enable = true;
-            port = 2222;
-            hostKeys = [
-              "/etc/secrets/initrd/ssh_host_ed25519_key"
-            ];
-            # public ssh key used for login (same as for normal login)
-            authorizedKeys = config.users.users.bene.openssh.authorizedKeys.keys;
           };
         };
       };
