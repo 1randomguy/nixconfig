@@ -21,14 +21,14 @@
         self.nixosModules.ddns-updater
         self.nixosModules.authelia
         self.nixosModules.blocky
-        # # TODO: restore backup
+        # TODO: restore backup
         self.nixosModules.immich
         self.nixosModules.immich-auto-stacker
         self.nixosModules.immich-public-proxy
-        # # NOTE: change to gonic?
+        # NOTE: change to gonic?
         self.nixosModules.navidrome
-        # # TODO: restore backup
-        # self.nixosModules.nextcloud
+        # TODO: restore backup
+        self.nixosModules.nextcloud
         self.nixosModules.bentopdf
         self.nixosModules.samba
         self.nixosModules.zola
@@ -42,7 +42,6 @@
         local.targetDir = "/external/restic";
         s3.enable = true;
       };
-      # # TODO: set password
       homelab.services.samba = {
         directory = "/public";
       };
