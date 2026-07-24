@@ -25,6 +25,7 @@
         self.nixosModules.immich-auto-stacker
         self.nixosModules.immich-public-proxy
         # NOTE: change to gonic?
+        self.nixosModules.gonic
         self.nixosModules.navidrome
         self.nixosModules.nextcloud
         self.nixosModules.bentopdf
