@@ -265,11 +265,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784863844,
-        "narHash": "sha256-TP85ZCHVRvOjS2Y1kutzW5EcBdrpgwAwot8FNrnho5s=",
+        "lastModified": 1784896036,
+        "narHash": "sha256-EAadJywc5P9CSIB7212S5jpQX48aTfYUbsJeAIbQaVI=",
         "owner": "feel-co",
         "repo": "hjem",
-        "rev": "8a9d82fabc2ebb2cda02458d3f8f60df82a460e5",
+        "rev": "08d2b170a74a102c230c9651d8989fe6b39dfad8",
         "type": "github"
       },
       "original": {
@@ -587,11 +587,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784892089,
-        "narHash": "sha256-nlD0gnbKBbIl3FEZboPghVm+wpRI6xfEx1TAlBE57QE=",
+        "lastModified": 1784920563,
+        "narHash": "sha256-ZcTO+MXdIKA3kq1JO+uBO40n4jljR1LScA958dC9LN0=",
         "ref": "refs/heads/main",
-        "rev": "9fc523d693618366bdc08d5a20794f5310b73527",
-        "revCount": 593,
+        "rev": "9000d02babe79f06d4e43dc517c22ef529158d96",
+        "revCount": 595,
         "type": "git",
         "url": "https://tangled.org/devins.page/tinysub"
       },
