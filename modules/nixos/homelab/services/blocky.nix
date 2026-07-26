@@ -32,8 +32,8 @@
           blocking = {
             denylists = {
               multi = [
-                "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/pro.txt"
-                "https://big.oisd.nl/domainswild"
+                "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/normal.txt"
+                "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/tif.txt"
               ];
             };
             clientGroupsBlock = {
