@@ -150,6 +150,7 @@
 
       config.specs.latex = {
         enable = !config.settings.minimal;
+        data = null;
         runtimePkgs = with pkgs; [
           tectonic
           texlab
