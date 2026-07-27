@@ -77,19 +77,6 @@
 
         serviceConfig = {
           Type = "simple";
-          # Environment = "PATH=${
-          #   lib.makeBinPath [
-          #     pkgs.bash
-          #     pkgs.systemd
-          #     pkgs.coreutils
-          #     pkgs.util-linux
-          #     pkgs.playerctl
-          #     pkgs.pwvucontrol
-          #     pkgs.networkmanager
-          #     pkgs.niri
-          #     pkgs.firefox
-          #   ]
-          # }";
           Environment = "PATH=${pkgs.lib.makeBinPath config.environment.systemPackages}:/run/current-system/sw/bin";
           ExecStartPre = "${pkgs.systemd}/bin/systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP DISPLAY";
           ExecStart = "${pkgs.vicinae}/bin/vicinae server"; # --config ${./vicinae.json}
