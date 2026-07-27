@@ -14,20 +14,19 @@
         enable = true;
         settings = {
           upstreams = {
+            strategy = "strict"; # Uses Quad9 100% of the time unless it fails -> then fallback to cloudflare
             groups = {
               default = [
-                "https://dns10.quad9.net/dns-query"
                 "tcp-tls:dns10.quad9.net:853"
-                "tcp-tls:1.1.1.1:853"
-                "tcp-tls:1.0.0.1:853"
+                "tcp-tls:security.cloudflare-dns.com:853"
               ];
             };
           };
-          bootstrapDns = [
+          # only resolve domain names of upstreams
+          bootstrapDns = [ 
             "9.9.9.10"
-            "149.112.112.10"
+            "1.1.1.2"
             "2620:fe::10"
-            "2620:fe::fe:10"
           ];
           blocking = {
             denylists = {
