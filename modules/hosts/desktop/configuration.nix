@@ -21,9 +21,9 @@
         # self.nixosModules.image-editing
         # self.nixosModules.latex
         #
-        # self.nixosModules.compat
+        self.nixosModules.compat
         # self.nixosModules.fonts
-        # self.nixosModules.master-thesis
+        self.nixosModules.master-thesis
         # self.nixosModules.uni-vpn
         # self.nixosModules.games
         #
@@ -43,6 +43,11 @@
       #   nvidiaSettings = true;
       #   package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
       # };
+
+      fileSystems."/home/bene/extra-storage" = {
+        device = "/dev/disk/by-label/extra-storage";
+        fsType = "ext4";
+      };
       swapDevices = [
         {
           device = "/var/lib/swapfile";
