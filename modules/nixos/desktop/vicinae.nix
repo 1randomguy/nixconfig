@@ -44,6 +44,11 @@
             family = "Adwaita Sans";
             size = 11.5;
           };
+          favorites = [
+            "wm:switch-windows"
+            "scripts:nw.sh"
+            "clipboard:history"
+          ];
           providers = {
             calculator.entrypoints.history.alias = "=";
             files.entrypoints.search = {
@@ -58,6 +63,10 @@
             scripts.preferences.customDirs = [
               vicinateCustomScriptsDir
             ];
+            applications.preferences = {
+              defaultAction = "focus";
+              launchPrefix = "systemd-run --user --scope --";
+            };
           };
         }
       );
