@@ -14,9 +14,11 @@ return {
 				-- enables syntax highlighting and other treesitter features
 				vim.treesitter.start(buf, language)
 
-				if language == "latex" then
-					vim.bo[buf].syntax = "ON"
-				end
+				-- -- Latex: treesitter off
+				-- if language == "latex" then
+				-- 	vim.bo[buf].syntax = "ON"
+				-- end
+
 				-- -- enables treesitter based folds
 				-- vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 				-- vim.wo.foldmethod = "expr"
@@ -299,6 +301,16 @@ return {
 								cmp_name = "cmdline",
 							},
 						},
+						bibtex = {
+							name = "bibtex",
+							module = "blink.compat.source",
+							score_offset = 30,
+							opts = {
+								-- Point cmp-bibtex directly to your exported Zotero file
+								-- (it will read .bib files in the project root or via custom_menu_font if set)
+								search_keys = { "author", "year", "title" },
+							},
+						},
 					},
 				},
 			})
@@ -338,73 +350,6 @@ return {
 			require("jupytext").setup({
 				style = "percent",
 				output_extension = "ju.py",
-			})
-		end,
-	},
-	{
-		"texpresso.vim",
-		auto_enable = true,
-		after = function()
-			vim.keymap.set("n", "<leader>lr", function()
-				local current_file = vim.fn.expand("%")
-				if current_file == "" then
-					print("No file found in the current buffer!")
-					return
-				end
-
-				local cmd =
-					string.format("tectonic -k %s && killall -SIGUSR1 texpresso", vim.fn.shellescape(current_file))
-
-				vim.fn.jobstart({ "sh", "-c", cmd }, {
-					on_exit = function(_, exit_code)
-						if exit_code == 0 then
-							print("LaTeX Build Successful: " .. current_file)
-						else
-							print("LaTeX Build Failed (Exit code: " .. exit_code .. ")")
-						end
-					end,
-				})
-			end, { desc = "Build LaTeX and update texpresso" })
-		end,
-	},
-	{
-		"vimtex",
-		auto_enable = true,
-		before = function()
-			vim.g.vimtex_compiler_method = "generic"
-			vim.g.vimtex_compiler_generic = {
-				command = "ls *.tex | entr -n -c tectonic /_ --synctex --keep-logs",
-			}
-			vim.g.vimtex_quickfix_open_on_warning = 0
-			vim.g.vimtex_view_general_viewer = "okular"
-			vim.g.vimtex_view_general_options = [[--unique file:@pdf\#src:@line@tex]]
-			vim.g.tex_flavor = "latex"
-		end,
-		after = function()
-			require("which-key").add({
-				-- { "<localleader>l", group = "", icon = "󰙩" }, -- Assuming your vimtex maplocalleader is the default
-				{ "<localleader>la", desc = "Context Menu" },
-				{ "<localleader>lc", desc = "Clean" },
-				{ "<localleader>lC", desc = "Clean Full" },
-				{ "<localleader>le", desc = "Errors" },
-				{ "<localleader>lg", desc = "Status" },
-				{ "<localleader>lG", desc = "Status All" },
-				{ "<localleader>li", desc = "Info" },
-				{ "<localleader>lI", desc = "Info Full" },
-				{ "<localleader>lk", desc = "Stop" },
-				{ "<localleader>lK", desc = "Stop All" },
-				{ "<localleader>ll", desc = "Compile" },
-				{ "<localleader>lL", desc = "Compile Selected" },
-				{ "<localleader>lm", desc = "Imaps List" },
-				{ "<localleader>lo", desc = "Compile Output" },
-				{ "<localleader>lq", desc = "Log" },
-				{ "<localleader>ls", desc = "Toggle Main" },
-				{ "<localleader>lS", desc = "Compile SS" },
-				{ "<localleader>lt", desc = "TOC Open" },
-				{ "<localleader>lT", desc = "TOC Toggle" },
-				{ "<localleader>lv", desc = "View" },
-				{ "<localleader>lx", desc = "Reload" },
-				{ "<localleader>lX", desc = "Reload State" },
 			})
 		end,
 	},

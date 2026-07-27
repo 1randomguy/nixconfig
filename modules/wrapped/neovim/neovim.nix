@@ -150,14 +150,9 @@
 
       config.specs.latex = {
         enable = !config.settings.minimal;
-        data = with pkgs.vimPlugins; [
-          texpresso-vim
-          vimtex
-        ];
         runtimePkgs = with pkgs; [
-          texpresso
           tectonic
-          entr
+          texlab
         ];
       };
 
