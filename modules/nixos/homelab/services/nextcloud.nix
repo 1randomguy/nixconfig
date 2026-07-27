@@ -69,6 +69,7 @@
           filelocking.enabled = true;
           session_lifetime = "2592000";
           log_type = "systemd";
+          trashbin_retention_obligation = "auto, 30"; # guarantee deletion after 30 days
           # Authelia OIDC
           allow_user_to_change_display_name = false;
           lost_password_link = "disabled";
