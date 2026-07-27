@@ -1,7 +1,6 @@
 -- NOTE: These 2 should be set up before any plugins with keybinds are loaded.
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -9,20 +8,20 @@ vim.g.maplocalleader = ' '
 -- vim.o.titlestring = "nvim: (%{strlen(&ft)?&ft:'none'}) %f"
 vim.o.title = true
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "TermEnter" }, {
-  callback = function()
-    local dir = vim.fn.getcwd()
-    -- Shorten home directory to '~'
-    local home = os.getenv("HOME")
-    if home then
-      dir = dir:gsub("^" .. vim.pesc(home), "~")
-    end
-    if vim.bo.buftype == "terminal" then
-      vim.o.titlestring = string.format("Nvim: %%y (%s)", dir)
-    else
-      -- Fallback for regular files
-      vim.o.titlestring = string.format("Nvim: %%t (%s)", dir)
-    end
-  end,
+	callback = function()
+		local dir = vim.fn.getcwd()
+		-- Shorten home directory to '~'
+		local home = os.getenv("HOME")
+		if home then
+			dir = dir:gsub("^" .. vim.pesc(home), "~")
+		end
+		if vim.bo.buftype == "terminal" then
+			vim.o.titlestring = string.format("Nvim: %%y (%s)", dir)
+		else
+			-- Fallback for regular files
+			vim.o.titlestring = string.format("Nvim: %%t (%s)", dir)
+		end
+	end,
 })
 
 -- allow .nvim.lua in current dir and parents (project config)
@@ -32,14 +31,14 @@ vim.o.exrc = false -- can be toggled off in that file to stop it from searching 
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- Set highlight on search
 vim.opt.hlsearch = true
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
+vim.opt.inccommand = "split"
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
@@ -48,11 +47,11 @@ vim.opt.scrolloff = 10
 vim.wo.number = true
 
 -- Enable mouse mode
-vim.o.mouse = 'a'
+vim.o.mouse = "a"
 
 -- Indent
 vim.o.smarttab = true
-vim.opt.cpoptions:append('I')
+vim.opt.cpoptions:append("I")
 vim.o.expandtab = true
 -- vim.o.smartindent = true
 -- vim.o.autoindent = true
@@ -75,7 +74,7 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 
 -- Keep signcolumn on by default
-vim.wo.signcolumn = 'yes'
+vim.wo.signcolumn = "yes"
 vim.wo.relativenumber = true
 
 -- Decrease update time
@@ -83,10 +82,10 @@ vim.o.updatetime = 250
 vim.o.timeoutlen = 300
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menu,preview,noselect'
+vim.o.completeopt = "menu,preview,noselect"
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
-vim.g.netrw_liststyle=0
-vim.g.netrw_banner=0
+vim.g.netrw_liststyle = 0
+vim.g.netrw_banner = 0
