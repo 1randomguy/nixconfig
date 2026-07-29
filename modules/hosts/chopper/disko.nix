@@ -38,6 +38,22 @@
             };
           };
         };
+        hdd1 = {
+          type = "disk";
+          device = "ata-WDC_WD10EZEX-22MFCA0_WD-WCC6Y0ZKV7S1";
+          content = {
+            type = "gpt";
+            partitions = {
+              zfs = {
+                size = "100%";
+                content = {
+                  type = "zfs";
+                  pool = "hddpool";
+                };
+              };
+            };
+          };
+        };
       };
       zpool = {
         rpool = {
@@ -87,27 +103,16 @@
                 logbias = "throughput";
               };
             };
-            # Immich 1: Fast App Directory (thumbs, profiles, database backups)
+            # Immich App Directory (thumbs, profiles, database backups)
             immich-app = {
               type = "zfs_fs";
               mountpoint = "/var/lib/immich";
               options.mountpoint = "legacy";
             };
-
+            # Data
             data = {
               type = "zfs_fs";
               options.mountpoint = "none";
-            };
-            "data/smb" = {
-              type = "zfs_fs";
-              mountpoint = "/public";
-              options.mountpoint = "legacy";
-            };
-            "data/smb-archive" = {
-              type = "zfs_fs";
-              mountpoint = "/public/archive";
-              options.compression = "zstd";
-              options.mountpoint = "legacy";
             };
             "data/nextcloud" = {
               type = "zfs_fs";
@@ -119,9 +124,50 @@
               mountpoint = "/home/bene/blog";
               options.mountpoint = "legacy";
             };
-
-            # Immich 2: Bulk Storage (Original Photos & Videos)
-            # Placed at /var/lib/immich-media for easy single-dataset migration to HDDs later
+          };
+        };
+        hddpool = {
+          type = "zpool";
+          options.ashift = "12";
+          # Root filesystem / pool-wide default properties
+          rootFsOptions = {
+            compression = "lz4";
+            acltype = "posixacl";
+            xattr = "sa";
+            normalization = "formD";
+            mountpoint = "none";
+            atime = "off"; # Disables atime globally for speed and longevity
+          };
+          datasets = {
+            # 100GB dummy safety space reservation
+            reserved = {
+              type = "zfs_fs";
+              options = {
+                reservation = "100G";
+                mountpoint = "none";
+              };
+            };
+            data = {
+              type = "zfs_fs";
+              options = {
+                mountpoint = "none";
+                encryption = "aes-256-ccm"; # Optimized cipher for N100
+                keyformat = "passphrase";
+                keylocation = "prompt";
+              };
+            };
+            "data/smb" = {
+              type = "zfs_fs";
+              mountpoint = "/public";
+              options.mountpoint = "legacy";
+            };
+            "data/smb/archive" = {
+              type = "zfs_fs";
+              mountpoint = "/public/archive";
+              options.compression = "zstd";
+              options.mountpoint = "legacy";
+            };
+            # Immich Bulk Storage (Original Photos & Videos)
             "data/immich-media" = {
               type = "zfs_fs";
               mountpoint = "/var/lib/immich-media";
