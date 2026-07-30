@@ -124,7 +124,7 @@
           unitConfig.DefaultDependencies = false;
           serviceConfig.Type = "oneshot";
           script = ''
-            mkdir -p /mnt/usb /tmp/key
+            mkdir -p /mnt/usb /run/keys
 
             echo "Waiting for encryption USB drive..."
             while [ ! -e /dev/disk/by-uuid/5eb8c316-4252-4a5e-a56d-ef1ff970d407 ]; do
@@ -135,8 +135,8 @@
             mount -o ro /dev/disk/by-uuid/5eb8c316-4252-4a5e-a56d-ef1ff970d407 /mnt/usb
 
             if [ -f /mnt/usb/zfs.key ]; then
-              cp /mnt/usb/zfs.key /tmp/key/
-              chmod 400 /tmp/key/zfs.key
+              cp /mnt/usb/zfs.key /run/keys/
+              chmod 400 /run/keys/zfs.key
               echo "ZFS key loaded successfully."
             else
               echo "ERROR: ZFS key not found on USB!"
