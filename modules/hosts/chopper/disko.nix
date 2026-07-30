@@ -71,7 +71,7 @@
             atime = "off"; # Disables atime globally for speed and SSD longevity
             encryption = "aes-256-ccm";
             keyformat = "raw";
-            keylocation = "file:///tmp/key/rpool.key";
+            keylocation = "file:///tmp/key/zfs.key";
           };
           datasets = {
             # 100GB dummy safety space reservation
@@ -153,7 +153,7 @@
                 mountpoint = "none";
                 encryption = "aes-256-ccm";
                 keyformat = "raw";
-                keylocation = "file:///tmp/key/hddpool.key";
+                keylocation = "file:///tmp/key/zfs.key";
               };
             };
             "data/smb" = {
