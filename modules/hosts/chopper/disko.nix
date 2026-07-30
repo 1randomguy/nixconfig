@@ -69,9 +69,9 @@
             normalization = "formD";
             mountpoint = "none";
             atime = "off"; # Disables atime globally for speed and SSD longevity
-            encryption = "aes-256-ccm"; # Optimized cipher for N100
-            keyformat = "passphrase";
-            keylocation = "prompt";
+            encryption = "aes-256-ccm";
+            keyformat = "raw";
+            keylocation = "file:///tmp/key/rpool.key";
           };
           datasets = {
             # 100GB dummy safety space reservation
@@ -151,9 +151,9 @@
               type = "zfs_fs";
               options = {
                 mountpoint = "none";
-                encryption = "aes-256-ccm"; # Optimized cipher for N100
-                keyformat = "passphrase";
-                keylocation = "prompt";
+                encryption = "aes-256-ccm";
+                keyformat = "raw";
+                keylocation = "file:///tmp/key/hddpool.key";
               };
             };
             "data/smb" = {
