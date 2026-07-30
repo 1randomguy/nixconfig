@@ -106,45 +106,45 @@
       boot.loader.efi.canTouchEfiVariables = true;
       # remote zfs unlock
       boot.initrd = {
-        kernelModules = [
-          "igc" # Intel I226-V 2.5GbE NIC Driver (Crucial for initrd SSH)
+        supportedFilesystems = [
+          "ext4"
         ];
-        network = {
-          enable = true;
-          ssh = {
-            enable = true;
-            port = 2222;
-            hostKeys = [
-              "/etc/secrets/initrd/ssh_host_ed25519_key"
-            ];
-            # public ssh key used for login (same as for normal login)
-            authorizedKeys = config.users.users.bene.openssh.authorizedKeys.keys;
-          };
-        };
-        systemd = {
-          enable = true;
-          network = {
-            enable = true;
-            networks."eth" = {
-              enable = true;
-              matchConfig.Name = "enp1s0";
-              address = [ "192.168.178.2/24" ];
-              gateway = [ "192.168.178.1" ];
-              linkConfig.RequiredForOnline = "routable";
-            };
-          };
+        kernelModules = [
+          "usb_storage"
+          "uas"
+        ];
+        systemd.services.load-zfs-key = {
+          description = "Mount USB and load ZFS decryption key";
+          wantedBy = [ "initrd-encryptedfs.target" ];
+          before = [ "initrd-encryptedfs.target" ];
+          after = [
+            "sys-seat-card0.device"
+            "dev-disk-by\\x2duuid-5eb8c316\\x2d4252\\x2d4a5e\\x2da56d\\x2def1ff970d407.device"
+          ];
+          unitConfig.DefaultDependencies = false;
+          serviceConfig.Type = "oneshot";
+          script = ''
+            mkdir -p /mnt/usb /tmp/key
 
-          services.zfs-ssh-unlock-profile = {
-            description = "Auto-run systemd password agent on SSH login";
-            wantedBy = [ "initrd.target" ];
-            before = [ "initrd-root-fs.target" ];
-            unitConfig.DefaultDependencies = false;
-            script = ''
-              mkdir -p /var/empty
-              echo "systemd-tty-ask-password-agent" > /var/empty/.profile
-            '';
-            serviceConfig.Type = "oneshot";
-          };
+            echo "Waiting for encryption USB drive..."
+            while [ ! -e /dev/disk/by-uuid/5eb8c316-4252-4a5e-a56d-ef1ff970d407 ]; do
+              sleep 1
+            done
+
+            echo "Mounting USB..."
+            mount -o ro /dev/disk/by-uuid/5eb8c316-4252-4a5e-a56d-ef1ff970d407 /mnt/usb
+
+            if [ -f /mnt/usb/zfs.key ]; then
+              cp /mnt/usb/zfs.key /tmp/key/
+              chmod 400 /tmp/key/zfs.key
+              echo "ZFS key loaded successfully."
+            else
+              echo "ERROR: ZFS key not found on USB!"
+              exit 1
+            fi
+
+            umount /mnt/usb
+          '';
         };
       };
 
