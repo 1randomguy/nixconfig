@@ -104,49 +104,6 @@
       # Use the systemd-boot EFI boot loader.
       boot.loader.systemd-boot.enable = true;
       boot.loader.efi.canTouchEfiVariables = true;
-      # remote zfs unlock
-      boot.initrd = {
-        supportedFilesystems = [
-          "ext4"
-        ];
-        kernelModules = [
-          "usb_storage"
-          "uas"
-        ];
-        systemd.services.load-zfs-key = {
-          description = "Mount USB and load ZFS decryption key";
-          wantedBy = [ "initrd-encryptedfs.target" ];
-          before = [ "initrd-encryptedfs.target" ];
-          after = [
-            "sys-seat-card0.device"
-            "dev-disk-by\\x2duuid-5eb8c316\\x2d4252\\x2d4a5e\\x2da56d\\x2def1ff970d407.device"
-          ];
-          unitConfig.DefaultDependencies = false;
-          serviceConfig.Type = "oneshot";
-          script = ''
-            mkdir -p /mnt/usb /run/keys
-
-            echo "Waiting for encryption USB drive..."
-            while [ ! -e /dev/disk/by-uuid/5eb8c316-4252-4a5e-a56d-ef1ff970d407 ]; do
-              sleep 1
-            done
-
-            echo "Mounting USB..."
-            mount -o ro /dev/disk/by-uuid/5eb8c316-4252-4a5e-a56d-ef1ff970d407 /mnt/usb
-
-            if [ -f /mnt/usb/zfs.key ]; then
-              cp /mnt/usb/zfs.key /run/keys/
-              chmod 400 /run/keys/zfs.key
-              echo "ZFS key loaded successfully."
-            else
-              echo "ERROR: ZFS key not found on USB!"
-              exit 1
-            fi
-
-            umount /mnt/usb
-          '';
-        };
-      };
 
       # Define a user account. Don't forget to set a password with ‘passwd’.
       users.users.bene = {
