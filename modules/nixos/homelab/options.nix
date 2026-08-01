@@ -1,20 +1,6 @@
 {
   flake.nixosModules.homelabOptions = { lib, ... }: {
     options.homelab = {
-      user = lib.mkOption {
-        default = "share";
-        type = lib.types.str;
-        description = ''
-          User to run the homelab services as
-        '';
-      };
-      group = lib.mkOption {
-        default = "share";
-        type = lib.types.str;
-        description = ''
-          Group to run the homelab services as
-        '';
-      };
       baseDomain = lib.mkOption {
         default = "";
         type = lib.types.str;
