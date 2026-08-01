@@ -41,7 +41,7 @@
       enable = true;
     };
     boot.kernel.sysctl = {
-      "vm.swappiness" = 70;
+      "vm.swappiness" = 40;
       "vm.vfs_cache_pressure" = 50;
       "vm.dirty_ratio" = 10;
       "vm.dirty_background_ratio" = 5;
