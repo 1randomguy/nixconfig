@@ -60,12 +60,13 @@
             # The main layer, if you choose to declare it in Nix
             main = {
               capslock = "layer(control)"; # you might need to also enclose the key in quotes if it contains non-alphabetical symbols
-              insert = "layer(otherlayer)";
               leftalt = "layer(meta)";
               leftmeta = "layer(alt)";
             };
-            otherlayer = {
-              capslock = "capslock";
+            shift = {
+              # Tapping both shift keys will activate capslock.
+              leftshift = "capslock";
+              rightshift = "capslock";
             };
           };
         };
