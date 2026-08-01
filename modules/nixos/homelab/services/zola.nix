@@ -9,6 +9,7 @@
     let
       cfg = config.homelab.services.zola;
       hl = config.homelab;
+      outputDir = "/var/lib/zola-blog";
     in
     {
       config = {
@@ -40,7 +41,7 @@
 
           script = ''
             ${pkgs.watchexec}/bin/watchexec --watch ${cfg.sourceDir} --exts md,toml,html -- \
-            ${pkgs.zola}/bin/zola build --output-dir ${cfg.outputDir}/www --force
+            ${pkgs.zola}/bin/zola build --output-dir ${outputDir}/www --force
           '';
 
           path = [
@@ -55,7 +56,7 @@
           acmeRoot = null;
           forceSSL = true;
 
-          root = "${cfg.outputDir}/www";
+          root = "${outputDir}/www";
 
           locations."/" = {
             index = "index.html";
@@ -65,7 +66,7 @@
 
         # Ensure the output directory has correct permissions
         systemd.tmpfiles.rules = [
-          "d ${cfg.outputDir} 0755 ${cfg.sourceOwner} nginx -"
+          "d ${outputDir} 0755 ${cfg.sourceOwner} nginx -"
         ];
       };
     };

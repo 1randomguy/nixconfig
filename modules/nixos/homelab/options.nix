@@ -61,11 +61,6 @@
           description = "User that owns your blog source directory";
           example = "user";
         };
-        outputDir = lib.mkOption {
-          type = lib.types.path;
-          default = "/var/lib/zola-blog";
-          description = "Directory where built site will be stored";
-        };
       };
     };
   };
