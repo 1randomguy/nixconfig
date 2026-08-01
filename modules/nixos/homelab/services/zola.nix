@@ -11,24 +11,6 @@
       hl = config.homelab;
     in
     {
-      options.homelab.services.zola = {
-        sourceDir = lib.mkOption {
-          type = lib.types.path;
-          description = "Path to your blog source directory";
-          example = "/home/user/blog";
-        };
-        sourceOwner = lib.mkOption {
-          type = lib.types.str;
-          description = "User that owns your blog source directory";
-          example = "user";
-        };
-        outputDir = lib.mkOption {
-          type = lib.types.path;
-          default = "/var/lib/zola-blog";
-          description = "Directory where built site will be stored";
-        };
-      };
-
       config = {
         # backup the blog source
         homelab.services.restic.backupDirs = [ cfg.sourceDir ];

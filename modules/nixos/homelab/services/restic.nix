@@ -6,27 +6,6 @@
       hl = config.homelab;
     in
     {
-      options.homelab.services.restic = {
-        backupDirs = lib.mkOption {
-          type = lib.types.listOf lib.types.str;
-          description = "The directories to backup";
-          default = [ ];
-        };
-        local.enable = lib.mkOption {
-          description = "Enable local backups for application state directories";
-          default = false;
-          type = lib.types.bool;
-        };
-        local.targetDir = lib.mkOption {
-          description = "Target path for local Restic backups";
-          type = lib.types.path;
-        };
-        s3.enable = lib.mkOption {
-          description = "Enable S3 backups for application state directories";
-          default = false;
-          type = lib.types.bool;
-        };
-      };
       config = lib.mkIf (cfg.backupDirs != [ ]) {
         age.secrets.restic = {
           file = ../../../../secrets/restic.age;

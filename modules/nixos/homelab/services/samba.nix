@@ -6,14 +6,6 @@
       cfg = config.homelab.services.samba;
     in
     {
-      options.homelab.services.samba = {
-        directory = mkOption {
-          type = types.str;
-          description = "The directory on the server to share";
-          default = "/data";
-        };
-      };
-
       config = {
         # CAREFUL: you need to run `smbpasswd -a my_user`
         services.samba = {
