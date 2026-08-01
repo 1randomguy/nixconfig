@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.homelabOptions = { lib, ... }: {
+  flake.nixosModules.homelab = { lib, ... }: {
     options.homelab = {
       baseDomain = lib.mkOption {
         default = "";

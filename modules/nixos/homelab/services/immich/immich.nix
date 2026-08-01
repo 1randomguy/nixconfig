@@ -26,7 +26,6 @@
           "video"
           "render"
           "media"
-          "podman"
           "docker"
         ];
       };

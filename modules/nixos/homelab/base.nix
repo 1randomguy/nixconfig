@@ -12,8 +12,10 @@
 
       networking.firewall.enable = true;
       networking.firewall.allowPing = true;
-
-      virtualisation.docker.enable = true;
+      networking.firewall.allowedTCPPorts = [
+        80
+        443
+      ];
 
       age.secrets.ntfy_url = {
         file = ../../../secrets/ntfy_url.age;
@@ -59,11 +61,6 @@
               "$WEBHOOK_URL"
           fi
         ''}";
-
-      networking.firewall.allowedTCPPorts = [
-        80
-        443
-      ];
 
       age.secrets.porkbun = {
         file = ../../../secrets/porkbun.age;
