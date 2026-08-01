@@ -18,6 +18,7 @@
         # homelab services
         self.nixosModules.homelab
         self.nixosModules.homelabOptions
+        self.nixosModules.nginx
         self.nixosModules.restic
         self.nixosModules.ddns-updater
         self.nixosModules.authelia
