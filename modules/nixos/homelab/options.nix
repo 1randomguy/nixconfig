@@ -37,8 +37,8 @@
           description = "Target path for local Restic backups";
           type = lib.types.path;
         };
-        s3.enable = lib.mkOption {
-          description = "Enable S3 backups for application state directories";
+        backblazeb2.enable = lib.mkOption {
+          description = "Enable S3 backups to backblazeb2 for application state directories";
           default = false;
           type = lib.types.bool;
         };

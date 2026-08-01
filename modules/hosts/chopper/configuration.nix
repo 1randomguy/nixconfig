@@ -39,7 +39,7 @@
       homelab.services.restic = {
         local.enable = true;
         local.targetDir = "/external/restic";
-        s3.enable = true;
+        backblazeb2.enable = true;
       };
       homelab.services.samba = {
         directory = "/public";

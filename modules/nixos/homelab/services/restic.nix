@@ -44,7 +44,7 @@
             };
           };
         })
-        (lib.mkIf cfg.s3.enable {
+        (lib.mkIf cfg.backblazeb2.enable {
           age.secrets.backblazeb2.file = ../../../../secrets/backblazeb2.age;
 
           services.restic.backups = {
