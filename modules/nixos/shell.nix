@@ -36,6 +36,7 @@
         pkgs.dig
         pkgs.gh
         pkgs.lazygit
+        pkgs.cifs-utils
       ];
       programs.yazi.enable = true;
 
