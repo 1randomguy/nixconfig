@@ -10,11 +10,25 @@
     "description": "Insert a numbered equation environment"
   },
   "Arrow Left": {
-    "prefix": [ "leftarrow", "arrowleft", "sample" ],
+    "prefix": [ "leftarrow", "arrowleft" ],
     "body": [
       "\\leftarrow$0"
     ],
     "description": "Insert an arrow that points left"
+  },
+  "Shares of masked variable": {
+    "prefix": [ "shares" ],
+    "body": [
+      "($1_i)_{$2 \\le i \\le $3}$0"
+    ],
+    "description": "Insert the shares of a variable"
+  },
+  "All shares of masked variable": {
+    "prefix": [ "sharesall" ],
+    "body": [
+      "($1_i)_{0 \\le i \\le n}$0"
+    ],
+    "description": "Insert the shares of a variable"
   },
   "Python Code": {
     "prefix": [ "python" ],
