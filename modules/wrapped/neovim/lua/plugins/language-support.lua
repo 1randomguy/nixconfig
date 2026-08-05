@@ -216,6 +216,14 @@ return {
 		auto_enable = true,
 		event = "DeferredUIEnter",
 		after = function(_)
+			local function get_snippet_path()
+				local live_path = vim.fn.expand("~/nixconfig/modules/wrapped/neovim/snippets")
+				if live_path and vim.uv.fs_stat(live_path) then
+					return { live_path }
+				end
+				-- on systems where nixconfig is not cloned to that path, fall back to the snippets in the nix store
+				return { nixInfo(nil, "settings", "custom_snippets_path") }
+			end
 			require("blink.cmp").setup({
 				-- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
 				-- See :h blink-cmp-config-keymap for configuring keymaps
@@ -288,9 +296,7 @@ return {
 						snippets = {
 							score_offset = 10,
 							opts = {
-								search_paths = {
-									nixInfo(nil, "settings", "custom_snippets_path"),
-								},
+								search_paths = get_snippet_path(),
 							},
 						},
 						cmp_cmdline = {
@@ -314,6 +320,9 @@ return {
 					},
 				},
 			})
+			vim.keymap.set("n", "<leader>br", function()
+				require("blink.cmp").reload()
+			end, { desc = "[b]link.cmp [r]eload" })
 		end,
 	},
 	{
