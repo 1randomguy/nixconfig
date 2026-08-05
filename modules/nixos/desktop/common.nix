@@ -65,8 +65,8 @@
             };
             shift = {
               # Tapping both shift keys will activate capslock.
-              leftshift = "capslock";
-              rightshift = "capslock";
+              leftshift = "overload(shift, capslock)";
+              rightshift = "overload(shift, capslock)";
             };
           };
         };
