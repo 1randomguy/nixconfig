@@ -15,6 +15,7 @@
         kanji-stroke-order-font
       ];
       fontconfig = {
+        enable = true;
         defaultFonts = {
           monospace = [ "JetBrainsMono" ];
           emoji = [ "Noto Color Emoji" ];

@@ -4,8 +4,9 @@
   {
     environment.systemPackages = [
       pkgs.teams-for-linux
+      pkgs.omnissa-horizon-client
       pkgs.logseq
-      pkgs.opencode
+      # pkgs.opencode
     ];
     age.secrets.work_wireguard_sk = {
       file = ../../../secrets/wireguard_work.age;
