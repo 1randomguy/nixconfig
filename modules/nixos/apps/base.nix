@@ -38,6 +38,7 @@
         bluetui
         gitg
         localsend
+        yubioath-flutter
       ];
       hjem.users.bene.files.".config/ghostty".source = ./config/ghostty;
     };
