@@ -16,6 +16,15 @@
     ],
     "description": "Insert an arrow that points left"
   },
+  "Cryptocode for loop": {
+    "prefix": [ "pcfor" ],
+    "body": [
+      "\\pcfor $1 \\pcdo \\\\\\\\",
+      " \\t $0 \\\\\\\\",
+      "\\pcendfor"
+    ],
+    "description": "Insert a for loop in cryptocode"
+  },
   "Shares of masked variable": {
     "prefix": [ "shares" ],
     "body": [
