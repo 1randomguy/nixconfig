@@ -25,6 +25,38 @@
     ],
     "description": "Insert a for loop in cryptocode"
   },
+  "Cryptocode if statement": {
+    "prefix": [ "pcif" ],
+    "body": [
+      "\\pcif $1 \\pcthen \\\\\\\\",
+      " \\t $0 \\\\\\\\",
+      "\\pcfi"
+    ],
+    "description": "Insert an if in cryptocode"
+  },
+  "Cryptocode elseif statement": {
+    "prefix": [ "pcelseif" ],
+    "body": [
+      "\\pcelseif $1 \\pcthen \\\\\\\\",
+      " \\t $0 \\\\\\\\"
+    ],
+    "description": "Insert an elseif in cryptocode"
+  },
+  "Cryptocode else statement": {
+    "prefix": [ "pcelse" ],
+    "body": [
+      "\\pcelse \\\\\\\\",
+      " \\t $0 \\\\\\\\"
+    ],
+    "description": "Insert an else in cryptocode"
+  },
+  "Cryptocode function call": {
+    "prefix": [ "func", "proc" ],
+    "body": [
+      "\\text{$1}\\big( $0 \\big)"
+    ],
+    "description": "Insert a call to another procedure in cryptocode"
+  },
   "Shares of masked variable": {
     "prefix": [ "shares" ],
     "body": [
@@ -38,6 +70,36 @@
       "($1_i)_{0 \\le i \\le n}$0"
     ],
     "description": "Insert the shares of a variable"
+  },
+  "Newline": {
+    "prefix": [ "newline", "nl" ],
+    "body": [
+      "\\\\\\\\",
+      "$0"
+    ],
+    "description": "Insert the shares of a variable"
+  },
+  "Cryptocode Algorithm": {
+    "prefix": [ "algorithm" ],
+    "body": [
+      "\\begin{algorithm}",
+      " \\hrule height 0.8pt depth 0pt",
+      " \\vspace{0.3em}",
+      " ",
+      " \\procedure[linenumbering, width=\\textwidth]",
+      " {$1}",
+      " {",
+      "  $2",
+      " }",
+      " ",
+      " \\vspace{0.3em}",
+      " \\hrule height 0.5pt depth 0pt",
+      " \\caption{$3}",
+      " \\label{alg:$4}",
+      "\\end{algorithm}",
+      "$0"
+    ],
+    "description": "Insert cryptorcode"
   },
   "Python Code": {
     "prefix": [ "python" ],
