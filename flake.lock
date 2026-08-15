@@ -30,11 +30,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1785862528,
-        "narHash": "sha256-PKv8AMM1PipghvUTwR2TSAzD1wGaQiAUW7oLVwYANa8=",
+        "lastModified": 1786691995,
+        "narHash": "sha256-P+4CF2bEA3ZRD6ZT/vHxX6HtVNEpMv5MKP1Hc00E9eE=",
         "owner": "MalpenZibo",
         "repo": "ashell",
-        "rev": "23a5d136b36169e92a90353a6b17ef609082b33a",
+        "rev": "c9f2019c8ed275eab30f37459bbb4a916cb141f9",
         "type": "github"
       },
       "original": {
@@ -371,11 +371,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1785967620,
-        "narHash": "sha256-IItrdb7Puk05RqOBWZYFC5X6Wl1sJmCfh5MWVHw5iMM=",
+        "lastModified": 1786599213,
+        "narHash": "sha256-yNJd40f11EzXBjSByCB7IPpeFFAdeoSKKM67dGkfFoU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "b7c2ada94fe99c15b0dbcf4d11fd7850b957a436",
+        "rev": "0e251e24a4f24e036a084b6b4b2d2491af4167f4",
         "type": "github"
       },
       "original": {
@@ -387,11 +387,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1785967620,
-        "narHash": "sha256-IItrdb7Puk05RqOBWZYFC5X6Wl1sJmCfh5MWVHw5iMM=",
+        "lastModified": 1786599213,
+        "narHash": "sha256-yNJd40f11EzXBjSByCB7IPpeFFAdeoSKKM67dGkfFoU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "b7c2ada94fe99c15b0dbcf4d11fd7850b957a436",
+        "rev": "0e251e24a4f24e036a084b6b4b2d2491af4167f4",
         "type": "github"
       },
       "original": {
@@ -403,11 +403,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1785989512,
-        "narHash": "sha256-HFQhkQcl5D1hUNoen3SGHCSFCt2Bg6uP+HgbrnA3InQ=",
+        "lastModified": 1786711500,
+        "narHash": "sha256-QvnceIGTBeDvDd9oCn+GvdsnkquliuwbVgpiRH68qaQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "445d861c6d31b4af0c79d8d4be2331f762a361d7",
+        "rev": "02e08985a27c65ffd33d434eeb2e660a2e4dc84d",
         "type": "github"
       },
       "original": {
@@ -587,11 +587,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786122053,
-        "narHash": "sha256-FaGkKIVDdOY+D/xquoNx2XA1BX41iNGqq09Jt2uhTjc=",
+        "lastModified": 1786315804,
+        "narHash": "sha256-FE8RGCUeOAllWgoa3B29WvpS0FFi5M+XaVcIeBSSLr8=",
         "ref": "refs/heads/main",
-        "rev": "2c45bd70cf1b8722957bf9450b46e96732a91ee0",
-        "revCount": 634,
+        "rev": "16870ed08cd0315f08b4abec45771a3fea13e042",
+        "revCount": 637,
         "type": "git",
         "url": "https://tangled.org/devins.page/tinysub"
       },
