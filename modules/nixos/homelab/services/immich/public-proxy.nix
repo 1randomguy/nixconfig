@@ -1,13 +1,24 @@
+{ inputs, ... }:
 {
   flake.nixosModules.immich-public-proxy =
-    { lib, config, ... }:
+    {
+      lib,
+      pkgs,
+      config,
+      ...
+    }:
     let
       hl = config.homelab;
+      pkgs-unstable = import inputs.nixpkgs-unstable {
+        inherit (pkgs.stdenv.hostPlatform) system;
+        config.allowUnfree = true;
+      };
     in
     {
       config = lib.mkIf (config.services.immich.enable) {
         services.immich-public-proxy = {
           enable = true;
+          package = pkgs-unstable.immich-public-proxy;
           port = 2285;
           immichUrl = "http://[::1]:${toString config.services.immich.port}";
           settings = {
