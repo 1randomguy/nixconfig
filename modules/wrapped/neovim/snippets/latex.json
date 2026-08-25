@@ -53,7 +53,7 @@
   "Cryptocode function call": {
     "prefix": [ "func", "proc" ],
     "body": [
-      "\\text{$1}\\big( $0 \\big)"
+      "\\text{$1}\\big($0\\big)"
     ],
     "description": "Insert a call to another procedure in cryptocode"
   },
@@ -89,15 +89,14 @@
       " \\procedure[linenumbering, width=\\textwidth]",
       " {$1}",
       " {",
-      "  $2",
+      "  $0",
       " }",
       " ",
       " \\vspace{0.3em}",
       " \\hrule height 0.5pt depth 0pt",
       " \\caption{$3}",
-      " \\label{alg:$4}",
-      "\\end{algorithm}",
-      "$0"
+      " \\label{alg:$2}",
+      "\\end{algorithm}"
     ],
     "description": "Insert cryptorcode"
   },
