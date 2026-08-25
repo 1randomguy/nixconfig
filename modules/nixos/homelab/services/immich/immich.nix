@@ -1,8 +1,13 @@
+{inputs, ...}:
 {
   flake.nixosModules.immich =
-    { config, ... }:
+    { config, pkgs, ... }:
     let
       hl = config.homelab;
+      pkgs-unstable = import inputs.nixpkgs-unstable {
+        inherit (pkgs.stdenv.hostPlatform) system;
+        config.allowUnfree = true;
+      };
     in
     {
       services.immich = {
@@ -14,6 +19,7 @@
         environment = {
           #DB_SKIP_MIGRATIONS = "true"; # NOTE: tmp for migration
         };
+        package = pkgs-unstable.immich;
       };
 
       users.groups.immich = {
