@@ -21,6 +21,7 @@
         self.nixosModules.image-editing
         self.nixosModules.latex
         self.nixosModules.razer
+        self.nixosModules.smb-mount
 
         self.nixosModules.compat
         self.nixosModules.fonts
