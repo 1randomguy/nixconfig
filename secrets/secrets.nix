@@ -1,9 +1,10 @@
 let
   desktop_bene_user = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII32Ud21QSaA2cUChs6LvIP+oE3ZA3h+hKiteOZ6VZXE agenix_bene_desktop";
   sanji_bene_user = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPCbATrAxuPLKk5UdhY5Jq9ONL+LQptpYgkisltGhu6R bene@sanji";
+  sanji_system = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKrCrb0IgesCvYGXNm0bYMvkYMyJRSNPq5aWgpYhTdPB root@sanji";
   chopper_server = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMcOyB/4MhZufiivqo8sL+w8CVPZFrMV6GnVd6wDFcD/ root@chopper";
   chopper_bene_user = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDs5g0mp6Uwglxzt6XctUCD7YbvC2Fx8wyewUKp3o5W0 bene@chopper";
-  private = [ chopper_server chopper_bene_user desktop_bene_user sanji_bene_user ];
+  private = [ chopper_server chopper_bene_user desktop_bene_user sanji_bene_user sanji_system ];
   worklaptop = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOnZllVInrxAQ6jQUQmdlNAhXwqp5ZbSfRfFnZYdphVn root@worklaptop";
   worklaptop_bene_user = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOdx+/OhkagwQBQD+xYKWUejYggogSl0j5LTe3QBZst/ bene@worklaptop";
   worklaptop_both = [ worklaptop worklaptop_bene_user ];
