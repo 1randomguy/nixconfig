@@ -27,6 +27,7 @@ in
   "nextcloud_secrets.age".publicKeys = chopper;
   "ntfy_url.age".publicKeys = chopper;
   "crowdsec_token.age".publicKeys = chopper;
+  "subwave-env.age".publicKeys = chopper;
   "smb_secrets.age".publicKeys = sanji;
 
   "wireguard_work.age".publicKeys = worklaptop;

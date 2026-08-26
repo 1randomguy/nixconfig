@@ -7,6 +7,13 @@
       port = "7700";
     in
     {
+      age.secrets."subwave-env" = {
+        file = ../secrets/subwave-env.age;
+        mode = "0400";
+        # If running rootless Podman/Docker, set owner to your user UID
+        owner = "root";
+      };
+
       virtualisation.oci-containers = {
         backend = "docker"; # or "docker"
         containers = {
@@ -22,7 +29,13 @@
             ];
             environment = {
               PORT = port;
+              ADMIN_USER = "admin";
+              SITE_URL = "http://127.0.0.1:7700";
             };
+            # Pulls the decrypted ADMIN_PASS environment variable from agenix
+            environmentFiles = [
+              config.age.secrets."subwave-env".path
+            ];
             # Host networking enables direct communication with your existing Gonic server on localhost
             extraOptions = [ "--network=host" ];
           };
