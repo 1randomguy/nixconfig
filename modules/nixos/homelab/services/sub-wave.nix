@@ -4,7 +4,6 @@
     let
       hl = config.homelab;
       state_dir = "/var/lib/subwave/state";
-      port = "7700";
     in
     {
       age.secrets."subwave-env" = {
@@ -28,7 +27,6 @@
               "${state_dir}:/app/state"
             ];
             environment = {
-              PORT = port;
               ADMIN_USER = "admin";
               SITE_URL = "http://127.0.0.1:7700";
             };
@@ -55,7 +53,7 @@
         enableAuthelia = true;
 
         locations."/" = {
-          proxyPass = "http://127.0.0.1:${port}";
+          proxyPass = "http://127.0.0.1:7700";
           proxyWebsockets = true;
           recommendedProxySettings = true;
         };
