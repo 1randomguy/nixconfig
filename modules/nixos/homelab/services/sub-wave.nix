@@ -36,8 +36,9 @@
             environmentFiles = [
               config.age.secrets."subwave-env".path
             ];
-            # Host networking enables direct communication with your existing Gonic server on localhost
-            extraOptions = [ "--network=host" ];
+            extraOptions = [
+              "--add-host=host.docker.internal:host-gateway"
+            ];
           };
         };
       };
