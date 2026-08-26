@@ -8,7 +8,7 @@
     in
     {
       age.secrets."subwave-env" = {
-        file = ../secrets/subwave-env.age;
+        file = ../../../../secrets/subwave-env.age;
         mode = "0400";
         # If running rootless Podman/Docker, set owner to your user UID
         owner = "root";
