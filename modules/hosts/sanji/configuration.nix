@@ -20,7 +20,7 @@
         self.nixosModules.extra-apps
         self.nixosModules.image-editing
         self.nixosModules.latex
-        self.nixosModules.razer
+        # self.nixosModules.razer
         self.nixosModules.smb-mount
 
         self.nixosModules.compat
@@ -28,7 +28,7 @@
         self.nixosModules.master-thesis
         self.nixosModules.uni-vpn
         self.nixosModules.games
-        self.nixosModules.local-llm
+        # self.nixosModules.local-llm
       ];
 
       games.bottles.enable = true;
