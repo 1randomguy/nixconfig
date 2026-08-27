@@ -44,6 +44,7 @@
       url = "git+https://tangled.org/devins.page/tinysub";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    jail-nix.url = "sourcehut:~alexdavid/jail.nix";
   };
 
   # outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
