@@ -40,6 +40,7 @@
         rename
         nix-prefetch-scripts
         direnv
+        docker-client
         tmux
         self.packages.${system}.neovim
         self.packages.${system}.zsh
@@ -80,6 +81,14 @@
                   RUNTIME_ARGS+=(--ro-bind "$P" "$P")
                   shift 2
                   ;;
+                --docker)
+                  if [ ! -e /var/run/docker.sock ]; then
+                    echo "ai-jail: --docker: no docker socket on this host" >&2
+                    exit 1
+                  fi
+                  RUNTIME_ARGS+=(--bind /var/run/docker.sock /var/run/docker.sock)
+                  shift
+                  ;;
                 *)
                   if [ -e "$1" ]; then
                     P="$(realpath "$1")"
@@ -111,7 +120,7 @@
             (entry: ''
               echo "========================================================"
               echo " Isolated AI Sandbox (jail.nix)"
-              echo " Usage: ai-jail [--bind DIR | --ro-bind DIR | DIR ...]"
+              echo " Usage: ai-jail [--bind DIR | --ro-bind DIR | --docker | DIR ...]"
               echo "========================================================"
               if [ -n "$AIJ_CDIR" ]; then
                 if ! cd "$AIJ_CDIR" 2>/dev/null; then
