@@ -7,7 +7,7 @@
       pkgs.omnissa-horizon-client
       pkgs.logseq
       # pkgs.opencode
-      self.packages."${pkgs.stdenv.hostPlatform.system}".opencode-jail
+      self.packages."${pkgs.stdenv.hostPlatform.system}".ai-jail
     ];
     age.secrets.work_wireguard_sk = {
       file = ../../../secrets/wireguard_work.age;

@@ -47,12 +47,12 @@
       ];
     in
     {
-      packages.opencode-jail = jail "opencode-jail" self.packages.${system}.zsh (
+      packages.ai-jail = jail "ai-jail" self.packages.${system}.zsh (
         with jail.combinators;
         [
           (add-pkg-deps sandboxPackages)
           network
-          (persist-home "opencode-agent")
+          (persist-home "ai-home")
           (rw-bind "/home/${hostUser}/Code" "/home/${hostUser}/Code")
           (ro-bind "/home/${hostUser}/.config/opencode" "/home/${hostUser}/.config/opencode")
           (set-env "TERM" "xterm-256color")
@@ -74,9 +74,9 @@
         ]
       );
 
-      apps.opencode-jail = {
+      apps.ai-jail = {
         type = "app";
-        program = "${self.packages.${system}.opencode-jail}/bin/opencode-jail";
+        program = "${self.packages.${system}.opencode-jail}/bin/ai-jail";
       };
     };
 }

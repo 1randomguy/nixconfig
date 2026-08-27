@@ -124,9 +124,10 @@
             }
           ''
 
-          ''
-            alias lg='lazygit'
-          ''
+           ''
+             alias lg='lazygit'
+             alias aij='ai-jail'
+           ''
         ];
       };
     };
