@@ -110,8 +110,7 @@
           (wrap-entry
             (entry: ''
               echo "========================================================"
-              echo " OpenCode Isolated Sandbox (jail.nix)"
-              echo " Persistent but isolated \$HOME. Native I/O on ~/Code"
+              echo " Isolated AI Sandbox (jail.nix)"
               echo " Usage: ai-jail [--bind DIR | --ro-bind DIR | DIR ...]"
               echo "========================================================"
               if [ -n "$AIJ_CDIR" ]; then
