@@ -20,15 +20,16 @@
             image = "ghcr.io/perminder-klair/subwave-aio:latest";
             autoStart = true;
             ports = [
-              "7700:7700" # Web Player & Admin Interface
+              "127.0.0.1:7700:80" # Map host 7700 to internal Caddy edge on port 80
             ];
             volumes = [
               # Persistent state directory for SQLite DB, logs, and caches
-              "${state_dir}:/app/state"
+              "${state_dir}:/var/sub-wave"
             ];
             environment = {
               ADMIN_USER = "admin";
-              SITE_URL = "http://127.0.0.1:7700";
+              SITE_URL = "https://radio.${hl.baseDomain}";
+              TZ = config.time.timeZone;
             };
             # Pulls the decrypted ADMIN_PASS environment variable from agenix
             environmentFiles = [
@@ -50,12 +51,16 @@
         enableACME = true;
         acmeRoot = null;
         forceSSL = true;
-        enableAuthelia = true;
+        enableAuthelia = false;
 
         locations."/" = {
           proxyPass = "http://127.0.0.1:7700";
           proxyWebsockets = true;
           recommendedProxySettings = true;
+          extraConfig = ''
+            proxy_buffering off;
+            proxy_read_timeout 1h;
+          '';
         };
       };
     };
