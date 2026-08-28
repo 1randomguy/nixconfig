@@ -26,6 +26,7 @@
         self.nixosModules.compat
         self.nixosModules.fonts
         self.nixosModules.master-thesis
+        self.nixosModules.ai-jail
         self.nixosModules.uni-vpn
         self.nixosModules.games
         # self.nixosModules.local-llm

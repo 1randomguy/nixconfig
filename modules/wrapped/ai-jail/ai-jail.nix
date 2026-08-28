@@ -9,6 +9,10 @@
     let
       system = pkgs.stdenv.hostPlatform.system;
       hostUser = "bene";
+      pkgs-unstable = import inputs.nixpkgs-unstable {
+        inherit (pkgs.stdenv.hostPlatform) system;
+        config.allowUnfree = true;
+      };
 
       jail = inputs.jail-nix.lib.extend {
         inherit pkgs;
@@ -42,6 +46,7 @@
         direnv
         docker-client
         tmux
+        pkgs-unstable.antigravity-cli
         self.packages.${system}.neovim
         self.packages.${system}.zsh
         nix
@@ -107,8 +112,9 @@
           (add-pkg-deps sandboxPackages)
           network
           (persist-home "ai-home")
-          (rw-bind "/home/${hostUser}/Code" "/home/${hostUser}/Code")
-          (ro-bind "/home/${hostUser}/.config/opencode" "/home/${hostUser}/.config/opencode")
+          (try-rw-bind "/home/${hostUser}/Code" "/home/${hostUser}/Code")
+          (try-rw-bind "/home/${hostUser}/.gemini" "/home/${hostUser}/.gemini")
+          (try-ro-bind "/home/${hostUser}/.config/opencode" "/home/${hostUser}/.config/opencode")
           (set-env "TERM" "xterm-256color")
           (set-env "COLORTERM" "truecolor")
           (set-env "NIX_CONFIG" "experimental-features = nix-command flakes")
@@ -134,10 +140,5 @@
             ''))
         ]
       );
-
-      apps.ai-jail = {
-        type = "app";
-        program = "${self.packages.${system}.ai-jail}/bin/ai-jail";
-      };
     };
 }
