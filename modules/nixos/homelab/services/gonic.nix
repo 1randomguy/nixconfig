@@ -3,7 +3,7 @@
     { config, ... }:
     let
       hl = config.homelab;
-      address = "127.0.0.1:4747";
+      port = "4747";
     in
     {
       # Set up gonic.
@@ -13,7 +13,7 @@
           music-path = "/public/Music";
           podcast-path = "/public/Podcasts";
           playlists-path = "/public/Music/Playlists";
-          listen-addr = address;
+          listen-addr = "0.0.0.0:${port}";
           scan-watcher-enabled = true;
           multi-value-genre = "delim ;";
           multi-value-artist = "delim ;";
@@ -29,9 +29,19 @@
         enableAuthelia = true;
 
         locations."/" = {
-          proxyPass = "http://${address}";
+          proxyPass = "http://127.0.0.1:${port}";
           proxyWebsockets = true;
           recommendedProxySettings = true;
+        };
+
+        # Allow Subsonic API requests through without Authelia redirects
+        locations."/rest" = {
+          proxyPass = "http://127.0.0.1:${port}";
+          proxyWebsockets = true;
+          recommendedProxySettings = true;
+          extraConfig = ''
+            auth_request off;
+          '';
         };
       };
     };

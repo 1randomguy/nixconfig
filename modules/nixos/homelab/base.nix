@@ -12,6 +12,9 @@
 
       networking.firewall.enable = true;
       networking.firewall.allowPing = true;
+      networking.firewall.trustedInterfaces = [
+        "docker0"
+      ];
       networking.firewall.allowedTCPPorts = [
         80
         443
