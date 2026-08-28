@@ -14,6 +14,20 @@
         config.allowUnfree = true;
       };
 
+      flakeRegistry = pkgs.writeText "flake-registry.json" (builtins.toJSON {
+        version = 2;
+        flakes = [
+          {
+            from = { id = "nixpkgs"; type = "indirect"; };
+            to = { type = "path"; path = "${inputs.nixpkgs}"; };
+          }
+          {
+            from = { id = "nixpkgs-unstable"; type = "indirect"; };
+            to = { type = "path"; path = "${inputs.nixpkgs-unstable}"; };
+          }
+        ];
+      });
+
       jail = inputs.jail-nix.lib.extend {
         inherit pkgs;
         basePermissions =
@@ -27,8 +41,8 @@
       };
 
       sandboxPackages = with pkgs; [
-        opencode
         git
+        bash
         ripgrep
         fd
         jq
@@ -46,10 +60,11 @@
         direnv
         docker-client
         tmux
+        nix
         pkgs-unstable.antigravity-cli
+        opencode
         self.packages.${system}.neovim
         self.packages.${system}.zsh
-        nix
       ];
     in
     {
@@ -112,12 +127,18 @@
           (add-pkg-deps sandboxPackages)
           network
           (persist-home "ai-home")
+          (try-rw-bind "/nix/var/nix/daemon-socket" "/nix/var/nix/daemon-socket")
           (try-rw-bind "/home/${hostUser}/Code" "/home/${hostUser}/Code")
           (try-rw-bind "/home/${hostUser}/.gemini" "/home/${hostUser}/.gemini")
           (try-ro-bind "/home/${hostUser}/.config/opencode" "/home/${hostUser}/.config/opencode")
           (set-env "TERM" "xterm-256color")
           (set-env "COLORTERM" "truecolor")
-          (set-env "NIX_CONFIG" "experimental-features = nix-command flakes")
+          (set-env "NIX_REMOTE" "daemon")
+          (set-env "NIX_PATH" "nixpkgs=${inputs.nixpkgs}")
+          (set-env "NIX_CONFIG" ''
+            experimental-features = nix-command flakes
+            flake-registry = ${flakeRegistry}
+          '')
           (set-env "LANG" "en_US.UTF-8")
           (set-env "LC_ALL" "en_US.UTF-8")
           (set-env "LOCALE_ARCHIVE" "${pkgs.glibcLocales}/lib/locale/locale-archive")
