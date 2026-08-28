@@ -37,6 +37,7 @@
             ];
             extraOptions = [
               "--add-host=host.docker.internal:host-gateway"
+              # ACCESS GONIC UNDER http://host.docker.internal:4747
             ];
           };
         };
