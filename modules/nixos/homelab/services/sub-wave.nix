@@ -48,6 +48,8 @@
         "d ${state_dir} 0755 root root -"
       ];
 
+      homelab.services.restic.backupDirs = [ state_dir ];
+
       services.nginx.virtualHosts."radio.${hl.baseDomain}" = {
         enableACME = true;
         acmeRoot = null;
