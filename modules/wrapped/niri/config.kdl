@@ -399,7 +399,7 @@ binds {
     Mod+Return hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty" "--working-directory=~/"; }
     Mod+Space hotkey-overlay-title="Run the launcher: vicinae" { spawn "vicinae" "toggle"; }
     Mod+B hotkey-overlay-title="Open browser: firefox" { spawn "firefox"; }
-    Mod+E hotkey-overlay-title="Open file explorer: nautilus" { spawn "nautilus"; }
+    Mod+E hotkey-overlay-title="Open file explorer: nautilus" { spawn "nautilus" "--new-window"; }
 
     Super+Alt+L allow-when-locked=true hotkey-overlay-title="Lock the Screen" { spawn "loginctl" "lock-session"; }
     Super+Shift+Alt+L allow-when-locked=true hotkey-overlay-title="Lock and Suspend" { spawn-sh "systemctl suspend"; }
