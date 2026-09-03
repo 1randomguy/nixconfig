@@ -109,6 +109,22 @@
                   RUNTIME_ARGS+=(--bind /var/run/docker.sock /var/run/docker.sock)
                   shift
                   ;;
+                -h | --help)
+                  echo "ai-jail - isolated AI sandbox (jail.nix)"
+                  echo ""
+                  echo "Usage: ai-jail [--bind DIR | --ro-bind DIR | --docker] [DIR ...]"
+                  echo ""
+                  echo "Options:"
+                  echo "  --bind DIR    Bind DIR into the sandbox read-write"
+                  echo "  --ro-bind DIR Bind DIR into the sandbox read-only"
+                  echo "  --docker      Bind the Docker socket into the sandbox"
+                  echo "  -h, --help    Show this help and exit"
+                  echo ""
+                  echo "Arguments:"
+                  echo "  DIR           Paths bound read-write; a directory sets the"
+                  echo "                initial working directory (default: ~/Code)"
+                  exit 0
+                  ;;
                 *)
                   if [ -e "$1" ]; then
                     P="$(realpath "$1")"
@@ -147,7 +163,7 @@
             (entry: ''
               echo "========================================================"
               echo " Isolated AI Sandbox (jail.nix)"
-              echo " Usage: ai-jail [--bind DIR | --ro-bind DIR | --docker | DIR ...]"
+              echo " Usage: ai-jail [--bind DIR | --ro-bind DIR | --docker | --help | DIR ...]"
               echo "========================================================"
               if [ -n "$AIJ_CDIR" ]; then
                 if ! cd "$AIJ_CDIR" 2>/dev/null; then
