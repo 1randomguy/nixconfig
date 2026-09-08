@@ -52,6 +52,12 @@
         # The name (default) is just the name of the configuration file, it does not really matter
         keyboards.default = {
           ids = [
+          #TODO: change this to match everything except hhkb?
+          # e.g.:
+          # [ids]
+          # *
+          # -0123:4567
+          # and then add the capslock rule to hhkb aswell :)
             "0001:0001" # only the laptop keyboard (find uuid with `sudo keyd -m`)
             "17ef:608d" # Lenovo LiteOn
             "17ef:6099"
