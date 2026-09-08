@@ -127,6 +127,7 @@
            ''
              alias lg='lazygit'
              alias aij='ai-jail'
+             alias docker-prune-full='docker system prune --all --force --volumes'
            ''
         ];
       };
