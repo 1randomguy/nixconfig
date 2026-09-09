@@ -52,23 +52,31 @@
         # The name (default) is just the name of the configuration file, it does not really matter
         keyboards.default = {
           ids = [
-          #TODO: change this to match everything except hhkb?
-          # e.g.:
-          # [ids]
-          # *
-          # -0123:4567
-          # and then add the capslock rule to hhkb aswell :)
-            "0001:0001" # only the laptop keyboard (find uuid with `sudo keyd -m`)
-            "17ef:608d" # Lenovo LiteOn
-            "17ef:6099"
+            # "0001:0001" # only the laptop keyboard (find uuid with `sudo keyd -m`)
+            # "17ef:608d" # Lenovo LiteOn
+            # "17ef:6099"
+            "*"
+            "-04fe:0021" # Exclude HHKB
           ];
           settings = {
-            # The main layer, if you choose to declare it in Nix
+            # The main layer
             main = {
               capslock = "layer(control)"; # you might need to also enclose the key in quotes if it contains non-alphabetical symbols
               leftalt = "layer(meta)";
               leftmeta = "layer(alt)";
             };
+            shift = {
+              # Tapping both shift keys will activate capslock.
+              leftshift = "overload(shift, capslock)";
+              rightshift = "overload(shift, capslock)";
+            };
+          };
+        };
+        keyboards.hhkb = {
+          ids = [
+            "04fe:0021" # Only HHKB
+          ];
+          settings = {
             shift = {
               # Tapping both shift keys will activate capslock.
               leftshift = "overload(shift, capslock)";
