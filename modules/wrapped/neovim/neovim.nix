@@ -225,6 +225,7 @@
           snacks-nvim
           vim-startuptime
           yazi-nvim
+          neogen
         ];
       };
 

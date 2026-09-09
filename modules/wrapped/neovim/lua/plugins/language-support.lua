@@ -382,4 +382,22 @@ return {
       })
     end,
   },
+  {
+    "neogen",
+    auto_enable = true,
+    cmd = { "Neogen" },
+    on_require = { "neogen" },
+    keys = {
+      { "<leader>cf", "<cmd>Neogen func<CR>", desc = "[C]ode [F]unction Annotation" },
+      { "<leader>cc", "<cmd>Neogen class<CR>", desc = "[C]ode [C]lass Annotation" },
+      { "<leader>ct", "<cmd>Neogen type<CR>", desc = "[C]ode [T]ype Annotation" },
+      { "<leader>cd", "<cmd>Neogen<CR>", desc = "[C]ode [D]ocumentation (Auto Decide)" },
+    },
+    after = function()
+      require("neogen").setup({
+        snippet_engine = "nvim",
+        enabled = true,
+      })
+    end,
+  },
 }
