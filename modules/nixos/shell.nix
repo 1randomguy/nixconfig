@@ -38,7 +38,60 @@
         pkgs.lazygit
         pkgs.cifs-utils
       ];
-      programs.yazi.enable = true;
+      programs.yazi = {
+        enable = true;
+        plugins = {
+          git = pkgs.yaziPlugins.git;
+        };
+        initLua = pkgs.writeText "init.lua" ''
+          require("git"):setup {
+            -- Order of status signs showing in the linemode
+            order = 1500,
+          }
+        '';
+        settings = {
+          yazi = {
+            mgr = {
+              show_hidden = true;
+            };
+            plugin = {
+              prepend_fetchers = [
+                {
+                  url = "*";
+                  run = "git";
+                  group = "git";
+                }
+                {
+                  url = "*/";
+                  run = "git";
+                  group = "git";
+                }
+              ];
+            };
+          };
+          theme = {
+            filetype = {
+              prepend_rules = [
+                {
+                  url = "*";
+                  is = "hidden";
+                  fg = "darkgray";
+                }
+                {
+                  url = "*/";
+                  is = "hidden";
+                  fg = "darkgray";
+                }
+              ];
+            };
+            git = {
+              ignored = {
+                fg = "darkgray";
+              };
+            };
+          };
+        };
+      };
 
       programs.git = {
         enable = true;

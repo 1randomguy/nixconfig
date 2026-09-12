@@ -194,40 +194,97 @@
         ];
       };
 
-      config.specs.general = {
-        after = [ "start" ];
-        runtimePkgs = with pkgs; [
-          ripgrep
-          fd
-          lazygit
-          yazi
-        ];
-        lazy = true;
-        # TODO: flash?, image support?, git diff tool?
-        data = with pkgs.vimPlugins; [
-          colorful-menu-nvim
-          nvim-autopairs
-          mini-surround
-          nvim-lspconfig
-          blink-cmp
-          blink-compat
-          cmp-cmdline
-          nvim-lint
-          conform-nvim
-          diffview-nvim
+      config.specs.general =
+        let
+          yazi = pkgs.yazi.override {
+            plugins = {
+              git = pkgs.yaziPlugins.git;
+            };
+            initLua = pkgs.writeText "init.lua" ''
+              require("git"):setup {
+                -- Order of status signs showing in the linemode
+                order = 1500,
+              }
+            '';
+            settings = {
+              yazi = {
+                mgr = {
+                  show_hidden = true;
+                };
+                plugin = {
+                  prepend_fetchers = [
+                    {
+                      url = "*";
+                      run = "git";
+                      group = "git";
+                    }
+                    {
+                      url = "*/";
+                      run = "git";
+                      group = "git";
+                    }
+                  ];
+                };
+              };
+              theme = {
+                filetype = {
+                  prepend_rules = [
+                    {
+                      url = "*";
+                      is = "hidden";
+                      fg = "darkgray";
+                    }
+                    {
+                      url = "*/";
+                      is = "hidden";
+                      fg = "darkgray";
+                    }
+                  ];
+                };
+                git = {
+                  ignored = {
+                    fg = "darkgray";
+                  };
+                };
+              };
+            };
+            extraPackages = [ pkgs.git ];
+          };
+        in
+        {
+          after = [ "start" ];
+          runtimePkgs = [
+            pkgs.ripgrep
+            pkgs.fd
+            pkgs.lazygit
+            yazi
+          ];
+          lazy = true;
+          # TODO: flash?, image support?, git diff tool?
+          data = with pkgs.vimPlugins; [
+            colorful-menu-nvim
+            nvim-autopairs
+            mini-surround
+            nvim-lspconfig
+            blink-cmp
+            blink-compat
+            cmp-cmdline
+            nvim-lint
+            conform-nvim
+            diffview-nvim
 
-          friendly-snippets
-          undotree
-          toggleterm-nvim
-          todo-comments-nvim
-          vim-illuminate
-          nvim-origami
-          snacks-nvim
-          vim-startuptime
-          yazi-nvim
-          neogen
-        ];
-      };
+            friendly-snippets
+            undotree
+            toggleterm-nvim
+            todo-comments-nvim
+            vim-illuminate
+            nvim-origami
+            snacks-nvim
+            vim-startuptime
+            yazi-nvim
+            neogen
+          ];
+        };
 
       config.specMods =
         { ... }:
