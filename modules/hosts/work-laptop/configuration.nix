@@ -71,6 +71,7 @@
           "wheel"
           "podman"
           "docker"
+          "wireshark"
         ]; # Enable ‘sudo’ for the user.
       };
 

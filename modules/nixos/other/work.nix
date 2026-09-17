@@ -1,33 +1,38 @@
-{self, ...}:
+{ self, ... }:
 {
-  flake.nixosModules.work = {pkgs, config, ...}:
-  {
-    environment.systemPackages = [
-      pkgs.teams-for-linux
-      pkgs.omnissa-horizon-client
-      pkgs.logseq
-      # pkgs.opencode
-      self.packages."${pkgs.stdenv.hostPlatform.system}".ai-jail
-    ];
-    age.secrets.work_wireguard_sk = {
-      file = ../../../secrets/wireguard_work.age;
-    };
-    networking.firewall = {
-      allowedUDPPorts = [ 52020 ];
-    };
-    networking.wireguard.interfaces.wg0 = {
-      listenPort = 52020;
-
-      ips = [ "192.168.2.183/32" ];
-      privateKeyFile = config.age.secrets.work_wireguard_sk.path;
-      peers = [
-        {
-          publicKey = "Z87+fvuCrO0W/EPwNubTq8BXHb72ahwFIBzCqH9Xex8=";
-          allowedIPs = [ "192.168.2.0/24" ];
-          endpoint = "vpn-sanctuary.germanywestcentral.cloudapp.azure.com:52020";
-          #persistentKeepalive = 25;
-        }
+  flake.nixosModules.work =
+    { pkgs, config, ... }:
+    {
+      environment.systemPackages = [
+        pkgs.teams-for-linux
+        pkgs.omnissa-horizon-client
+        pkgs.logseq
+        # pkgs.opencode
+        self.packages."${pkgs.stdenv.hostPlatform.system}".ai-jail
       ];
+      programs.wireshark = {
+        enable = true;
+        package = pkgs.wireshark;
+      };
+      age.secrets.work_wireguard_sk = {
+        file = ../../../secrets/wireguard_work.age;
+      };
+      networking.firewall = {
+        allowedUDPPorts = [ 52020 ];
+      };
+      networking.wireguard.interfaces.wg0 = {
+        listenPort = 52020;
+
+        ips = [ "192.168.2.183/32" ];
+        privateKeyFile = config.age.secrets.work_wireguard_sk.path;
+        peers = [
+          {
+            publicKey = "Z87+fvuCrO0W/EPwNubTq8BXHb72ahwFIBzCqH9Xex8=";
+            allowedIPs = [ "192.168.2.0/24" ];
+            endpoint = "vpn-sanctuary.germanywestcentral.cloudapp.azure.com:52020";
+            #persistentKeepalive = 25;
+          }
+        ];
+      };
     };
-  };
 }
