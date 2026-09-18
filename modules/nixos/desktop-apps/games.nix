@@ -39,7 +39,10 @@
 
         environment.systemPackages =
           with pkgs;
-          [ gamescope ]
+          [
+            gamescope
+            osu-lazer-bin
+          ]
           ++ lib.optionals cfg.bottles.enable [
             bottles # The best manager for Wine prefixes
             wineWow64Packages.waylandFull # Modern Wine with Wayland support
