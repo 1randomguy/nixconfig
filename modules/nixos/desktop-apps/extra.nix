@@ -19,6 +19,8 @@
       # music
       spek
       soundconverter
+      yt-dlp
+      parabolic
       # other
       ausweisapp
       foliate
