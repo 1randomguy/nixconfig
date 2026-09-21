@@ -7,7 +7,11 @@ rebuild := "sudo nixos-rebuild switch --flake ."
 #}
 
 rebuild:
-  sudo nixos-rebuild switch --flake .
+  @bash -c '\
+  trap "kill %1 2>/dev/null" EXIT; \
+  journalctl -u flatpak-managed-install.service -f -n0 -q --no-hostname --no-pager & \
+  sudo nixos-rebuild switch --flake . \
+  '
   # The hyphen tells `just` to ignore errors if this fails
   -systemctl --user restart vicinae.service
 

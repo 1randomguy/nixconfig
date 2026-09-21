@@ -6,7 +6,6 @@
       environment.systemPackages = [
         pkgs.teams-for-linux
         pkgs.omnissa-horizon-client
-        pkgs.logseq
         # pkgs.opencode
         self.packages."${pkgs.stdenv.hostPlatform.system}".ai-jail
       ];

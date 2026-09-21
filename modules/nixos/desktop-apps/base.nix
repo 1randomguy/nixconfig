@@ -3,6 +3,22 @@
   flake.nixosModules.base-apps =
     { pkgs, ... }:
     {
+      imports = [ inputs.nix-flatpak.nixosModules.nix-flatpak ];
+
+      services.flatpak = {
+        enable = true;
+        packages = [
+          "com.yubico.yubioath"
+          "io.github.tanaybhomia.DeepDive"
+          "com.github.tchx84.Flatseal"
+          "com.spotify.Client"
+          "org.libreoffice.LibreOffice"
+          "org.zotero.Zotero"
+          "com.logseq.Logseq"
+          "org.fooyin.fooyin"
+        ];
+      };
+
       environment.systemPackages = with pkgs; [
         ghostty
         wl-clipboard
@@ -17,20 +33,13 @@
         vlc
         # music
         amberol
-        spotify
-        # fooyin
-        inputs.fooyin-pr.legacyPackages.${pkgs.stdenv.hostPlatform.system}.fooyin
-        lollypop
         easyeffects
         # document viewing/editing
-        libreoffice
         pdfarranger
         sioyek
-        zotero
         kdePackages.okular
         # tasks
         taskwarrior3
-        logseq
         # tools
         nextcloud-client
         resources
@@ -38,7 +47,6 @@
         bluetui
         gitg
         localsend
-        yubioath-flutter
       ];
       hjem.users.bene.files.".config/ghostty".source = ./config/ghostty;
     };

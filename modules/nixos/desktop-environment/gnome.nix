@@ -51,7 +51,7 @@
               "com.mitchellh.ghostty.desktop"
               "org.gnome.Nautilus.desktop"
               "anki.desktop"
-              "spotify.desktop"
+              "com.spotify.Client.desktop"
               "fooyin.desktop"
               "signal.desktop"
           ];

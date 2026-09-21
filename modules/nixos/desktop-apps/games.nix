@@ -1,4 +1,4 @@
-{ self, ... }:
+{ self, inputs, ... }:
 {
   flake.nixosModules.games =
     {
@@ -11,44 +11,24 @@
       cfg = config.games;
     in
     {
+      imports = [ inputs.nix-flatpak.nixosModules.nix-flatpak ];
+
       options.games = {
         steam.enable = lib.mkEnableOption "Enable Steam";
         bottles.enable = lib.mkEnableOption "Enable Bottles and VN translation tools";
       };
 
       config = {
-        hardware.graphics.enable32Bit = true;
-
-        programs.steam = lib.mkIf cfg.steam.enable {
-          enable = cfg.steam.enable;
-          remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-          dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-          localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
-        };
-
-        # needed for bottles, test currently broken
-        nixpkgs.overlays = [
-          (_: prev: {
-            openldap = prev.openldap.overrideAttrs {
-              doCheck = !prev.stdenv.hostPlatform.isi686;
-            };
-          })
-        ];
+        services.flatpak.packages =
+          [ "sh.ppy.osu" ]
+          ++ lib.optionals cfg.steam.enable [ "com.valvesoftware.Steam" ]
+          ++ lib.optionals cfg.bottles.enable [ "com.usebottles.bottles" ];
 
         programs.cdemu.enable = true;
 
-        environment.systemPackages =
-          with pkgs;
-          [
-            gamescope
-            osu-lazer-bin
-          ]
-          ++ lib.optionals cfg.bottles.enable [
-            bottles # The best manager for Wine prefixes
-            wineWow64Packages.waylandFull # Modern Wine with Wayland support
-            winetricks # To install Japanese fonts
-            ipafont
-          ];
+        environment.systemPackages = with pkgs; [
+          gamescope
+        ];
       };
     };
 }

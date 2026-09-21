@@ -2,6 +2,13 @@
 {
   flake.nixosModules.extra-apps = {pkgs, ...}:
   {
+    imports = [ inputs.nix-flatpak.nixosModules.nix-flatpak ];
+
+    services.flatpak.packages = [
+      "dev.vencord.Vesktop"
+      "de.bund.ausweisapp.ausweisapp2"
+    ];
+
     # these are extra apps for private machines
     environment.systemPackages = with pkgs; [
       # study
@@ -10,7 +17,6 @@
       inputs.gd-tools.packages.${stdenv.hostPlatform.system}.default
       antimicrox
       # social
-      vesktop
       (signal-desktop.override {
         commandLineArgs = "--password-store=gnome-libsecret";
         withAppleEmojis = true;
@@ -22,7 +28,6 @@
       yt-dlp
       parabolic
       # other
-      ausweisapp
       foliate
       proton-vpn
       typst
