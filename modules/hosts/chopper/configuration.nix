@@ -1,7 +1,7 @@
 { self, inputs, ... }:
 {
   flake.nixosModules.chopperConfiguration =
-    { pkgs, config, ... }:
+    { pkgs, lib, ... }:
 
     {
       imports = [
@@ -111,24 +111,22 @@
       powerManagement.powertop.enable = true;
       powerManagement.scsiPolicy = "med_power_with_dipm";
 
-      # Keep your existing hdparm settings to prevent mechanical head-parking wear
-      hardware.hdparm = {
-        enable = true;
-        hddData = {
-          disk = "/dev/disk/by-id/ata-WDC_WD10EZEX-22MFCA0_WD-WCC6Y0ZKV7S1";
-          apm = 255; # Disables APM head-parking
-          spindownTimeout = 241; # Keeps platters spinning for 30min
-        };
-      };
-
       systemd.services.powertop-overrides = {
         description = "Override PowerTOP auto-tune for sda and ethernet";
         after = [ "powertop.service" ];
         wantedBy = [ "multi-user.target" ];
         script = ''
-          # Disable Runtime PM for sda (Force 'Bad' in PowerTOP)
-          if [ -e /sys/block/sda/device/power/control ]; then
-            echo "on" > /sys/block/sda/device/power/control
+          # Apply hdparm to wd blue (Disable APM head-parking & set 30min spindown)
+          DISK_ID="/dev/disk/by-id/ata-WDC_WD10EZEX-22MFCA0_WD-WCC6Y0ZKV7S1"
+          if [ -e "$DISK_ID" ]; then
+            ${lib.getExe pkgs.hdparm} -B 255 "$DISK_ID"
+            ${lib.getExe pkgs.hdparm} -S 241 "$DISK_ID"
+
+            # Keep sda Runtime PM on 'Bad' to avoid PowerTOP conflicts
+            SYS_PATH=$(readlink -f "$DISK_ID" | sed 's|/dev/||')
+            if [ -e "/sys/block/$SYS_PATH/device/power/control" ]; then
+              echo "on" > "/sys/block/$SYS_PATH/device/power/control"
+            fi
           fi
 
           # Disable Runtime PM for Intel I226-V Ethernet (Force 'Bad' in PowerTOP)
