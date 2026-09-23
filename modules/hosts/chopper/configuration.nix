@@ -109,7 +109,7 @@
 
       # Power saving settings:
       powerManagement.powertop.enable = true;
-      powerManagement.scsiPolicy = "med_power_with_dipm";
+      powerManagement.scsiLinkPolicy = "med_power_with_dipm";
 
       systemd.services.powertop-overrides = {
         description = "Override PowerTOP auto-tune for sda and ethernet";
