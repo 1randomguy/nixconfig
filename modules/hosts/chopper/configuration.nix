@@ -107,6 +107,40 @@
       boot.loader.systemd-boot.enable = true;
       boot.loader.efi.canTouchEfiVariables = true;
 
+      # Power saving settings:
+      powerManagement.powertop.enable = true;
+      powerManagement.scsiPolicy = "med_power_with_dipm";
+
+      # Keep your existing hdparm settings to prevent mechanical head-parking wear
+      hardware.hdparm = {
+        enable = true;
+        hddData = {
+          disk = "/dev/disk/by-id/ata-WDC_WD10EZEX-22MFCA0_WD-WCC6Y0ZKV7S1";
+          apm = 255; # Disables APM head-parking
+          spindownTimeout = 241; # Keeps platters spinning for 30min
+        };
+      };
+
+      systemd.services.powertop-overrides = {
+        description = "Override PowerTOP auto-tune for sda and ethernet";
+        after = [ "powertop.service" ];
+        wantedBy = [ "multi-user.target" ];
+        script = ''
+          # Disable Runtime PM for sda (Force 'Bad' in PowerTOP)
+          if [ -e /sys/block/sda/device/power/control ]; then
+            echo "on" > /sys/block/sda/device/power/control
+          fi
+
+          # Disable Runtime PM for Intel I226-V Ethernet (Force 'Bad' in PowerTOP)
+          # Finds any Intel I226-V PCI network device automatically
+          for dev in /sys/bus/pci/drivers/igc/*; do
+            if [ -e "$dev/power/control" ]; then
+              echo "on" > "$dev/power/control"
+            fi
+          done
+        '';
+      };
+
       # Define a user account. Don't forget to set a password with ‘passwd’.
       users.users.bene = {
         isNormalUser = true;
