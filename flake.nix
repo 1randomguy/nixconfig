@@ -41,6 +41,7 @@
     fooyin-pr.url = "github:kybe236/nixpkgs/fooyin-bump";
     gd-tools.url = "github:1randomguy/gd-tools-flake";
     ashell.url = "github:MalpenZibo/ashell";
+    layernotes.url = "github:1randomguy/layernotes";
     tinysub = {
       url = "git+https://tangled.org/devins.page/tinysub";
       inputs.nixpkgs.follows = "nixpkgs";
