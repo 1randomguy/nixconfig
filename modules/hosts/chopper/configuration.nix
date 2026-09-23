@@ -114,7 +114,7 @@
       systemd.services.powertop-overrides = {
         description = "Override PowerTOP auto-tune for sda and ethernet";
         after = [ "powertop.service" ];
-        wantedBy = [ "multi-user.target" ];
+        wantedBy = [ "powertop.service" ];
         script = ''
           # Apply hdparm to wd blue (Disable APM head-parking & set 30min spindown)
           DISK_ID="/dev/disk/by-id/ata-WDC_WD10EZEX-22MFCA0_WD-WCC6Y0ZKV7S1"
