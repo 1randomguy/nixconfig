@@ -411,6 +411,10 @@ binds {
     Super+Shift+A hotkey-overlay-title=null { spawn-sh "pkill ashell || exec ashell"; }
     Super+A hotkey-overlay-title=null { spawn-sh "killall -SIGUSR1 ashell"; }
 
+    // layernotes mappings
+    Mod+N { spawn "layernotes" "msg" "toggle-layer"; }
+    Mod+Ctrl+N { spawn "layernotes" "msg" "add-note"; }
+
     // volume keys mappings
     XF86AudioRaiseVolume allow-when-locked=true { spawn "ashell" "msg" "volume-up"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn "ashell" "msg" "volume-down"; }
@@ -531,9 +535,6 @@ binds {
 
     Mod+Ctrl+M { spawn-sh "nirius scratchpad-toggle -a 'g4music|spotify|fooyin|amberol|lollypop'"; }
     Mod+M { spawn-sh "nirius scratchpad-show -a 'g4music|spotify|fooyin|amberol|lollypop'"; }
-
-    Mod+Ctrl+N { spawn "nirius" "scratchpad-toggle" "--title" ".*Notes.*"; }
-    Mod+N { spawn "nirius" "scratchpad-show" "--title" ".*Notes.*"; }
 
     // Similarly, you can bind touchpad scroll "ticks".
     // Touchpad scrolling is continuous, so for these binds it is split into
