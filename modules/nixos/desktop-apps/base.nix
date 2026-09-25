@@ -16,6 +16,7 @@
           "org.zotero.Zotero"
           "com.logseq.Logseq"
           "org.fooyin.fooyin"
+          "org.gnome.Epiphany"
         ];
       };
 
