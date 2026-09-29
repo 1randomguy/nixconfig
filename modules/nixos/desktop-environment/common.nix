@@ -52,11 +52,8 @@
         # The name (default) is just the name of the configuration file, it does not really matter
         keyboards.default = {
           ids = [
-            # "0001:0001" # only the laptop keyboard (find uuid with `sudo keyd -m`)
-            # "17ef:608d" # Lenovo LiteOn
-            # "17ef:6099"
             "*"
-            "-04fe:0021" # Exclude HHKB
+            "-04fe:0021" # Exclude HHKB (find uuid with `sudo keyd -m`)
           ];
           settings = {
             # The main layer
@@ -64,6 +61,8 @@
               capslock = "layer(control)"; # you might need to also enclose the key in quotes if it contains non-alphabetical symbols
               leftalt = "layer(meta)";
               leftmeta = "layer(alt)";
+              rightalt = "layer(meta)";
+              rightmeta = "layer(altgr)";
             };
             shift = {
               # Tapping both shift keys will activate capslock.
