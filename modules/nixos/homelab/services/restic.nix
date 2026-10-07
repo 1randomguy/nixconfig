@@ -1,6 +1,6 @@
 {
   flake.nixosModules.restic =
-    { lib, config, ... }:
+    { lib, config, pkgs, ... }:
     let
       cfg = config.homelab.services.restic;
       pgBackupLocation = "/var/backup/postgresql";
@@ -11,6 +11,7 @@
       config = lib.mkIf (backupDirs != [ ]) (
         lib.mkMerge [
           {
+            environment.systemPackages = [ pkgs.restic ];
             age.secrets.restic.file = ../../../../secrets/restic.age;
             users.groups.share = {
               gid = 500;
