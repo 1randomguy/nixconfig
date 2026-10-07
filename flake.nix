@@ -38,7 +38,6 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.7.0";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     crowdsec-pr.url = "github:TornaxO7/nixpkgs/crowdsec";
-    fooyin-pr.url = "github:kybe236/nixpkgs/fooyin-bump";
     gd-tools.url = "github:1randomguy/gd-tools-flake";
     ashell.url = "github:MalpenZibo/ashell";
     layernotes.url = "github:1randomguy/layernotes";

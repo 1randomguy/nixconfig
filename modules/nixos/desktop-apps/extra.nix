@@ -27,6 +27,7 @@
       soundconverter
       yt-dlp
       parabolic
+      beets
       # other
       foliate
       proton-vpn
