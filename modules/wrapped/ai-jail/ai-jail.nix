@@ -147,6 +147,8 @@
           (try-rw-bind "/home/${hostUser}/Code" "/home/${hostUser}/Code")
           (try-rw-bind "/home/${hostUser}/.gemini" "/home/${hostUser}/.gemini")
           (try-ro-bind "/home/${hostUser}/.config/opencode" "/home/${hostUser}/.config/opencode")
+          (try-ro-bind "/etc/gitconfig" "/etc/gitconfig")
+          (try-ro-bind "/home/${hostUser}/.gitconfig" "/home/${hostUser}/.gitconfig")
           (set-env "TERM" "xterm-256color")
           (set-env "COLORTERM" "truecolor")
           (set-env "NIX_REMOTE" "daemon")
