@@ -1,8 +1,9 @@
-{self, ...}:
+{self, inputs, ...}:
 {
   flake.nixosModules.niri = {pkgs, lib, ...}:
   let
     selfpkgs = self.packages."${pkgs.stdenv.hostPlatform.system}";
+    fullscreen-niri = inputs.fullscreen-niri.packages."${pkgs.stdenv.hostPlatform.system}".default;
   in
   {
     environment.systemPackages = with pkgs; [
@@ -14,6 +15,7 @@
       phinger-cursors
 
       nirius # if we embed it in the command config of niri we might not need it as a systempackage here?
+      fullscreen-niri
       # helpful tuis
       wifitui #?
       # helpful guis

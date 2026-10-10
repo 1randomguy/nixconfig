@@ -46,6 +46,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     jail-nix.url = "sourcehut:~alexdavid/jail.nix";
+    fullscreen-niri.url = "github:1randomguy/fullscreen-niri";
   };
 
   # outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
