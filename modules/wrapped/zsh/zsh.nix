@@ -128,6 +128,23 @@
              alias lg='lazygit'
              alias aij='ai-jail'
              alias docker-prune-full='docker system prune --all --force --volumes'
+
+             notes() {
+               local notes_dir="$HOME/Nextcloud/Notes"
+               [ -d "$notes_dir" ] || notes_dir="$HOME/Notes"
+               mkdir -p "$notes_dir"
+               cd "$notes_dir" || return 1
+               if (( $# )); then
+                 local arg args=()
+                 for arg in "$@"; do
+                   [[ "''${arg##*/}" == *.* ]] || arg="$arg.md"
+                   args+=("$arg")
+                 done
+                 "''${EDITOR:-nvim}" "''${args[@]}"
+               else
+                 "''${EDITOR:-nvim}" .
+               fi
+             }
            ''
         ];
       };
