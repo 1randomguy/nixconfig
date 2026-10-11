@@ -69,9 +69,6 @@
             normalization = "formD";
             mountpoint = "none";
             atime = "off"; # Disables atime globally for speed and SSD longevity
-            encryption = "aes-256-ccm";
-            keyformat = "raw";
-            keylocation = "file:///run/keys/zfs.key";
           };
           datasets = {
             # 100GB dummy safety space reservation
@@ -151,9 +148,6 @@
               type = "zfs_fs";
               options = {
                 mountpoint = "none";
-                encryption = "aes-256-ccm";
-                keyformat = "raw";
-                keylocation = "file:///run/keys/zfs.key";
               };
             };
             "data/smb" = {
