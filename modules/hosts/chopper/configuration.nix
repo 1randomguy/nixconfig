@@ -26,7 +26,7 @@
         self.nixosModules.immich-auto-stacker
         self.nixosModules.immich-public-proxy
         self.nixosModules.gonic
-        self.nixosModules.sub-wave
+        # self.nixosModules.sub-wave
         self.nixosModules.tinysub
         self.nixosModules.nextcloud
         self.nixosModules.bentopdf
