@@ -40,7 +40,7 @@
         };
         hdd1 = {
           type = "disk";
-          device = "ata-WDC_WD10EZEX-22MFCA0_WD-WCC6Y0ZKV7S1";
+          device = "/dev/disk/by-id/ata-WDC_WD10EZEX-22MFCA0_WD-WCC6Y0ZKV7S1";
           content = {
             type = "gpt";
             partitions = {
