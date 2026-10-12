@@ -8,6 +8,28 @@
           Base domain name to be used to access the homelab services via nginx reverse proxy
         '';
       };
+      notify.storage = {
+        threshold = lib.mkOption {
+          type = lib.types.ints.between 1 100;
+          default = 90;
+          description = "Usage percentage at which a storage warning is sent.";
+        };
+        pools = lib.mkOption {
+          type = lib.types.listOf lib.types.str;
+          default = [ ];
+          description = "ZFS pools to watch for high usage.";
+        };
+        paths = lib.mkOption {
+          type = lib.types.listOf lib.types.str;
+          default = [ ];
+          description = "Filesystem paths to watch for high usage (via df).";
+        };
+        mounts = lib.mkOption {
+          type = lib.types.listOf lib.types.str;
+          default = [ ];
+          description = "Paths that must be mounted; alert if missing.";
+        };
+      };
       services.restic = {
         backupDirs = lib.mkOption {
           type = lib.types.listOf lib.types.str;

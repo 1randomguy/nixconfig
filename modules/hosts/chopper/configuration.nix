@@ -17,6 +17,7 @@
 
         # homelab services
         self.nixosModules.homelab
+        self.nixosModules.ntfy
         self.nixosModules.nginx
         self.nixosModules.restic
         self.nixosModules.ddns-updater
@@ -41,6 +42,19 @@
         local.enable = true;
         local.targetDir = "/external/restic";
         backblazeb2.enable = true;
+      };
+      homelab.notify.storage = {
+        threshold = 90;
+        pools = [
+          "rpool"
+          "hddpool"
+        ];
+        paths = [ "/external" ];
+        mounts = [
+          "/external"
+          "/public"
+          "/var/lib/immich-media"
+        ];
       };
       homelab.services.samba = {
         directory = "/public";
