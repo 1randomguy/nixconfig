@@ -18,8 +18,5 @@ rebuild:
 chopper:
   nixos-rebuild switch --flake .#chopper --target-host bene@chopper.fritz.box --use-remote-sudo
 
-usopp:
-  nixos-rebuild switch --flake .#usopp --sudo --target-host bene@192.168.178.57
-
 clean:
   sudo nix-collect-garbage -d
