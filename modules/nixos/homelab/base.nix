@@ -26,6 +26,10 @@
 
       services.postgresql.enable = true;
 
+      homelab.services.restic.backupDirs = [
+        "/var/lib/tailscale"
+      ];
+
       system.autoUpgrade = {
         enable = true;
         flake = "github:1randomguy/nixconfig#${config.networking.hostName}";

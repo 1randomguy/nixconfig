@@ -79,7 +79,10 @@
           openFirewall = true;
         };
 
-        homelab.services.restic.backupDirs = [ cfg.directory ];
+        homelab.services.restic.backupDirs = [
+          cfg.directory
+          "/var/lib/samba/private"
+        ];
       };
     };
 }
