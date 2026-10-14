@@ -2,6 +2,7 @@
   flake.nixosModules.homelab =
     {
       config,
+      lib,
       ...
     }:
     {
@@ -21,7 +22,9 @@
 
       homelab.services.restic.backupDirs = [
         "/var/lib/tailscale"
-      ];
+      ] ++ lib.optionals config.services.openssh.enable (
+        lib.concatMap (key: [ key.path "${key.path}.pub" ]) config.services.openssh.hostKeys
+      );
 
       system.autoUpgrade = {
         enable = true;

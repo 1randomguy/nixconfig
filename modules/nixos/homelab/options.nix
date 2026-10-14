@@ -36,6 +36,11 @@
           description = "The directories to backup";
           default = [ ];
         };
+        exclude = lib.mkOption {
+          type = lib.types.listOf lib.types.str;
+          description = "Paths to exclude from the backups";
+          default = [ ];
+        };
         local.enable = lib.mkOption {
           description = "Enable local backups for application state directories";
           default = false;
@@ -49,6 +54,20 @@
           description = "Enable S3 backups to backblazeb2 for application state directories";
           default = false;
           type = lib.types.bool;
+        };
+      };
+      services.immich = {
+        mediaPath = lib.mkOption {
+          type = lib.types.nullOr lib.types.path;
+          default = null;
+          example = "/var/lib/immich-media";
+          description = ''
+            Optional separate disk location for Immich's original photos
+            (`upload`) and `library`. When set, these two directories are stored
+            on `mediaPath` and bind-mounted into the Immich app directory, and
+            they are backed up from `mediaPath`. Leave as `null` to keep
+            everything under `/var/lib/immich` on the root filesystem.
+          '';
         };
       };
       services.samba = {

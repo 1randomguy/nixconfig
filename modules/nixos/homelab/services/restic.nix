@@ -52,8 +52,7 @@
                   "--keep-weekly 5"
                   "--keep-monthly 12"
                 ];
-                exclude = [
-                ];
+                exclude = cfg.exclude;
                 paths = backupDirs;
               };
             };
@@ -77,8 +76,7 @@
                   "--keep-weekly 3"
                   "--keep-monthly 5"
                 ];
-                exclude = [
-                ];
+                exclude = cfg.exclude;
                 paths = backupDirs;
               };
             };
