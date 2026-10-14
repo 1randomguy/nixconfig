@@ -102,7 +102,7 @@
           #};
           user_oidc = pkgs.fetchNextcloudApp {
             url = "https://github.com/nextcloud-releases/user_oidc/releases/download/v8.11.0/user_oidc-v8.11.0.tar.gz";
-            sha256 = "sha256-tsqpi5MON+qCFifcuJ87zlUsoxsgPrdUBF7RomOhqVc=";
+            sha256 = "sha256-iHkgUEwvDg0FWr1mIl7ntm11b1D+Wjc5d51rLOEIYz8=";
             description = "Allows flexible configuration of an OIDC server as Nextcloud login user backend.";
             license = "agpl3Plus";
           };
