@@ -14,6 +14,7 @@
           podcast-path = "/public/Podcasts";
           playlists-path = "/public/Music/Playlists";
           listen-addr = "0.0.0.0:${port}";
+          scan-at-start-enabled = true;
           scan-watcher-enabled = true;
           multi-value-genre = "delim ;";
           multi-value-artist = "delim ;";
