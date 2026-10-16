@@ -23,6 +23,7 @@
         self.nixosModules.latex
         # self.nixosModules.razer
         self.nixosModules.smb-mount
+        self.nixosModules.syncthing
 
         self.nixosModules.compat
         self.nixosModules.fonts
