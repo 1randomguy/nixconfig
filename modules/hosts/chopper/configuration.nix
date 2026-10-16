@@ -15,6 +15,8 @@
         inputs.disko.nixosModules.disko
         self.diskoConfigurations.chopper
 
+        self.nixosModules.syncthing
+
         # homelab services
         self.nixosModules.homelab
         self.nixosModules.ntfy
@@ -64,6 +66,22 @@
       homelab.services.zola = {
         sourceOwner = "bene";
         sourceDir = "/home/bene/blog";
+      };
+
+      services.syncthing.settings = {
+        devices = {
+          sanji = {
+            id = "AXDGEOG-AB6ZMDK-OUL7GYN-O4KRBSK-I5GRXXC-IWJUAIY-HF3E3HN-D2GTDQB";
+          };
+        };
+        folders = {
+          "Documents" = {
+            path = "/public/Music";
+            devices = [
+              "sanji"
+            ];
+          };
+        };
       };
 
       networking.hostName = "chopper"; # Define your hostname.
