@@ -75,7 +75,7 @@
           };
         };
         folders = {
-          "Documents" = {
+          "Music" = {
             path = "/public/Music";
             devices = [
               "sanji"
