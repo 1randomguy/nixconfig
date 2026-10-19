@@ -54,6 +54,7 @@
           ids = [
             "*"
             "-04fe:0021" # Exclude HHKB (find uuid with `sudo keyd -m`)
+            "-0001:0001"
           ];
           settings = {
             # The main layer
@@ -63,6 +64,25 @@
               leftmeta = "layer(alt)";
               rightalt = "layer(meta)";
               rightmeta = "layer(altgr)";
+            };
+            shift = {
+              # Tapping both shift keys will activate capslock.
+              leftshift = "overload(shift, capslock)";
+              rightshift = "overload(shift, capslock)";
+            };
+          };
+        };
+        keyboards.laptop = {
+          ids = [
+            "0001:0001"
+          ];
+          settings = {
+            # The main layer
+            main = {
+              capslock = "layer(control)";
+              leftalt = "layer(meta)";
+              leftmeta = "layer(alt)";
+              # no mapping of right meta/alt, because no right meta
             };
             shift = {
               # Tapping both shift keys will activate capslock.
