@@ -104,14 +104,24 @@
             "$URL"
         fi
 
-        booted="$(${pkgs.coreutils}/bin/readlink -f /run/booted-system 2>/dev/null || true)"
-        current="$(${pkgs.coreutils}/bin/readlink -f /run/current-system 2>/dev/null || true)"
-        if [ -n "$booted" ] && [ -n "$current" ] && [ "$booted" != "$current" ]; then
+        # A switch activates the new system immediately; a reboot is only
+        # actually needed when the kernel or initrd changed.
+        booted_kernel="$(${pkgs.coreutils}/bin/readlink -f /run/booted-system/kernel 2>/dev/null || true)"
+        current_kernel="$(${pkgs.coreutils}/bin/readlink -f /run/current-system/kernel 2>/dev/null || true)"
+        booted_init="$(${pkgs.coreutils}/bin/readlink -f /run/booted-system/init 2>/dev/null || true)"
+        current_init="$(${pkgs.coreutils}/bin/readlink -f /run/current-system/init 2>/dev/null || true)"
+        what=""
+        [ -n "$booted_kernel" ] && [ -n "$current_kernel" ] && [ "$booted_kernel" != "$current_kernel" ] && what="kernel"
+        [ -n "$booted_init" ] && [ -n "$current_init" ] && [ "$booted_init" != "$current_init" ] && what="''${what:+$what, }initrd"
+        state="$booted_kernel:$current_kernel:$booted_init:$current_init"
+        notified="$(${pkgs.coreutils}/bin/cat /var/lib/ntfy-health/reboot-notified 2>/dev/null || true)"
+        if [ -n "$what" ] && [ "$state" != "$notified" ]; then
           ${pkgs.curl}/bin/curl -sf \
             -H "Title: Reboot required on ${hostName}" \
             -H "Tags: rotating_light" \
-            -d "The running system differs from the current generation. A reboot is pending." \
-            "$URL"
+            -d "The running ''${what} differs from the current generation. A reboot is pending." \
+            "$URL" \
+            && ${pkgs.coreutils}/bin/echo "$state" > /var/lib/ntfy-health/reboot-notified
         fi
       '';
 
@@ -249,6 +259,7 @@
             description = "Report failed units and pending reboots";
             serviceConfig = {
               Type = "oneshot";
+              StateDirectory = "ntfy-health";
               ExecStart = "${healthScript}";
             };
           };
