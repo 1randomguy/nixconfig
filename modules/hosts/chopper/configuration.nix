@@ -73,12 +73,16 @@
           sanji = {
             id = "AXDGEOG-AB6ZMDK-OUL7GYN-O4KRBSK-I5GRXXC-IWJUAIY-HF3E3HN-D2GTDQB";
           };
+          work-laptop = {
+            id = "VB73SFE-IOZTRMA-DE6OQGD-W3COLUY-T3BZRHV-7HJ62WN-HMOMJYO-JJJKZAJ";
+          };
         };
         folders = {
           "Music" = {
             path = "/public/Music";
             devices = [
               "sanji"
+              "work-laptop"
             ];
           };
         };

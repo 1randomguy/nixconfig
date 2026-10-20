@@ -23,6 +23,7 @@
 
         self.nixosModules.base-apps
         self.nixosModules.games
+        self.nixosModules.syncthing
 
         self.nixosModules.compat
         self.nixosModules.fonts
