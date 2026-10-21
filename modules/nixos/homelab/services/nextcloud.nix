@@ -110,17 +110,18 @@
       };
 
       # Setup Nginx because we have multiple services on this server.
-      services.nginx.virtualHosts."cloud.${hl.baseDomain}" = {
-        enableACME = true;
-        acmeRoot = null;
-        forceSSL = true;
-        locations."/".return = "301 https://nextcloud.${hl.baseDomain}$request_uri";
-      };
+      # services.nginx.virtualHosts."cloud.${hl.baseDomain}" = {
+        # enableACME = true;
+        # acmeRoot = null;
+        # forceSSL = true;
+        # locations."/".return = "301 https://nextcloud.${hl.baseDomain}$request_uri";
+      # };
 
       services.nginx.virtualHosts."nextcloud.${hl.baseDomain}" = {
         enableACME = true;
         acmeRoot = null;
         forceSSL = true;
+        enableAuthelia = true;
 
         extraConfig = ''
           add_header X-Robots-Tag "noindex, nofollow" always;
