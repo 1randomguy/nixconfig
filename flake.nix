@@ -47,6 +47,7 @@
     };
     jail-nix.url = "sourcehut:~alexdavid/jail.nix";
     fullscreen-niri.url = "github:1randomguy/fullscreen-niri";
+    flint.url = "github:1randomguy/flint";
   };
 
   # outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
