@@ -41,6 +41,7 @@
         lyrics-to-lrc
         inputs.flint.packages.${stdenv.hostPlatform.system}.flint-gtk
         # other
+        imagemagick
         gpodder
         foliate
         proton-vpn
