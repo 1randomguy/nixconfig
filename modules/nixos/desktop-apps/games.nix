@@ -26,6 +26,8 @@
 
         programs.cdemu.enable = true;
 
+        hardware.steam-hardware.enable = lib.mkIf cfg.steam.enable true;
+
         environment.systemPackages = with pkgs; [
           gamescope
         ];
