@@ -35,6 +35,7 @@
       ];
 
       games.bottles.enable = true;
+      games.steam.enable = true;
 
       virtualisation.waydroid.enable = true;
 
