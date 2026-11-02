@@ -17,6 +17,7 @@
       services.flatpak.packages = [
         "dev.vencord.Vesktop"
         "de.bund.ausweisapp.ausweisapp2"
+        "org.mediaharbor.MediaHarbor"
       ];
 
       # these are extra apps for private machines
