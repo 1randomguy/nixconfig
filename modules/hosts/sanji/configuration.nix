@@ -81,6 +81,7 @@
           "wheel"
           "docker"
           "networkmanager"
+          "plugdev"
         ]; # Enable ‘sudo’ for the user.
       };
 
