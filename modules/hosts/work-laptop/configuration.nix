@@ -74,6 +74,7 @@
           "podman"
           "docker"
           "wireshark"
+          "plugdev"
         ]; # Enable ‘sudo’ for the user.
       };
 

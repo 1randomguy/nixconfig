@@ -46,6 +46,10 @@
         );
       };
 
+      services.pcscd.enable = true;
+      services.udev.packages = [ pkgs.libfido2 ];
+      users.groups.plugdev = {};
+
       services.displayManager.gdm.enable = true;
       services.keyd = {
         enable = true;
