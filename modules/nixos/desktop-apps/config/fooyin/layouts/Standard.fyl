@@ -1,0 +1,147 @@
+{
+    "Name": "Standard",
+    "Theme": "AAAAAQAAAAAAAAAA/////wAAAAAZAAAABQAAAAAB//////////8AAAAAAAEAAAAAAf//f39/f39/AAAAAAAFAAAAAQH//zU1NTU1NQAAAAAABQAAAAIB//9aWlpaWloAAAAAAAUAAAADAf//S0tLS0tLAAAAAAAFAAAABAH//yMjIyMjIwAAAAAABQAAAAUB//8tLS0tLS0AAAAAAAUAAAAGAf//////////AAAAAAABAAAABgH//39/f39/fwAAAAAABQAAAAcB/////wAAAAAAAAAAAAUAAAAIAf//////////AAAAAAABAAAACAH//39/f39/fwAAAAAABQAAAAkB//8qKioqKioAAAAAAAUAAAAKAf//NTU1NTU1AAAAAAAFAAAACwH//xQUFBQUFAAAAAAABQAAAAwB//8aGlVVkZEAAAAAAAEAAAAMAf//UFBQUFBQAAAAAAAFAAAADQH//////////wAAAAAAAQAAAA0B//9/f39/f38AAAAAAAUAAAAOAf//KiqCgtraAAAAAAAFAAAADwH//4KCKira2gAAAAAABQAAABAB//9CQkJCQkIAAAAAAAUAAAASAf//////////AAAAAAAFAAAAEwH//zU1NTU1NQAAAAAABQAAABQB//9/f39/f38AAAAAAAIAAAAoAEYAbwBvAHkAaQBuADoAOgBQAGwAYQB5AGwAaQBzAHQAVgBpAGUAdwAAABwATgBpAG0AYgB1AHMAIABNAG8AbgBvACAAUABT/////0AqAAAAAAAA/////wUAAQGQEAAAAQAAAAAAAAAAAAAAAAABAAAAHABOAGkAbQBiAHUAcwAgAE0AbwBuAG8AIABQAFMAAAAmAEYAbwBvAHkAaQBuADoAOgBTAHQAYQB0AHUAcwBMAGEAYgBlAGwAAAAcAE4AaQBtAGIAdQBzACAATQBvAG4AbwAgAFAAU/////9AJgAAAAAAAP////8FAAEBkBAAAAEAAAAAAAAAAAAAAAAAAQAAABwATgBpAG0AYgB1AHMAIABNAG8AbgBvACAAUABT",
+    "Version": 1,
+    "Widgets": [
+        {
+            "SplitterVertical": {
+                "State": "AAAA/wAAAAEAAAACAAAE5QAAAEgA/////wEAAAACAA==",
+                "Widgets": [
+                    {
+                        "SplitterHorizontal": {
+                            "State": "AAAA/wAAAAEAAAACAAABOwAACK8A/////wEAAAABAA==",
+                            "Widgets": [
+                                {
+                                    "SplitterVertical": {
+                                        "State": "AAAA/wAAAAEAAAACAAADOQAAAagA/////wEAAAACAA==",
+                                        "Widgets": [
+                                            {
+                                                "LibraryTree": {
+                                                    "Grouping": 0,
+                                                    "ID": "63c213587ba24c7b812eda495e7d0631",
+                                                    "State": "AAAALHjaY2BgEGDJa5s48eXGlp6ka4EtU/aeY2BgYARigYXp66weBbcL/np768nl/cqlAG6hEp4="
+                                                }
+                                            },
+                                            {
+                                                "SplitterVertical": {
+                                                    "State": "AAAA/wAAAAEAAAACAAAASwAAAXAA/////wEAAAACAA==",
+                                                    "Widgets": [
+                                                        {
+                                                            "SplitterVertical": {
+                                                                "State": "AAAA/wAAAAEAAAACAAAAOQAAAGkA/////wEAAAACAA==",
+                                                                "Widgets": [
+                                                                    {
+                                                                        "SearchBar": {
+                                                                            "AutoSearch": true,
+                                                                            "SearchMode": 0
+                                                                        }
+                                                                    },
+                                                                    {
+                                                                        "PlaylistSwitcher": {
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        },
+                                                        {
+                                                            "ArtworkPanel": {
+                                                                "CoverAlignment": 132,
+                                                                "CoverType": 0,
+                                                                "KeepAspectRatio": true
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "TabStack": {
+                                        "Position": "North",
+                                        "State": "Selection\u001fWiedergabeliste\u001fPlaylist Organiser\u001fAuswahlinfo",
+                                        "Widgets": [
+                                            {
+                                                "Playlist": {
+                                                    "Columns": "8:132|0:4|1|7:4|6:2|20:4|19|13|2",
+                                                    "HeaderState": "AAAApXjaY2Bg4GRgYIgC4gQGBsYsIO0HxDlA/IKBgUkcSP8Gih9ggKhjZ4AAJiDmAGJGIGYGYhYgZgViNpA6+6WCU/9/8S21X9ZttrtPrtD+KJftNvcDf+wXKRwVra9Ssl8puS6nU97JftfXFYlzDh22Py/97OWMPYvs9zqLF267G2d/in11utBHJpDhDP+BAADFoyt6",
+                                                    "ID": "b6549161155e43848bb3ec50c35103d7",
+                                                    "Preset": 5,
+                                                    "SingleMode": false
+                                                }
+                                            },
+                                            {
+                                                "PlaybackQueue": {
+                                                }
+                                            },
+                                            {
+                                                "PlaylistOrganiser": {
+                                                }
+                                            },
+                                            {
+                                                "SelectionInfo": {
+                                                    "Options": 23,
+                                                    "State": "AAAA/wAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACKkAAAACAAAAAQAAAAAAAAAAAAAAAGT/////AAAAhAAAAAAAAAACAAAAZAAAAAEAAAAAAAAIRQAAAAEAAAAAAAAD6AAAAABkAAAAAA=="
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "SplitterHorizontal": {
+                            "State": "AAAA/wAAAAEAAAACAAADrQAABj0A/////wEAAAABAA==",
+                            "Widgets": [
+                                {
+                                    "StatusBar": {
+                                    }
+                                },
+                                {
+                                    "SplitterHorizontal": {
+                                        "State": "AAAA/wAAAAEAAAACAAAAuAAABYEA/////wEAAAABAA==",
+                                        "Widgets": [
+                                            {
+                                                "PlayerControls": {
+                                                }
+                                            },
+                                            {
+                                                "SplitterHorizontal": {
+                                                    "State": "AAAA/wAAAAEAAAACAAAAbgAABSoA/////wEAAAABAA==",
+                                                    "Widgets": [
+                                                        {
+                                                            "PlaylistControls": {
+                                                            }
+                                                        },
+                                                        {
+                                                            "SplitterHorizontal": {
+                                                                "State": "AAAA/wAAAAEAAAACAAAB6AAAA10A/////wEAAAABAA==",
+                                                                "Widgets": [
+                                                                    {
+                                                                        "SeekBar": {
+                                                                            "ElapsedTotal": false,
+                                                                            "ShowLabels": true
+                                                                        }
+                                                                    },
+                                                                    {
+                                                                        "Spacer": {
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

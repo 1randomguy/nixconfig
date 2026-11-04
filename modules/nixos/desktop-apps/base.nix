@@ -50,5 +50,6 @@
         localsend
       ];
       hjem.users.bene.files.".config/ghostty".source = ./config/ghostty;
+      hjem.users.bene.files.".config/fooyin".source = ./config/fooyin;
     };
 }
