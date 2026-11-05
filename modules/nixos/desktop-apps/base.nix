@@ -17,6 +17,7 @@
           "com.logseq.Logseq"
           "org.fooyin.fooyin"
           "org.gnome.Epiphany"
+          "io.github.CyberTimon.RapidRAW"
         ];
       };
 
