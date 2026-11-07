@@ -143,6 +143,10 @@
           (add-pkg-deps sandboxPackages)
           network
           (persist-home "ai-home")
+          (add-runtime ''
+            mkdir -p "/home/${hostUser}/.local/share/opencode/worktree"
+          '')
+          (try-rw-bind "/home/${hostUser}/.local/share/opencode/worktree" "/home/${hostUser}/.local/share/opencode/worktree")
           (try-rw-bind "/nix/var/nix/daemon-socket" "/nix/var/nix/daemon-socket")
           (try-rw-bind "/home/${hostUser}/Code" "/home/${hostUser}/Code")
           (try-rw-bind "/home/${hostUser}/.gemini" "/home/${hostUser}/.gemini")
