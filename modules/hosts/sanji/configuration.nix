@@ -6,6 +6,7 @@
       imports = [
         # Include the results of the hardware scan.
         self.nixosModules.sanjiHardware
+        self.nixosModules.sanjiCamera
 
         self.nixosModules.common
         self.nixosModules.shell
@@ -65,7 +66,6 @@
       environment.systemPackages = with pkgs; [
         sbctl
         inputs.agenix.packages."${stdenv.hostPlatform.system}".default
-        libcamera
       ];
 
       networking.hostName = "sanji"; # Define your hostname.

@@ -1,0 +1,46 @@
+diff --git a/src/libcamera/sensor/camera_sensor_properties.cpp b/src/libcamera/sensor/camera_sensor_properties.cpp
+index 3b63fe34..819f07bb 100644
+--- a/src/libcamera/sensor/camera_sensor_properties.cpp
++++ b/src/libcamera/sensor/camera_sensor_properties.cpp
+@@ -301,6 +301,17 @@ const CameraSensorProperties *CameraSensorProperties::get(const std::string &sen
+ 				.hblankDelay = 2
+ 			},
+ 		} },
++		{ "imx471", {
++			.unitCellSize = { 1400, 1400 },
++			.testPatternModes = {
++				{ controls::draft::TestPatternModeOff, 0 },
++				{ controls::draft::TestPatternModeSolidColor, 1 },
++				{ controls::draft::TestPatternModeColorBars, 2 },
++				{ controls::draft::TestPatternModeColorBarsFadeToGray, 3 },
++				{ controls::draft::TestPatternModePn9, 4 },
++			},
++			.sensorDelays = { },
++		} },
+ 		{ "imx477", {
+ 			.unitCellSize = { 1550, 1550 },
+ 			.testPatternModes = {},
+diff --git a/src/ipa/libipa/camera_sensor_helper.cpp b/src/ipa/libipa/camera_sensor_helper.cpp
+index cc16e251..82bf255d 100644
+--- a/src/ipa/libipa/camera_sensor_helper.cpp
++++ b/src/ipa/libipa/camera_sensor_helper.cpp
+@@ -644,6 +644,19 @@ class CameraSensorHelperImx462 : public CameraSensorHelperImx290
+ };
+ REGISTER_CAMERA_SENSOR_HELPER("imx462", CameraSensorHelperImx462)
+ 
++class CameraSensorHelperImx471 : public CameraSensorHelper
++{
++public:
++	CameraSensorHelperImx471()
++	{
++		/* Measured: 64 DN at 10-bit; */
++		blackLevel_ = 4096;
++		/* gain = 1024/(1024 - code); code = [0, 800]; max gain = x4.57 */
++		gain_ = AnalogueGainLinear{ 0, 1024, -1, 1024 };
++	}
++};
++REGISTER_CAMERA_SENSOR_HELPER("imx471", CameraSensorHelperImx471)
++
+ class CameraSensorHelperImx477 : public CameraSensorHelper
+ {
+ public:

@@ -1,0 +1,50 @@
+# imx471.yaml for libcamera Simple IPA
+#
+# Colour matrices extracted from Intel's IMX471_AAJH5-D_LNL.aiqb
+# (config/linux/ipu7x/ in intel/ipu7-camera-hal), which is the calibration
+# for the IMX471 module found in the Lenovo ThinkPad X9-14/X9-15. The AIQB
+# reports color_order=2 (BGGR); ipu-bridge lists these machines as having an
+# upside-down sensor, so libcamera applies a 180 degree transform and the
+# effective Bayer order matches the calibration.
+#
+# The previous tuning file kept only the diagonal of these matrices, which
+# scaled neutral pixels to R=B=2.2, G=0.68-0.88 and produced a magenta cast.
+%YAML 1.1
+---
+version: 1
+algorithms:
+  - BlackLevel:
+      blackLevel: 4096  # 64 DN at 10 bit
+  - Awb:
+      maxGainR: 2.18
+      maxGainB: 3.47
+  - Ccm:
+      ccms:
+        # CCT=2702K  R/G=0.9011  B/G=0.3173
+        - ct: 2702
+          ccm: [ 1.563167, -0.317072, -0.246096,
+                -0.470319,  1.696743, -0.226424,
+                 0.000881, -0.971623,  1.970742 ]
+        # CCT=2785K  R/G=0.8241  B/G=0.3263
+        - ct: 2785
+          ccm: [ 1.616882, -0.475067, -0.141815,
+                -0.488205,  1.695754, -0.207549,
+                 0.006640, -0.747387,  1.740747 ]
+        # CCT=3604K  R/G=0.6522  B/G=0.4079
+        - ct: 3604
+          ccm: [ 1.676800, -0.578462, -0.098338,
+                -0.382514,  1.592585, -0.210072,
+                -0.001369, -0.605803,  1.607172 ]
+        # CCT=4635K  R/G=0.5841  B/G=0.5149
+        - ct: 4635
+          ccm: [ 1.539241, -0.389276, -0.149964,
+                -0.288905,  1.534587, -0.245682,
+                 0.000470, -0.563287,  1.562817 ]
+        # CCT=5689K  R/G=0.5043  B/G=0.6068
+        - ct: 5689
+          ccm: [ 1.541359, -0.412035, -0.129324,
+                -0.266026,  1.609859, -0.343833,
+                -0.001399, -0.541746,  1.543145 ]
+  - Adjust:
+  - Agc:
+...

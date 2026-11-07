@@ -1,0 +1,48 @@
+--- a/include/libcamera/internal/software_isp/swstats_cpu.h
++++ b/include/libcamera/internal/software_isp/swstats_cpu.h
+@@ -115,6 +115,7 @@
+ 
+ 	unsigned int xShift_;
+ 	unsigned int stride_;
++	unsigned int sumShift_;
+ 
+ 	SharedMemObject<SwIspStats> sharedStats_;
+ 	SwIspStats stats_;
+--- a/src/libcamera/software_isp/swstats_cpu.cpp
++++ b/src/libcamera/software_isp/swstats_cpu.cpp
+@@ -347,6 +347,11 @@
+ {
+ 	stats_.valid = frame % kStatPerNumFrames == 0;
+ 	*sharedStats_ = stats_;
++	if (stats_.valid) {
++		sharedStats_->sum_.r() >>= sumShift_;
++		sharedStats_->sum_.g() >>= sumShift_;
++		sharedStats_->sum_.b() >>= sumShift_;
++	}
+ 	statsReady.emit(frame, bufferId);
+ }
+ 
+@@ -405,12 +410,15 @@
+ 		switch (bayerFormat.bitDepth) {
+ 		case 8:
+ 			stats0_ = &SwStatsCpu::statsBGGR8Line0;
++			sumShift_ = 0;
+ 			return 0;
+ 		case 10:
+ 			stats0_ = &SwStatsCpu::statsBGGR10Line0;
++			sumShift_ = 2;
+ 			return 0;
+ 		case 12:
+ 			stats0_ = &SwStatsCpu::statsBGGR12Line0;
++			sumShift_ = 4;
+ 			return 0;
+ 		}
+ 	}
+@@ -422,6 +430,7 @@
+ 		/* Skip every 3th and 4th line, sample every other 2x2 block */
+ 		ySkipMask_ = 0x02;
+ 		xShift_ = 0;
++		sumShift_ = 0;
+ 		processFrame_ = &SwStatsCpu::processBayerFrame2;
+ 
+ 		switch (bayerFormat.order) {
