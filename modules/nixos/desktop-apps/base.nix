@@ -38,8 +38,8 @@
         easyeffects
         # document viewing/editing
         pdfarranger
-        sioyek
         kdePackages.okular
+        pympress
         # tasks
         taskwarrior3
         # tools
