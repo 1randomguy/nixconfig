@@ -24,6 +24,7 @@
         self.nixosModules.compat
         # self.nixosModules.fonts
         self.nixosModules.master-thesis
+        self.nixosModules.ai-jail
         # self.nixosModules.uni-vpn
         # self.nixosModules.games
         #
@@ -54,11 +55,6 @@
           size = 32 * 1024; # GiB
           options = [ "discard" ];
           priority = 200;
-        }
-        {
-          device = "/home/bene/HDD/swapfile_2";
-          size = 64 * 1024; # GiB
-          priority = 0;
         }
       ];
 

@@ -49,10 +49,10 @@
         ];
       };
 
-      fileSystems."/home/bene/HDD" = {
-        device = "/dev/disk/by-uuid/a16541e6-a613-4720-bf80-c16047281524";
-        fsType = "ext4";
-      };
+      # fileSystems."/home/bene/HDD" = {
+      #   device = "/dev/disk/by-uuid/a16541e6-a613-4720-bf80-c16047281524";
+      #   fsType = "ext4";
+      # };
 
       swapDevices = [ ];
 
