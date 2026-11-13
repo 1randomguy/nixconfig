@@ -1,10 +1,18 @@
+{ inputs, ... }:
 {
   flake.nixosModules.master-thesis =
     { pkgs, ... }:
+    let
+      pkgs-unstable = import inputs.nixpkgs-unstable {
+        inherit (pkgs.stdenv.hostPlatform) system;
+        config.allowUnfree = true;
+      };
+    in
     {
       environment.systemPackages = with pkgs; [
         vscodium
         mattermost-desktop
+        pkgs-unstable.codex
       ];
       users.groups.chipwhisperer = { };
       users.users."bene".extraGroups = [
