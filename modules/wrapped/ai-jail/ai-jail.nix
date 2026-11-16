@@ -63,6 +63,7 @@
         nix
         pkgs-unstable.antigravity-cli
         opencode
+        pkgs-unstable.codex
         self.packages.${system}.neovim
         self.packages.${system}.zsh
       ];
