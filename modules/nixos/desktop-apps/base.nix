@@ -7,6 +7,10 @@
 
       services.flatpak = {
         enable = true;
+        update = {
+          onActivation = true;
+          auto.enable = true;
+        };
         packages = [
           "com.yubico.yubioath"
           "io.github.tanaybhomia.DeepDive"
