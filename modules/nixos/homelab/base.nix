@@ -29,12 +29,12 @@
       system.autoUpgrade = {
         enable = true;
         flake = "github:1randomguy/nixconfig#${config.networking.hostName}";
-        dates = "Sat,Sun 08:00";
+        dates = "06:00";
         flags = [
           "--refresh"
           "--no-write-lock-file"
         ];
-        allowReboot = false;
+        allowReboot = true;
       };
 
       age.secrets.porkbun = {
