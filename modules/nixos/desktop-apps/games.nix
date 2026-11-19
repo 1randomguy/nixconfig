@@ -19,10 +19,14 @@
       };
 
       config = {
-        services.flatpak.packages =
-          [ "sh.ppy.osu" ]
-          ++ lib.optionals cfg.steam.enable [ "com.valvesoftware.Steam" ]
-          ++ lib.optionals cfg.bottles.enable [ "com.usebottles.bottles" ];
+        services.flatpak.packages = [
+          "sh.ppy.osu"
+        ]
+        ++ lib.optionals cfg.steam.enable [
+          "com.valvesoftware.Steam"
+          "com.github.Matoking.protontricks"
+        ]
+        ++ lib.optionals cfg.bottles.enable [ "com.usebottles.bottles" ];
 
         programs.cdemu.enable = true;
 
