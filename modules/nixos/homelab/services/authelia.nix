@@ -186,6 +186,27 @@
                 consent_mode = "implicit";
               }
               {
+                client_name = "paperless";
+                client_id = "DthKlAameH6DvyzCDscRgJRewrGjBfpL9YP5iyrhblj1GbCkjZGfSIJJ99xVPfPc";
+                authorization_policy = "one_factor";
+                client_secret = "$pbkdf2-sha512$310000$Zf1yrW2wYVFzbYtEFcfPhA$fn7ZQ3IOiULu.NJ6CqUTaguMyQy6mKiE0N/VCWq8RaxWCCdEwjVnarIH2xiQcFWWqPx1k3xGhR5CdCm0d0IjXw";
+                redirect_uris = [
+                  "https://paperless.${hl.baseDomain}/accounts/oidc/authelia/login/callback/"
+                ];
+                scopes = [
+                  "openid"
+                  "profile"
+                  "email"
+                  "groups"
+                ];
+                token_endpoint_auth_method = "client_secret_post";
+                userinfo_signed_response_alg = "none";
+                response_types = [ "code" ];
+                grant_types = [ "authorization_code" ];
+                require_pkce = true;
+                consent_mode = "implicit";
+              }
+              {
                 client_name = "Tailscale";
                 client_id = "ZSz0hfAgvaaKJb73mWdBkl4SY3CNycPbPdRY7iwWV4T33wvttJiBMO.4puheou9BOOEeR2bZ";
                 authorization_policy = "one_factor";

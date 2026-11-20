@@ -33,6 +33,7 @@
         self.nixosModules.tinysub
         self.nixosModules.nextcloud
         self.nixosModules.bentopdf
+        self.nixosModules.paperless
         self.nixosModules.samba
         self.nixosModules.zola
         # TODO: relogin/setup

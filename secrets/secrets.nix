@@ -25,6 +25,8 @@ in
   "auto_stacker_env.age".publicKeys = chopper;
   "nextcloud_admin_password.age".publicKeys = chopper;
   "nextcloud_secrets.age".publicKeys = chopper;
+  "paperless_admin_password.age".publicKeys = chopper;
+  "paperless_oidc_env.age".publicKeys = chopper;
   "ntfy_url.age".publicKeys = chopper;
   "crowdsec_token.age".publicKeys = chopper;
   "subwave-env.age".publicKeys = chopper;

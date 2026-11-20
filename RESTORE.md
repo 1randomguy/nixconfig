@@ -41,9 +41,9 @@ restic -r /mnt/external/restic restore latest --target /mnt
 ```
 
 Backed up paths (chopper): `/var/lib/immich`, `/var/lib/immich-media`,
-`/var/lib/nextcloud`, `/public`, `/var/lib/samba/private`, `/home/bene/blog`,
-`/var/lib/authelia-main`, `/var/lib/tailscale`, `/var/backup/postgresql`, and
-the SSH host keys under `/etc/ssh`. Immich's bind-mounted views
+`/var/lib/nextcloud`, `/var/lib/paperless`, `/public`, `/var/lib/samba/private`,
+`/home/bene/blog`, `/var/lib/authelia-main`, `/var/lib/tailscale`,
+`/var/backup/postgresql`, and the SSH host keys under `/etc/ssh`. Immich's bind-mounted views
 (`/var/lib/immich/{upload,library}`) are excluded, so media restores to the
 hddpool dataset and host keys land in `/mnt/etc/ssh` (agenix then works on
 first boot, no rekey).
@@ -61,11 +61,15 @@ Only `pg_dump -C` dumps are backed up; the cluster itself is fresh. Load them:
 
 ```sh
 systemctl stop phpfpm-nextcloud nextcloud-cron immich-server
+systemctl stop paperless-scheduler paperless-web paperless-task-queue paperless-consumer
 sudo -u postgres psql -c 'DROP DATABASE IF EXISTS nextcloud;'
 sudo -u postgres gunzip -c /var/backup/postgresql/nextcloud.sql.gz | sudo -u postgres psql
 sudo -u postgres psql -c 'DROP DATABASE IF EXISTS immich;'
 sudo -u postgres gunzip -c /var/backup/postgresql/immich.sql.gz | sudo -u postgres psql
+sudo -u postgres psql -c 'DROP DATABASE IF EXISTS paperless;'
+sudo -u postgres gunzip -c /var/backup/postgresql/paperless.sql.gz | sudo -u postgres psql
 systemctl start phpfpm-nextcloud immich-server
+systemctl start paperless-scheduler paperless-web paperless-task-queue paperless-consumer
 ```
 
 ## 7. Touch-ups
