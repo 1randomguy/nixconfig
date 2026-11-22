@@ -37,15 +37,10 @@
           PAPERLESS_ADMIN_USER = "bene";
           PAPERLESS_OCR_LANGUAGE = "deu+eng";
           PAPERLESS_APPS = "allauth.socialaccount.providers.openid_connect";
+          PAPERLESS_SOCIAL_AUTO_SIGNUP = true;
+          PAPERLESS_REDIRECT_LOGIN_TO_SSO = true;
           PAPERLESS_CONSUMER_RECURSIVE = true;
           PAPERLESS_CONSUMER_IGNORE_PATTERNS = [
-            ".stfolder"
-            ".stfolder/*"
-            ".stversions"
-            ".stversions/*"
-            ".stignore"
-            ".syncthing.*.tmp"
-            "~syncthing~*"
             ".DS_Store"
             "Thumbs.db"
           ];
@@ -75,16 +70,6 @@
         "force group" = inboxGroup;
         "create mask" = "0660";
         "directory mask" = "2770";
-      };
-
-      services.syncthing.settings.folders."Paperless" = {
-        path = consumeDir;
-        type = "sendreceive";
-        devices = [
-          "sanji"
-          "work-laptop"
-        ];
-        ignorePatterns = [ "/smb/" ];
       };
 
       services.postgresqlBackup.databases = [ "paperless" ];
