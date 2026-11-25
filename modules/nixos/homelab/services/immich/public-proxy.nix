@@ -27,25 +27,15 @@
                 Cache-Control = "public; max-age=2592000";
                 Access-Control-Allow-Origin = "*";
               };
-              singleImageGallery = false;
-              singleItemAutoOpen = true;
-              downloadOriginalPhoto = true;
-              allowDownloadAll = 1;
               allowDownload = 1;
               showHomePage = true;
-              showGalleryTitle = true;
+              gallery = {
+                showDescription = true;
+                showExpiryDate = true;
+                expiryDateFormat = "DD.MM.YYYY";
+              };
               showMetadata = {
                 description = false;
-              };
-              customInvalidResponse = false;
-            };
-            lightGallery = {
-              controls = true;
-              download = true;
-              mobileSettings = {
-                controls = false;
-                showCloseIcon = true;
-                download = true;
               };
             };
           };
