@@ -31,6 +31,7 @@
               singleItemAutoOpen = true;
               downloadOriginalPhoto = true;
               allowDownloadAll = 1;
+              allowDownload = 1;
               showHomePage = true;
               showGalleryTitle = true;
               showMetadata = {
